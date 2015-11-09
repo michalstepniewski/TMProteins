@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>TM Helices Calculator</title>	
+	</head>
+
+	<body>
+		<!-- List of uploaded documents -->
+		{% if documents %}
+			<ul>
+                        {% for document in documents %}
+                                <h1> {{ document.docfile.name }} </h1> 
+				<li><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></li>
+
+
+                                {% load static %}
+                                {% static "" as baseUrl %}
+                                <img src="{{ baseUrl }}/myapp/static/Protein1.png" alt="My image"/>
+
+                                {% if tmhelices %}
+                                    <ul>
+                                    <p> Transmembrane Helices: </p>
+                                    {% for tmhelix in tmhelices %}
+
+                                        <li><a href="{% url 'detail' tmhelix.id %}">TM{{ tmhelix.TMHelix_ID }}</a></li>
+
+                                    {% endfor %}
+                                    </ul>
+                                {% else %}
+                                    <p>No TMs are available.</p>
+                                {% endif %}
+
+			{% endfor %}
+			</ul>
+		{% else %}
+			<p>No documents.</p>
+		{% endif %}
+
+		<!-- Upload form. Note enctype attribute! -->
+		<form action="{% url "list" %}" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<p>{{ form.non_field_errors }}</p>
+			<p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
+			<p>
+				{{ form.docfile.errors }}
+				{{ form.docfile }}
+			</p>
+			<p><input type="submit" value="Upload" /></p>
+		</form>
+		
+	</body>
+
+</html> 
+
+
