@@ -11,7 +11,7 @@ Usage (Django 1.8)
 ------------------
 First ensure you have Django 1.8 installed. Then:
 
-    $ git clone https://github.com/michalstepniewski/TMProteins4.git
+    $ git clone https://github.com/michalstepniewski/TMProteins.git
 	$ cd myproject
 	$ python manage.py migrate
 	$ python manage.py runserver
