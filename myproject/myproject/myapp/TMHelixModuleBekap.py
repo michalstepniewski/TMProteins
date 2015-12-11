@@ -7,7 +7,6 @@ import SetOfAtomsModule; from SetOfAtomsModule import *;
 
 import  GeometricalClassesModule;
 from GeometricalClassesModule import *;
-import numpy;
 
 #####################################################################################################################################################
 #####################################################################################################################################################
@@ -84,16 +83,6 @@ class TMHelix ( ProteinChain ):
           """ calculated by PCA method                   """
 
           if Parametry. HelixDirectionality == 'NterCter':
-             Axis = self. CA_XYZs ( ). PCAAxis ( )
-             print [self. CA_XYZs ( ).Content[n] for n in [0,-1]]
-             print SetOfPoints ([self. CA_XYZs ( ). Content[n] for n in [0,-1]]). Vector()[-1]
-
-             if numpy.sign( SetOfPoints([self. CA_XYZs ( ).Content[n] for n in [0,-1]]).Vector()[-1]) == numpy.sign(Axis[2]):
-                return Axis
-             else:
-                OppositeAxis = Vector ( [ -Coord for Coord in Axis ] )
-                return OppositeAxis
-
              return self. CA_XYZs ( ). PCAAxis ( )
 
           elif Parametry. HelixDirectionality == 'IC_EC':
@@ -224,38 +213,6 @@ class TMHelix ( ProteinChain ):
           """ returns the Tilt value of a Helix """
 
           return self. MainAxis ( ). AngleToZAxis ( )
-
-#####################################################################################################################################################
-
-      def Tilt_EC ( self ):
-
-          """ returns the Tilt value of a Helix """
-
-          return self. ExtractSlice([-2.0,12.0]). MainAxis ( ). AngleToZAxis ( )
-
-#####################################################################################################################################################
-
-      def Axis_EC ( self ):
-
-          """ returns the Tilt value of a Helix """
-
-          return self. ExtractSlice([-2.0,12.0]). MainAxis ( )
-
-#####################################################################################################################################################
-
-      def Tilt_IC ( self ):
-
-          """ returns the Tilt value of a Helix """
-
-          return self.ExtractSlice([-12.0,2.0]). MainAxis ( ). AngleToZAxis ( )
-
-#####################################################################################################################################################
-
-      def Axis_IC ( self ):
-
-          """ returns the Tilt value of a Helix """
-
-          return self.ExtractSlice([-12.0,2.0]). MainAxis ( )
 
 #####################################################################################################################################################
 

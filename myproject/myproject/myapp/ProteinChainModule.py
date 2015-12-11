@@ -166,7 +166,7 @@ class ProteinChain ( SetOfResidues ):
 
        ID = 1
 
-       for MSegmentI in MSegments.Content:
+       for MSegmentI in MSegments. Content:
 
            MSegmentInstance = MSegment ( MSegmentI.Content )
 

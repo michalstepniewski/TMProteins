@@ -7,7 +7,6 @@ import SetOfAtomsModule; from SetOfAtomsModule import *;
 
 import  GeometricalClassesModule;
 from GeometricalClassesModule import *;
-import numpy;
 
 #####################################################################################################################################################
 #####################################################################################################################################################
@@ -32,6 +31,8 @@ class TMHelix ( ProteinChain ):
           self.ID = ID
           self. ChainID = 'X'
           self. CalculateNterDescriptor ()
+
+          self. FeatureValue = {} # teraz jaka filosofia bedzie
 
 #####################################################################################################################################################
 
@@ -84,16 +85,6 @@ class TMHelix ( ProteinChain ):
           """ calculated by PCA method                   """
 
           if Parametry. HelixDirectionality == 'NterCter':
-             Axis = self. CA_XYZs ( ). PCAAxis ( )
-             print [self. CA_XYZs ( ).Content[n] for n in [0,-1]]
-             print SetOfPoints ([self. CA_XYZs ( ). Content[n] for n in [0,-1]]). Vector()[-1]
-
-             if numpy.sign( SetOfPoints([self. CA_XYZs ( ).Content[n] for n in [0,-1]]).Vector()[-1]) == numpy.sign(Axis[2]):
-                return Axis
-             else:
-                OppositeAxis = Vector ( [ -Coord for Coord in Axis ] )
-                return OppositeAxis
-
              return self. CA_XYZs ( ). PCAAxis ( )
 
           elif Parametry. HelixDirectionality == 'IC_EC':
@@ -219,44 +210,21 @@ class TMHelix ( ProteinChain ):
 
 #####################################################################################################################################################
 
-      def Tilt ( self ):
+      def getTilt ( self ):
 
-          """ returns the Tilt value of a Helix """
+          """ gets the Tilt value of a Helix if one not found """
 
-          return self. MainAxis ( ). AngleToZAxis ( )
+          keys = self. FeatureValue. keys ()
 
-#####################################################################################################################################################
+          if 'Tilt' not in keys:
 
-      def Tilt_EC ( self ):
+              if 'MainAxis' not in keys: self. getMainAxis ()
+              
+              self. FeatureValue ['Tilt'] = self. FeatureValue [ 'MainAxis' ]. AngleToZAxis ( )
 
-          """ returns the Tilt value of a Helix """
+          return
 
-          return self. ExtractSlice([-2.0,12.0]). MainAxis ( ). AngleToZAxis ( )
-
-#####################################################################################################################################################
-
-      def Axis_EC ( self ):
-
-          """ returns the Tilt value of a Helix """
-
-          return self. ExtractSlice([-2.0,12.0]). MainAxis ( )
-
-#####################################################################################################################################################
-
-      def Tilt_IC ( self ):
-
-          """ returns the Tilt value of a Helix """
-
-          return self.ExtractSlice([-12.0,2.0]). MainAxis ( ). AngleToZAxis ( )
-
-#####################################################################################################################################################
-
-      def Axis_IC ( self ):
-
-          """ returns the Tilt value of a Helix """
-
-          return self.ExtractSlice([-12.0,2.0]). MainAxis ( )
-
+#musze to przepisac, zeby liczylo tylko jesli jeszcze nie ma wartosci
 #####################################################################################################################################################
 
       def ZSlices ( self, BordersOfSlices ):

@@ -35,8 +35,20 @@ class TMHelixManager (models.Manager):
 
 	for i in r:
 
-		tmhelix = self.create(TMHelix_ID= i['ID'], TMHelix_Tilt = i['Tilt'] )
-		tmhelix. TMHelix_Tilt = i['Tilt']
+		tmhelix = self.create(TMHelix_ID= i['ID'], TMHelix_Tilt = i['Tilt'], \
+                                      TMHelix_Tilt_EC = i['Tilt_EC'], \
+                                      TMHelix_Tilt_IC = i['Tilt_IC'])#, \
+
+
+
+
+
+
+#		tmhelix. TMHelix_Tilt = i['Tilt']
+#		tmhelix. TMHelix_Tilt_EC = i['Tilt']
+#		tmhelix. TMHelix_Tilt_IC = i['Tilt']
+#                tmhelix.attributes = {}
+
 
         return
 
@@ -55,6 +67,8 @@ class TMHelix(models.Model):
 
     TMHelix_ID = models.CharField(max_length=200)
     TMHelix_Tilt = models.FloatField (null=True)
+    TMHelix_Tilt_EC = models.FloatField (null=True)
+    TMHelix_Tilt_IC = models.FloatField (null=True)
 
     objects = TMHelixManager()
 
@@ -67,7 +81,7 @@ class TMHelix(models.Model):
 
         """ creates new object: instance of TMHelix class """
 
-        tmhelix = cls(TMHelix_ID=ID)
+        tmhelix = cls(TMHelix_ID=ID, attributes={})
         return tmhelix
 
 #####################################################################################################################################################
