@@ -1,0 +1,42 @@
+<script type="text/javascript" language="javascsript"
+        src="{{ static_url }}{{ socket_method }}.js">
+</script>
+<script type="text/javascript" language="javascsript">{% if port %}
+ORBITED_PORT = {{ port }};{% endif %}
+{% ifequal socket_method "orbited" %}
+function dispatcher_{{ session_key }}_callback(json_data) {
+    data = eval('('+ json_data +')');
+    if (typeof(dispatcher_{{ session_key }}) != 'undefined') {
+        callback = dispatcher_{{ session_key }}[data.channel];
+        if (typeof(callback) == 'function') {
+            callback(data.body);
+        }
+    }
+}
+Orbited.connect(dispatcher_{{ session_key }}_callback, "{{ recipient }}");
+
+function destroy_{{ session_key }}() {
+    if (typeof(dispatcher_{{ session_key }}) != 'undefined') {
+        dispatch_list = []
+        for (dispatch in dispatcher_{{ session_key }}) {
+            dispatch_list.push("\""+ dispatch +"\"");
+        }
+        xhr_{{ session_key }} = Orbited.create_xhr();
+        xhr_{{ session_key }}.open("POST", "{{ static_url }}destroy/", true);
+        xhr_{{ session_key }}.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");                  
+        postData = 'channels=['+ dispatch_list.join(",") +']';
+        {% if user.id %}postData += '&id={{ user.id }}';{% endif %}
+        xhr_{{ session_key }}.send(postData);
+        xhr_{{ session_key }}.close();
+    }
+}
+onbeforeunload = document.body.getAttribute("onbeforeunload");
+beforeunload = onbeforeunload + "; javascript:{destroy_{{ session_key }}();}";
+document.body.setAttribute("onbeforeunload", beforeunload);
+{% endifequal %}{% ifequal socket_method "WebSocket" %}
+{% endifequal %}{% ifequal socket_method "TCPSocket" %}
+{% endifequal %}{% ifequal socket_method "BinaryTCPSocket" %}
+{% endifequal %}
+</script>
+
+

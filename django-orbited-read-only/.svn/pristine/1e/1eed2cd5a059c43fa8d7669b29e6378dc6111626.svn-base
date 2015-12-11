@@ -1,0 +1,43 @@
+{% load orbited %}
+<html>
+
+<head>
+    <title>django-orbited - Django and Orbited made easy!</title>
+
+
+<script language="javascript" type="text/javascript">
+log_handler = function (data) {
+    log = document.getElementById("logs");
+    log.innerHTML += data + "<br/>";
+}
+</script>
+{% orbited channel "log" on "log_handler" %}
+
+<script language="javascript" type="text/javascript">
+news_handler = function (data) {
+    log = document.getElementById("news");
+    log.innerHTML += data + "<br/>";
+}
+</script>
+{% orbited channel "news" on "news_handler" %}
+
+</head>
+
+<body>
+{% orbited %}
+
+<h1>django-orbited - Django and Orbited made easy!</h1>
+Test page.
+<h2>Orbited events log</h2>
+<h3>Logs</h3>
+<div id="logs"></div>
+<h3>News</h3>
+<div id="news"></div>
+{% if user.id %}
+<h2><a href="{% url django.contrib.auth.views.logout %}">Logout</a></h2>
+{% else %}
+<h2><a href="{% url django.contrib.auth.views.login %}">Login</a></h2>
+{% endif %}
+</body>
+
+</html>

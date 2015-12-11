@@ -1,0 +1,15 @@
+ <h1>ID: {{ tmhelix.TMHelix_ID }}</h1>
+ <h1>Tilt: {{ tmhelix.TMHelix_Tilt }}</h1>
+ <h1>Tilt (Extracellular Leaflet): {{ tmhelix.TMHelix_Tilt_EC }}</h1>
+ <h1>Tilt (Intracellular Leaflet): {{ tmhelix.TMHelix_Tilt_IC }}</h1>
+
+{% load staticfiles %}
+
+{% load static %}
+{% static "" as baseUrl %}
+<img src="{{ baseUrl }}/myapp/static/{{tmhelix.TMHelix_ID}}/helisa.png" alt="My image"/>
+
+
+
+
+
