@@ -123,7 +123,9 @@ class PdbFileContent ( list ):
                      
 		     command = ' mkdir myproject/myapp/static/myapp/static/'+str(N)+'; cp script.pml media/;cp script.pml media/TMs/;cd media; pymol TMProtein.pdb -c script.pml; cd TMs/; pymol '+ProteinChainInstance.ChainID+'_TM_'+str(N)+'_X.pdb' + '  script.pml -- '+' '.join(map(str,  MRegionResiduesSegment_I. MainAxis()))+' '+' '.join(map(str,  MRegionResiduesSegment_I. Center()))+' '+' '.join(map(str,  MRegionResiduesSegment_I. Axis_EC()) )+' '+' '.join(map(str,  MRegionResiduesSegment_I. Axis_IC()))+'; cd ../..; mv media/plik1.png myproject/myapp/static/myapp/static/Protein1.png;  mv '+ OutputPath + '/TMs/plik1.png myproject/myapp/static/myapp/static/'+str(N)+'/helisa.png'; # this console script uses pymol and pymol script (script.pml) in order to generate figures displaying Transmembrane Proteins 
                      # together with extracted Transmembrane Helices
+
 # musze czytelniej zrobic te komende
+
                      os.system(command)
                             
        return N_TMs_Set ( TMSegmentsI )
