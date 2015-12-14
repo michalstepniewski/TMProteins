@@ -13,6 +13,14 @@ def detail(request, tmhelix_id):
     tmhelix = get_object_or_404(TMHelix, pk=tmhelix_id)
     return render(request, 'detail.html', {'tmhelix': tmhelix})
 
+def viewer(request):
+#    tmhelix = get_object_or_404(TMHelix, pk=tmhelix_id)
+    return render(request, 'viewer.html')
+
+def embedding(request):
+#    tmhelix = get_object_or_404(TMHelix, pk=tmhelix_id)
+    return render(request, 'embedding/embedding.html')
+
 def Clear (request,post_id):
     Document.objects.all().delete()
 

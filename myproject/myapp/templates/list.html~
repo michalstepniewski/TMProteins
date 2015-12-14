@@ -20,7 +20,7 @@
 
                                 {% if tmhelices %}
                                     <ul>
-                                    <p> Transmembrane Helices </p>
+                                    <p> Transmembrane Helices: </p>
                                     {% for tmhelix in tmhelices %}
 
                                         <li><a href="{% url 'detail' tmhelix.id %}">TM{{ tmhelix.TMHelix_ID }}</a></li>
@@ -30,13 +30,14 @@
                                 {% else %}
                                     <p>No TMs are available.</p>
                                 {% endif %}
+                        <li><a href="{% url 'viewer' %}">View</a></li>
 
 			{% endfor %}
 			</ul>
 		{% else %}
 			<p>No documents.</p>
 		{% endif %}
-
+                <!-- dodac tu link do viewera -->
 		<!-- Upload form. Note enctype attribute! -->
 		<form action="{% url "list" %}" method="post" enctype="multipart/form-data">
 			{% csrf_token %}

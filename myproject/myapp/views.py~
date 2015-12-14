@@ -11,7 +11,15 @@ import os
 
 def detail(request, tmhelix_id):
     tmhelix = get_object_or_404(TMHelix, pk=tmhelix_id)
-    return render(request, 'detail.html', {'tmhelix': tmhelix)
+    return render(request, 'detail.html', {'tmhelix': tmhelix})
+
+def viewer(request):
+#    tmhelix = get_object_or_404(TMHelix, pk=tmhelix_id)
+    return render(request, 'viewer.html')
+
+def embedding(request):
+#    tmhelix = get_object_or_404(TMHelix, pk=tmhelix_id)
+    return render(request, 'glmol/embedding.html')
 
 def Clear (request,post_id):
     Document.objects.all().delete()
