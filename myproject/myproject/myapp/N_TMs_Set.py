@@ -139,11 +139,11 @@ class N_TMs_Set ( list ): # musze zrobic od razu na N secie
           conn = sqlite3.connect(db_path)
           c = conn. cursor ()
           c.execute('''CREATE TABLE TMs
-                 (ID text, Tilt real, Tilt_EC real, Tilt_IC real, MainAxis_X real, MainAxis_Y real, MainAxis_Z real, KinkAngle real  )''')
+                 (ID text, Tilt real, Tilt_EC real, Tilt_IC real, MainAxis_X real, MainAxis_Y real, MainAxis_Z real, KinkAngle real, Overhang real  )''')
 
           for TM in self.Content:
           
-              c.execute("INSERT INTO TMs VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (TM. ID, float(format(TM. Tilt(), '.3f') ), float(format(TM. Tilt_EC(), '.3f') ),float(format(TM. Tilt_IC(), '.3f') ), float(format(TM. MainAxis()[0], '.3f') ), float(format(TM. MainAxis()[1], '.3f') ), float(format(TM. MainAxis()[2], '.3f') ),float(format(TM. KinkAngle(), '.3f') )  ))
+              c.execute("INSERT INTO TMs VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", (TM. ID, float(format(TM. Tilt(), '.3f') ), float(format(TM. Tilt_EC(), '.3f') ),float(format(TM. Tilt_IC(), '.3f') ), float(format(TM. MainAxis()[0], '.3f') ), float(format(TM. MainAxis()[1], '.3f') ), float(format(TM. MainAxis()[2], '.3f') ), float(format(TM. KinkAngle(), '.3f') ), float(format(TM. Overhang(), '.3f') )  ))
 
           conn. commit()
           conn. close()  

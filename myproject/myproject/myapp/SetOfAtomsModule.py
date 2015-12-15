@@ -15,6 +15,7 @@ class Parametry ():
     pass
 
 Parametry. MembraneLimits = [-15.0, 15.0]
+Parametry. BordersOfThinSlices = [[-12.0, -6.0], [-3.0, 3.0], [9.0, 12.0]]
 Parametry. MainAxisDefinition = 'PCA'
 Parametry. HelixDirectionality = 'NterCter'
 

@@ -464,10 +464,54 @@ class TMHelix ( ProteinChain ):
           HelixAxesArgs = CenterOfMassStr +', '+ MainAxisIStr +', '+CenterOfMassECStr +', '+ ECAxisIStr +', '+CenterOfMassICStr +', '+ ICAxisIStr
 
           BarDProtein = 'set depth_cue, 0; bg_color white; show cartoon; hide lines;set cartoon_transparency, 0.5; zoom center, 20; ray 500,500; png plik1.png; quit;'
-          BarDHelix = 'run helix_axes.py;helix_axes ' + HelixAxesArgs + ';' + BarDProtein
+          BarDHelix = 'set seq_view, 1;run helix_axes.py;helix_axes ' + HelixAxesArgs + ';' + BarDProtein
           TMHelixPDBFileName = self.ChainID+'_TM_'+str(N)+'_X.pdb'
-
+# trzeba zrobic zeby sie nie robila proteina bo to za wolno
           ShellCommand = 'mkdir myproject/myapp/static/myapp/static/'+str(N)+'; cp helix_axes.py media/TMs/; cd media; pymol TMProtein.pdb -d \''+BarDProtein+'\';'+' cd TMs; pymol '+TMHelixPDBFileName +' -d \''+BarDHelix+'\';'' cd ../..; mv media/plik1.png myproject/myapp/static/myapp/static/Protein1.png;  mv  media/TMs/plik1.png myproject/myapp/static/myapp/static/'+str(N)+'/helisa.png;'
 
 	  os. system (ShellCommand)
+
+#####################################################################################################################################################
+
+      def Overhang ( self, OverhangRanges = [ [1.0, 10.0], [-10.0, -1.0] ] ):
+
+          COM_EC, COM_MM, COM_IC = self. ThinSlicesCOMs ( ) #[ 0 ]
+
+          """
+          returns the overhang
+          ( it is actually a bit tricky )
+          """
+
+          ZSliceI = self. ZSlice (   OverhangRanges[0][0], OverhangRanges[0][1] )
+          
+          COM_EC = ZSliceI. CenterOfMass ( )
+          
+          Axis1 = ZSliceI. AxisPCA ( )
+          
+          ScalingFactor = -COM_EC[2]/Axis1 [2]
+          Axis1 = Axis1. Scale ( ScalingFactor )
+
+          ZSliceI = self. ZSlice ( OverhangRanges[1][0], OverhangRanges[1][1] )
+          COM_IC = ZSliceI. CenterOfMass ( )
+          Axis2 = ZSliceI. AxisPCA ( )
+          ScalingFactor = -COM_IC[2]/Axis2 [2]
+          Axis2 = Axis2. Scale ( ScalingFactor )
+
+#          print Axis2
+
+          P1 = Point(COM_EC); P2 = Point(COM_IC);
+
+          P1. Translate ( Axis1 ); P2. Translate ( Axis2 );
+
+#          print P1; print P2; quit ()
+
+
+          return SetOfPoints ( [ P1, P2 ] ). Distance ( )
+
+# overhang can be calculated in simplified way or in the exact way
+# simplified way assumes that overhang occurs in the middle of membrane
+# thus overhang is the XY distance between COM of Epsilon1 width
+# at ( Z + Epsilon2 ) to (Z - Epsilon2)
+
+#####################################################################################################################################################
 
