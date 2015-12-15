@@ -37,7 +37,9 @@ class TMHelixManager (models.Manager):
 
 		tmhelix = self.create(TMHelix_ID= i['ID'], TMHelix_Tilt = i['Tilt'], \
                                       TMHelix_Tilt_EC = i['Tilt_EC'], \
-                                      TMHelix_Tilt_IC = i['Tilt_IC'])#, \
+                                      TMHelix_Tilt_IC = i['Tilt_IC'], \
+                                      TMHelix_KinkAngle = i['KinkAngle'])
+
 
 
 
@@ -69,6 +71,7 @@ class TMHelix(models.Model):
     TMHelix_Tilt = models.FloatField (null=True)
     TMHelix_Tilt_EC = models.FloatField (null=True)
     TMHelix_Tilt_IC = models.FloatField (null=True)
+    TMHelix_KinkAngle = models.FloatField (null=True)
 
     objects = TMHelixManager()
 

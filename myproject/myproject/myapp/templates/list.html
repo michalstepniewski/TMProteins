@@ -30,13 +30,16 @@
                                 {% else %}
                                     <p>No TMs are available.</p>
                                 {% endif %}
+                        <li><a href="{% url 'viewer' %}">View</a></li>
+                        <li><a href="{% url 'embedding' %}">View2</a></li>
+
 
 			{% endfor %}
 			</ul>
 		{% else %}
 			<p>No documents.</p>
 		{% endif %}
-
+                <!-- dodac tu link do viewera -->
 		<!-- Upload form. Note enctype attribute! -->
 		<form action="{% url "list" %}" method="post" enctype="multipart/form-data">
 			{% csrf_token %}

@@ -259,6 +259,12 @@ class TMHelix ( ProteinChain ):
 
 #####################################################################################################################################################
 
+      def KinkAngle ( self ):
+
+          return SetOfVectors([self. Axis_EC (), self. Axis_IC ()]). AngleDEG ()
+
+#####################################################################################################################################################
+
       def ZSlices ( self, BordersOfSlices ):
 
           """ extracts Z slices based on Z coordinate ranges """
@@ -432,4 +438,36 @@ class TMHelix ( ProteinChain ):
           COM_IM_Axis = SetOfPoints ( [ COM_EC_MM_IC_I [ 2 ], COM_EC_MM_IC_I [ 1 ] ] ). Vector ( )
 
           return [ COM_ME_Axis, COM_IM_Axis ]
+
+#####################################################################################################################################################
+
+      def DrawAxesInPymol ( self, N ):
+          import os
+          
+ 
+          CenterOfMassI = self. CenterOfMass ()     # we get CenterOfMass for the whole helix
+          CenterOfMass_ICI =  self.ExtractSlice([-12.0,2.0]). CenterOfMass ()
+          CenterOfMass_ECI =  self.ExtractSlice([2.0,12.0]). CenterOfMass ()
+
+          MainAxisI     = Vector([ coord * 10.0 for coord in self.  MainAxis  ()])  # we get main Helix Axis
+          ECAxisI       = Vector([ coord * 10.0 for coord in self.  Axis_EC  ()])  # we get Extracellular Axis
+          ICAxisI       = Vector([ coord * 10.0 for coord in self.  Axis_IC  ()]) # we get Intracellular Axis
+          
+          MainAxisI. Translate(CenterOfMassI); ECAxisI. Translate(CenterOfMass_ECI);
+          ICAxisI. Translate(CenterOfMass_ICI);
+
+
+#musze puscic wszytkie osie
+          
+          CenterOfMassStr, CenterOfMassECStr, CenterOfMassICStr, MainAxisIStr, ECAxisIStr, ICAxisIStr = [', '.join(map(str, Arg )) for Arg in [CenterOfMassI, CenterOfMass_ECI, CenterOfMass_ICI, MainAxisI, ECAxisI, ICAxisI ] ]
+
+          HelixAxesArgs = CenterOfMassStr +', '+ MainAxisIStr +', '+CenterOfMassECStr +', '+ ECAxisIStr +', '+CenterOfMassICStr +', '+ ICAxisIStr
+
+          BarDProtein = 'set depth_cue, 0; bg_color white; show cartoon; hide lines;set cartoon_transparency, 0.5; zoom center, 20; ray 500,500; png plik1.png; quit;'
+          BarDHelix = 'run helix_axes.py;helix_axes ' + HelixAxesArgs + ';' + BarDProtein
+          TMHelixPDBFileName = self.ChainID+'_TM_'+str(N)+'_X.pdb'
+
+          ShellCommand = 'mkdir myproject/myapp/static/myapp/static/'+str(N)+'; cp helix_axes.py media/TMs/; cd media; pymol TMProtein.pdb -d \''+BarDProtein+'\';'+' cd TMs; pymol '+TMHelixPDBFileName +' -d \''+BarDHelix+'\';'' cd ../..; mv media/plik1.png myproject/myapp/static/myapp/static/Protein1.png;  mv  media/TMs/plik1.png myproject/myapp/static/myapp/static/'+str(N)+'/helisa.png;'
+
+	  os. system (ShellCommand)
 
