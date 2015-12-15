@@ -1,0 +1,47 @@
+***1.Functionalities:***
+
+1.1 Parameters:
+
+User should input through GUI parameters like:
+                                   Z coordinate Ranges; Membrane Limits; MC Slices; PCA Ranges; Overhang Calculation Ranges;  
+                                   axis definition (PCA or MC?)
+                                   Axis direction: N->C or Ec->IC1      
+                                   Generate Figure yes/no  
+1.2 Folder Upload:
+
+User should be able to input folders instead of just files
+
+1.3 Statistics:
+
+User should be able to plot statistics of helices in file/folder
+
+1.4 Results Download:
+
+User should be able to download results: PDBs, PNGs etc. in .zip
+
+1.5 Pymol -> Javascript(GLMOL)
+
+'Figures' should be served in Javascript(GLMOL) instead of Pymol
+
+***2.Good Practices Implementation***
+
+2.1 RawSQL:
+
+Raw SQL should be eliminated/limited
+
+2.2 File/shell operations:
+
+2.3 File/Shell operations should be limited
+
+*** 3.Code Optimization ***
+
+3.1 Storing Intermediate Values in Memory
+
+**** 4.Changes Order/Priority ****
+
+1.2
+
+1.3
+
+3.1
+
