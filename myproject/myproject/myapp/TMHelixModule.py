@@ -446,8 +446,9 @@ class TMHelix ( ProteinChain ):
           
  
           CenterOfMassI = self. CenterOfMass ()     # we get CenterOfMass for the whole helix
-          CenterOfMass_ICI =  self.ExtractSlice([-12.0,2.0]). CenterOfMass ()
-          CenterOfMass_ECI =  self.ExtractSlice([2.0,12.0]). CenterOfMass ()
+          CenterOfMass_ICI =  self. ExtractSlice([-12.0,2.0]). CenterOfMass ()
+          CenterOfMass_ECI =  self. ExtractSlice([2.0,12.0]). CenterOfMass ()
+          OverhangPointsI  =  self. OverhangPoints ()
 
           MainAxisI     = Vector([ coord * 10.0 for coord in self.  MainAxis  ()])  # we get main Helix Axis
           ECAxisI       = Vector([ coord * 10.0 for coord in self.  Axis_EC  ()])  # we get Extracellular Axis
@@ -456,12 +457,11 @@ class TMHelix ( ProteinChain ):
           MainAxisI. Translate(CenterOfMassI); ECAxisI. Translate(CenterOfMass_ECI);
           ICAxisI. Translate(CenterOfMass_ICI);
 
-
 #musze puscic wszytkie osie
           
-          CenterOfMassStr, CenterOfMassECStr, CenterOfMassICStr, MainAxisIStr, ECAxisIStr, ICAxisIStr = [', '.join(map(str, Arg )) for Arg in [CenterOfMassI, CenterOfMass_ECI, CenterOfMass_ICI, MainAxisI, ECAxisI, ICAxisI ] ]
+          CenterOfMassStr, CenterOfMassECStr, CenterOfMassICStr, MainAxisIStr, ECAxisIStr, ICAxisIStr, OverhangPointsIStr0, OverhangPointsIStr1 = [', '.join(map(str, Arg )) for Arg in [CenterOfMassI, CenterOfMass_ECI, CenterOfMass_ICI, MainAxisI, ECAxisI, ICAxisI, OverhangPointsI[0], OverhangPointsI[1] ] ]
 
-          HelixAxesArgs = CenterOfMassStr +', '+ MainAxisIStr +', '+CenterOfMassECStr +', '+ ECAxisIStr +', '+CenterOfMassICStr +', '+ ICAxisIStr
+          HelixAxesArgs = CenterOfMassStr +', '+ MainAxisIStr +', '+CenterOfMassECStr +', '+ ECAxisIStr +', '+CenterOfMassICStr +', '+ICAxisIStr+', '+OverhangPointsIStr0+', '+OverhangPointsIStr1
 
           BarDProtein = 'set depth_cue, 0; bg_color white; show cartoon; hide lines;set cartoon_transparency, 0.5; zoom center, 20; ray 500,500; png plik1.png; quit;'
           BarDHelix = 'set seq_view, 1;run helix_axes.py;helix_axes ' + HelixAxesArgs + ';' + BarDProtein
@@ -507,6 +507,48 @@ class TMHelix ( ProteinChain ):
 
 
           return SetOfPoints ( [ P1, P2 ] ). Distance ( )
+
+# overhang can be calculated in simplified way or in the exact way
+# simplified way assumes that overhang occurs in the middle of membrane
+# thus overhang is the XY distance between COM of Epsilon1 width
+# at ( Z + Epsilon2 ) to (Z - Epsilon2)
+
+#####################################################################################################################################################
+
+      def OverhangPoints ( self, OverhangRanges = [ [1.0, 10.0], [-10.0, -1.0] ] ):
+
+          COM_EC, COM_MM, COM_IC = self. ThinSlicesCOMs ( ) #[ 0 ]
+
+          """
+          returns the overhang
+          ( it is actually a bit tricky )
+          """
+
+          ZSliceI = self. ZSlice (   OverhangRanges[0][0], OverhangRanges[0][1] )
+          
+          COM_EC = ZSliceI. CenterOfMass ( )
+          
+          Axis1 = ZSliceI. AxisPCA ( )
+          
+          ScalingFactor = -COM_EC[2]/Axis1 [2]
+          Axis1 = Axis1. Scale ( ScalingFactor )
+
+          ZSliceI = self. ZSlice ( OverhangRanges[1][0], OverhangRanges[1][1] )
+          COM_IC = ZSliceI. CenterOfMass ( )
+          Axis2 = ZSliceI. AxisPCA ( )
+          ScalingFactor = -COM_IC[2]/Axis2 [2]
+          Axis2 = Axis2. Scale ( ScalingFactor )
+
+#          print Axis2
+
+          P1 = Point(COM_EC); P2 = Point(COM_IC);
+
+          P1. Translate ( Axis1 ); P2. Translate ( Axis2 );
+
+#          print P1; print P2; quit ()
+
+
+          return [ P1, P2 ]
 
 # overhang can be calculated in simplified way or in the exact way
 # simplified way assumes that overhang occurs in the middle of membrane

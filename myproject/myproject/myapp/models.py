@@ -39,7 +39,8 @@ class TMHelixManager (models.Manager):
                                       TMHelix_Tilt_EC = i['Tilt_EC'], \
                                       TMHelix_Tilt_IC = i['Tilt_IC'], \
                                       TMHelix_KinkAngle = i['KinkAngle'], \
-                                      TMHelix_Overhang = i['Overhang'])
+                                      TMHelix_Overhang = i['Overhang'],\
+                                      TMHelix_AASEQ = i['AASEQ'])
 
 
 
@@ -69,6 +70,7 @@ class TMHelix(models.Model):
     """ object representing transmembrane helix """
 
     TMHelix_ID = models.CharField(max_length=200)
+    TMHelix_AASEQ = models.CharField(max_length=200)
     TMHelix_Tilt = models.FloatField (null=True)
     TMHelix_Tilt_EC = models.FloatField (null=True)
     TMHelix_Tilt_IC = models.FloatField (null=True)
