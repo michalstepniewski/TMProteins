@@ -2,11 +2,11 @@
 
 from django import forms
 
-class DocumentForm(forms.Form):
+class TMProteinFileForm(forms.Form):
 
     """ File Input Form enabling upload of PDB file to be analyzed """
 
-    docfile = forms.FileField(
+    tmproteinfile = forms.FileField(
         label='Select a PDB file oriented along membrane normal containing one chain only.'
     )
 

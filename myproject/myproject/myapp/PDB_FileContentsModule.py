@@ -140,4 +140,14 @@ def ReadPDBFile (PDBFilePath, db_path):
                                                                                                      """
 	PdbFileContent (readpath (PDBFilePath)). ExtractTMSegments ('media'). WriteToDB (db_path)
 
+###############################################################################################################################################
 
+def getHelicesfromPDBFile (PDBFilePath, db_path):
+
+        """ uses above methods in order to extract transmembrane segments from input PDB File and store them in SQL database db_path """
+        """ located at db_path  
+                                                                                                     """
+	return PdbFileContent (readpath (PDBFilePath)). ExtractTMSegments ('media'). Content
+
+
+# powinienem uzyc create

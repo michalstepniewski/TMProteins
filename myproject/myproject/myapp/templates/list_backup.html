@@ -11,17 +11,17 @@
 			<ul>
                         {% for TMProtein in tmproteins %}
                                 <h1> {{ TMProtein.tmproteinfile.name }} </h1> 
-
+<!--				<li><a href="{{ TMProtein.tmproteinfile.url }}">{{ TMProtein.tmproteinfile.name }}</a></li> -->
 
 
                                 {% load static %}
                                 {% static "" as baseUrl %}
                                 <img src="{{ baseUrl }}/myapp/static/Protein1.png" alt="My image"/>
 
-                                {% if TMProtein.tmhelixmodel_set.all %}
+                                {% if TMProtein.TMHelix_set.all %}
                                     <ul>
                                     <p> Transmembrane Helices: </p>
-                                    {% for tmhelix in TMProtein.tmhelixmodel_set.all %}
+                                    {% for tmhelix in TMProtein.TMHelix_set.all %}
 
                                         <li><a href="{% url 'detail' tmhelix.id %}">TM{{ tmhelix.TMHelix_ID }}</a></li>
 
@@ -51,7 +51,6 @@
 			</p>
 			<p><input type="submit" value="Upload" /></p>
 			<p><input type="submit" name="Clear" value="Clear" /></p>
-			<p><input type="submit" name="SingleHelixStats" value="SingleHelixStats" /></p>
 		</form>
 		
 	</body>

@@ -15,6 +15,8 @@ from SetOfAtomsModule import SetOfResidues
 import GeometricalClassesModule as GeometricalClassesModule;
 from GeometricalClassesModule import *;
 
+import models; from models import TMHelixModel, TMProtein;
+
 #####################################################################################################################################################
 #####################################################################################################################################################
 #####################################################################################################################################################
@@ -132,19 +134,39 @@ class N_TMs_Set ( list ): # musze zrobic od razu na N secie
 
       def WriteToDB (self, db_path):
 
+          # ta funkcja powinna tworzyc tez obiekt TMProtein i podlegle helisy
+          # powinien stworzyc instance TMProtein
+
+          TMProteinI = TMProtein.objects.create()
+          
+
           """ returns list containing Tilt Value for each of the TMHelix in the set """
 
-          os. system('rm '+db_path) # removes from console previous database if there is one; quite dirty
+#          os. system('rm '+db_path) # removes from console previous database if there is one; quite dirty
 
-          conn = sqlite3.connect(db_path)
-          c = conn. cursor ()
-          c.execute('''CREATE TABLE TMs
-                 (ID text, AASEQ text, Tilt real, Tilt_EC real, Tilt_IC real, MainAxis_X real, MainAxis_Y real, MainAxis_Z real, KinkAngle real, Overhang real  )''')
+#          conn = sqlite3.connect(db_path)
+#          c = conn. cursor ()
+#          c.execute('''CREATE TABLE TMs
+#                 (ID text, AASEQ text, Tilt real, Tilt_EC real, Tilt_IC real, MainAxis_X real, MainAxis_Y real, MainAxis_Z real, KinkAngle real, Overhang real  )''')
 
           for TM in self.Content:
-          
-              c.execute("INSERT INTO TMs VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (TM. ID, TM. AASEQ (), float(format(TM. Tilt(), '.3f') ), float(format(TM. Tilt_EC(), '.3f') ),float(format(TM. Tilt_IC(), '.3f') ), float(format(TM. MainAxis()[0], '.3f') ), float(format(TM. MainAxis()[1], '.3f') ), float(format(TM. MainAxis()[2], '.3f') ), float(format(TM. KinkAngle(), '.3f') ), float(format(TM. Overhang(), '.3f') )  ))
 
-          conn. commit()
-          conn. close()  
+#              TMHelixModel.objects.create ()
+
+              tmhelix = TMHelixModel.objects.create(TMHelix_ID= TM. ID, TMHelix_Tilt = TM. Tilt(), \
+                                      TMHelix_Tilt_EC = TM. Tilt_EC(), \
+                                      TMHelix_Tilt_IC = TM. Tilt_IC(), \
+                                      TMHelix_KinkAngle = TM. KinkAngle(), \
+                                      TMHelix_Overhang = TM. Overhang(),\
+                                      TMHelix_AASEQ = TM. AASEQ (),\
+                                      )
+	      TMProteinI. tmhelixmodel_set.add(tmhelix)
+          
+#              c.execute("INSERT INTO TMs VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (TM. ID, TM. AASEQ (), float(format(TM. Tilt(), '.3f') ), float(format(TM. Tilt_EC(), '.3f') ),float(format(TM. Tilt_IC(), '.3f') ), float(format(TM. MainAxis()[0], '.3f') ), float(format(TM. MainAxis()[1], '.3f') ), float(format(TM. MainAxis()[2], '.3f') ), float(format(TM. KinkAngle(), '.3f') ), float(format(TM. Overhang(), '.3f') )  ))
+
+#          conn. commit()
+#          conn. close()  
+
+          # a moze from models import TMHelix
+
 #####################################################################################################################################################
