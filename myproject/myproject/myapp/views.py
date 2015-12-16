@@ -8,7 +8,6 @@ from myproject.myapp.models import Document, TMHelix
 from myproject.myapp.forms import DocumentForm
 import os
 
-
 def detail(request, tmhelix_id):
     tmhelix = get_object_or_404(TMHelix, pk=tmhelix_id)
     return render(request, 'detail.html', {'tmhelix': tmhelix})
@@ -34,6 +33,14 @@ def list(request):
 
     # Handle file upload
     if request.method == 'POST':
+
+        if request.POST.get('Clear'):
+           print 'Clear Button clicked'
+           Document.objects.all().delete()
+           TMHelix.objects.all().delete() # set relation one to many (Document -> TMHelix)
+
+#     if request.POST.get("Upload"):
+
         form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
             
@@ -41,12 +48,12 @@ def list(request):
             newdoc = Document(docfile = request.FILES['docfile'])
             newdoc.save()
             os. system ('mv media/*.pdb media/TMProtein.pdb')
-            TMHelix.objects.all().delete()
+#            TMHelix.objects.all().delete()
             TMHelix.objects.ReadPDB ('media/TMProtein.pdb', 'media/TMProtein.db')
-            TMHelix.objects.read_helices_from_given_db ('media/TMProtein.db')
+            TMHelix.objects.read_helices_from_given_db ('media/TMProtein.db') # this should be connected
 
-            b = Document.objects.order_by('id')[:Document.objects.count() -1 ]
-            for d in b: d. delete () # deletes all but last objects of Document class
+#            b = Document.objects.order_by('id')[:Document.objects.count() -1 ]
+#            for d in b: d. delete () # deletes all but last objects of Document class
 
             # Redirect to the document list after POST
             return HttpResponseRedirect(reverse('myproject.myapp.views.list'))

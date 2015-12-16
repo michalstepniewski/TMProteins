@@ -32,7 +32,7 @@ class TMHelixManager (models.Manager):
 	c = conn.cursor()
 	c.execute('select * from TMs')
 	r = c.fetchall()
-
+# musze to przerobic na tworzenie z pdb, i musze sie pozbyc raw sql, moze z ReadPDB to dobry pomysl
 	for i in r:
 
 		tmhelix = self.create(TMHelix_ID= i['ID'], TMHelix_Tilt = i['Tilt'], \
@@ -65,6 +65,24 @@ class TMHelixManager (models.Manager):
 #####################################################################################################################################################
 #####################################################################################################################################################
 
+class TMProteinManager(models.Model): #zmienic to na TMProtein
+
+    """ object storing PDB File to be uploaded """
+
+    pass
+
+#####################################################################################################################################################
+
+class Document(models.Model): #zmienic to na TMProtein
+
+    """ object storing PDB File to be uploaded """
+
+    docfile = models.FileField(upload_to='')
+    pub_date = timezone.now ()
+    objects  = TMProteinManager ()
+
+#####################################################################################################################################################
+
 class TMHelix(models.Model):
 
     """ object representing transmembrane helix """
@@ -76,6 +94,8 @@ class TMHelix(models.Model):
     TMHelix_Tilt_IC = models.FloatField (null=True)
     TMHelix_KinkAngle = models.FloatField (null=True)
     TMHelix_Overhang = models.FloatField (null=True)
+
+    Document = models.ForeignKey(Document, on_delete=models.CASCADE)
 
     objects = TMHelixManager()
 
@@ -92,12 +112,4 @@ class TMHelix(models.Model):
         return tmhelix
 
 #####################################################################################################################################################
-#####################################################################################################################################################
-
-class Document(models.Model):
-
-    """ object storing PDB File to be uploaded """
-
-    docfile = models.FileField(upload_to='')
-    pub_date = timezone.now ()
 
