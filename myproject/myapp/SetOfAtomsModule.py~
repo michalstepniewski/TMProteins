@@ -420,7 +420,7 @@ class SetOfResidues ( list ):
 
       def CenterOfMass ( self ):
 
-          """ returns Center Of Mass for SetOfResidues instance """"
+          """ returns Center Of Mass for SetOfResidues instance """
 
           if self.Content == []: # check if there are any atoms to compute COM from ...
              print self

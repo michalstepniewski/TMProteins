@@ -116,19 +116,20 @@ class PdbFileContent ( list ):
 
            TMSegmentsI = ProteinChainInstance. TMSegments ( )
 
-           for MRegionResiduesSegment_I in TMSegmentsI: #smiesznie troche
+           for MRegionResiduesSegment_I in TMSegmentsI:
+                    
 
+ #smiesznie troche
+# ta funkcjonalnosc sie rozbudowala i to jest troche problem; nalezy dodac to jako metode do TMHelix chyba
+# 
                      N=N+1
                      ProteinChain( MRegionResiduesSegment_I. Content). OutputToPdbFile ( OutputPath + '/TMs/'+ ProteinChainInstance.ChainID+'_TM_'+str(N)+'_' )
-                     
-		     command = ' mkdir myproject/myapp/static/myapp/static/'+str(N)+'; cp script.pml media/;cp script.pml media/TMs/;cd media; pymol TMProtein.pdb -c script.pml; cd TMs/; pymol '+ProteinChainInstance.ChainID+'_TM_'+str(N)+'_X.pdb' + '  script.pml -- '+' '.join(map(str,  MRegionResiduesSegment_I. MainAxis()))+' '+' '.join(map(str,  MRegionResiduesSegment_I. Center()))+' '+' '.join(map(str,  MRegionResiduesSegment_I. Axis_EC()) )+' '+' '.join(map(str,  MRegionResiduesSegment_I. Axis_IC()))+'; cd ../..; mv media/plik1.png myproject/myapp/static/myapp/static/Protein1.png;  mv '+ OutputPath + '/TMs/plik1.png myproject/myapp/static/myapp/static/'+str(N)+'/helisa.png'; # this console script uses pymol and pymol script (script.pml) in order to generate figures displaying Transmembrane Proteins 
-                     # together with extracted Transmembrane Helices
+                     MRegionResiduesSegment_I. ChainID = ProteinChainInstance. ChainID
 
-# musze czytelniej zrobic te komende
-
-                     os.system(command)
+                     MRegionResiduesSegment_I. DrawAxesInPymol (N)
                             
        return N_TMs_Set ( TMSegmentsI )
+
 
 ###############################################################################################################################################
 
@@ -139,4 +140,14 @@ def ReadPDBFile (PDBFilePath, db_path):
                                                                                                      """
 	PdbFileContent (readpath (PDBFilePath)). ExtractTMSegments ('media'). WriteToDB (db_path)
 
+###############################################################################################################################################
 
+def getHelicesfromPDBFile (PDBFilePath, db_path):
+
+        """ uses above methods in order to extract transmembrane segments from input PDB File and store them in SQL database db_path """
+        """ located at db_path  
+                                                                                                     """
+	PdbFileContent (readpath (PDBFilePath)). ExtractTMSegments ('media'). WriteToDB (db_path)
+
+
+# powinienem uzyc create

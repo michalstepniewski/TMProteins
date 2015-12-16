@@ -7,21 +7,21 @@
 
 	<body>
 		<!-- List of uploaded documents -->
-		{% if documents %}
+		{% if tmproteins %}
 			<ul>
-                        {% for document in documents %}
-                                <h1> {{ document.docfile.name }} </h1> 
-				<li><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></li>
+                        {% for TMProtein in tmproteins %}
+                                <h1> {{ TMProtein.tmproteinfile.name }} </h1> 
+
 
 
                                 {% load static %}
                                 {% static "" as baseUrl %}
                                 <img src="{{ baseUrl }}/myapp/static/Protein1.png" alt="My image"/>
 
-                                {% if tmhelices %}
+                                {% if TMProtein.tmhelixmodel_set.all %}
                                     <ul>
                                     <p> Transmembrane Helices: </p>
-                                    {% for tmhelix in tmhelices %}
+                                    {% for tmhelix in TMProtein.tmhelixmodel_set.all %}
 
                                         <li><a href="{% url 'detail' tmhelix.id %}">TM{{ tmhelix.TMHelix_ID }}</a></li>
 
@@ -37,19 +37,21 @@
 			{% endfor %}
 			</ul>
 		{% else %}
-			<p>No documents.</p>
+			<p>No TM Protein PDB files loaded</p>
 		{% endif %}
                 <!-- dodac tu link do viewera -->
 		<!-- Upload form. Note enctype attribute! -->
 		<form action="{% url "list" %}" method="post" enctype="multipart/form-data">
 			{% csrf_token %}
 			<p>{{ form.non_field_errors }}</p>
-			<p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
+			<p>{{ form.tmproteinfile.label_tag }} {{ form.tmproteinfile.help_text }}</p>
 			<p>
-				{{ form.docfile.errors }}
-				{{ form.docfile }}
+				{{ form.tmproteinfile.errors }}
+				{{ form.tmproteinfile }}
 			</p>
 			<p><input type="submit" value="Upload" /></p>
+			<p><input type="submit" name="Clear" value="Clear" /></p>
+			<p><input type="submit" name="SingleHelixStats" value="SingleHelixStats" /></p>
 		</form>
 		
 	</body>
