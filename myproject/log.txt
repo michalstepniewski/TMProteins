@@ -1,0 +1,1 @@
+/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Wersje/2015/2015_11/2015_11_08/Laczone_2015_11_08/TMProteins/myproject

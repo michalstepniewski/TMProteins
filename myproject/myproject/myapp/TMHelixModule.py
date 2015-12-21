@@ -441,7 +441,7 @@ class TMHelix ( ProteinChain ):
 
 #####################################################################################################################################################
 
-      def DrawAxesInPymol ( self, N ):
+      def DrawAxesInPymol ( self, N,Path= '' ):
           import os
           
  
@@ -470,7 +470,7 @@ class TMHelix ( ProteinChain ):
 # trzeba zrobic zeby sie nie robila proteina bo to za wolno
 #          ShellCommand = 'mkdir myproject/myapp/static/myapp/static/'+str(N)+'; cp helix_axes.py media/TMs/; cd media; pymol TMProtein.pdb -d \''+BarDProtein+'\';'+' cd TMs; pymol '+TMHelixPDBFileName +' -d \''+BarDHelix+'\';'' cd ../..; mv media/plik1.png myproject/myapp/static/myapp/static/Protein1.png;  mv  media/TMs/plik1.png myproject/myapp/static/myapp/static/'+str(N)+'/helisa.png;'
 
-          ShellCommand = 'mkdir myproject/myapp/static/myapp/static/'+str(N)+'; cp helix_axes.py media/TMs/; cd media; cd TMs; pymol '+TMHelixPDBFileName +' -d \''+BarDHelix+'\';'' cd ../..; mv media/plik1.png myproject/myapp/static/myapp/static/Protein1.png;  mv  media/TMs/plik1.png myproject/myapp/static/myapp/static/'+str(N)+'/helisa.png;'
+          ShellCommand = 'mkdir -p myproject/myapp/static/myapp/static/'+Path+'/'+str(N)+'; cp helix_axes.py ' + Path + '; pymol '+Path+'/'+TMHelixPDBFileName +' -d \''+BarDHelix+'\';'' mv media/plik1.png myproject/myapp/static/myapp/static/Protein1.png;  mv  plik1.png myproject/myapp/static/myapp/static/'+Path+'/'+str(N)+'/helisa.png;'
 
 	  os. system (ShellCommand)
 

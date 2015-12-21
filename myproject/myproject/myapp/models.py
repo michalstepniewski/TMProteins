@@ -2,6 +2,7 @@
 from django.db import models
 from django.utils import timezone
 import sqlite3
+from time import gmtime, strftime
 
 #####################################################################################################################################################
 #####################################################################################################################################################
@@ -59,14 +60,43 @@ class TMProteinManager(models.Manager): #zmienic to na TMProtein
         ReadPDBFile (pdb_bath, db_path)	
 
 #####################################################################################################################################################
+
+def user_directory_path( filename):
+    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
+    return 'user_{0}/{1}'.format( filename)
+
+#####################################################################################################################################################
+
+def get_upload_path(instance, filename):
+    name, ext = filename.split('.')
+    file_path = '{name}/{name}.{ext}'.format( name=name, ext=ext) 
+    return file_path
+
 #####################################################################################################################################################
 
 class TMProtein (models.Model): #zmienic to na TMProtein
 
     """ object storing PDB File to be uploaded """
 
-    tmproteinfile = models.FileField(upload_to='')
+    TMProtein_ID = models.CharField(max_length=200)
+    tmproteinfile = models.FileField(upload_to=get_upload_path)#'uploads/%Y/%m/%d/%H/%M')
+    path = models.CharField(get_upload_path, max_length=200)
     objects  = TMProteinManager ()
+
+#####################################################################################################################################################
+
+    def getPath (self):
+
+        return get_upload_path
+   
+#####################################################################################################################################################
+
+
+    def save_to_own_folder (self, ):
+
+        self. tmproteinfile = models.FileField(upload_to=self.TMProtein_ID)
+
+        return
 
 #####################################################################################################################################################
 
@@ -112,10 +142,13 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                                       TMHelix_KinkAngle = TM. KinkAngle(), \
                                       TMHelix_Overhang = TM. Overhang(),\
                                       TMHelix_AASEQ = TM. AASEQ (),\
+                                      TMHelix_pdb_path = '/'.join(pdb_bath.split('/')[:-1])+'/TMs/',\
                                       )
 	      self. tmhelixmodel_set.add(tmhelix)
 
 #        ReadPDBFile (pdb_bath, db_path)	#
+
+
 
 #####################################################################################################################################################
 #####################################################################################################################################################
@@ -131,6 +164,7 @@ class TMHelixModel (models.Model):
     TMHelix_Tilt_IC = models.FloatField (null=True)
     TMHelix_KinkAngle = models.FloatField (null=True)
     TMHelix_Overhang = models.FloatField (null=True)
+    TMHelix_pdb_path = models.CharField(max_length=200)
 
     TMProtein = models.ForeignKey(TMProtein, on_delete=models.CASCADE, null=True)
 
@@ -153,4 +187,17 @@ class TMHelixModel (models.Model):
         return tmhelix
 
 ####################################################################################################################################################
+####################################################################################################################################################
 
+#class UserFolder(models.Model):
+#    name = models.CharField(null=True)
+#    parent = models.ForeignKey("Folder", null=True,)  # self-referential
+
+####################################################################################################################################################
+####################################################################################################################################################
+
+#class UserImage(models.Model):
+#    name = models.CharField(null=True)
+#    image = models.ImageField(null=True)
+#    # Optional, null folder could just mean it resides in the base user folder
+#    folder = models.ForeignKey(UserFolder, null=True,)
