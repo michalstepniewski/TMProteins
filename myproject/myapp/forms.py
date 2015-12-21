@@ -10,3 +10,6 @@ class TMProteinFileForm(forms.Form):
         label='Select a PDB file oriented along membrane normal containing one chain only.'
     )
 
+class UploadFileForm(forms.Form):
+    title = forms.CharField(max_length=50)
+    file = forms.FileField()

@@ -1,7 +1,6 @@
  <h1>ID: {{ tmhelix.TMHelix_ID }}</h1>
  <h1>Amino Acid Sequence: {{ tmhelix.TMHelix_AASEQ }}</h1>
  <h1> <font color="red"> Tilt: {{ tmhelix.TMHelix_Tilt }} DEG </font> </h1>
- <h1> <font color="red"> Tilt: {{ tmhelix.TMHelix_Tilt }} DEG </font> </h1>
  <h1> <font color="green"> Tilt (Extracellular Leaflet): {{ tmhelix.TMHelix_Tilt_EC }}  DEG</font> </h1>
  <h1> <font color="blue"> Tilt (Intracellular Leaflet): {{ tmhelix.TMHelix_Tilt_IC }}  DEG</font> </h1>
  <h1> <font color="black"> Kink Angle: {{ tmhelix.TMHelix_KinkAngle }}  DEG</font> </h1>
@@ -12,7 +11,7 @@
 
 {% load static %}
 {% static "" as baseUrl %}
-<img src="{{ baseUrl }}/myapp/static/{{tmhelix.TMHelix_ID}}/helisa.png" alt="My image"/>
+<img src="{{ baseUrl }}/myapp/static/{{ TMProtein.tmproteinfile.name }}/{{tmhelix.TMHelix_ID}}/helisa.png" alt="My image"/>
 
 
 

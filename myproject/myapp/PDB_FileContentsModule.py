@@ -105,9 +105,6 @@ class PdbFileContent ( list ):
 
        """ extracts Transmembrane Segments from PDB file content """
 
-       os. system('rm -r myproject/myapp/static/myapp/static/*;') # clear static files
-       os. system('rm -r media/TMs/*.pdb;') #clears previously extracted Transmembrane Segments stored in PDB files
-
        # nalezy to jakos skrocic
 
        for ProteinChainInstance in self. ExtractProteinChains ( ):
@@ -123,10 +120,11 @@ class PdbFileContent ( list ):
 # ta funkcjonalnosc sie rozbudowala i to jest troche problem; nalezy dodac to jako metode do TMHelix chyba
 # 
                      N=N+1
+#                     TMPath = 
                      ProteinChain( MRegionResiduesSegment_I. Content). OutputToPdbFile ( OutputPath + '/TMs/'+ ProteinChainInstance.ChainID+'_TM_'+str(N)+'_' )
                      MRegionResiduesSegment_I. ChainID = ProteinChainInstance. ChainID
 
-                     MRegionResiduesSegment_I. DrawAxesInPymol (N)
+                     MRegionResiduesSegment_I. DrawAxesInPymol (N, OutputPath + '/TMs/')
                             
        return N_TMs_Set ( TMSegmentsI )
 
@@ -136,18 +134,27 @@ class PdbFileContent ( list ):
 def ReadPDBFile (PDBFilePath, db_path):
 
         """ uses above methods in order to extract transmembrane segments from input PDB File and store them in SQL database db_path """
-        """ located at db_path  
-                                                                                                     """
-	PdbFileContent (readpath (PDBFilePath)). ExtractTMSegments ('media'). WriteToDB (db_path)
+        """ located at db_path """  
+        # 
+
+        PDBFilePathFolder = '/'.join(PDBFilePath.split('/')[:-1])
+       
+        print PDBFilePathFolder
+                                                                                                     
+	PdbFileContent (readpath (PDBFilePath)). ExtractTMSegments (PDBFilePathFolder). WriteToDB (db_path)
 
 ###############################################################################################################################################
 
 def getHelicesfromPDBFile (PDBFilePath, db_path):
 
         """ uses above methods in order to extract transmembrane segments from input PDB File and store them in SQL database db_path """
-        """ located at db_path  
-                                                                                                     """
-	return PdbFileContent (readpath (PDBFilePath)). ExtractTMSegments ('media'). Content
+        """ located at db_path  """
+
+        PDBFilePathFolder = '/'.join(PDBFilePath.split('/')[:-1])
+        print 'PDBFilePathFolder'
+        print PDBFilePathFolder;# quit ();
+                                                                                                     
+	return PdbFileContent (readpath (PDBFilePath)). ExtractTMSegments (PDBFilePathFolder). Content
 
 
 # powinienem uzyc create

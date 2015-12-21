@@ -2,7 +2,7 @@
 
 from django import forms
 
-class DocumentForm(forms.Form):
+class TMProteinFileForm(forms.Form):
 
     """ File Input Form enabling upload of PDB file to be analyzed """
 

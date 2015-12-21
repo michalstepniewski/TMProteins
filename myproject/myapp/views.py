@@ -3,14 +3,36 @@ from django.shortcuts import render_to_response, get_object_or_404, render
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.db import models
+from django.utils import timezone
 
 from myproject.myapp.models import TMProtein, TMHelixModel
 from myproject.myapp.forms import TMProteinFileForm
 import os
 
+from .forms import UploadFileForm
+
+# Imaginary function to handle an uploaded file.
+from somewhere import handle_uploaded_file
+import os
+
 #####################################################################################################################################################
 #####################################################################################################################################################
 #####################################################################################################################################################
+
+
+def upload_file(request):
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            handle_uploaded_file(request.FILES['file'])
+            return HttpResponseRedirect('/success/url/')
+    else:
+        form = UploadFileForm()
+    return render_to_response('upload.html', {'form': form})
+
+#####################################################################################################################################################
+
 
 def detail(request, tmhelix_id):
     tmhelix = get_object_or_404(TMHelixModel, pk=tmhelix_id)
@@ -30,8 +52,20 @@ def embedding(request):
 
 #####################################################################################################################################################
 
+def handle_uploaded_file(f):
+
+    """saves file but we will need it to create folders as well if not present """
+#    mkdir TMProtein.tmproteinfile.name if that works
+ 
+    with open('some/file/name.txt', 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
+
+#####################################################################################################################################################
+
 def Clear (request,post_id):
-    TMProtein.objects.all().delete()
+
+#    TMProtein.objects.all().delete()
 
     return render_to_response(
         'list.html',
@@ -50,17 +84,27 @@ def list(request):
            TMProtein.objects.all().delete()
            TMHelixModel.objects.all().delete() # set relation one to many (Document -> TMHelix)
 
+           os. system('rm -r myproject/myapp/static/myapp/static/*') # clear static files
+           os. system('rm -r media/*;') #clears previously extracted Transmembrane Segments stored in PDB files
+
 #     if request.POST.get("Upload"):
 
         form = TMProteinFileForm(request.POST, request.FILES)
         if form.is_valid():
             
-            os. system ('rm media/*')
-            newtmproteinfile = TMProtein(tmproteinfile = request.FILES['tmproteinfile'])
+#            os. system ('rm media/*')
+            newtmproteinfile = TMProtein(tmproteinfile = request.FILES['tmproteinfile'] )
+#            newtmproteinfile. save_to_own_folder ()
+#            newtmproteinfile.tmproteinfile  = models.FileField(upload_to='')
+
             newtmproteinfile.save()
 
-            os. system ('mv media/*.pdb media/TMProtein.pdb')
-            newtmproteinfile.ReadPDB ('media/TMProtein.pdb', 'media/TMProtein.db')
+#            os. system ('mv media/*.pdb media/TMProtein.pdb') #no wlasnie tu trzeba zmienic i utworzyc
+# katalog i tam przeniesc ale musze to prawilnie zrobic
+
+            Path = newtmproteinfile.path
+            print 'Path'+Path
+            newtmproteinfile.ReadPDB ('media/'+request.FILES['tmproteinfile'].name.split('.')[0]+'/'+request.FILES['tmproteinfile'].name, 'media/TMProtein.db')
 #            TMHelix.objects.read_helices_from_given_db ('media/TMProtein.db') # this should be connected
 
             # Redirect to the document list after POST
