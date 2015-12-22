@@ -40,6 +40,13 @@ def detail(request, tmhelix_id):
 
 #####################################################################################################################################################
 
+
+def single_helix_stats(request):
+#    tmhelix = get_object_or_404(TMHelixModel,)
+    return render(request, 'single_helix_stats.html')
+
+#####################################################################################################################################################
+
 def viewer(request):
 #    tmhelix = get_object_or_404(TMHelix, pk=tmhelix_id)
     return render(request, 'viewer.html')
@@ -88,6 +95,11 @@ def list(request):
            os. system('rm -r media/*;') #clears previously extracted Transmembrane Segments stored in PDB files
 
 #     if request.POST.get("Upload"):
+
+        elif request.POST.get('CalculateSingleHelixStats'):
+
+           TMHelixModel.objects.single_helix_stats ()
+
 
         form = TMProteinFileForm(request.POST, request.FILES)
         if form.is_valid():

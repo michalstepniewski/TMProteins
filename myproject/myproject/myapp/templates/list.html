@@ -30,11 +30,13 @@
                                 {% else %}
                                     <p>No TMs are available.</p>
                                 {% endif %}
-                        <li><a href="{% url 'viewer' %}">View</a></li>
-                        <li><a href="{% url 'embedding' %}">View2</a></li>
+
 
 
 			{% endfor %}
+                        <li><a href="{% url 'viewer' %}">View</a></li>
+                        <li><a href="{% url 'single_helix_stats' %}">SingleHelixStats</a></li>
+                        <li><a href="{% url 'embedding' %}">View2</a></li>
 			</ul>
 		{% else %}
 			<p>No TM Protein PDB files loaded</p>
@@ -51,7 +53,7 @@
 			</p>
 			<p><input type="submit" value="Upload" /></p>
 			<p><input type="submit" name="Clear" value="Clear" /></p>
-			<p><input type="submit" name="SingleHelixStats" value="SingleHelixStats" /></p>
+			<p><input type="submit" name="CalculateSingleHelixStats" value="CalculateSingleHelixStats" /></p>
 		</form>
 		
 	</body>
