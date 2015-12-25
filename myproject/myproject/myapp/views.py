@@ -40,10 +40,15 @@ def detail(request, tmhelix_id):
 
 #####################################################################################################################################################
 
-
 def single_helix_stats(request):
 #    tmhelix = get_object_or_404(TMHelixModel,)
     return render(request, 'single_helix_stats.html')
+
+#####################################################################################################################################################
+
+def helix_pairs(request):
+#    tmhelix = get_object_or_404(TMHelixModel,)
+    return render(request, 'helix_pairs.html')
 
 #####################################################################################################################################################
 
@@ -100,6 +105,13 @@ def list(request):
 
            TMHelixModel.objects.single_helix_stats ()
 
+        elif request.POST.get('ExtractHelixPairs'):
+
+           TMHelixModel.objects.ExtractConsecutiveHelixPairs ()
+
+        elif request.POST.get('ExtractHelixTriplets'):
+
+           TMHelixModel.objects.extracthelixtriplets ()
 
         form = TMProteinFileForm(request.POST, request.FILES)
         if form.is_valid():

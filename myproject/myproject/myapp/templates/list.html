@@ -31,6 +31,20 @@
                                     <p>No TMs are available.</p>
                                 {% endif %}
 
+                                {% if TMProtein.tmhelixpair_set.all %}
+                                    <ul>
+                                    <p> Pairs of Transmembrane Helices: </p>
+                                    <p> Consecutive: </p>
+                                    {% for tmhelixpair in TMProtein.tmhelixpair_set.all %}
+
+                                        <li><a href="{% url 'pair_detail' tmhelixpair.id %}">TM{{ tmhelixpair.id }}</a></li>
+
+                                    {% endfor %}
+                                    </ul>
+                                {% endif %}
+                                
+                                
+
 
 
 			{% endfor %}
@@ -54,6 +68,10 @@
 			<p><input type="submit" value="Upload" /></p>
 			<p><input type="submit" name="Clear" value="Clear" /></p>
 			<p><input type="submit" name="CalculateSingleHelixStats" value="CalculateSingleHelixStats" /></p>
+			<p><input type="submit" name="CalculateHelixPairStats" value="CalculateHelixPairStats" /></p>
+			<p><input type="submit" name="CalculateHelixTripletStats" value="CalculateHelixTripletStats" /></p>
+			<p><input type="submit" name="ExtractHelixPairs" value="ExtractHelixPairs" /></p>
+			<p><input type="submit" name="ExtractHelixTriplets" value="ExtractHelixTriplets" /></p>
 		</form>
 		
 	</body>

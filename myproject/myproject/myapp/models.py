@@ -32,6 +32,28 @@ class TMHelixManager (models.Manager):
 
 #####################################################################################################################################################
 
+    def extracthelixpairs (self):
+
+        """ extracts helix pairs """
+
+        # to mozna zrobic na zbiorze helis; sprawdzic w django jak wyselekcjonowac zestaw helis z 1go bialka
+        # i zrobic z nich N_TMs_Set
+
+        return
+
+#####################################################################################################################################################
+
+    def extracthelixtriplets (self):
+
+        """ extracts helix triplets """
+
+        # to mozna zrobic na zbiorze helis; sprawdzic w django jak wyselekcjonowac zestaw helis z 1go bialka
+        # i zrobic z nich N_TMs_Set
+
+        return
+
+#####################################################################################################################################################
+
     def read_helices_from_given_db (self, db_path):
 
         """ reads Transmembrane Helices and their feature(s) (Tilt from SQL database """
@@ -69,6 +91,14 @@ class TMHelixManager (models.Manager):
 class TMProteinManager(models.Manager): #zmienic to na TMProtein
 
     """ object storing PDB File to be uploaded """
+
+#####################################################################################################################################################
+
+    def ExtractConsecutiveHelixPairs (self):
+    
+        [tmprotein. ExtractConsecutiveHelixPairs() for tmprotein in self]
+        
+        return
 
 #####################################################################################################################################################
 
@@ -156,19 +186,32 @@ class TMProtein (models.Model): #zmienic to na TMProtein
 
 #              TMHelixModel.objects.create ()
 
-              tmhelix = TMHelixModel.objects.create(TMHelix_ID= TM. ID, TMHelix_Tilt = TM. Tilt(), \
+            tmhelix = TMHelixModel.objects.create(TMHelix_ID= TM. ID, TMHelix_Tilt = TM. Tilt(), \
                                       TMHelix_Tilt_EC = TM. Tilt_EC(), \
                                       TMHelix_Tilt_IC = TM. Tilt_IC(), \
                                       TMHelix_KinkAngle = TM. KinkAngle(), \
                                       TMHelix_Overhang = TM. Overhang(),\
                                       TMHelix_AASEQ = TM. AASEQ (),\
-                                      TMHelix_pdb_path = '/'.join(pdb_bath.split('/')[:-1])+'/TMs/',\
-                                      )
-	      self. tmhelixmodel_set.add(tmhelix)
+                                      TMHelix_pdb_path = '/'.join(pdb_bath.split('/')[:-1])+'/TMs/')
+            self. tmhelixmodel_set.add(tmhelix)
 
 #        ReadPDBFile (pdb_bath, db_path)	#
 
+##############################################################################
 
+    def ExtractConsecutiveHelixPairs (self):
+        
+        NoHelices = self. tmhelixmodel_set.count()
+        
+        if NoHelices >= 2:
+        
+            for N in range(NoHelices - 1):
+               
+                tmhelixpair = TMHelixPair.objects.create()
+                tmhelixpair.tmhelixmodel_set.add(self. tmhelixmodel_set.filter(id__in=(N,N+1)))               
+            
+                #sprawdzic czy dobrze bedzie
+        return
 
 #####################################################################################################################################################
 #####################################################################################################################################################
@@ -187,6 +230,7 @@ class TMHelixModel (models.Model):
     TMHelix_pdb_path = models.CharField(max_length=200)
 
     TMProtein = models.ForeignKey(TMProtein, on_delete=models.CASCADE, null=True)
+    TMHelixPair = models.ForeignKey(TMHelixPair, on_delete=models.CASCADE, null=True)
 
     objects = TMHelixManager()
 
@@ -221,3 +265,37 @@ class TMHelixModel (models.Model):
 #    image = models.ImageField(null=True)
 #    # Optional, null folder could just mean it resides in the base user folder
 #    folder = models.ForeignKey(UserFolder, null=True,)
+
+#####################################################################################################################################################
+#####################################################################################################################################################
+#####################################################################################################################################################
+
+
+class TMHelixPair (models.Model):
+    
+    """ object storing TM Helix Pair """
+    objects = TMHelixPairManager ()
+
+#####################################################################################################################################################
+
+    def Interacting (self,VdWContactZRange =[-8.0, 8.0]):
+        
+        """ returns True if Two Helices Are Interacting """
+        
+        pass
+        
+        return
+#####################################################################################################################################################
+#####################################################################################################################################################
+#####################################################################################################################################################
+
+class TMHelixPairManager (models.Manager):
+
+    """ manager for objects: TM Helix Pair """
+
+    pass    
+
+#####################################################################################################################################################
+#####################################################################################################################################################
+#####################################################################################################################################################
+    
