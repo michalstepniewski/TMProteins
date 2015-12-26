@@ -1,0 +1,16 @@
+{% for tmhelix in tmhelixpair.tmhelixmodel_set.all %}
+ <h1>ID: {{ tmhelix.TMHelix_ID }}</h1>
+{% endfor %}
+<h1>Crossing Angle:</h1>
+ 
+
+{% load staticfiles %}
+
+{% load static %}
+{% static "" as baseUrl %}
+<img src="{{ baseUrl }}/myapp/static/{{ tmhelix.TMHelix_pdb_path }}/{{tmhelix.TMHelix_ID}}/helisa.png" alt="My image"/>
+
+
+
+
+

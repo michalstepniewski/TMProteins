@@ -37,7 +37,7 @@
                                     <p> Consecutive: </p>
                                     {% for tmhelixpair in TMProtein.tmhelixpair_set.all %}
 
-                                        <li><a href="{% url 'pair_detail' tmhelixpair.id %}">TM{{ tmhelixpair.id }}</a></li>
+                                        <li><a href="{% url 'pair' tmhelixpair.id %}">TMs: {{ tmhelixpair.id }}</a></li>
 
                                     {% endfor %}
                                     </ul>

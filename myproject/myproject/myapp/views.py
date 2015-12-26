@@ -3,10 +3,8 @@ from django.shortcuts import render_to_response, get_object_or_404, render
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from django.db import models
-from django.utils import timezone
 
-from myproject.myapp.models import TMProtein, TMHelixModel
+from myproject.myapp.models import TMProtein, TMHelixModel, TMHelixPair
 from myproject.myapp.forms import TMProteinFileForm
 import os
 
@@ -14,7 +12,6 @@ from .forms import UploadFileForm
 
 # Imaginary function to handle an uploaded file.
 from somewhere import handle_uploaded_file
-import os
 
 #####################################################################################################################################################
 #####################################################################################################################################################
@@ -40,15 +37,15 @@ def detail(request, tmhelix_id):
 
 #####################################################################################################################################################
 
-def single_helix_stats(request):
-#    tmhelix = get_object_or_404(TMHelixModel,)
-    return render(request, 'single_helix_stats.html')
+def pair(request, tmhelixpair_id):
+    tmhelixpair = get_object_or_404(TMHelixPair, pk=tmhelixpair_id)
+    return render(request, 'pair.html', {'tmhelixpair': tmhelixpair})
 
 #####################################################################################################################################################
 
-def helix_pairs(request):
+def single_helix_stats(request):
 #    tmhelix = get_object_or_404(TMHelixModel,)
-    return render(request, 'helix_pairs.html')
+    return render(request, 'single_helix_stats.html')
 
 #####################################################################################################################################################
 
@@ -107,7 +104,7 @@ def list(request):
 
         elif request.POST.get('ExtractHelixPairs'):
 
-           TMHelixModel.objects.ExtractConsecutiveHelixPairs ()
+           TMProtein.objects.ExtractConsecutiveHelixPairs ()
 
         elif request.POST.get('ExtractHelixTriplets'):
 

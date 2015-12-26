@@ -96,7 +96,7 @@ class TMProteinManager(models.Manager): #zmienic to na TMProtein
 
     def ExtractConsecutiveHelixPairs (self):
     
-        [tmprotein. ExtractConsecutiveHelixPairs() for tmprotein in self]
+        [tmprotein. ExtractConsecutiveHelixPairs() for tmprotein in self.all()]
         
         return
 
@@ -208,11 +208,49 @@ class TMProtein (models.Model): #zmienic to na TMProtein
             for N in range(NoHelices - 1):
                
                 tmhelixpair = TMHelixPair.objects.create()
-                tmhelixpair.tmhelixmodel_set.add(self. tmhelixmodel_set.filter(id__in=(N,N+1)))               
-            
+                print N; print N+1;
+                print self. tmhelixmodel_set.all().values_list('id', flat=True)
+                
+                tmhelixpair.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N+1)))   
+                tmhelixpair.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N+2)))              
+
+                self.tmhelixpair_set.add(tmhelixpair)  
+                
+                print  'Count '+str(tmhelixpair.tmhelixmodel_set.count())        
                 #sprawdzic czy dobrze bedzie
         return
 
+#####################################################################################################################################################
+#####################################################################################################################################################
+#####################################################################################################################################################
+
+class TMHelixPairManager (models.Manager):
+
+    """ manager for objects: TM Helix Pair """
+
+    pass    
+
+#####################################################################################################################################################
+#####################################################################################################################################################
+#####################################################################################################################################################
+
+
+class TMHelixPair (models.Model):
+    
+    """ object storing TM Helix Pair """
+    objects = TMHelixPairManager ()
+    TMProtein = models.ForeignKey(TMProtein, on_delete=models.CASCADE, null=True)
+
+#####################################################################################################################################################
+
+    def Interacting (self,VdWContactZRange =[-8.0, 8.0]):
+        
+        """ returns True if Two Helices Are Interacting """
+        
+        pass
+        
+        return
+#####################################################################################################################################################
 #####################################################################################################################################################
 #####################################################################################################################################################
 
@@ -230,7 +268,7 @@ class TMHelixModel (models.Model):
     TMHelix_pdb_path = models.CharField(max_length=200)
 
     TMProtein = models.ForeignKey(TMProtein, on_delete=models.CASCADE, null=True)
-    TMHelixPair = models.ForeignKey(TMHelixPair, on_delete=models.CASCADE, null=True)
+    TMHelixPair = models.ManyToManyField(TMHelixPair)
 
     objects = TMHelixManager()
 
@@ -270,32 +308,4 @@ class TMHelixModel (models.Model):
 #####################################################################################################################################################
 #####################################################################################################################################################
 
-
-class TMHelixPair (models.Model):
-    
-    """ object storing TM Helix Pair """
-    objects = TMHelixPairManager ()
-
-#####################################################################################################################################################
-
-    def Interacting (self,VdWContactZRange =[-8.0, 8.0]):
-        
-        """ returns True if Two Helices Are Interacting """
-        
-        pass
-        
-        return
-#####################################################################################################################################################
-#####################################################################################################################################################
-#####################################################################################################################################################
-
-class TMHelixPairManager (models.Manager):
-
-    """ manager for objects: TM Helix Pair """
-
-    pass    
-
-#####################################################################################################################################################
-#####################################################################################################################################################
-#####################################################################################################################################################
     
