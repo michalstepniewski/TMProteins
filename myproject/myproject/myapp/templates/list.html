@@ -42,6 +42,18 @@
                                     {% endfor %}
                                     </ul>
                                 {% endif %}
+
+                                {% if TMProtein.tmhelixtriplet_set.all %}
+                                    <ul>
+                                    <p> Triplets of Transmembrane Helices: </p>
+                                    <p> Consecutive: </p>
+                                    {% for tmhelixtriplet in TMProtein.tmhelixtriplet_set.all %}
+
+                                        <li><a href="{% url 'triplet' tmhelixtriplet.id %}">TMs: {{ tmhelixtriplet.id }}</a></li>
+
+                                    {% endfor %}
+                                    </ul>
+                                {% endif %}
                                 
                                 
 

@@ -4,7 +4,7 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
-from myproject.myapp.models import TMProtein, TMHelixModel, TMHelixPair
+from myproject.myapp.models import TMProtein, TMHelixModel, TMHelixPair, TMHelixTriplet
 from myproject.myapp.forms import TMProteinFileForm
 import os
 
@@ -40,6 +40,12 @@ def detail(request, tmhelix_id):
 def pair(request, tmhelixpair_id):
     tmhelixpair = get_object_or_404(TMHelixPair, pk=tmhelixpair_id)
     return render(request, 'pair.html', {'tmhelixpair': tmhelixpair})
+
+#####################################################################################################################################################
+
+def triplet(request, tmhelixtriplet_id):
+    tmhelixtriplet = get_object_or_404(TMHelixTriplet, pk=tmhelixtriplet_id)
+    return render(request, 'triplet.html', {'tmhelixtriplet': tmhelixtriplet})
 
 #####################################################################################################################################################
 
@@ -108,7 +114,7 @@ def list(request):
 
         elif request.POST.get('ExtractHelixTriplets'):
 
-           TMHelixModel.objects.extracthelixtriplets ()
+           TMProtein.objects.ExtractConsecutiveHelixTriplets ()
 
         form = TMProteinFileForm(request.POST, request.FILES)
         if form.is_valid():

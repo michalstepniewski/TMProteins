@@ -102,6 +102,14 @@ class TMProteinManager(models.Manager): #zmienic to na TMProtein
 
 #####################################################################################################################################################
 
+    def ExtractConsecutiveHelixTriplets (self):
+    
+        [tmprotein. ExtractConsecutiveHelixTriplets() for tmprotein in self.all()]
+        
+        return
+
+#####################################################################################################################################################
+
     def ReadPDB (self, pdb_bath, db_path):
         from PDB_FileContentsModule import ReadPDBFile
 
@@ -220,6 +228,27 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                 #sprawdzic czy dobrze bedzie
         return
 
+##############################################################################
+
+    def ExtractConsecutiveHelixTriplets (self):
+        
+        NoHelices = self. tmhelixmodel_set.count()
+        
+        if NoHelices >= 3:
+        
+            for N in range(NoHelices - 2):
+               
+                tmhelixtriplet = TMHelixTriplet.objects.create()
+
+                
+                tmhelixtriplet.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N+1)))   
+                tmhelixtriplet.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N+2)))              
+                tmhelixtriplet.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N+3)))              
+
+                self.tmhelixtriplet_set.add(tmhelixtriplet)  
+
+        return
+
 #####################################################################################################################################################
 #####################################################################################################################################################
 #####################################################################################################################################################
@@ -234,11 +263,41 @@ class TMHelixPairManager (models.Manager):
 #####################################################################################################################################################
 #####################################################################################################################################################
 
+class TMHelixTripletManager (models.Manager):
+
+    """ manager for objects: TM Helix Triplet """
+
+    pass    
+
+#####################################################################################################################################################
+#####################################################################################################################################################
+#####################################################################################################################################################
+
 
 class TMHelixPair (models.Model):
     
     """ object storing TM Helix Pair """
     objects = TMHelixPairManager ()
+    TMProtein = models.ForeignKey(TMProtein, on_delete=models.CASCADE, null=True)
+
+#####################################################################################################################################################
+
+    def Interacting (self,VdWContactZRange =[-8.0, 8.0]):
+        
+        """ returns True if Two Helices Are Interacting """
+        
+        pass
+        
+        return
+#####################################################################################################################################################
+#####################################################################################################################################################
+#####################################################################################################################################################
+
+
+class TMHelixTriplet (models.Model):
+    
+    """ object storing TM Helix Pair """
+    objects = TMHelixTripletManager ()
     TMProtein = models.ForeignKey(TMProtein, on_delete=models.CASCADE, null=True)
 
 #####################################################################################################################################################
@@ -269,6 +328,7 @@ class TMHelixModel (models.Model):
 
     TMProtein = models.ForeignKey(TMProtein, on_delete=models.CASCADE, null=True)
     TMHelixPair = models.ManyToManyField(TMHelixPair)
+    TMHelixTriplet = models.ManyToManyField(TMHelixTriplet)
 
     objects = TMHelixManager()
 
