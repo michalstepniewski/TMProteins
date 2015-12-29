@@ -3,6 +3,10 @@ from django.db import models
 from django.utils import timezone
 import sqlite3
 from time import gmtime, strftime
+import matplotlib
+import PlotToolsModule; from PlotToolsModule import HistogramPlot
+import numpy as np
+
 
 #####################################################################################################################################################
 #####################################################################################################################################################
@@ -11,6 +15,44 @@ from time import gmtime, strftime
 class TMHelixManager (models.Manager):
 
     """ manager for objects: instances of TMHelix class """
+
+#####################################################################################################################################################
+
+    def single_helix_stats (self):
+
+        """ calculates TM Helix Stats and plots histograms to .png """
+
+        for Value in ['TMHelix_Tilt', 'TMHelix_Tilt_EC', 'TMHelix_Tilt_IC', 'TMHelix_KinkAngle', 'TMHelix_Overhang']:
+            print self. values_list('TMHelix_Tilt', flat=True)
+
+            HistogramPlot(np.array(self. values_list(Value, flat=True)), 'myproject/myapp/static/myapp/static/Stats/SingleHelix/'+Value )
+        #zrobic jakies dict coby robilo ranges, uzaleznialo np od zakresu albo od czegos
+
+        return
+
+#####################################################################################################################################################
+
+    def extracthelixpairs (self):
+
+        """ extracts helix pairs """
+
+    # to mozna zrobic na zbiorze helis; sprawdzic w django jak wyselekcjonowac zestaw helis z 1go bialka
+    # i zrobic z nich N_TMs_Set
+
+        return
+
+#####################################################################################################################################################
+
+    def extracthelixtriplets (self):
+
+        """ extracts helix triplets """
+
+        # to mozna zrobic na zbiorze helis; sprawdzic w django jak wyselekcjonowac zestaw helis z 1go bialka
+        # i zrobic z nich N_TMs_Set
+
+        return
+
+#####################################################################################################################################################
 
     def read_helices_from_given_db (self, db_path):
 
