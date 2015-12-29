@@ -7,7 +7,7 @@ import matplotlib
 import PlotToolsModule; from PlotToolsModule import HistogramPlot
 import numpy as np
 
-from GeometricalClassesModule import SetOfVectors, Vector
+from GeometricalClassesModule import SetOfVectors, Vector, SetOfPoints, Point
 #####################################################################################################################################################
 #####################################################################################################################################################
 #####################################################################################################################################################
@@ -257,7 +257,10 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                 tmhelixtriplet.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N+2)))              
                 tmhelixtriplet.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N+3)))              
 
+                tmhelixtriplet. getPhi ()
+                
                 self.tmhelixtriplet_set.add(tmhelixtriplet)  
+
 
         return
 
@@ -361,6 +364,19 @@ class TMHelixTriplet (models.Model):
     objects = TMHelixTripletManager ()
     Phi = models.FloatField (null=True)
     TMProtein = models.ForeignKey(TMProtein, on_delete=models.CASCADE, null=True)
+
+#####################################################################################################################################################
+    
+    def getPhi (self):
+        
+        helices = self.tmhelixmodel_set.all ()
+            
+        P1 = [helices[0].MC_MM_X,helices[0].MC_MM_Y,helices[0].MC_MM_Z]
+        P2 = [helices[1].MC_MM_X,helices[1].MC_MM_Y,helices[1].MC_MM_Z]
+        P3 = [helices[2].MC_MM_X,helices[2].MC_MM_Y,helices[2].MC_MM_Z]
+        Vec1 = SetOfPoints([P1,P2]).Vector()
+        Vec2 = SetOfPoints([P1,P3]).Vector()
+        self.Phi = SetOfVectors([Vec1, Vec2 ]) .AngleDEG ()
 
 #####################################################################################################################################################
 

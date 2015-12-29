@@ -1,7 +1,7 @@
 {% for tmhelix in tmhelixtriplet.tmhelixmodel_set.all %}
  <h1>ID: {{ tmhelix.TMHelix_ID }}</h1>
 {% endfor %}
-<h1>Mass Center Angle:</h1>
+<h1>Mass Center Angle: {{ tmhelixtriplet.Phi }}</h1>
  
 
 {% load staticfiles %}
