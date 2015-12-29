@@ -1,7 +1,9 @@
 {% for tmhelix in tmhelixpair.tmhelixmodel_set.all %}
  <h1>ID: {{ tmhelix.TMHelix_ID }}</h1>
 {% endfor %}
-<h1>Crossing Angle:</h1>
+<h1>Crossing Angle: {{ tmhelixpair.CrossingAngle }} </h1>
+<h1>Crossing Angle (Extracellular Leaflet): {{ tmhelixpair.CrossingAngleEC }} </h1>
+<h1>Crossing Angle (Intracellular Leaflet): {{ tmhelixpair.CrossingAngleIC }} </h1>
  
 
 {% load staticfiles %}

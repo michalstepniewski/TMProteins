@@ -7,7 +7,7 @@ import matplotlib
 import PlotToolsModule; from PlotToolsModule import HistogramPlot
 import numpy as np
 
-
+from GeometricalClassesModule import SetOfVectors, Vector
 #####################################################################################################################################################
 #####################################################################################################################################################
 #####################################################################################################################################################
@@ -201,6 +201,17 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                                       TMHelix_Overhang = TM. Overhang(),\
                                       TMHelix_AASEQ = TM. AASEQ (),\
                                       TMHelix_pdb_path = '/'.join(pdb_bath.split('/')[:-1])+'/TMs/')
+
+            tmhelix.MainAxis_X, tmhelix.MainAxis_Y, tmhelix.MainAxis_Z = TM. MainAxis () 
+
+            tmhelix.ECAxis_X, tmhelix.ECAxis_Y, tmhelix.ECAxis_Z = TM. ExtractSlice([-2.0,12.0]). MainAxis ( )
+
+            tmhelix.ICAxis_X, tmhelix.ICAxis_Y, tmhelix.ICAxis_Z = TM. ExtractSlice([-12.0,2.0]). MainAxis ( )
+    
+            [tmhelix.MC_EC_X, tmhelix.MC_EC_Y, tmhelix.MC_EC_Z],\
+            [tmhelix.MC_MM_X, tmhelix.MC_MM_Y, tmhelix.MC_MM_Z],\
+            [tmhelix.MC_IC_X, tmhelix.MC_IC_Y, tmhelix.MC_IC_Z]  =  TM. ThinSlicesCOMs ( )  
+                            
             self. tmhelixmodel_set.add(tmhelix)
 
 #        ReadPDBFile (pdb_bath, db_path)	#
@@ -220,7 +231,8 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                 print self. tmhelixmodel_set.all().values_list('id', flat=True)
                 
                 tmhelixpair.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N+1)))   
-                tmhelixpair.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N+2)))              
+                tmhelixpair.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N+2)))
+                tmhelixpair.getCrossingAngle ()              
 
                 self.tmhelixpair_set.add(tmhelixpair)  
                 
@@ -277,7 +289,11 @@ class TMHelixTripletManager (models.Manager):
 class TMHelixPair (models.Model):
     
     """ object storing TM Helix Pair """
+    
     objects = TMHelixPairManager ()
+    CrossingAngle = models.FloatField (null=True)
+    CrossingAngleEC = models.FloatField (null=True)
+    CrossingAngleIC = models.FloatField (null=True)
     TMProtein = models.ForeignKey(TMProtein, on_delete=models.CASCADE, null=True)
 
 #####################################################################################################################################################
@@ -289,6 +305,51 @@ class TMHelixPair (models.Model):
         pass
         
         return
+
+#####################################################################################################################################################
+
+    def getCrossingAngle (self):
+        
+        """ calculates Crossing Angle """
+                            
+        Axes = [[tmhelix.MainAxis_X,tmhelix.MainAxis_Y,tmhelix.MainAxis_Z] for tmhelix in self.tmhelixmodel_set.all ()]
+        
+        self.CrossingAngle = SetOfVectors([Vector(Axes[0]), Vector(Axes[1]) ]) .AngleDEG ()
+        Axes = [[tmhelix.ECAxis_X,tmhelix.ECAxis_Y,tmhelix.ECAxis_Z] for tmhelix in self.tmhelixmodel_set.all ()]
+        self.CrossingAngleEC = SetOfVectors([Vector(Axes[0]), Vector(Axes[1]) ]) .AngleDEG ()
+        Axes = [[tmhelix.ICAxis_X,tmhelix.ICAxis_Y,tmhelix.ICAxis_Z] for tmhelix in self.tmhelixmodel_set.all ()]
+        self.CrossingAngleIC = SetOfVectors([Vector(Axes[0]), Vector(Axes[1]) ]) .AngleDEG ()
+        
+        return
+
+#####################################################################################################################################################
+
+    def getCrossingAngleEC (self):
+
+        """ calculates Crossing Angle in the Extracellular Leaflet """
+        
+        Axes = []
+                            
+        Axes = [[tmhelix.ECAxis_X,tmhelix.ECAxis_Y,tmhelix.ECAxis_Z] for tmhelix in self.tmhelixmodel_set]
+        
+        CrossingAngleEC = SetOfVectors([Axes[0], Axes[1] ]) .AngleDEG ()
+        
+        return
+
+#####################################################################################################################################################
+
+    def getCrossingAngleIC (self):
+
+        """ calculates Crossing Angle in the Intracellular Leaflet """
+        
+        Axes = []
+                            
+        Axes = [[tmhelix.ICAxis_X,tmhelix.ICAxis_Y,tmhelix.ICAxis_Z] for tmhelix in self.tmhelixmodel_set]
+        
+        CrossingAngleIC = SetOfVectors([Axes[0], Axes[1] ]) .AngleDEG ()
+        
+        return
+
 #####################################################################################################################################################
 #####################################################################################################################################################
 #####################################################################################################################################################
@@ -298,6 +359,7 @@ class TMHelixTriplet (models.Model):
     
     """ object storing TM Helix Pair """
     objects = TMHelixTripletManager ()
+    Phi = models.FloatField (null=True)
     TMProtein = models.ForeignKey(TMProtein, on_delete=models.CASCADE, null=True)
 
 #####################################################################################################################################################
@@ -330,6 +392,30 @@ class TMHelixModel (models.Model):
     TMHelixPair = models.ManyToManyField(TMHelixPair)
     TMHelixTriplet = models.ManyToManyField(TMHelixTriplet)
 
+    MainAxis_X = models.FloatField (null=True)
+    MainAxis_Y = models.FloatField (null=True)
+    MainAxis_Z = models.FloatField (null=True)
+
+    ECAxis_X = models.FloatField (null=True)
+    ECAxis_Y = models.FloatField (null=True)
+    ECAxis_Z = models.FloatField (null=True)
+
+    ICAxis_X = models.FloatField (null=True)
+    ICAxis_Y = models.FloatField (null=True)
+    ICAxis_Z = models.FloatField (null=True)
+    
+    MC_EC_X = models.FloatField (null=True)
+    MC_EC_Y = models.FloatField (null=True)
+    MC_EC_Z = models.FloatField (null=True)
+    
+    MC_MM_X = models.FloatField (null=True)
+    MC_MM_Y = models.FloatField (null=True)
+    MC_MM_Z = models.FloatField (null=True)
+    
+    MC_IC_X = models.FloatField (null=True)
+    MC_IC_Y = models.FloatField (null=True)
+    MC_IC_Z = models.FloatField (null=True)
+            
     objects = TMHelixManager()
 
 #####################################################################################################################################################
