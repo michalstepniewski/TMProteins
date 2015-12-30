@@ -272,7 +272,22 @@ class TMHelixPairManager (models.Manager):
 
     """ manager for objects: TM Helix Pair """
 
-    pass    
+
+#####################################################################################################################################################
+
+    def helix_pair_stats (self):
+
+        """ calculates TM Helix Pair Stats and plots histograms to .png """
+
+        for Value in ['CrossingAngle','CrossingAngleEC','CrossingAngleIC']:
+
+            HistogramPlot(np.array(self. values_list(Value, flat=True)), 'myproject/myapp/static/myapp/static/Stats/HelixPair/'+Value )
+        #zrobic jakies dict coby robilo ranges, uzaleznialo np od zakresu albo od czegos
+
+        return
+
+#####################################################################################################################################################
+
 
 #####################################################################################################################################################
 #####################################################################################################################################################
@@ -282,7 +297,21 @@ class TMHelixTripletManager (models.Manager):
 
     """ manager for objects: TM Helix Triplet """
 
-    pass    
+#####################################################################################################################################################
+
+    def helix_triplet_stats (self):
+
+        """ calculates TM Helix Triplet Stats and plots histograms to .png """
+
+        for Value in ['Phi']:
+
+            HistogramPlot(np.array(self. values_list(Value, flat=True)), 'myproject/myapp/static/myapp/static/Stats/HelixTriplet/'+Value )
+        #zrobic jakies dict coby robilo ranges, uzaleznialo np od zakresu albo od czegos
+
+        return
+
+#####################################################################################################################################################
+
 
 #####################################################################################################################################################
 #####################################################################################################################################################
