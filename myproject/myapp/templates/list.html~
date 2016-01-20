@@ -5,6 +5,35 @@
 		<title>TM Helices Calculator</title>	
 	</head>
 
+<div class="fieldWrapper">
+
+<form action="/your-name/" method="post">
+    <label for="your_name">Membrane Limit (upper): </label>
+    <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
+    <input type="submit" value="OK">
+</form>
+
+</div>
+
+<form action="/your-name/" method="post">
+    <label for="your_name">Membrane Limit (lower): </label>
+    <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
+    <input type="submit" value="OK">
+</form>
+
+<form action="/your-name/" method="post">
+    <label for="your_name">Method (PCA): </label>
+    <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
+    <input type="submit" value="OK">
+</form>
+
+
+<form action="/your-name/" method="post">
+    <label for="your_name">Method (MC): </label>
+    <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
+    <input type="submit" value="OK">
+</form>
+
 	<body>
 		<!-- List of uploaded documents -->
 		{% if tmproteins %}
@@ -31,11 +60,39 @@
                                     <p>No TMs are available.</p>
                                 {% endif %}
 
+                                {% if TMProtein.tmhelixpair_set.all %}
+                                    <ul>
+                                    <p> Pairs of Transmembrane Helices: </p>
+                                    <p> Consecutive: </p>
+                                    {% for tmhelixpair in TMProtein.tmhelixpair_set.all %}
+
+                                        <li><a href="{% url 'pair' tmhelixpair.id %}">TMs: {% for tmhelix in tmhelixpair.tmhelixmodel_set.all %} {{ tmhelix.TMHelix_ID }} {% endfor %} </a></li> 
+
+                                    {% endfor %}
+                                    </ul>
+                                {% endif %}
+
+                                {% if TMProtein.tmhelixtriplet_set.all %}
+                                    <ul>
+                                    <p> Triplets of Transmembrane Helices: </p>
+                                    <p> Consecutive: </p>
+                                    {% for tmhelixtriplet in TMProtein.tmhelixtriplet_set.all %}
+
+                                        <li><a href="{% url 'triplet' tmhelixtriplet.id %}">TMs: {% for tmhelix in tmhelixtriplet.tmhelixmodel_set.all %} {{ tmhelix.TMHelix_ID }} {% endfor %} </a></li>
+
+                                    {% endfor %}
+                                    </ul>
+                                {% endif %}
+                                
+                                
+
 
 
 			{% endfor %}
                         <li><a href="{% url 'viewer' %}">View</a></li>
-                        <li><a href="{% url 'single_helix_stats' %}">SingleHelixStats</a></li>
+                        <li><a href="{% url 'single_helix_stats' %}">SingleHelixStats (if calculated)</a></li>
+                        <li><a href="{% url 'helix_pair_stats' %}">HelixPairStats (if calculated)</a></li>
+                        <li><a href="{% url 'helix_triplet_stats' %}">HelixTripletStats (if calculated)</a></li>
                         <li><a href="{% url 'embedding' %}">View2</a></li>
 			</ul>
 		{% else %}
@@ -54,6 +111,8 @@
 			<p><input type="submit" value="Upload" /></p>
 			<p><input type="submit" name="Clear" value="Clear" /></p>
 			<p><input type="submit" name="CalculateSingleHelixStats" value="CalculateSingleHelixStats" /></p>
+			<p><input type="submit" name="CalculateHelixPairStats" value="CalculateHelixPairStats" /></p>
+			<p><input type="submit" name="CalculateHelixTripletStats" value="CalculateHelixTripletStats" /></p>
 			<p><input type="submit" name="ExtractHelixPairs" value="ExtractHelixPairs" /></p>
 			<p><input type="submit" name="ExtractHelixTriplets" value="ExtractHelixTriplets" /></p>
 		</form>

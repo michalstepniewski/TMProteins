@@ -5,6 +5,39 @@
 		<title>TM Helices Calculator</title>	
 	</head>
 
+<div class="fieldWrapper">
+
+<form action="/your-name/" method="post">
+    <label for="your_name">Membrane Limit (upper): </label>
+    <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
+    <input type="submit" value="OK">
+</form>
+
+</div>
+
+<form action="/your-name/" method="post">
+    <label for="your_name">Membrane Limit (lower): </label>
+    <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
+    <input type="submit" value="OK">
+</form>
+
+<div class="fieldWrapper">
+
+<form action="/your-name/" method="post">
+    <label for="your_name">Method (PCA): </label>
+    <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
+    <input type="submit" value="OK">
+</form>
+
+
+<form action="/your-name/" method="post">
+    <label for="your_name">Method (MC): </label>
+    <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
+    <input type="submit" value="OK">
+</form>
+
+</div>
+
 	<body>
 		<!-- List of uploaded documents -->
 		{% if tmproteins %}
@@ -37,7 +70,7 @@
                                     <p> Consecutive: </p>
                                     {% for tmhelixpair in TMProtein.tmhelixpair_set.all %}
 
-                                        <li><a href="{% url 'pair' tmhelixpair.id %}">TMs: {{ tmhelixpair.id }}</a></li>
+                                        <li><a href="{% url 'pair' tmhelixpair.id %}">TMs: {% for tmhelix in tmhelixpair.tmhelixmodel_set.all %} {{ tmhelix.TMHelix_ID }} {% endfor %} </a></li> 
 
                                     {% endfor %}
                                     </ul>
@@ -49,7 +82,7 @@
                                     <p> Consecutive: </p>
                                     {% for tmhelixtriplet in TMProtein.tmhelixtriplet_set.all %}
 
-                                        <li><a href="{% url 'triplet' tmhelixtriplet.id %}">TMs: {{ tmhelixtriplet.id }}</a></li>
+                                        <li><a href="{% url 'triplet' tmhelixtriplet.id %}">TMs: {% for tmhelix in tmhelixtriplet.tmhelixmodel_set.all %} {{ tmhelix.TMHelix_ID }} {% endfor %} </a></li>
 
                                     {% endfor %}
                                     </ul>
