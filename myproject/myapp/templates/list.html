@@ -61,7 +61,9 @@
 
 			{% endfor %}
                         <li><a href="{% url 'viewer' %}">View</a></li>
-                        <li><a href="{% url 'single_helix_stats' %}">SingleHelixStats</a></li>
+                        <li><a href="{% url 'single_helix_stats' %}">SingleHelixStats (if calculated)</a></li>
+                        <li><a href="{% url 'helix_pair_stats' %}">HelixPairStats (if calculated)</a></li>
+                        <li><a href="{% url 'helix_triplet_stats' %}">HelixTripletStats (if calculated)</a></li>
                         <li><a href="{% url 'embedding' %}">View2</a></li>
 			</ul>
 		{% else %}

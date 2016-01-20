@@ -55,6 +55,20 @@ def single_helix_stats(request):
 
 #####################################################################################################################################################
 
+def helix_pair_stats(request):
+#    tmhelix = get_object_or_404(TMHelixModel,)
+    return render(request, 'helix_pair_stats.html')
+
+
+#####################################################################################################################################################
+
+def helix_triplet_stats(request):
+#    tmhelix = get_object_or_404(TMHelixModel,)
+    return render(request, 'helix_triplet_stats.html')
+
+
+#####################################################################################################################################################
+
 def viewer(request):
 #    tmhelix = get_object_or_404(TMHelix, pk=tmhelix_id)
     return render(request, 'viewer.html')
@@ -107,6 +121,14 @@ def list(request):
         elif request.POST.get('CalculateSingleHelixStats'):
 
            TMHelixModel.objects.single_helix_stats ()
+
+        elif request.POST.get('CalculateHelixPairStats'):
+
+           TMHelixPair.objects.helix_pair_stats ()
+
+        elif request.POST.get('CalculateHelixTripletStats'):
+
+           TMHelixTriplet.objects.helix_triplet_stats ()
 
         elif request.POST.get('ExtractHelixPairs'):
 

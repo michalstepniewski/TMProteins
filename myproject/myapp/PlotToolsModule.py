@@ -22,6 +22,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 
+import os
+
 #####################################################################################################################################################
 #####################################################################################################################################################
 #####################################################################################################################################################
@@ -275,6 +277,10 @@ def ScatterPlot1 ( XYArray, OutputFile ):
 #####################################################################################################################################################
 
 def HistogramPlot ( H2Xs, OutputFile,Min = -180, Max = 180, BinNo = 37 ):
+    
+    OutputFileDir = '/'.join(OutputFile.split('/')[:-1])
+    print 'mkdir -p '+OutputFileDir;
+    os.system('mkdir -p '+OutputFileDir)
 
 # nie jestem pewien gdzie histogram, daje biny; musialbym sprawdzic ...
 #"""
@@ -357,7 +363,8 @@ def DoubleHistogramPlot ( H2Xs, H3Xs, OutputFile ):
 
     pyplot.savefig(OutputFile ,dpi=320)
 
-    pyplot.clf()
+    pyplot.clf(); #plt.pause(10);
+    fig = None; ax = None;
 
 #####################################################################################################################################################
 
