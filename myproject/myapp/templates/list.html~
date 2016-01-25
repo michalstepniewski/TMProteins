@@ -11,9 +11,9 @@
 
 <form action="/your-name/" method="post">
     <label for="your_name">Post Feature Request: </label>
-    <label for="your_name">Membrane Limit (upper): </label>
     <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
     <input type="submit" value="OK">
+
 </form>
 
 </div>

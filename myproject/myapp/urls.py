@@ -4,6 +4,7 @@ from . import views
 
 urlpatterns = patterns('myproject.myapp.views',
     url(r'^list/$', 'list', name='list'),
+    url(r'^mail/$', 'mail', name='mail'),
     url(r'^viewer/$', 'viewer', name='viewer'),
     url(r'^single_helix_stats/$', 'single_helix_stats', name='single_helix_stats'),
     url(r'^helix_pair_stats/$', 'helix_pair_stats', name='helix_pair_stats'),
