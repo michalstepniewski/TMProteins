@@ -1,5 +1,15 @@
+#python first
+#django second
+#your apps
+#local app
+
+from django.contrib import messages
+from django.conf import settings
+from django.core mail import send_mail
+
+from django.core.mail import send_mail
 # -*- coding: utf-8 -*-
-from django.shortcuts import render_to_response, get_object_or_404, render
+from django.shortcuts import render_to_response, get_object_or_404, render, RequestContext
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
