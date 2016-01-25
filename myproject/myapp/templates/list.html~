@@ -5,6 +5,8 @@
 		<title>TM Helices Calculator</title>	
 	</head>
 
+
+
 <div class="fieldWrapper">
 
 <form action="/your-name/" method="post">
@@ -21,6 +23,8 @@
     <input type="submit" value="OK">
 </form>
 
+<div class="fieldWrapper">
+
 <form action="/your-name/" method="post">
     <label for="your_name">Method (PCA): </label>
     <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
@@ -34,7 +38,12 @@
     <input type="submit" value="OK">
 </form>
 
+</div>
+
 	<body>
+
+<script type="text/javascript" src="/media/jquery-1.7.min.js"></script>
+
 		<!-- List of uploaded documents -->
 		{% if tmproteins %}
 			<ul>
@@ -45,6 +54,7 @@
 
                                 {% load static %}
                                 {% static "" as baseUrl %}
+                                <img src="{{ baseUrl }}/myapp/static/Protein1.png" alt="My image"/>
                                 <img src="{{ baseUrl }}/myapp/static/Protein1.png" alt="My image"/>
 
                                 {% if TMProtein.tmhelixmodel_set.all %}
