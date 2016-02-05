@@ -3,13 +3,30 @@
 	<head>
 		<meta charset="utf-8">
 		<title>TM Helices Calculator</title>	
+
 	</head>
 
+<p> 
+Witam,
+
+Nazywam sie Michal Stepniewski. Skonczylem biofizyke i chemie na Uniwersytecie Jagiellonskim.
+Moje zainteresowania to nauka i programowanie jednak ostatnio moj kontakt z uniwersytetem jest sporadyczny :)
+
+Szukam mozliwosci ciaglego rozwoju swoich umiejetnosci i zainteresowan poprzez odpowiadanie na aktualne i adekwatne potrzeby malych grup badawczych zajmujacych sie bioinformatyka i modelowaniem molekularnym a w dalszej przyszlosci takze kolaboratywnego rozwijania malych modularnych narzedzie programistycznych open source, szczegolnie w jezyku python i frameworku django poprez system kontroli wersji bitbucket (git).
+
+Pierwszy projekt stronki powstal wlasnie w tym celu.
+
+Wszystkich zainteresowanych serdecznie zapraszam na prezentacje  25.01.2016 o godzinie 11 ej w sali 04.61 w budynku CENT 2 UW  i przesylanie feedbacku i requestow na maila michalstepniewski@gmail.com
+
+Do zobaczenia. 
+  
+ 
+ </p>
 
 
 <div class="fieldWrapper">
 
-<form action="/your-name/" method="post">
+<form action="/mail/" method="post">
     <label for="mail">Post Feature Request: </label>
     <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
     <input type="submit" value="OK">
