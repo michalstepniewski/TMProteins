@@ -1,5 +1,21 @@
-#Pairs And Triplets Stats
+1. Pairs And Triplets Stats *Done*
 
-# Serving .js
+2. Serving .js
 
-# uploading folders and filelists
+3. uploading folders and filelists
+
+4. Calculating (and visualizing) all that is needed for paper:
+
+4.1 Phi, Tilts, etc in R script
+
+5. Interacting Pairs
+
+6. Clustering
+
+######################
+
+Kolejnosc: Spojrzec w paper i jakie wartosci potrzebujemy
+Potem jakos polaczyc. z Erem. Jak najszybciej to zrobic. Wykorzystac obecne karty.
+No. do klasteringu moze byc inna.
+
+
