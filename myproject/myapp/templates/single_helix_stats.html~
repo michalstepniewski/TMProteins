@@ -9,15 +9,15 @@
  <h1>Amino Acid Membrane Depth Preference </h1>
 <img src="{{ baseUrl }}/myapp/static/Stats/SingleHelix/AminoAcidMembraneDepthPreference.png" alt="AminoAcid Membrane Depth Preference Histogram" 200x50 />
  <h1> <font color="red"> Main Tilt Stats </font> </h1>
-<img src="{{ baseUrl }}/myapp/static/Stats/SingleHelix/MainTiltHistogram.png" alt="Main Tilt Histogram"  height="420" />
+<img src="{{ baseUrl }}/myapp/static/Stats/SingleHelix/TMHelix_Tilt.png" alt="Main Tilt Histogram"  height="420" />
  <h1> <font color="green"> Half Helix Tilt Stats (Extracellular Leaflet) </font> </h1>
-<img src="{{ baseUrl }}/myapp/static/Stats/SingleHelix/ECTiltHistogram.png" alt="Half Helix Tilt Histogram (Extracellular Leaflet)" height="420" />
+<img src="{{ baseUrl }}/myapp/static/Stats/SingleHelix/TMHelix_Tilt_EC.png" alt="Half Helix Tilt Histogram (Extracellular Leaflet)" height="420" />
  <h1> <font color="blue"> Half Helix Tilt Stats (Intracellular Leaflet) </font> </h1>
-<img src="{{ baseUrl }}/myapp/static/Stats/SingleHelix/ICTiltHistogram.png" alt="Half Helix Tilt Histogram (Intracellular Leaflet)" height="420" />
+<img src="{{ baseUrl }}/myapp/static/Stats/SingleHelix/TMHelix_Tilt_IC.png" alt="Half Helix Tilt Histogram (Intracellular Leaflet)" height="420" />
  <h1> <font color="black"> Kink Angle Stats </font> </h1>
-<img src="{{ baseUrl }}/myapp/static/Stats/SingleHelix/KinkAngleHistogram.png" alt="Kink Angle Histogram" height="420" />
+<img src="{{ baseUrl }}/myapp/static/Stats/SingleHelix/TMHelix_KinkAngle.png" alt="Kink Angle Histogram" height="420" />
  <h1> <font color="black"> Overhang Stats </font> </h1>
-<img src="{{ baseUrl }}/myapp/static/Stats/SingleHelix/OverhangLengthHistogram.png" alt="Overhang Length Histogram" height="420" />
+<img src="{{ baseUrl }}/myapp/static/Stats/SingleHelix/TMHelix_Overhang.png" alt="Overhang Length Histogram" height="420" />
 
 
 

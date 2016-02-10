@@ -20,6 +20,9 @@ Pierwszy projekt stronki powstal wlasnie w tym celu.
 Wszystkich zainteresowanych prosze przesylanie feedbacku i requestow na maila michalstepniewski@gmail.com
 
 Autorem pomysłu badawczego jest Dr Henri Xhaard z Uniwersytetu w Helsinkach.
+
+My name is Michal Stepniewski and I graduated from Biophysics and Chemistry from Jagiellonian University.
+
 The author of the research idea is Dr Henri Xhaard, from University of Helsinki.
 
  </p>
@@ -61,7 +64,6 @@ The author of the research idea is Dr Henri Xhaard, from University of Helsinki.
 
 	<body>
 
-<script type="text/javascript" src="/media/jquery-1.7.min.js"></script>
 
 		<!-- List of uploaded documents -->
 		{% if tmproteins %}
@@ -69,11 +71,14 @@ The author of the research idea is Dr Henri Xhaard, from University of Helsinki.
                         {% for TMProtein in tmproteins %}
                                 <h1> {{ TMProtein.tmproteinfile.name }} </h1> 
 
+                                {% load static %}
+                                {% static "" as baseUrl %}
+                                <img src="{{ baseUrl }}/myapp/static/Protein1.png" alt="My image"/>
 
 
                                 {% load static %}
                                 {% static "" as baseUrl %}
-<div id="glmol02" style="width: 300px; height: 200px; background-color: black;"></div> <textarea id="glmol02_src" style="display: none;">
+<p id="glmol02" style="width: 300px; height: 200px; background-color: black;"></p> <textarea id="glmol02_src" style="display: none;">
 
 ATOM      4  N   MET A   1      -6.098 -10.940  35.353  1.00 47.11           N  
 ATOM      5  CA  MET A   1      -6.326 -10.536  33.959  1.00 46.26           C  
@@ -2900,8 +2905,47 @@ glmol01.loadMolecule();
                                     {% endfor %}
                                     </ul>
                                 {% endif %}
-                                
-                                
+<p> </p>                                
+                                {% load static %}
+                                {% static "" as baseUrl %}
+
+{% load static %}
+{% static "" as baseUrl %}
+
+<script src="{{ baseUrl }}/myapp/static/js/jquery-1.7.min.js"></script>
+<script src="{{ baseUrl }}/myapp/static/js/Three49custom.js"></script>
+<script type="text/javascript" src="{{ baseUrl }}/myapp/static/js/GLmol.js"></script>
+<script type="text/javascript">
+
+// Small molecules can be embedded in the page
+
+var glmol02 = new GLmol('glmol02');
+
+// Proteins can also be embedded in the page but 
+//  you might want to keep it separate.
+
+var glmol01 = new GLmol('glmol01', true);
+glmol01.defineRepresentation = function() {
+   var all = this.getAllAtoms();
+   var hetatm = this.removeSolvents(this.getHetatms(all));
+   this.colorByAtom(all, {});
+   this.colorByChain(all);
+   var asu = new THREE.Object3D();
+   
+   this.drawBondsAsStick(asu, hetatm, this.cylinderRadius, this.cylinderRadius);
+   this.drawBondsAsStick(asu, this.getResiduesById(this.getSidechains(this.getChain(all, ['A'])), [58, 87]), this.cylinderRadius, this.cylinderRadius);
+   this.drawBondsAsStick(asu, this.getResiduesById(this.getSidechains(this.getChain(all, ['B'])), [63, 92]), this.cylinderRadius, this.cylinderRadius);
+   this.drawCartoon(asu, all, this.curveWidth, this.thickness);
+
+   this.drawSymmetryMates2(this.modelGroup, asu, this.protein.biomtMatrices);
+   this.modelGroup.add(asu);
+};
+
+$.get("2DHB.pdb", function(ret) {
+$("#glmol01_src").val(ret);
+glmol01.loadMolecule();
+});
+</script>                                
 
 
 
@@ -2925,7 +2969,8 @@ glmol01.loadMolecule();
 				{{ form.tmproteinfile.errors }}
 				{{ form.tmproteinfile }}
 			</p>
-			<p><input type="submit" value="Upload" /></p>
+			<p><input type="submit" value="Upload" /></p>  
+			<!-- button for upload -->
 			<p><input type="submit" name="Clear" value="Clear" /></p>
 			<p><input type="submit" name="CalculateSingleHelixStats" value="CalculateSingleHelixStats" /></p>
 			<p><input type="submit" name="CalculateHelixPairStats" value="CalculateHelixPairStats" /></p>

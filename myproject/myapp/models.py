@@ -8,9 +8,6 @@ import PlotToolsModule; from PlotToolsModule import HistogramPlot
 import numpy as np
 
 from GeometricalClassesModule import SetOfVectors, Vector, SetOfPoints, Point
-#####################################################################################################################################################
-#####################################################################################################################################################
-#####################################################################################################################################################
 
 class TMHelixManager (models.Manager):
 
@@ -23,7 +20,7 @@ class TMHelixManager (models.Manager):
         """ calculates TM Helix Stats and plots histograms to .png """
 
         for Value in ['TMHelix_Tilt', 'TMHelix_Tilt_EC', 'TMHelix_Tilt_IC', 'TMHelix_KinkAngle', 'TMHelix_Overhang']:
-            print self. values_list('TMHelix_Tilt', flat=True)
+#            print self. values_list('TMHelix_Tilt', flat=True)
 
             HistogramPlot(np.array(self. values_list(Value, flat=True)), 'myproject/myapp/static/myapp/static/Stats/SingleHelix/'+Value )
         #zrobic jakies dict coby robilo ranges, uzaleznialo np od zakresu albo od czegos
@@ -64,7 +61,7 @@ class TMHelixManager (models.Manager):
 	c = conn.cursor()
 	c.execute('select * from TMs')
 	r = c.fetchall()
-# musze to przerobic na tworzenie z pdb, i musze sie pozbyc raw sql, moze z ReadPDB to dobry pomysl
+# musze to przerobic na tworzenie z pdb, i musze sie pozbyc raw sql, moze z  to dobry pomysl
 	for i in r:
 
 		tmhelix = self.create(TMHelix_ID= i['ID'], TMHelix_Tilt = i['Tilt'], \
@@ -84,9 +81,6 @@ class TMHelixManager (models.Manager):
         """ reads PDB file to SQL database """
 
         ReadPDBFile (pdb_bath, db_path)	#
-
-#####################################################################################################################################################
-#####################################################################################################################################################
 
 class TMProteinManager(models.Manager): #zmienic to na TMProtein
 
@@ -117,20 +111,15 @@ class TMProteinManager(models.Manager): #zmienic to na TMProtein
 
         ReadPDBFile (pdb_bath, db_path)	
 
-#####################################################################################################################################################
 
 def user_directory_path( filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
     return 'user_{0}/{1}'.format( filename)
 
-#####################################################################################################################################################
-
 def get_upload_path(instance, filename):
     name, ext = filename.split('.')
     file_path = '{name}/{name}.{ext}'.format( name=name, ext=ext) 
     return file_path
-
-#####################################################################################################################################################
 
 class TMProtein (models.Model): #zmienic to na TMProtein
 
@@ -141,14 +130,9 @@ class TMProtein (models.Model): #zmienic to na TMProtein
     path = models.CharField(get_upload_path, max_length=200)
     objects  = TMProteinManager ()
 
-#####################################################################################################################################################
-
     def getPath (self):
 
         return get_upload_path
-   
-#####################################################################################################################################################
-
 
     def save_to_own_folder (self, ):
 
@@ -156,7 +140,6 @@ class TMProtein (models.Model): #zmienic to na TMProtein
 
         return
 
-#####################################################################################################################################################
 
     def read_helices_from_given_db (self, db_path):
 
@@ -186,7 +169,7 @@ class TMProtein (models.Model): #zmienic to na TMProtein
 
     def ReadPDB (self, pdb_bath, db_path):
 
-        """ reads PDB file to SQL database """
+        """ reads PDB file to extract TM Helices """
 
         from PDB_FileContentsModule import getHelicesfromPDBFile, ReadPDBFile
 
@@ -194,13 +177,21 @@ class TMProtein (models.Model): #zmienic to na TMProtein
 
 #              TMHelixModel.objects.create ()
 
+            AtomsI = ''
+            
+            for ResidueI in TM.Content:
+                for AtomI in ResidueI.Content:
+                    AtomsI = AtomsI + AtomI.s + '\n'
+
             tmhelix = TMHelixModel.objects.create(TMHelix_ID= TM. ID, TMHelix_Tilt = TM. Tilt(), \
                                       TMHelix_Tilt_EC = TM. Tilt_EC(), \
                                       TMHelix_Tilt_IC = TM. Tilt_IC(), \
                                       TMHelix_KinkAngle = TM. KinkAngle(), \
                                       TMHelix_Overhang = TM. Overhang(),\
                                       TMHelix_AASEQ = TM. AASEQ (),\
-                                      TMHelix_pdb_path = '/'.join(pdb_bath.split('/')[:-1])+'/TMs/')
+                                      TMHelix_pdb_path = '/'.join(pdb_bath.split('/')[:-1])+'/TMs/',
+                                      Atoms = AtomsI 
+                                      )
 
             tmhelix.MainAxis_X, tmhelix.MainAxis_Y, tmhelix.MainAxis_Z = TM. MainAxis () 
 
@@ -216,7 +207,6 @@ class TMProtein (models.Model): #zmienic to na TMProtein
 
 #        ReadPDBFile (pdb_bath, db_path)	#
 
-##############################################################################
 
     def ExtractConsecutiveHelixPairs (self):
         
@@ -227,8 +217,8 @@ class TMProtein (models.Model): #zmienic to na TMProtein
             for N in range(NoHelices - 1):
                
                 tmhelixpair = TMHelixPair.objects.create()
-                print N; print N+1;
-                print self. tmhelixmodel_set.all().values_list('id', flat=True)
+#                print N; print N+1;
+#                print self. tmhelixmodel_set.all().values_list('id', flat=True)
                 
                 tmhelixpair.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N+1)))   
                 tmhelixpair.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N+2)))
@@ -239,8 +229,6 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                 print  'Count '+str(tmhelixpair.tmhelixmodel_set.count())        
                 #sprawdzic czy dobrze bedzie
         return
-
-##############################################################################
 
     def ExtractConsecutiveHelixTriplets (self):
         
@@ -273,7 +261,6 @@ class TMHelixPairManager (models.Manager):
     """ manager for objects: TM Helix Pair """
 
 
-#####################################################################################################################################################
 
     def helix_pair_stats (self):
 
@@ -286,7 +273,6 @@ class TMHelixPairManager (models.Manager):
 
         return
 
-#####################################################################################################################################################
 
 
 #####################################################################################################################################################
@@ -297,7 +283,6 @@ class TMHelixTripletManager (models.Manager):
 
     """ manager for objects: TM Helix Triplet """
 
-#####################################################################################################################################################
 
     def helix_triplet_stats (self):
 
@@ -310,12 +295,8 @@ class TMHelixTripletManager (models.Manager):
 
         return
 
-#####################################################################################################################################################
 
 
-#####################################################################################################################################################
-#####################################################################################################################################################
-#####################################################################################################################################################
 
 
 class TMHelixPair (models.Model):
@@ -382,9 +363,6 @@ class TMHelixPair (models.Model):
         
         return
 
-#####################################################################################################################################################
-#####################################################################################################################################################
-#####################################################################################################################################################
 
 
 class TMHelixTriplet (models.Model):
@@ -417,8 +395,6 @@ class TMHelixTriplet (models.Model):
         
         return
 #####################################################################################################################################################
-#####################################################################################################################################################
-#####################################################################################################################################################
 
 class TMHelixModel (models.Model):
 
@@ -432,6 +408,7 @@ class TMHelixModel (models.Model):
     TMHelix_KinkAngle = models.FloatField (null=True)
     TMHelix_Overhang = models.FloatField (null=True)
     TMHelix_pdb_path = models.CharField(max_length=200)
+    Atoms = models.TextField(null=True,default="fejslik")
 
     TMProtein = models.ForeignKey(TMProtein, on_delete=models.CASCADE, null=True)
     TMHelixPair = models.ManyToManyField(TMHelixPair)
@@ -463,13 +440,11 @@ class TMHelixModel (models.Model):
             
     objects = TMHelixManager()
 
-#####################################################################################################################################################
 
     def __str__(self):
 
         return self.TMHelix_ID
 
-#####################################################################################################################################################
 
     @classmethod
     def create(cls, ID):
@@ -479,15 +454,11 @@ class TMHelixModel (models.Model):
         tmhelix = cls(TMHelix_ID=ID, attributes={})
         return tmhelix
 
-####################################################################################################################################################
-####################################################################################################################################################
 
 #class UserFolder(models.Model):
 #    name = models.CharField(null=True)
 #    parent = models.ForeignKey("Folder", null=True,)  # self-referential
 
-####################################################################################################################################################
-####################################################################################################################################################
 
 #class UserImage(models.Model):
 #    name = models.CharField(null=True)
@@ -495,8 +466,18 @@ class TMHelixModel (models.Model):
 #    # Optional, null folder could just mean it resides in the base user folder
 #    folder = models.ForeignKey(UserFolder, null=True,)
 
-#####################################################################################################################################################
-#####################################################################################################################################################
-#####################################################################################################################################################
 
+class   AtomLine (models.Model):
+
+    """ object representing AtomLine """
     
+    TMProtein = models.ForeignKey(TMProtein, on_delete=models.CASCADE, null=True)
+    TMHelixModel = models.ForeignKey(TMHelixModel, on_delete=models.CASCADE, null=True)
+    Content = models.CharField(max_length=200)
+
+
+class   AtomLineManager (models.Model):
+
+    """ manager for objects: instances of AtomLine class """
+    
+    pass
