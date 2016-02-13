@@ -23,12 +23,6 @@ from .forms import UploadFileForm
 # Imaginary function to handle an uploaded file.
 from somewhere import handle_uploaded_file
 
-#####################################################################################################################################################
-#####################################################################################################################################################
-#####################################################################################################################################################
-#####################################################################################################################################################
-
-
 def mail(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
@@ -38,8 +32,6 @@ def mail(request):
     else:
         form = UploadFileForm()
     return render_to_response('upload.html', {'form': form})
-
-#####################################################################################################################################################
 
 def upload_file(request):
     if request.method == 'POST':
@@ -51,58 +43,39 @@ def upload_file(request):
         form = UploadFileForm()
     return render_to_response('upload.html', {'form': form})
 
-#####################################################################################################################################################
-
-
-def detail(request, tmhelix_id):
+def helix(request, tmhelix_id):
     tmhelix = get_object_or_404(TMHelixModel, pk=tmhelix_id)
-    return render(request, 'detail.html', {'tmhelix': tmhelix})
+    
+    return render(request, 'helix.html', {'tmhelix': tmhelix})
 
-#####################################################################################################################################################
 
 def pair(request, tmhelixpair_id):
     tmhelixpair = get_object_or_404(TMHelixPair, pk=tmhelixpair_id)
     return render(request, 'pair.html', {'tmhelixpair': tmhelixpair})
 
-#####################################################################################################################################################
-
 def triplet(request, tmhelixtriplet_id):
     tmhelixtriplet = get_object_or_404(TMHelixTriplet, pk=tmhelixtriplet_id)
     return render(request, 'triplet.html', {'tmhelixtriplet': tmhelixtriplet})
-
-#####################################################################################################################################################
 
 def single_helix_stats(request):
 #    tmhelix = get_object_or_404(TMHelixModel,)
     return render(request, 'single_helix_stats.html')
 
-#####################################################################################################################################################
-
 def helix_pair_stats(request):
 #    tmhelix = get_object_or_404(TMHelixModel,)
     return render(request, 'helix_pair_stats.html')
-
-
-#####################################################################################################################################################
 
 def helix_triplet_stats(request):
 #    tmhelix = get_object_or_404(TMHelixModel,)
     return render(request, 'helix_triplet_stats.html')
 
-
-#####################################################################################################################################################
-
 def viewer(request):
 #    tmhelix = get_object_or_404(TMHelix, pk=tmhelix_id)
     return render(request, 'viewer.html')
 
-#####################################################################################################################################################
-
 def embedding(request):
 #    tmhelix = get_object_or_404(TMHelix, pk=tmhelix_id)
     return render(request, 'embedding.html')
-
-#####################################################################################################################################################
 
 def handle_uploaded_file(f):
 
@@ -113,8 +86,6 @@ def handle_uploaded_file(f):
         for chunk in f.chunks():
             destination.write(chunk)
 
-#####################################################################################################################################################
-
 def Clear (request,post_id):
 
 #    TMProtein.objects.all().delete()
@@ -124,8 +95,6 @@ def Clear (request,post_id):
         {'tmproteins': tmproteins, 'form': form },
         context_instance=RequestContext(request)
     )
-
-#####################################################################################################################################################
 
 def list(request):
 

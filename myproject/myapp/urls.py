@@ -12,7 +12,7 @@ urlpatterns = patterns('myproject.myapp.views',
     url(r'^embedding/$', 'embedding', name='embedding'),
     url(r'^t(?P<tmhelixtriplet_id>[0-9]+)/$', views.triplet, name='triplet'),
     url(r'^p(?P<tmhelixpair_id>[0-9]+)/$', views.pair, name='pair'),
-    url(r'^(?P<tmhelix_id>[0-9]+)/$', views.detail, name='detail'),
+    url(r'^h(?P<tmhelix_id>[0-9]+)/$', views.helix, name='helix'),
 
 
     url(r'^list/Clear/$', view='Clear', name='Clear')

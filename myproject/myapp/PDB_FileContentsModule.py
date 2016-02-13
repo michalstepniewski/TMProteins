@@ -143,18 +143,18 @@ def ReadPDBFile (PDBFilePath, db_path):
                                                                                                      
 	PdbFileContent (readpath (PDBFilePath)). ExtractTMSegments (PDBFilePathFolder). WriteToDB (db_path)
 
-###############################################################################################################################################
-
-def getHelicesfromPDBFile (PDBFilePath, db_path):
+def getHelicesfromPDBFile (PDBFilePath):
 
         """ uses above methods in order to extract transmembrane segments from input PDB File and store them in SQL database db_path """
         """ located at db_path  """
 
         PDBFilePathFolder = '/'.join(PDBFilePath.split('/')[:-1])
-        print 'PDBFilePathFolder'
-        print PDBFilePathFolder;# quit ();
-                                                                                                     
+    
+                                                                                                    
 	return PdbFileContent (readpath (PDBFilePath)). ExtractTMSegments (PDBFilePathFolder). Content
 
+def GetAtomsFromPDBFile (PDBFilePath):
+        
+    return ''.join((PdbFileContent (readpath (PDBFilePath)). AtomRecords () ))
 
 # powinienem uzyc create

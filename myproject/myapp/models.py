@@ -76,11 +76,11 @@ class TMHelixManager (models.Manager):
 
 #####################################################################################################################################################
 
-    def ReadPDB (self, pdb_bath, db_path):
+    def ReadPDB (self, pdb_path, db_path):
 
         """ reads PDB file to SQL database """
 
-        ReadPDBFile (pdb_bath, db_path)	#
+        ReadPDBFile (pdb_path, db_path)	#
 
 class TMProteinManager(models.Manager): #zmienic to na TMProtein
 
@@ -104,12 +104,12 @@ class TMProteinManager(models.Manager): #zmienic to na TMProtein
 
 #####################################################################################################################################################
 
-    def ReadPDB (self, pdb_bath, db_path):
+    def ReadPDB (self, pdb_path, db_path):
         from PDB_FileContentsModule import ReadPDBFile
 
         """ reads PDB file to SQL database """
 
-        ReadPDBFile (pdb_bath, db_path)	
+        ReadPDBFile (pdb_path, db_path)	
 
 
 def user_directory_path( filename):
@@ -128,6 +128,7 @@ class TMProtein (models.Model): #zmienic to na TMProtein
     TMProtein_ID = models.CharField(max_length=200)
     tmproteinfile = models.FileField(upload_to=get_upload_path)#'uploads/%Y/%m/%d/%H/%M')
     path = models.CharField(get_upload_path, max_length=200)
+    Atoms = models.TextField(null=True,default="fejslik")
     objects  = TMProteinManager ()
 
     def getPath (self):
@@ -165,23 +166,22 @@ class TMProtein (models.Model): #zmienic to na TMProtein
 
         return
 
-#####################################################################################################################################################
 
-    def ReadPDB (self, pdb_bath, db_path):
+    def ReadPDB (self, pdb_path, db_path):
 
         """ reads PDB file to extract TM Helices """
 
-        from PDB_FileContentsModule import getHelicesfromPDBFile, ReadPDBFile
+        from PDB_FileContentsModule import getHelicesfromPDBFile, ReadPDBFile, GetAtomsFromPDBFile
 
-        for TM in getHelicesfromPDBFile (pdb_bath, db_path):
+        self. Atoms = GetAtomsFromPDBFile (pdb_path)
+#        self.atom_set.add(atom)
+
+        for TM in getHelicesfromPDBFile (pdb_path):
 
 #              TMHelixModel.objects.create ()
 
             AtomsI = ''
             
-            for ResidueI in TM.Content:
-                for AtomI in ResidueI.Content:
-                    AtomsI = AtomsI + AtomI.s + '\n'
 
             tmhelix = TMHelixModel.objects.create(TMHelix_ID= TM. ID, TMHelix_Tilt = TM. Tilt(), \
                                       TMHelix_Tilt_EC = TM. Tilt_EC(), \
@@ -189,9 +189,22 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                                       TMHelix_KinkAngle = TM. KinkAngle(), \
                                       TMHelix_Overhang = TM. Overhang(),\
                                       TMHelix_AASEQ = TM. AASEQ (),\
-                                      TMHelix_pdb_path = '/'.join(pdb_bath.split('/')[:-1])+'/TMs/',
+                                      TMHelix_pdb_path = '/'.join(pdb_path.split('/')[:-1])+'/TMs/',
                                       Atoms = AtomsI 
                                       )
+
+            for ResidueI in TM.Content:
+                for AtomI in ResidueI.Content:
+                    #  7 - 11        Integer         Atom serial number
+                    
+                    atom = Atom.objects.create(Atom_ID = AtomI.s[6:11],  Text = AtomI.s)
+                    
+                    self.atom_set.add(atom)
+                    tmhelix.atom_set.add(atom)
+            
+            print tmhelix.atom_set.show()
+            
+#                    AtomsI = AtomsI + AtomI.s + '\n'
 
             tmhelix.MainAxis_X, tmhelix.MainAxis_Y, tmhelix.MainAxis_Z = TM. MainAxis () 
 
@@ -205,7 +218,7 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                             
             self. tmhelixmodel_set.add(tmhelix)
 
-#        ReadPDBFile (pdb_bath, db_path)	#
+#        ReadPDBFile (pdb_path, db_path)	#
 
 
     def ExtractConsecutiveHelixPairs (self):
@@ -394,7 +407,6 @@ class TMHelixTriplet (models.Model):
         pass
         
         return
-#####################################################################################################################################################
 
 class TMHelixModel (models.Model):
 
@@ -466,18 +478,49 @@ class TMHelixModel (models.Model):
 #    # Optional, null folder could just mean it resides in the base user folder
 #    folder = models.ForeignKey(UserFolder, null=True,)
 
+class AtomManager (models.Manager):
 
-class   AtomLine (models.Model):
+    """ manager for Atom class objects """
+    
+    def show(self):        
+        
+        Text = ''
+        
+        for AtomI in self.all():
+            
+             print AtomI.Text
+             Text = Text+AtomI.Text+'\n'
+        
+        return Text
+
+class   Atom (models.Model):
 
     """ object representing AtomLine """
     
-    TMProtein = models.ForeignKey(TMProtein, on_delete=models.CASCADE, null=True)
+    TMProtein = models.ForeignKey(TMProtein, on_delete=models.CASCADE, null=True) #znalezc szybsza alternatywe
     TMHelixModel = models.ForeignKey(TMHelixModel, on_delete=models.CASCADE, null=True)
-    Content = models.CharField(max_length=200)
+    Text = models.CharField(max_length=200)
+    objects = AtomManager()
+    Atom_ID = models.CharField(max_length=200)
 
+    @classmethod
+    def create(cls, ID):
 
-class   AtomLineManager (models.Model):
+        """ creates new object: instance of TMHelix class """
 
-    """ manager for objects: instances of AtomLine class """
+        atom = cls(Atom_ID=ID, attributes={})
+        return atom
+
+class ResidueManager (models.Manager):
+    
+    """ object managing Amino Acid Residues """
+    
+    pass
+
+class Residue (models.Model):
+    
+    """ object representing Amino Acid Residue """
+    
+    objects = ResidueManager()
     
     pass

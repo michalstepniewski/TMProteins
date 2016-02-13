@@ -1,12 +1,16 @@
- <h1>ID: {{ tmhelix.TMHelix_ID }}</h1>
- <h1>Amino Acid Sequence: {{ tmhelix.TMHelix_AASEQ }}</h1>
- <h1> <font color="red"> Tilt: {{ tmhelix.TMHelix_Tilt }} DEG </font> </h1>
- <h1> <font color="green"> Tilt (Extracellular Leaflet): {{ tmhelix.TMHelix_Tilt_EC }}  DEG</font> </h1>
- <h1> <font color="blue"> Tilt (Intracellular Leaflet): {{ tmhelix.TMHelix_Tilt_IC }}  DEG</font> </h1>
- <h1> <font color="black"> Kink Angle: {{ tmhelix.TMHelix_KinkAngle }}  DEG</font> </h1>
- <h1> <font color="black"> Overhang: {{ tmhelix.TMHelix_Overhang }} A</font> </h1>
+<!DOCTYPE html>
+
+<table>
+ <tr> <td> ID: </td> <td>{{ tmhelix.TMHelix_ID }} </td> </tr>
+ <tr> <td>Amino Acid Sequence: </td> <td> {{ tmhelix.TMHelix_AASEQ }}</td></tr>
+ <tr style="color: red"> <td> Tilt: </td> <td> {{ tmhelix.TMHelix_Tilt }} DEG </td> </tr>
+ <tr style="color: green">  <td> Tilt (Extracellular Leaflet): </td> <td> {{ tmhelix.TMHelix_Tilt_EC }}  DEG</td> </tr>
+ <tr style="color: blue">  <td> Tilt (Intracellular Leaflet): </td> <td> {{ tmhelix.TMHelix_Tilt_IC }}  DEG</td> </tr>
+ <tr style="color: black">  <td> Kink Angle: </td> <td> {{ tmhelix.TMHelix_KinkAngle }}  DEG</td> </tr>
+ <tr style="color: black">  <td> Overhang: </td> <td> {{ tmhelix.TMHelix_Overhang }} A</td></tr>
  <!-- change scale on Overhang -->
-<h1> <font color="black"> ProteinAtoms: {{ tmprotein.Atoms }} A</font> </h1>
+ </table>
+<!-- <h1> <font color="black"> HelixAtoms: {{ tmhelix.atom_set.show }} A</font> </h1> --!>
 
 {% load staticfiles %}
 
@@ -18,7 +22,7 @@
 
 <!--This is a comment. Comments are not displayed in the browser-->
 
-{{ tmhelix.Atoms }}
+{{ tmhelix.atom_set.show }}
 
 </textarea>
 
