@@ -58,23 +58,30 @@ def triplet(request, tmhelixtriplet_id):
     return render(request, 'triplet.html', {'tmhelixtriplet': tmhelixtriplet})
 
 def single_helix_stats(request):
-#    tmhelix = get_object_or_404(TMHelixModel,)
     return render(request, 'single_helix_stats.html')
 
+def aboutapp(request):
+    return render(request, 'aboutapp.html')
+
+def aboutme(request):
+    return render(request, 'aboutme.html')
+
+def userguide(request):
+    return render(request, 'userguide.html')
+
+def contact(request):
+    return render(request, 'contact.html')
+
 def helix_pair_stats(request):
-#    tmhelix = get_object_or_404(TMHelixModel,)
     return render(request, 'helix_pair_stats.html')
 
 def helix_triplet_stats(request):
-#    tmhelix = get_object_or_404(TMHelixModel,)
     return render(request, 'helix_triplet_stats.html')
 
 def viewer(request):
-#    tmhelix = get_object_or_404(TMHelix, pk=tmhelix_id)
     return render(request, 'viewer.html')
 
 def embedding(request):
-#    tmhelix = get_object_or_404(TMHelix, pk=tmhelix_id)
     return render(request, 'embedding.html')
 
 def handle_uploaded_file(f):

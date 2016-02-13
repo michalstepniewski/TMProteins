@@ -1,0 +1,42 @@
+This is METAFONT, Version 2.718281 (TeX Live 2013/Debian) (base=mf 2015.7.10)  13 FEB 2016 11:16
+**db.sqlite3 db.slite3_backup2
+(db.sqlite3
+! Text line contains an invalid character.
+l.1 SQLite format 3^^@
+                      ^^D^^@^^A^^A^^@@  ^^@^^@77^^@^^@^^@Ô^^@^^@^^@^^@^^@^^@...
+
+? 
+! Text line contains an invalid character.
+l.1 SQLite format 3^^@^^D
+                         ^^@^^A^^A^^@@  ^^@^^@77^^@^^@^^@Ô^^@^^@^^@^^@^^@^^@...
+
+? 
+! Text line contains an invalid character.
+l.1 SQLite format 3^^@^^D^^@
+                            ^^A^^A^^@@  ^^@^^@77^^@^^@^^@Ô^^@^^@^^@^^@^^@^^@...
+
+? 
+! Text line contains an invalid character.
+l.1 SQLite format 3^^@^^D^^@^^A
+                               ^^A^^@@  ^^@^^@77^^@^^@^^@Ô^^@^^@^^@^^@^^@^^@...
+
+? 
+! Text line contains an invalid character.
+l.1 SQLite format 3^^@^^D^^@^^A^^A
+                                  ^^@@  ^^@^^@77^^@^^@^^@Ô^^@^^@^^@^^@^^@^^@...
+
+? 
+! Text line contains an invalid character.
+l.1 SQLite format 3^^@^^D^^@^^A^^A^^@
+                                     @  ^^@^^@77^^@^^@^^@Ô^^@^^@^^@^^@^^@^^@...
+
+? 
+>> SQLite.format3
+! Isolated expression.
+<to be read again> 
+                   @
+l.1 SQLite format 3^^@^^D^^@^^A^^A^^@@
+                                        ^^@^^@77^^@^^@^^@Ô^^@^^@^^@^^@^^@^^@...
+
+? exit
+

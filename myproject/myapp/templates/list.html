@@ -8,35 +8,16 @@
 
 
 <p> 
-Witam,
+<ul>
+    <li><a href="{% url 'aboutme' %}"> About Me </a></li>
+    <li><a href="{% url 'aboutapp' %}"> About The App </a></li>
+    <li><a href="{% url 'userguide' %}"> User Guide </a></li>
+    <li><a href="{% url 'contact' %}"> Contact </a></li>
 
-Nazywam sie Michal Stepniewski. Skonczylem biofizyke i chemie na Uniwersytecie Jagiellonskim.
-Moje zainteresowania to nauka i programowanie jednak ostatnio moj kontakt z uniwersytetem jest sporadyczny :)
-
-Szukam mozliwosci ciaglego rozwoju swoich umiejetnosci i zainteresowan poprzez odpowiadanie na aktualne i adekwatne potrzeby malych grup badawczych zajmujacych sie bioinformatyka i modelowaniem molekularnym a w dalszej przyszlosci takze kolaboratywnego rozwijania malych modularnych narzedzie programistycznych open source, szczegolnie w jezyku python i frameworku django poprez system kontroli wersji bitbucket (git).
-
-Pierwszy projekt stronki powstal wlasnie w tym celu.
-
-Wszystkich zainteresowanych prosze przesylanie feedbacku i requestow na maila michalstepniewski@gmail.com
-
-Autorem pomysłu badawczego jest Dr Henri Xhaard z Uniwersytetu w Helsinkach.
-
-My name is Michal Stepniewski and I graduated from Biophysics and Chemistry from Jagiellonian University.
-
-The author of the research idea is Dr Henri Xhaard, from University of Helsinki.
- </p>
-
-<p> 
-Bialka blonowe sa brama do komorki i jako takie sa przedmiotem zainteresowania 
-biologow strukturalnych jak i farmaceutow.
-Niestety krystalizacja bialek blonowych wciaz jest utrudniona w porownaniu do 
-bialek globularnych. Metody obliczeniowe generuja duza liczbe modeli o roznym
-poziomie jakosci. Modele te nalezy ocenic w odniesieniu do zbioru rzeczywistych
-struktur elementarnych. Ta aplikacja ma na celu umozliwienie takiego porownania.
-
-Reszta informacji w poradniku uzytkownika.
+</ul>
 
  </p>
+
 
 
 <div class="fieldWrapper">
@@ -90,7 +71,7 @@ Reszta informacji w poradniku uzytkownika.
                                 {% load static %}
                                 {% static "" as baseUrl %}
 
-                                <div id="glmol02" style="width: 300px; height: 200px; background-color: black;"></div> <textarea id="glmol02_src" style="display: none;">
+                                <div id="glmol02" style="width: 300px; height: 300px; background-color: black;"></div> <textarea id="glmol02_src" style="display: none;">
 
 {{ tmprotein.atom_set.show }}
 
