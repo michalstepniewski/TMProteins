@@ -45,13 +45,13 @@ CONECT 9991 9992
 
 // Small molecules can be embedded in the page
 
-var glmol01 = new GLmol('glmol01',false);//  supress autoload set to false gives mol wo cylinders //
+ var glmol01 = new GLmol('glmol01');
 
 // Proteins can also be embedded in the page but 
 //  you might want to keep it separate.
 
-var glmol01 = new GLmol('glmol01', true); // supress autoload set to true gives black background //
-glmol01.defineRepresentation = function() {
+var glmol02 = new GLmol('glmol02', true);
+glmol02.defineRepresentation = function() {
    var all = this.getAllAtoms();
    var hetatm = this.removeSolvents(this.getHetatms(all));
    this.colorByAtom(all, {});
