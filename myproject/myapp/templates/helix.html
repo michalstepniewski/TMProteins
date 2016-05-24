@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 
 {% load staticfiles %}
+{% load poll_extras %}
+
 
 <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
 
@@ -19,7 +21,7 @@
  </table>
 <!-- <h1> <font color="black"> HelixAtoms: {{ tmhelix.atom_set.show }} A</font> </h1> -->
 
-
+<h1> {{ tmhelix.MC_EC_X|format83f }} </h1>
 <h1>  {{tmhelix.MC_EC_X |floatformat:3}}   {{tmhelix.MC_EC_Y |floatformat:3}}   {{tmhelix.MC_EC_Z |floatformat:3}}  </h1> 
 <h1>  {{tmhelix.MC_MM_X |floatformat:3}}   {{tmhelix.MC_MM_Y |floatformat:3}}   {{tmhelix.MC_MM_Z |floatformat:3}}  </h1> 
 <h1>  {{tmhelix.MC_IC_X |floatformat:3}}   {{tmhelix.MC_IC_Y |floatformat:3}}   {{tmhelix.MC_IC_Z |floatformat:3}}  </h1>  </h1>
