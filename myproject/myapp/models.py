@@ -6,6 +6,7 @@ from time import gmtime, strftime
 import matplotlib
 import PlotToolsModule; from PlotToolsModule import HistogramPlot
 import numpy as np
+from django.db import transaction
 
 from GeometricalClassesModule import SetOfVectors, Vector, SetOfPoints, Point
 
@@ -175,13 +176,18 @@ class TMProtein (models.Model): #zmienic to na TMProtein
 
         self. Atoms = GetAtomsFromPDBFile (pdb_path)
 #        self.atom_set.add(atom)
-
-        for TM in getHelicesfromPDBFile (pdb_path):
+        with transaction.atomic():
+         for TM in getHelicesfromPDBFile (pdb_path):
 
 #              TMHelixModel.objects.create ()
 
             AtomsI = ''
             
+            print TM. ThinSlicesCOMs ( );
+            [MC_EC_X, MC_EC_Y, MC_EC_Z],\
+            [MC_MM_X, MC_MM_Y, MC_MM_Z],\
+            [MC_IC_X, MC_IC_Y, MC_IC_Z]  =  TM. ThinSlicesCOMs ( )
+#            print tmhelix.MC_EC_X
 
             tmhelix = TMHelixModel.objects.create(TMHelix_ID= TM. ID, TMHelix_Tilt = TM. Tilt(), \
                                       TMHelix_Tilt_EC = TM. Tilt_EC(), \
@@ -190,19 +196,32 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                                       TMHelix_Overhang = TM. Overhang(),\
                                       TMHelix_AASEQ = TM. AASEQ (),\
                                       TMHelix_pdb_path = '/'.join(pdb_path.split('/')[:-1])+'/TMs/',
-                                      Atoms = AtomsI 
+                                      Atoms = AtomsI,
+                                      MC_EC_X = MC_EC_X,
+                                      MC_EC_Y = MC_EC_Y,
+                                      MC_EC_Z = MC_EC_Z,
+                                      MC_MM_X = MC_MM_X,
+                                      MC_MM_Y = MC_MM_Y,
+                                      MC_MM_Z = MC_MM_Z,
+                                      MC_IC_X = MC_IC_X,
+                                      MC_IC_Y = MC_IC_Y,
+                                      MC_IC_Z = MC_IC_Z
                                       )
-
+            
             for ResidueI in TM.Content:
-                for AtomI in ResidueI.Content:
+                
+                    for AtomI in ResidueI.Content:
                     #  7 - 11        Integer         Atom serial number
                     
-                    atom = Atom.objects.create(Atom_ID = AtomI.s[6:11],  Text = AtomI.s)
+                        atom = Atom.objects.create(Atom_ID = AtomI.s[6:11],  Text = AtomI.s)
                     
-                    self.atom_set.add(atom)
-                    tmhelix.atom_set.add(atom)
+                        self.atom_set.add(atom)
+                        tmhelix.atom_set.add(atom)
             
             print tmhelix.atom_set.show()
+                
+
+#            quit()    
             
 #                    AtomsI = AtomsI + AtomI.s + '\n'
 
@@ -215,7 +234,7 @@ class TMProtein (models.Model): #zmienic to na TMProtein
             [tmhelix.MC_EC_X, tmhelix.MC_EC_Y, tmhelix.MC_EC_Z],\
             [tmhelix.MC_MM_X, tmhelix.MC_MM_Y, tmhelix.MC_MM_Z],\
             [tmhelix.MC_IC_X, tmhelix.MC_IC_Y, tmhelix.MC_IC_Z]  =  TM. ThinSlicesCOMs ( )  
-                            
+            tmhelix.save()                
             self. tmhelixmodel_set.add(tmhelix)
 
 #        ReadPDBFile (pdb_path, db_path)	#
@@ -236,7 +255,7 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                 tmhelixpair.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N+1)))   
                 tmhelixpair.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N+2)))
                 tmhelixpair.getCrossingAngle ()              
-
+                tmhelixpair.save()
                 self.tmhelixpair_set.add(tmhelixpair)  
                 
                 print  'Count '+str(tmhelixpair.tmhelixmodel_set.count())        
@@ -259,7 +278,7 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                 tmhelixtriplet.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N+3)))              
 
                 tmhelixtriplet. getPhi ()
-                
+                tmhelixtriplet.save()
                 self.tmhelixtriplet_set.add(tmhelixtriplet)  
 
 
@@ -397,6 +416,8 @@ class TMHelixTriplet (models.Model):
         Vec1 = SetOfPoints([P1,P2]).Vector()
         Vec2 = SetOfPoints([P1,P3]).Vector()
         self.Phi = SetOfVectors([Vec1, Vec2 ]) .AngleDEG ()
+        print self.Phi
+#        quit()
 
 #####################################################################################################################################################
 

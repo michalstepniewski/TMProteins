@@ -20,15 +20,10 @@
  <!-- change scale on Overhang -->
  </table>
 <!-- <h1> <font color="black"> HelixAtoms: {{ tmhelix.atom_set.show }} A</font> </h1> -->
-
-<h1> {{ tmhelix.MC_EC_X|format83f }} </h1>
-<h1>  {{tmhelix.MC_EC_X |floatformat:3}}   {{tmhelix.MC_EC_Y |floatformat:3}}   {{tmhelix.MC_EC_Z |floatformat:3}}  </h1> 
-<h1>  {{tmhelix.MC_MM_X |floatformat:3}}   {{tmhelix.MC_MM_Y |floatformat:3}}   {{tmhelix.MC_MM_Z |floatformat:3}}  </h1> 
-<h1>  {{tmhelix.MC_IC_X |floatformat:3}}   {{tmhelix.MC_IC_Y |floatformat:3}}   {{tmhelix.MC_IC_Z |floatformat:3}}  </h1>  </h1>
+<h1> {{ tmhelix.MC_EC_X }} </h1>
 <h1> {{tmhelix.costam}} </h1>
 <h1>{{ tmhelix.atom_set.show }}</h1>
 <h1>HETATM 1407  CA  BLE P   1      14.625  32.240  14.151  1.09 16.76           C</h1>
-
 <img src="{{ baseUrl }}/myapp/static/{{ tmhelix.TMHelix_pdb_path }}/{{tmhelix.TMHelix_ID}}/helisa.png" alt="My image"/>
 <div id="glmol01" style="width: 300px; height: 300px; background-color: black;"></div> <textarea id="glmol01_src" style="display: none;">
 
@@ -40,6 +35,8 @@ HETATM 9991  N   MET A   1    {{ tmhelix.MC_EC_X|format83f }}{{ tmhelix.MC_EC_Y|
 HETATM 9992  CA  MET A   1    {{ tmhelix.MC_MM_X|format83f }}{{ tmhelix.MC_MM_Y|format83f }}{{ tmhelix.MC_MM_Z|format83f }}  1.00 47.11           C  
 HETATM 9993  O1  MET A   1    {{ tmhelix.MC_IC_X|format83f }}{{ tmhelix.MC_IC_Y|format83f }}{{ tmhelix.MC_IC_Z|format83f }}  1.00 47.11           O  
 CONECT 9991 9992
+
+
 
 </textarea>
 
