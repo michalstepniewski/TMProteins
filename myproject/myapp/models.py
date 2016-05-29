@@ -7,8 +7,18 @@ import matplotlib
 import PlotToolsModule; from PlotToolsModule import HistogramPlot
 import numpy as np
 from django.db import transaction
+import scipy
+import scipy.stats
+from scipy.stats import relfreq
+import math
 
 from GeometricalClassesModule import SetOfVectors, Vector, SetOfPoints, Point
+
+
+def probability (Value, Distribution):
+    
+    
+    return
 
 class TMHelixManager (models.Manager):
 
@@ -321,10 +331,19 @@ class TMHelixTripletManager (models.Manager):
         """ calculates TM Helix Triplet Stats and plots histograms to .png """
 
         for Value in ['Phi']:
-
-            HistogramPlot(np.array(self. values_list(Value, flat=True)), 'myproject/myapp/static/myapp/static/Stats/HelixTriplet/'+Value )
+#            print self. values_list('Phi')
+            new_list = np.array([x for x in np.array(self. values_list('Phi',flat=True)) if x is not None])
+#            print 'new_list'
+#            print new_list
+#            print self. values_list('id')
+#            print np.array(self. values_list(Value, flat=True))
+            relfrequency = relfreq(new_list,18,defaultreallimits=(0,180))
+            print relfrequency
+            print relfrequency[0]
+            print relfrequency[0][int(math.floor((165.0+relfrequency[1])/relfrequency[2]))]
+            HistogramPlot(new_list, 'myproject/myapp/static/myapp/static/Stats/HelixTriplet/'+Value )
         #zrobic jakies dict coby robilo ranges, uzaleznialo np od zakresu albo od czegos
-
+        # wydrukowac statsy, najlepiej znormalizowane
         return
 
 
@@ -403,6 +422,27 @@ class TMHelixTriplet (models.Model):
     objects = TMHelixTripletManager ()
     Phi = models.FloatField (null=True)
     TMProtein = models.ForeignKey(TMProtein, on_delete=models.CASCADE, null=True)
+
+#####################################################################################################################################################
+
+    def getScore(self):
+#        self.Score = probability(self.Phi,TmTripletSet)
+
+#        for Value in ['Phi']:
+#            print self. values_list('Phi')
+        new_list = np.array([x for x in np.array(self. values_list('Phi',flat=True)) if x is not None])
+#            print 'new_list'
+#            print new_list
+#            print self. values_list('id')
+#            print np.array(self. values_list(Value, flat=True))
+        relfrequency = relfreq(new_list,18,defaultreallimits=(0,180))
+ #           print relfrequency
+ #           print relfrequency[0]
+ #           print relfrequency[0][int(math.floor((165.0+relfrequency[1])/relfrequency[2]))]
+ #           HistogramPlot(new_list, 'myproject/myapp/static/myapp/static/Stats/HelixTriplet/'+Value )
+        self.Score = relfrequency[0][int(math.floor((165.0+relfrequency[1])/relfrequency[2]))]
+        self.save()
+        return self.Score
 
 #####################################################################################################################################################
     
