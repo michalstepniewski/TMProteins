@@ -11,7 +11,7 @@ import scipy
 import scipy.stats
 from scipy.stats import relfreq
 import math
-
+from django.db.models import Sum, Avg
 from GeometricalClassesModule import SetOfVectors, Vector, SetOfPoints, Point
 
 
@@ -141,10 +141,22 @@ class TMProtein (models.Model): #zmienic to na TMProtein
     path = models.CharField(get_upload_path, max_length=200)
     Atoms = models.TextField(null=True,default="fejslik")
     objects  = TMProteinManager ()
+    Score=models.FloatField(null=True)
+    Set = models.CharField(max_length=10,null=True) #'Reference' or 'Test'
 
     def getPath (self):
 
         return get_upload_path
+    
+    def getScore(self):
+        for tmhelixtripleti in self.tmhelixtriplet_set.all():
+            tmhelixtripleti.getScore()
+        self.Score=self.tmhelixtriplet_set.aggregate(Avg('Score'))['Score__avg']
+        print self.Score; #quit()
+        self.save()
+#        quit()
+        return self.Score
+            
 
     def save_to_own_folder (self, ):
 
@@ -246,7 +258,7 @@ class TMProtein (models.Model): #zmienic to na TMProtein
             [tmhelix.MC_IC_X, tmhelix.MC_IC_Y, tmhelix.MC_IC_Z]  =  TM. ThinSlicesCOMs ( )  
             tmhelix.save()                
             self. tmhelixmodel_set.add(tmhelix)
-
+            self.save()
 #        ReadPDBFile (pdb_path, db_path)	#
 
 
@@ -280,7 +292,7 @@ class TMProtein (models.Model): #zmienic to na TMProtein
         
             for N in range(NoHelices - 2):
                
-                tmhelixtriplet = TMHelixTriplet.objects.create()
+                tmhelixtriplet = TMHelixTriplet.objects.create(Set=self.Set)
 
                 
                 tmhelixtriplet.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N+1)))   
@@ -422,6 +434,8 @@ class TMHelixTriplet (models.Model):
     objects = TMHelixTripletManager ()
     Phi = models.FloatField (null=True)
     TMProtein = models.ForeignKey(TMProtein, on_delete=models.CASCADE, null=True)
+    Score = models.FloatField (null=True)
+    Set = models.CharField(max_length=10,null=True)
 
 #####################################################################################################################################################
 
@@ -430,18 +444,25 @@ class TMHelixTriplet (models.Model):
 
 #        for Value in ['Phi']:
 #            print self. values_list('Phi')
-        new_list = np.array([x for x in np.array(self. values_list('Phi',flat=True)) if x is not None])
+        new_list = np.array([x for x in np.array(TMHelixTriplet.objects.filter(Set='Reference'). values_list('Phi',flat=True)) if x is not None])
 #            print 'new_list'
 #            print new_list
 #            print self. values_list('id')
 #            print np.array(self. values_list(Value, flat=True))
         relfrequency = relfreq(new_list,18,defaultreallimits=(0,180))
+        print relfrequency; 
  #           print relfrequency
  #           print relfrequency[0]
  #           print relfrequency[0][int(math.floor((165.0+relfrequency[1])/relfrequency[2]))]
  #           HistogramPlot(new_list, 'myproject/myapp/static/myapp/static/Stats/HelixTriplet/'+Value )
-        self.Score = relfrequency[0][int(math.floor((165.0+relfrequency[1])/relfrequency[2]))]
+        self.Score = relfrequency[0][int(math.floor((self.Phi)/relfrequency[2]))]
+        print self.Phi
+        print 
+        print int(math.floor((180.0+self.Phi+relfrequency[1])/relfrequency[2]))
+        print 
         self.save()
+        print self.Score
+        #quit()
         return self.Score
 
 #####################################################################################################################################################

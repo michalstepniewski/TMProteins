@@ -150,8 +150,12 @@ def list(request):
 
         if form.is_valid():
             #this happens if you want to upload file
-                        
-            TMProteinI = TMProtein(tmproteinfile = request.FILES['tmproteinfile'] )
+            if 'checkbox' in request.POST:
+                print 'Checkbox Selected';
+                TMProteinI = TMProtein(tmproteinfile = request.FILES['tmproteinfile'],Set='Reference' )
+            else:
+                
+                TMProteinI = TMProtein(tmproteinfile = request.FILES['tmproteinfile'],Set='Test' )
 
 #new instance of TMProtein is created from models I guess
             TMProteinI.save()

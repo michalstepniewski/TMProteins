@@ -2,6 +2,12 @@
 
 from django import forms
 
+FAVORITE_COLORS_CHOICES = (
+    ('blue', 'Blue'),
+    ('green', 'Green'),
+    ('black', 'Black'),
+)
+
 class TMProteinFileForm(forms.Form):
 
     """ File Input Form enabling upload of PDB file to be analyzed """
@@ -10,6 +16,12 @@ class TMProteinFileForm(forms.Form):
         label='Select a PDB file oriented along membrane normal containing one chain only.'
     )
 
+    favorite_colors = forms.MultipleChoiceField(required=False, \
+    widget=forms.CheckboxSelectMultiple, choices=FAVORITE_COLORS_CHOICES)
+
+
 class UploadFileForm(forms.Form):
     title = forms.CharField(max_length=50)
     file = forms.FileField()
+    favorite_colors = forms.MultipleChoiceField(required=False, \
+    widget=forms.CheckboxSelectMultiple, choices=FAVORITE_COLORS_CHOICES)
