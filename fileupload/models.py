@@ -1,8 +1,13 @@
 # encoding: utf-8
 from django.db import models
-#from myproject.myapp.models import *# TMHelix # TMProtein
+from myapp.models import   TMProtein
+print TMProtein
 #import myproject.myapp.models  as sthg
-from myapp.models import *
+import myapp as sthg
+vars(sthg)
+#import myapp.models as sthg
+
+#from myapp.models import TMProtein
 #import myproject.myapp.models as sthg
 #print vars(sthg)
 #quit()

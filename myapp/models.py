@@ -13,8 +13,10 @@ from scipy.stats import relfreq
 import math
 from django.db.models import Sum, Avg
 from GeometricalClassesModule import SetOfVectors, Vector, SetOfPoints, Point
-from fileupload.models import Picture
-
+#print 'importing Picture'
+#from fileupload.models import Picture
+#print Picture
+#print 'imported Picture'
 
 def probability (Value, Distribution):
     
