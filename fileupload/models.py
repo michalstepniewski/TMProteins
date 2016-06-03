@@ -35,6 +35,9 @@ class Picture(models.Model):
         TMProteinI.save()
         super(Picture, self).save(*args, **kwargs)
         TMProteinI.ReadPDB ( "media/"+self.file.name)
+        import time
+        time.sleep(5)
+
         
 #        from PDB_FileContentsModule import getHelicesfromPDBFile, ReadPDBFile, GetAtomsFromPDBFile
         

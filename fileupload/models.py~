@@ -32,9 +32,10 @@ class Picture(models.Model):
         self.slug = self.file.name
         print self.file.name
         TMProteinI = TMProtein(tmproteinfile = self.file.name,Set='Test' )
-        
+        TMProteinI.save()
         super(Picture, self).save(*args, **kwargs)
         TMProteinI.ReadPDB ( "media/"+self.file.name)
+
         
 #        from PDB_FileContentsModule import getHelicesfromPDBFile, ReadPDBFile, GetAtomsFromPDBFile
         

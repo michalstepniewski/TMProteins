@@ -13,6 +13,7 @@
     <li><a href="{% url 'aboutapp' %}"> About The App </a></li>
     <li><a href="{% url 'userguide' %}"> User Guide </a></li>
     <li><a href="{% url 'contact' %}"> Contact </a></li>
+    <li><a href="{% url 'multiple_upload' %}"> MultipleUploadForm </a></li>
 
 </ul>
 
