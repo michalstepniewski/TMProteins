@@ -30,10 +30,14 @@ class Picture(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = self.file.name
+        print self.file.name
+        TMProteinI = TMProtein(tmproteinfile = self.file.name,Set='Test' )
+        TMProteinI.save()
         super(Picture, self).save(*args, **kwargs)
+        TMProteinI.ReadPDB ( "media/"+self.file.name)
         
 #        from PDB_FileContentsModule import getHelicesfromPDBFile, ReadPDBFile, GetAtomsFromPDBFile
-#        ReadPDB (self, pdb_path, db_path)
+        
 
     def delete(self, *args, **kwargs):
         """delete -- Remove to leave file."""

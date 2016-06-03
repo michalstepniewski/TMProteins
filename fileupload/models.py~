@@ -1,6 +1,7 @@
 # encoding: utf-8
 from django.db import models
 from myapp.models import   TMProtein
+print TMProtein
 #import myproject.myapp.models  as sthg
 import myapp as sthg
 vars(sthg)
@@ -29,10 +30,14 @@ class Picture(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = self.file.name
+        print self.file.name
+        TMProteinI = TMProtein(tmproteinfile = self.file.name,Set='Test' )
+        
         super(Picture, self).save(*args, **kwargs)
+        TMProteinI.ReadPDB ( "media/"+self.file.name)
         
 #        from PDB_FileContentsModule import getHelicesfromPDBFile, ReadPDBFile, GetAtomsFromPDBFile
-#        ReadPDB (self, pdb_path, db_path)
+        
 
     def delete(self, *args, **kwargs):
         """delete -- Remove to leave file."""
