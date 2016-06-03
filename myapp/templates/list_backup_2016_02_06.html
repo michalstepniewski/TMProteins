@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>TM Helices Calculator</title>	
+
+	</head>
+
+<script>alert('hello')</script>
+<p> 
+Witam,
+
+Nazywam sie Michal Stepniewski. Skonczylem biofizyke i chemie na Uniwersytecie Jagiellonskim.
+Moje zainteresowania to nauka i programowanie jednak ostatnio moj kontakt z uniwersytetem jest sporadyczny :)
+
+Szukam mozliwosci ciaglego rozwoju swoich umiejetnosci i zainteresowan poprzez odpowiadanie na aktualne i adekwatne potrzeby malych grup badawczych zajmujacych sie bioinformatyka i modelowaniem molekularnym a w dalszej przyszlosci takze kolaboratywnego rozwijania malych modularnych narzedzie programistycznych open source, szczegolnie w jezyku python i frameworku django poprez system kontroli wersji bitbucket (git).
+
+Pierwszy projekt stronki powstal wlasnie w tym celu.
+
+Wszystkich zainteresowanych prosze przesylanie feedbacku i requestow na maila michalstepniewski@gmail.com
+
+Autorem pomysłu badawczego jest Dr Henri Xhaard z Uniwersytetu w Helsinkach.
+ 
+ </p>
+
+
+<div class="fieldWrapper">
+
+<form action="/mail/" method="post">
+    <label for="mail">Post Feature Request: </label>
+    <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
+    <input type="submit" value="OK">
+
+</form>
+
+</div>
+
+<form action="/your-name/" method="post">
+    <label for="your_name">Membrane Limit (lower): </label>
+    <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
+    <input type="submit" value="OK">
+</form>
+
+<div class="fieldWrapper">
+
+<form action="/your-name/" method="post">
+    <label for="your_name">Method (PCA): </label>
+    <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
+    <input type="submit" value="OK">
+</form>
+
+
+<form action="/your-name/" method="post">
+    <label for="your_name">Method (MC): </label>
+    <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
+    <input type="submit" value="OK">
+</form>
+
+</div>
+
+	<body>
+
+<script type="text/javascript" src="/media/jquery-1.7.min.js"></script>
+
+		<!-- List of uploaded documents -->
+		{% if tmproteins %}
+			<ul>
+                        {% for TMProtein in tmproteins %}
+                                <h1> {{ TMProtein.tmproteinfile.name }} </h1> 
+
+
+
+                                {% load static %}
+                                {% static "" as baseUrl %}
+                                <img src="{{ baseUrl }}/myapp/static/Protein1.png" alt="My image"/>
+                                <img src="{{ baseUrl }}/myapp/static/Protein1.png" alt="My image"/>
+
+                                {% if TMProtein.tmhelixmodel_set.all %}
+                                    <ul>
+                                    <p> Transmembrane Helices: </p>
+                                    {% for tmhelix in TMProtein.tmhelixmodel_set.all %}
+
+                                        <li><a href="{% url 'detail' tmhelix.id %}">TM{{ tmhelix.TMHelix_ID }}</a></li>
+
+                                    {% endfor %}
+                                    </ul>
+                                {% else %}
+                                    <p>No TMs are available.</p>
+                                {% endif %}
+
+                                {% if TMProtein.tmhelixpair_set.all %}
+                                    <ul>
+                                    <p> Pairs of Transmembrane Helices: </p>
+                                    <p> Consecutive: </p>
+                                    {% for tmhelixpair in TMProtein.tmhelixpair_set.all %}
+
+                                        <li><a href="{% url 'pair' tmhelixpair.id %}">TMs: {% for tmhelix in tmhelixpair.tmhelixmodel_set.all %} {{ tmhelix.TMHelix_ID }} {% endfor %} </a></li> 
+
+                                    {% endfor %}
+                                    </ul>
+                                {% endif %}
+
+                                {% if TMProtein.tmhelixtriplet_set.all %}
+                                    <ul>
+                                    <p> Triplets of Transmembrane Helices: </p>
+                                    <p> Consecutive: </p>
+                                    {% for tmhelixtriplet in TMProtein.tmhelixtriplet_set.all %}
+
+                                        <li><a href="{% url 'triplet' tmhelixtriplet.id %}">TMs: {% for tmhelix in tmhelixtriplet.tmhelixmodel_set.all %} {{ tmhelix.TMHelix_ID }} {% endfor %} </a></li>
+
+                                    {% endfor %}
+                                    </ul>
+                                {% endif %}
+                                
+                                
+
+
+
+			{% endfor %}
+                        <li><a href="{% url 'viewer' %}">View</a></li>
+                        <li><a href="{% url 'single_helix_stats' %}">SingleHelixStats (if calculated)</a></li>
+                        <li><a href="{% url 'helix_pair_stats' %}">HelixPairStats (if calculated)</a></li>
+                        <li><a href="{% url 'helix_triplet_stats' %}">HelixTripletStats (if calculated)</a></li>
+                        <li><a href="{% url 'embedding' %}">View2</a></li>
+			</ul>
+		{% else %}
+			<p>No TM Protein PDB files loaded</p>
+		{% endif %}
+                <!-- dodac tu link do viewera -->
+		<!-- Upload form. Note enctype attribute! -->
+		<form action="{% url "list" %}" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<p>{{ form.non_field_errors }}</p>
+			<p>{{ form.tmproteinfile.label_tag }} {{ form.tmproteinfile.help_text }}</p>
+			<p>
+				{{ form.tmproteinfile.errors }}
+				{{ form.tmproteinfile }}
+			</p>
+			<p><input type="submit" value="Upload" /></p>
+			<p><input type="submit" name="Clear" value="Clear" /></p>
+			<p><input type="submit" name="CalculateSingleHelixStats" value="CalculateSingleHelixStats" /></p>
+			<p><input type="submit" name="CalculateHelixPairStats" value="CalculateHelixPairStats" /></p>
+			<p><input type="submit" name="CalculateHelixTripletStats" value="CalculateHelixTripletStats" /></p>
+			<p><input type="submit" name="ExtractHelixPairs" value="ExtractHelixPairs" /></p>
+			<p><input type="submit" name="ExtractHelixTriplets" value="ExtractHelixTriplets" /></p>
+		</form>
+		
+	</body>
+
+</html> 
+
+

@@ -13,6 +13,10 @@ from scipy.stats import relfreq
 import math
 from django.db.models import Sum, Avg
 from GeometricalClassesModule import SetOfVectors, Vector, SetOfPoints, Point
+import fileupload
+import fileupload.models
+vars(fileupload.models)
+from fileupload.models import Picture
 
 
 def probability (Value, Distribution):
@@ -190,7 +194,7 @@ class TMProtein (models.Model): #zmienic to na TMProtein
         return
 
 
-    def ReadPDB (self, pdb_path, db_path):
+    def ReadPDB (self, pdb_path):#, db_path):
 
         """ reads PDB file to extract TM Helices """
 

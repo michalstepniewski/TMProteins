@@ -14,8 +14,8 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
-from myproject.myapp.models import TMProtein, TMHelixModel, TMHelixPair, TMHelixTriplet
-from myproject.myapp.forms import TMProteinFileForm
+from myapp.models import TMProtein, TMHelixModel, TMHelixPair, TMHelixTriplet
+from myapp.forms import TMProteinFileForm
 import os
 
 from .forms import UploadFileForm
@@ -166,7 +166,7 @@ def list(request):
             Path = TMProteinI.path
             #now we read helices from PDB file
 
-            TMProteinI. ReadPDB ('media/'+request.FILES['tmproteinfile'].name.split('.')[0]+'/'+request.FILES['tmproteinfile'].name, 'media/TMProtein.db')
+            TMProteinI. ReadPDB ('media/'+request.FILES['tmproteinfile'].name.split('.')[0]+'/'+request.FILES['tmproteinfile'].name),# 'media/TMProtein.db')
 # reads PDB to extract TM Helices
             # Redirect to the document list after POST
             return HttpResponseRedirect(reverse('myproject.myapp.views.list'))
