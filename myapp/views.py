@@ -14,8 +14,8 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
-from myproject.myapp.models import TMProtein, TMHelixModel, TMHelixPair, TMHelixTriplet
-from myproject.myapp.forms import TMProteinFileForm
+from myapp.models import TMProtein, TMHelixModel, TMHelixPair, TMHelixTriplet
+from myapp.forms import TMProteinFileForm
 import os
 
 from .forms import UploadFileForm
@@ -72,6 +72,10 @@ def userguide(request):
 def contact(request):
     return render(request, 'contact.html')
 
+def multiple_upload(request):
+    return render(request, 'fileupload/picture_form.html')
+
+
 def helix_pair_stats(request):
     return render(request, 'helix_pair_stats.html')
 
@@ -113,8 +117,8 @@ def list(request):
            TMProtein.objects.all().delete()
            TMHelixModel.objects.all().delete() # set relation one to many (Document -> TMHelix)
 
-           os. system('rm -r myproject/myapp/static/myapp/static/media/*') # clear static files in media
-           os. system('rm -r myproject/myapp/static/myapp/static/Stats/*') # clear static files in Stats
+           os. system('rm -r myapp/static/myapp/static/media/*') # clear static files in media
+           os. system('rm -r myapp/static/myapp/static/Stats/*') # clear static files in Stats
            #leaves only js files in media
            os. system('rm -r media/*;') #clears previously extracted Transmembrane Segments stored in PDB files
            
@@ -169,7 +173,7 @@ def list(request):
             TMProteinI. ReadPDB ('media/'+request.FILES['tmproteinfile'].name.split('.')[0]+'/'+request.FILES['tmproteinfile'].name),# 'media/TMProtein.db')
 # reads PDB to extract TM Helices
             # Redirect to the document list after POST
-            return HttpResponseRedirect(reverse('myproject.myapp.views.list'))
+            return HttpResponseRedirect(reverse('myapp.views.list'))
     else:
 
         form = TMProteinFileForm() # A empty, unbound form

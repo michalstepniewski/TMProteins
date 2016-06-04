@@ -124,7 +124,7 @@ class PdbFileContent ( list ):
                      ProteinChain( MRegionResiduesSegment_I. Content). OutputToPdbFile ( OutputPath + '/TMs/'+ ProteinChainInstance.ChainID+'_TM_'+str(N)+'_' )
                      MRegionResiduesSegment_I. ChainID = ProteinChainInstance. ChainID
 
-                     MRegionResiduesSegment_I. DrawAxesInPymol (N, OutputPath + '/TMs/')
+#                     MRegionResiduesSegment_I. DrawAxesInPymol (N, OutputPath + '/TMs/')
                             
        return N_TMs_Set ( TMSegmentsI )
 

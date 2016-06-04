@@ -8,7 +8,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^myapp/',include('myproject.myapp.urls')),
+    url(r'^myapp/',include('myapp.urls')),
     url(r'^multiple_upload/', include('django-jquery-file-upload.urls')),
 #    url(r'^$', lambda x: HttpResponseRedirect('/upload/new/')),
     url(r'^upload/', include('fileupload.urls')),

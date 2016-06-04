@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from django.conf.urls import patterns, url
+from django.conf.urls import patterns, url, include
 from . import views
 
-urlpatterns = patterns('myproject.myapp.views',
+urlpatterns = patterns('myapp.views',
     url(r'^list/$', 'list', name='list'),
     url(r'^mail/$', 'mail', name='mail'),
     url(r'^viewer/$', 'viewer', name='viewer'),
@@ -17,7 +17,7 @@ urlpatterns = patterns('myproject.myapp.views',
     url(r'^t(?P<tmhelixtriplet_id>[0-9]+)/$', views.triplet, name='triplet'),
     url(r'^p(?P<tmhelixpair_id>[0-9]+)/$', views.pair, name='pair'),
     url(r'^h(?P<tmhelix_id>[0-9]+)/$', views.helix, name='helix'),
-    url(r'^multiple_upload', name='multiple_upload', include('django-jquery-file-upload.urls')),
+    url(r'^multiple_upload', 'multiple_upload', name = 'multiple_upload'), # include('django-jquery-file-upload.urls')), 
 #    url(r'^$', lambda x: HttpResponseRedirect('/upload/new/')),
     url(r'^upload/', include('fileupload.urls')),
 
