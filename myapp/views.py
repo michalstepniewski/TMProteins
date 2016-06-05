@@ -153,7 +153,11 @@ def list(request):
         elif request.POST.get('CalculateAminoAcidZPreferenceHistogram'):
            # this happens if You push 'ExtractHelixTriplets'
 
-           Residue.objects.
+           AAThreeLetters = ['ARG','HIS','LYS','ASP','GLU','SER','THR','ASN',\
+                             'GLN','CYS','GLY','PRO','ALA','VAL','ILE','LEU',\
+                             'MET','PHE','TYR','TRP']
+           for AAThreeLetterI in AAThreeLetters:
+               HistogramPlot(Residue.objects.filter(AAThreeLetter=AAThreeLetterI).values_list('Z'))
            # to teraz jak to ugryzc
 
         form = TMProteinFileForm(request.POST, request.FILES)

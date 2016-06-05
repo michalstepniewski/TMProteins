@@ -616,7 +616,7 @@ class ResidueManager (models.Manager):
     
     pass
 
-class Residue (models.Model):
+class Residue (models.Model): #research multiple inheritance
     
     """ object representing Amino Acid Residue """
     
