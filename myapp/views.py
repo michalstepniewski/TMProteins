@@ -108,7 +108,7 @@ def Clear (request,post_id):
     )
 
 def list(request):
-
+# prawdopodobnie powinienem to jakos rozbic na kilka viewsow
     # Handle file upload
     if request.method == 'POST':
 
@@ -149,6 +149,12 @@ def list(request):
            # this happens if You push 'ExtractHelixTriplets'
 
            TMProtein.objects.ExtractConsecutiveHelixTriplets ()
+
+        elif request.POST.get('CalculateAminoAcidZPreferenceHistogram'):
+           # this happens if You push 'ExtractHelixTriplets'
+
+           Residue.objects.
+           # to teraz jak to ugryzc
 
         form = TMProteinFileForm(request.POST, request.FILES)
 

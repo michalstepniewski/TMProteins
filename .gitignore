@@ -17,3 +17,4 @@ build/
 tests/report/
 *~
 media/
+myproject/myapp/migrations/

@@ -234,16 +234,24 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                                       )
             
             for ResidueI in TM.Content:
+                Residue.objects.create()
                 
                     for AtomI in ResidueI.Content:
                     #  7 - 11        Integer         Atom serial number
                     
                         atom = Atom.objects.create(Atom_ID = AtomI.s[6:11],  Text = AtomI.s)
-                    
+#moze by to dac do create
+                        atom.X = AtomI.X
+                        atom.Y = AtomI.Y
+                        atom.Z = AtomI.Z
+                        atom.AAThreeLetter = AtomI.AAThreeLetter
                         self.atom_set.add(atom)
                         tmhelix.atom_set.add(atom)
+                        Residue.atom_set.add(atom)
+
+                        
             
-            print tmhelix.atom_set.show()
+           # print tmhelix.atom_set.show()
                 
 
 #            quit()    
@@ -573,7 +581,7 @@ class AtomManager (models.Manager):
         
         for AtomI in self.all():
             
-             print AtomI.Text
+#             print AtomI.Text
              Text = Text+AtomI.Text+'\n'
         
         return Text
@@ -584,9 +592,15 @@ class   Atom (models.Model):
     
     TMProtein = models.ForeignKey(TMProtein, on_delete=models.CASCADE, null=True) #znalezc szybsza alternatywe
     TMHelixModel = models.ForeignKey(TMHelixModel, on_delete=models.CASCADE, null=True)
+    Residue = models.ForeignKey(Residue, on_delete=models.CASCADE, null=True)
+#ciekawe oile to spowolni
     Text = models.CharField(max_length=200)
     objects = AtomManager()
     Atom_ID = models.CharField(max_length=200)
+    X = models.FloatField(null=True)
+    Y = models.FloatField(null=True)
+    Z = models.FloatField(null=True)
+    Mass = models.FloatField(null=True)
 
     @classmethod
     def create(cls, ID):
@@ -607,5 +621,27 @@ class Residue (models.Model):
     """ object representing Amino Acid Residue """
     
     objects = ResidueManager()
+    Z = models.FloatField(null=True)
     
-    pass
+    def CenterOfMass ( self ):
+
+          """ returns Center Of Mass of class Instnace """
+
+          if self.Content == []: # check if there are any atoms to compute COM from ...
+             print self
+             print 'AtomSetIsEmpty. Unable to calcuate Center Of Mass.'
+
+          X_Sum, Y_Sum, Z_Sum, Mass_Sum  = [ 0.0, 0.0, 0.0, 0.0 ] 
+
+          for Atom in self.atom_set:
+          
+              X_Sum += ( Atom .X * Atom .Mass )
+              Y_Sum += ( Atom .Y * Atom .Mass )
+              Z_Sum += ( Atom .Z * Atom .Mass ) 
+
+              Mass_Sum += Atom .Mass 
+
+          CenterOfMass = [ (Coord_Sum / Mass_Sum) for Coord_Sum in [X_Sum, Y_Sum, Z_Sum ] ]
+          self.Z = CenterOfMass[2]
+          return CenterOfMass
+
