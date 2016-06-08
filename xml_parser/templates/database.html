@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Database</title>	
+
+	</head>
+
+
+
+	<body>
+
+
+                <!-- dodac tu link do viewera -->
+		<!-- Upload form. Note enctype attribute! -->
+		<form action="{% url "database" %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+			<!-- button for upload -->
+			<p><input type="submit" name="Update" value="Update" /></p>
+		</form>
+        <!-- prawdopodobnie bede chcial to podzielic na kilka formow -->
+
+
+		
+	</body>
+
+</html> 
+
+

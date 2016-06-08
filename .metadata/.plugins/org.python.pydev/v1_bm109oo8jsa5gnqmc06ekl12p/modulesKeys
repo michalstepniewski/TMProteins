@@ -11026,6 +11026,7 @@ weblib.w3lib_encoding|/usr/local/lib/python2.7/dist-packages/weblib/w3lib_encodi
 weblib.watch|/usr/local/lib/python2.7/dist-packages/weblib/watch.py
 weblib.work|/usr/local/lib/python2.7/dist-packages/weblib/work.py
 weblib.yandex|/usr/local/lib/python2.7/dist-packages/weblib/yandex.py
+wget|/usr/local/lib/python2.7/dist-packages/wget.py
 whichdb|/usr/lib/python2.7/whichdb.py
 whitenoise.__init__|/usr/local/lib/python2.7/dist-packages/whitenoise/__init__.py
 whitenoise.base|/usr/local/lib/python2.7/dist-packages/whitenoise/base.py

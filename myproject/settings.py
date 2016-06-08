@@ -51,6 +51,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'myapp',
     'fileupload',
+    'xml_parser',
 )
 
 MIDDLEWARE_CLASSES = (

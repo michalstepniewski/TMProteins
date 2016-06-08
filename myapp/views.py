@@ -14,10 +14,11 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
-from myapp.models import TMProtein, TMHelixModel, TMHelixPair, TMHelixTriplet
+from myapp.models import TMProtein, TMHelixModel, TMHelixPair, TMHelixTriplet, \
+Residue
 from myapp.forms import TMProteinFileForm
 import os
-
+from PlotToolsModule import HistogramPlot
 from .forms import UploadFileForm
 
 # Imaginary function to handle an uploaded file.
@@ -157,7 +158,12 @@ def list(request):
                              'GLN','CYS','GLY','PRO','ALA','VAL','ILE','LEU',\
                              'MET','PHE','TYR','TRP']
            for AAThreeLetterI in AAThreeLetters:
-               HistogramPlot(Residue.objects.filter(AAThreeLetter=AAThreeLetterI).values_list('Z'))
+               print Residue.objects.all()
+               
+               print Residue.objects.filter(AAThreeLetter=AAThreeLetterI)
+               print Residue.objects.filter(AAThreeLetter=AAThreeLetterI).values_list('Z')
+     #          quit()
+               HistogramPlot(Residue.objects.filter(AAThreeLetter=AAThreeLetterI).values_list('Z'),'AminoAcidZPreference_'+AAThreeLetterI+'.png')
            # to teraz jak to ugryzc
 
         form = TMProteinFileForm(request.POST, request.FILES)

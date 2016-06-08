@@ -13,4 +13,11 @@
 		<item value="org.eclipse.rcp:4.4.2.v20150204-1700"/>
 		<item value="org.python.pydev.feature:4.0.0.201504092214"/>
 	</list>
+	<section name="SaveAsDialogSettings">
+		<item value="613" key="DIALOG_WIDTH"/>
+		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+		<item value="596" key="DIALOG_HEIGHT"/>
+		<item value="161" key="DIALOG_X_ORIGIN"/>
+		<item value="-5" key="DIALOG_Y_ORIGIN"/>
+	</section>
 </section>

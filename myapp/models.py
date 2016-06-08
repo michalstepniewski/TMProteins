@@ -234,9 +234,9 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                                       )
             
             for ResidueI in TM.Content:
-                Residue.objects.create()
+                ResidueModelI = Residue.objects.create(Residue_ID=ResidueI.Content[0].s[6:11], AAThreeLetter = ResidueI.Content[0].AAThreeLetter )
                 
-                    for AtomI in ResidueI.Content:
+                for AtomI in ResidueI.Content:
                     #  7 - 11        Integer         Atom serial number
                     
                         atom = Atom.objects.create(Atom_ID = AtomI.s[6:11],  Text = AtomI.s)
@@ -244,12 +244,23 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                         atom.X = AtomI.X
                         atom.Y = AtomI.Y
                         atom.Z = AtomI.Z
+                        atom.Mass = AtomI.Mass()
                         atom.AAThreeLetter = AtomI.AAThreeLetter
+                        atom.save()
                         self.atom_set.add(atom)
                         tmhelix.atom_set.add(atom)
-                        Residue.atom_set.add(atom)
-
+                        ResidueModelI.atom_set.add(atom)
                         
+                ResidueModelI.AAThreeLetter = ResidueI.Content[0].AAThreeLetter
+#                
+                ResidueModelI.CenterOfMass()
+
+                ResidueModelI.save()
+#                print ResidueModelI.Z
+#                print ResidueModelI.AAThreeLetter
+#                print Residue.objects.all().values_list('AAThreeLetter')
+
+#                quit()
             
            # print tmhelix.atom_set.show()
                 
@@ -270,6 +281,7 @@ class TMProtein (models.Model): #zmienic to na TMProtein
             tmhelix.save()                
             self. tmhelixmodel_set.add(tmhelix)
             self.save()
+            print Residue.objects.all().values_list('AAThreeLetter')#;quit()
 #        ReadPDBFile (pdb_path, db_path)	#
 
 
@@ -570,6 +582,51 @@ class TMHelixModel (models.Model):
 #    image = models.ImageField(null=True)
 #    # Optional, null folder could just mean it resides in the base user folder
 #    folder = models.ForeignKey(UserFolder, null=True,)
+class ResidueManager (models.Manager):
+    
+    """ object managing Amino Acid Residues """
+    
+    pass
+
+class Residue (models.Model): #research multiple inheritance
+    
+    """ object representing Amino Acid Residue """
+    
+    objects = ResidueManager()
+    Z = models.FloatField(null=True)
+    AAThreeLetter = models.CharField(max_length=3,null=True)
+    Residue_ID = models.CharField(max_length=200)
+    
+    def CenterOfMass ( self ):
+
+          """ returns Center Of Mass of class Instnace """
+
+#          if self.Content == []: # check if there are any atoms to compute COM from ...
+#             print self
+#             print 'AtomSetIsEmpty. Unable to calcuate Center Of Mass.'
+
+          X_Sum, Y_Sum, Z_Sum, Mass_Sum  = [ 0.0, 0.0, 0.0, 0.0 ] 
+
+          for Atom in self.atom_set.all():
+          
+              X_Sum += ( Atom .X * Atom .Mass )
+              Y_Sum += ( Atom .Y * Atom .Mass )
+              Z_Sum += ( Atom .Z * Atom .Mass ) 
+
+              Mass_Sum += Atom .Mass 
+
+          CenterOfMass = [ (Coord_Sum / Mass_Sum) for Coord_Sum in [X_Sum, Y_Sum, Z_Sum ] ]
+          self.Z = CenterOfMass[2]
+          self.save()
+          return CenterOfMass
+
+    @classmethod
+    def create(cls, ID):
+
+        """ creates new object: instance of TMHelix class """
+
+        residue = cls(Residue_ID=ID, attributes={})
+        return residue
 
 class AtomManager (models.Manager):
 
@@ -601,6 +658,7 @@ class   Atom (models.Model):
     Y = models.FloatField(null=True)
     Z = models.FloatField(null=True)
     Mass = models.FloatField(null=True)
+    AAThreeLetter = models.CharField(max_length=3,null=True)
 
     @classmethod
     def create(cls, ID):
@@ -609,39 +667,4 @@ class   Atom (models.Model):
 
         atom = cls(Atom_ID=ID, attributes={})
         return atom
-
-class ResidueManager (models.Manager):
-    
-    """ object managing Amino Acid Residues """
-    
-    pass
-
-class Residue (models.Model): #research multiple inheritance
-    
-    """ object representing Amino Acid Residue """
-    
-    objects = ResidueManager()
-    Z = models.FloatField(null=True)
-    
-    def CenterOfMass ( self ):
-
-          """ returns Center Of Mass of class Instnace """
-
-          if self.Content == []: # check if there are any atoms to compute COM from ...
-             print self
-             print 'AtomSetIsEmpty. Unable to calcuate Center Of Mass.'
-
-          X_Sum, Y_Sum, Z_Sum, Mass_Sum  = [ 0.0, 0.0, 0.0, 0.0 ] 
-
-          for Atom in self.atom_set:
-          
-              X_Sum += ( Atom .X * Atom .Mass )
-              Y_Sum += ( Atom .Y * Atom .Mass )
-              Z_Sum += ( Atom .Z * Atom .Mass ) 
-
-              Mass_Sum += Atom .Mass 
-
-          CenterOfMass = [ (Coord_Sum / Mass_Sum) for Coord_Sum in [X_Sum, Y_Sum, Z_Sum ] ]
-          self.Z = CenterOfMass[2]
-          return CenterOfMass
 
