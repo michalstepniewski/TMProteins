@@ -42,7 +42,7 @@
   <!ELEMENT secondaryBibliographies (bibliography*)>
   <!ELEMENT relatedPdbEntries (pdbCode*)>
 ]>
-<mpstruc createdBy='Stephen White' maintainedBy='Craig Snider' copyright='Copyright © 1998-2016 Stephen H. White. All rights reserved.' url='http://blanco.biomol.uci.edu/mpstruc/listAll/mpstrucAlphaHlxTblXml' lastNewProteinDate='2016-06-04 18:02:42.0' lastDatabaseEditDate='2016-06-04 18:04:51.0' timeStamp='Wed Jun 08 14:22:13 PDT 2016'>
+<mpstruc createdBy='Stephen White' maintainedBy='Craig Snider' copyright='Copyright © 1998-2016 Stephen H. White. All rights reserved.' url='http://blanco.biomol.uci.edu/mpstruc/listAll/mpstrucAlphaHlxTblXml' lastNewProteinDate='2016-06-04 18:02:42.0' lastDatabaseEditDate='2016-06-04 18:04:51.0' timeStamp='Thu Jun 09 11:09:48 PDT 2016'>
   <caption>mpstruc database - alpha-helical membrane proteins</caption>
   <groups>
     <group>
@@ -128,13 +128,13 @@ Lipid (DHPC) bound (III), 1.60 &amp;Aring;: 4TSQ</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>4TSP</pdbCode>
-                    <pdbCode>3W9P</pdbCode>
-                    <pdbCode>4TSQ</pdbCode>
-                    <pdbCode>4TSL</pdbCode>
-                    <pdbCode>4TSN</pdbCode>
-                    <pdbCode>3VWI</pdbCode>
                     <pdbCode>4TSO</pdbCode>
+                    <pdbCode>3VWI</pdbCode>
+                    <pdbCode>4TSN</pdbCode>
+                    <pdbCode>3W9P</pdbCode>
+                    <pdbCode>4TSL</pdbCode>
+                    <pdbCode>4TSP</pdbCode>
+                    <pdbCode>4TSQ</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -243,8 +243,8 @@ NMR structure: 2MUZ</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>2MUZ</pdbCode>
                 <pdbCode>4P6L</pdbCode>
+                <pdbCode>2MUZ</pdbCode>
                 <pdbCode>4P6K</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
@@ -301,8 +301,8 @@ NMR structure: 2MUZ</description>
               <secondaryBibliographies />
               <relatedPdbEntries>
                 <pdbCode>2VQH</pdbCode>
-                <pdbCode>2VQL</pdbCode>
                 <pdbCode>2VQK</pdbCode>
+                <pdbCode>2VQL</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -1329,8 +1329,8 @@ Pentameric red form at pH 5.6, 1.45 &amp;Aring;: 4XTL</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>4XTN</pdbCode>
                     <pdbCode>4XTL</pdbCode>
+                    <pdbCode>4XTN</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -1958,10 +1958,10 @@ Pentameric red form at pH 5.6, 1.45 &amp;Aring;: 4XTL</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>2Y01</pdbCode>
                     <pdbCode>2Y03</pdbCode>
                     <pdbCode>2Y02</pdbCode>
                     <pdbCode>2Y04</pdbCode>
+                    <pdbCode>2Y01</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -1989,9 +1989,9 @@ With bound lodocyanopindolol (t756), 3.65 &amp;Aring;:2YCZ</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>2YCX</pdbCode>
-                    <pdbCode>2YCY</pdbCode>
                     <pdbCode>2YCZ</pdbCode>
+                    <pdbCode>2YCY</pdbCode>
+                    <pdbCode>2YCX</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -2168,8 +2168,8 @@ In complex with alprenolol, 3.16 &amp;Aring;: 3NYA</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3NYA</pdbCode>
                     <pdbCode>3NY9</pdbCode>
+                    <pdbCode>3NYA</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -2500,10 +2500,10 @@ Structure reveals stabilizing cholesterol molecules, 23 ordered lipids, and 57 o
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>3OE0</pdbCode>
+                <pdbCode>3OE8</pdbCode>
                 <pdbCode>3OE9</pdbCode>
                 <pdbCode>3OE6</pdbCode>
-                <pdbCode>3OE8</pdbCode>
+                <pdbCode>3OE0</pdbCode>
               </relatedPdbEntries>
               <memberProteins>
                 <memberProtein>
@@ -3031,8 +3031,8 @@ HTHGH4-&amp;Delta;IC3 mutant, 3.57 &amp;Aring;: 4BWB</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3ZEV</pdbCode>
                     <pdbCode>4BWB</pdbCode>
+                    <pdbCode>3ZEV</pdbCode>
                     <pdbCode>4BV0</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
@@ -3113,9 +3113,9 @@ structure in 50% HFIP, 2LOW</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>2LOT</pdbCode>
                 <pdbCode>2LOV</pdbCode>
                 <pdbCode>2LOW</pdbCode>
+                <pdbCode>2LOT</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -3377,12 +3377,12 @@ with bound agonist baclofen, 1.90 &amp;Aring;: 4MS4</description>
               <secondaryBibliographies />
               <relatedPdbEntries>
                 <pdbCode>4MRM</pdbCode>
-                <pdbCode>4MQF</pdbCode>
                 <pdbCode>4MR7</pdbCode>
                 <pdbCode>4MS3</pdbCode>
-                <pdbCode>4MR9</pdbCode>
                 <pdbCode>4MR8</pdbCode>
+                <pdbCode>4MQF</pdbCode>
                 <pdbCode>4MS1</pdbCode>
+                <pdbCode>4MR9</pdbCode>
                 <pdbCode>4MS4</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
@@ -4770,8 +4770,8 @@ KcsA, M96V mutant in KCl, 2.52 &amp;Aring;: 2NLJ</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>2ITD</pdbCode>
                     <pdbCode>2NLJ</pdbCode>
+                    <pdbCode>2ITD</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -4873,9 +4873,9 @@ KcsA, M96V mutant in KCl, 2.52 &amp;Aring;: 2NLJ</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3FB6</pdbCode>
-                    <pdbCode>3F7Y</pdbCode>
                     <pdbCode>3FB5</pdbCode>
+                    <pdbCode>3F7Y</pdbCode>
+                    <pdbCode>3FB6</pdbCode>
                     <pdbCode>3F7V</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
@@ -5005,8 +5005,8 @@ In complex with tetraoctylammonium, 2.40 &amp;Aring;: 2W0F</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>4UUJ</pdbCode>
                     <pdbCode>2W0F</pdbCode>
+                    <pdbCode>4UUJ</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -5035,10 +5035,10 @@ T75G (non-conductive state), 2.5 &amp;Aring;: 5EBM</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>5EBW</pdbCode>
-                    <pdbCode>5EC2</pdbCode>
                     <pdbCode>5EBL</pdbCode>
                     <pdbCode>5EBM</pdbCode>
+                    <pdbCode>5EBW</pdbCode>
+                    <pdbCode>5EC2</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -5139,9 +5139,9 @@ Conductive state in the presence of Tl&lt;sup&gt;+&lt;/sup&gt;, 3.00 &amp;Aring;
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
+                    <pdbCode>4WFH</pdbCode>
                     <pdbCode>4WFE</pdbCode>
                     <pdbCode>4WFG</pdbCode>
-                    <pdbCode>4WFH</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -5170,9 +5170,9 @@ in complex with norfluoxetine, 3.60 &amp;Aring;: 4XDK</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4XDJ</pdbCode>
-                <pdbCode>4XDK</pdbCode>
                 <pdbCode>4XDL</pdbCode>
+                <pdbCode>4XDK</pdbCode>
+                <pdbCode>4XDJ</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -5615,8 +5615,8 @@ E212Q mutant, 2.99 &amp;Aring;: 4L76</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>4L75</pdbCode>
                     <pdbCode>4L76</pdbCode>
+                    <pdbCode>4L75</pdbCode>
                     <pdbCode>4L74</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
@@ -5719,8 +5719,8 @@ TM domain only, 5A6G</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>5A6G</pdbCode>
                 <pdbCode>5A6F</pdbCode>
+                <pdbCode>5A6G</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -5774,8 +5774,8 @@ RCK domain, 3.00 &amp;Aring;: 4GVL</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4GX5</pdbCode>
                 <pdbCode>4GX1</pdbCode>
+                <pdbCode>4GX5</pdbCode>
                 <pdbCode>4GVL</pdbCode>
                 <pdbCode>4GX2</pdbCode>
               </relatedPdbEntries>
@@ -5830,9 +5830,9 @@ R186A mutant in complex with PIP&lt;sub&gt;2&lt;/sub&gt;, 2.61 &amp;Aring;:  3SP
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
+                    <pdbCode>3SPH</pdbCode>
                     <pdbCode>3SPC</pdbCode>
                     <pdbCode>3SPJ</pdbCode>
-                    <pdbCode>3SPH</pdbCode>
                     <pdbCode>3SPG</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
@@ -5937,10 +5937,10 @@ R201A mutant + PIP&lt;sub&gt;2&lt;/sub&gt;, 3.45 &amp;Aring;:  3SYQ</description
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>3SYQ</pdbCode>
-                <pdbCode>3SYP</pdbCode>
                 <pdbCode>3SYC</pdbCode>
                 <pdbCode>3SYA</pdbCode>
+                <pdbCode>3SYQ</pdbCode>
+                <pdbCode>3SYP</pdbCode>
               </relatedPdbEntries>
               <memberProteins>
                 <memberProtein>
@@ -6017,17 +6017,17 @@ R201A mutant + PIP&lt;sub&gt;2&lt;/sub&gt;, 3.45 &amp;Aring;:  3SYQ</description
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>2WLI</pdbCode>
-                <pdbCode>2X6C</pdbCode>
+                <pdbCode>2X6B</pdbCode>
                 <pdbCode>1XL6</pdbCode>
-                <pdbCode>2WLO</pdbCode>
-                <pdbCode>2WLH</pdbCode>
-                <pdbCode>2WLK</pdbCode>
-                <pdbCode>2WLN</pdbCode>
                 <pdbCode>2WLM</pdbCode>
                 <pdbCode>2X6A</pdbCode>
-                <pdbCode>2X6B</pdbCode>
+                <pdbCode>2X6C</pdbCode>
+                <pdbCode>2WLH</pdbCode>
+                <pdbCode>2WLN</pdbCode>
+                <pdbCode>2WLI</pdbCode>
+                <pdbCode>2WLO</pdbCode>
                 <pdbCode>1XL4</pdbCode>
+                <pdbCode>2WLK</pdbCode>
               </relatedPdbEntries>
               <memberProteins>
                 <memberProtein>
@@ -6152,9 +6152,9 @@ R201A mutant + PIP&lt;sub&gt;2&lt;/sub&gt;, 3.45 &amp;Aring;:  3SYQ</description
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
+                    <pdbCode>2Q6A</pdbCode>
                     <pdbCode>2Q68</pdbCode>
                     <pdbCode>2Q69</pdbCode>
-                    <pdbCode>2Q6A</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -6204,10 +6204,10 @@ R201A mutant + PIP&lt;sub&gt;2&lt;/sub&gt;, 3.45 &amp;Aring;:  3SYQ</description
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3K08</pdbCode>
-                    <pdbCode>3K04</pdbCode>
-                    <pdbCode>3K0G</pdbCode>
                     <pdbCode>3K06</pdbCode>
+                    <pdbCode>3K0G</pdbCode>
+                    <pdbCode>3K04</pdbCode>
+                    <pdbCode>3K08</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -6233,8 +6233,8 @@ R201A mutant + PIP&lt;sub&gt;2&lt;/sub&gt;, 3.45 &amp;Aring;:  3SYQ</description
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3OUS</pdbCode>
                     <pdbCode>3K03</pdbCode>
+                    <pdbCode>3OUS</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -6264,11 +6264,11 @@ NaK2K-D68E, 1.75 &amp;Aring;: 3TCU</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3T4D</pdbCode>
+                    <pdbCode>3TCU</pdbCode>
                     <pdbCode>3TET</pdbCode>
                     <pdbCode>3T4Z</pdbCode>
+                    <pdbCode>3T4D</pdbCode>
                     <pdbCode>3T2M</pdbCode>
-                    <pdbCode>3TCU</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -6454,16 +6454,16 @@ Wild-type with bound Pl7 blocker, 3.02 &amp;Aring;: 4PA7</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>4PA4</pdbCode>
-                    <pdbCode>4PA6</pdbCode>
-                    <pdbCode>4OXS</pdbCode>
-                    <pdbCode>4PA3</pdbCode>
-                    <pdbCode>4PA9</pdbCode>
                     <pdbCode>4P9O</pdbCode>
-                    <pdbCode>4P2Z</pdbCode>
-                    <pdbCode>4P30</pdbCode>
+                    <pdbCode>4OXS</pdbCode>
                     <pdbCode>4P9P</pdbCode>
+                    <pdbCode>4P2Z</pdbCode>
+                    <pdbCode>4PA6</pdbCode>
+                    <pdbCode>4PA9</pdbCode>
+                    <pdbCode>4P30</pdbCode>
                     <pdbCode>4PA7</pdbCode>
+                    <pdbCode>4PA4</pdbCode>
+                    <pdbCode>4PA3</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -6518,9 +6518,9 @@ H245G mutant, 5.80 &amp;Aring;: 4LTR</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4LTR</pdbCode>
                 <pdbCode>4LTQ</pdbCode>
                 <pdbCode>4LTP</pdbCode>
+                <pdbCode>4LTR</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -6547,8 +6547,8 @@ wild-type, 3.58 &amp;Aring;: 4G80</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4G7Y</pdbCode>
                 <pdbCode>4G80</pdbCode>
+                <pdbCode>4G7Y</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -6643,18 +6643,18 @@ Na&lt;sub&gt;V&lt;/sub&gt;Ab wild-type:&lt;br /&gt;
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4MW3</pdbCode>
                 <pdbCode>4MW8</pdbCode>
-                <pdbCode>4MVM</pdbCode>
-                <pdbCode>4MVO</pdbCode>
-                <pdbCode>4MVU</pdbCode>
-                <pdbCode>4MVZ</pdbCode>
-                <pdbCode>4MTG</pdbCode>
-                <pdbCode>4MVS</pdbCode>
-                <pdbCode>4MVR</pdbCode>
                 <pdbCode>4MTF</pdbCode>
-                <pdbCode>4MTO</pdbCode>
                 <pdbCode>4MVQ</pdbCode>
+                <pdbCode>4MVO</pdbCode>
+                <pdbCode>4MW3</pdbCode>
+                <pdbCode>4MTO</pdbCode>
+                <pdbCode>4MVR</pdbCode>
+                <pdbCode>4MVS</pdbCode>
+                <pdbCode>4MVM</pdbCode>
+                <pdbCode>4MVZ</pdbCode>
+                <pdbCode>4MVU</pdbCode>
+                <pdbCode>4MTG</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -6709,8 +6709,8 @@ Open-form in C222&lt;sub&gt;1&lt;/sub&gt; lattice, 3.60 &amp;Aring;: 4PGW</descr
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4PGV</pdbCode>
                 <pdbCode>4PGS</pdbCode>
+                <pdbCode>4PGV</pdbCode>
                 <pdbCode>4PGW</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
@@ -7094,10 +7094,10 @@ GluA2 in complex with partial agonist kainate, 3.52 &amp;Aring;: 4U2Q</descripti
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
+                    <pdbCode>4U1Y</pdbCode>
                     <pdbCode>4U2Q</pdbCode>
                     <pdbCode>4U1W</pdbCode>
                     <pdbCode>4U1X</pdbCode>
-                    <pdbCode>4U1Y</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -7127,9 +7127,9 @@ crystal form 2), 3.70 &amp;Aring;: 4U5F</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>4U5F</pdbCode>
-                    <pdbCode>4U5D</pdbCode>
                     <pdbCode>4U5E</pdbCode>
+                    <pdbCode>4U5D</pdbCode>
+                    <pdbCode>4U5F</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -7157,9 +7157,9 @@ cryo-EM map for GluA2/A3 model II, 10.31 &amp;Aring;: 5IDF</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>5IDF</pdbCode>
-                    <pdbCode>5FWY</pdbCode>
                     <pdbCode>5IDE</pdbCode>
+                    <pdbCode>5FWY</pdbCode>
+                    <pdbCode>5IDF</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -7244,13 +7244,13 @@ DCKA/D-APV-bound conformation, state 1, 9.25 &amp;Aring;: 5IPV</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>5IPQ</pdbCode>
+                    <pdbCode>5IPU</pdbCode>
                     <pdbCode>5IPV</pdbCode>
+                    <pdbCode>5IPQ</pdbCode>
+                    <pdbCode>5IPR</pdbCode>
+                    <pdbCode>5IPT</pdbCode>
                     <pdbCode>5IOV</pdbCode>
                     <pdbCode>5IPS</pdbCode>
-                    <pdbCode>5IPT</pdbCode>
-                    <pdbCode>5IPU</pdbCode>
-                    <pdbCode>5IPR</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -7282,11 +7282,11 @@ with bound Phe, 1.92 &amp;Aring;: 4IO7</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4IO7</pdbCode>
-                <pdbCode>4IO4</pdbCode>
                 <pdbCode>4IO5</pdbCode>
                 <pdbCode>4IO3</pdbCode>
+                <pdbCode>4IO4</pdbCode>
                 <pdbCode>4IO6</pdbCode>
+                <pdbCode>4IO7</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -7640,8 +7640,8 @@ in complex with MitTx toxin and Cesium, 2.65 &amp;Aring;: 4NTY</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>4NTY</pdbCode>
                     <pdbCode>4NTX</pdbCode>
+                    <pdbCode>4NTY</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -7668,8 +7668,8 @@ in complex with MitTx toxin and Cesium, 2.65 &amp;Aring;: 4NTY</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>2YVY</pdbCode>
                 <pdbCode>2YVZ</pdbCode>
+                <pdbCode>2YVY</pdbCode>
               </relatedPdbEntries>
               <memberProteins>
                 <memberProtein>
@@ -7720,8 +7720,8 @@ with bound Ca&lt;sup&gt;2+&lt;/sup&gt;, 3.2 &amp;Aring;: 4WIB</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>4WIB</pdbCode>
                     <pdbCode>4U9N</pdbCode>
+                    <pdbCode>4WIB</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -7748,10 +7748,10 @@ with bound Ca&lt;sup&gt;2+&lt;/sup&gt;, 3.2 &amp;Aring;: 4WIB</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>3M76</pdbCode>
-                <pdbCode>3M75</pdbCode>
-                <pdbCode>3M74</pdbCode>
                 <pdbCode>3M73</pdbCode>
+                <pdbCode>3M75</pdbCode>
+                <pdbCode>3M76</pdbCode>
+                <pdbCode>3M74</pdbCode>
               </relatedPdbEntries>
               <memberProteins>
                 <memberProtein>
@@ -8095,8 +8095,8 @@ apo form, 3.60 &amp;Aring;: 4TWH</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>4TWH</pdbCode>
                     <pdbCode>4TWF</pdbCode>
+                    <pdbCode>4TWH</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -8179,10 +8179,10 @@ A237F mutant + RbCl, 3.15 &amp;Aring;: 4ILB</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>4IL9</pdbCode>
+                    <pdbCode>4ILB</pdbCode>
                     <pdbCode>4ILC</pdbCode>
                     <pdbCode>4ILA</pdbCode>
-                    <pdbCode>4ILB</pdbCode>
+                    <pdbCode>4IL9</pdbCode>
                     <pdbCode>4IL4</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
@@ -8494,11 +8494,11 @@ With iodide, 3.80 &amp;Aring;:3RIA</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>2XQ4</pdbCode>
-                <pdbCode>2XQ7</pdbCode>
-                <pdbCode>2XQ8</pdbCode>
-                <pdbCode>2XQ9</pdbCode>
                 <pdbCode>2XQ3</pdbCode>
+                <pdbCode>2XQ4</pdbCode>
+                <pdbCode>2XQ9</pdbCode>
+                <pdbCode>2XQ8</pdbCode>
+                <pdbCode>2XQ7</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -8945,9 +8945,9 @@ Non-junctional form, 2.4&amp;nbsp;&amp;Aring;: 2B6P</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>2O9E</pdbCode>
-                    <pdbCode>2O9F</pdbCode>
                     <pdbCode>2O9G</pdbCode>
+                    <pdbCode>2O9F</pdbCode>
+                    <pdbCode>2O9E</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -9294,12 +9294,12 @@ F194I mutant, 1.98 &amp;Aring;: 3TDS</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
+                <pdbCode>3TDR</pdbCode>
+                <pdbCode>3TDP</pdbCode>
                 <pdbCode>3TDS</pdbCode>
-                <pdbCode>3TE1</pdbCode>
                 <pdbCode>3TE2</pdbCode>
                 <pdbCode>3TE0</pdbCode>
-                <pdbCode>3TDP</pdbCode>
-                <pdbCode>3TDR</pdbCode>
+                <pdbCode>3TE1</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -9548,14 +9548,14 @@ Bound to Selenourea, 2.50 &amp;Aring;: 4EZD</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>2NPJ</pdbCode>
-                    <pdbCode>2NPD</pdbCode>
-                    <pdbCode>2NPG</pdbCode>
-                    <pdbCode>2NOP</pdbCode>
-                    <pdbCode>2NPK</pdbCode>
                     <pdbCode>2NPC</pdbCode>
                     <pdbCode>2NPE</pdbCode>
+                    <pdbCode>2NPG</pdbCode>
                     <pdbCode>2NOW</pdbCode>
+                    <pdbCode>2NOP</pdbCode>
+                    <pdbCode>2NPJ</pdbCode>
+                    <pdbCode>2NPK</pdbCode>
+                    <pdbCode>2NPD</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -9655,8 +9655,8 @@ Bound to Selenourea, 2.50 &amp;Aring;: 4EZD</description>
               <secondaryBibliographies />
               <relatedPdbEntries>
                 <pdbCode>2B2H</pdbCode>
-                <pdbCode>2B2J</pdbCode>
                 <pdbCode>2B2I</pdbCode>
+                <pdbCode>2B2J</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -10734,10 +10734,10 @@ Y205F mutant in complex with Ac-RKVRMA-CHO (from bicelles), 2.4 &amp;Aring;:5F5K
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>5F5J</pdbCode>
-                    <pdbCode>5F5D</pdbCode>
                     <pdbCode>5F5K</pdbCode>
                     <pdbCode>5F5G</pdbCode>
+                    <pdbCode>5F5D</pdbCode>
+                    <pdbCode>5F5J</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -11789,8 +11789,8 @@ cytoplasmic rhodanese domain of the full-length inner membrane protein, NMR stru
                 </bibliography>
               </secondaryBibliographies>
               <relatedPdbEntries>
-                <pdbCode>2MOI</pdbCode>
                 <pdbCode>2MOL</pdbCode>
+                <pdbCode>2MOI</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -11869,10 +11869,10 @@ cytoplasmic rhodanese domain of the full-length inner membrane protein, NMR stru
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>1OY8</pdbCode>
-                    <pdbCode>1OY9</pdbCode>
-                    <pdbCode>1OYD</pdbCode>
                     <pdbCode>1OYE</pdbCode>
+                    <pdbCode>1OY9</pdbCode>
+                    <pdbCode>1OY8</pdbCode>
+                    <pdbCode>1OYD</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -11899,10 +11899,10 @@ cytoplasmic rhodanese domain of the full-length inner membrane protein, NMR stru
                   <secondaryBibliographies />
                   <relatedPdbEntries>
                     <pdbCode>1T9U</pdbCode>
-                    <pdbCode>1T9Y</pdbCode>
-                    <pdbCode>1T9X</pdbCode>
-                    <pdbCode>1T9V</pdbCode>
                     <pdbCode>1T9W</pdbCode>
+                    <pdbCode>1T9V</pdbCode>
+                    <pdbCode>1T9X</pdbCode>
+                    <pdbCode>1T9Y</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -11929,8 +11929,8 @@ cytoplasmic rhodanese domain of the full-length inner membrane protein, NMR stru
                   <secondaryBibliographies />
                   <relatedPdbEntries>
                     <pdbCode>2HQF</pdbCode>
-                    <pdbCode>2HQG</pdbCode>
                     <pdbCode>2HQD</pdbCode>
+                    <pdbCode>2HQG</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -11982,8 +11982,8 @@ cytoplasmic rhodanese domain of the full-length inner membrane protein, NMR stru
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>2DR6</pdbCode>
                     <pdbCode>2DRD</pdbCode>
+                    <pdbCode>2DR6</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -12084,8 +12084,8 @@ With bound rifampicin &amp;amp; minocyline, 3.30 &amp;Aring;: 3AOD</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3AOD</pdbCode>
                     <pdbCode>3AOC</pdbCode>
+                    <pdbCode>3AOD</pdbCode>
                     <pdbCode>3AOA</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
@@ -12113,8 +12113,8 @@ wt AcrB/DARPin in complex with doxorubicin, 2.25 &amp;Aring;: 4DX7</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>4DX6</pdbCode>
                     <pdbCode>4DX7</pdbCode>
+                    <pdbCode>4DX6</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -12192,9 +12192,9 @@ R971A mutant, 2.00 &amp;Aring;: 4U96</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>4U95</pdbCode>
                     <pdbCode>4U8Y</pdbCode>
                     <pdbCode>4U96</pdbCode>
+                    <pdbCode>4U95</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -12397,8 +12397,8 @@ With bound Cu(I), 3.78 &amp;Aring;: 3OW7</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3OW7</pdbCode>
                     <pdbCode>3OPO</pdbCode>
+                    <pdbCode>3OW7</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -12480,9 +12480,9 @@ Complex with rhodamine 6G, 3.59 &amp;Aring;: 4HUN</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
+                <pdbCode>4HUN</pdbCode>
                 <pdbCode>4HUL</pdbCode>
                 <pdbCode>4HUM</pdbCode>
-                <pdbCode>4HUN</pdbCode>
               </relatedPdbEntries>
               <memberProteins>
                 <memberProtein>
@@ -12537,11 +12537,11 @@ in complex with MaD3S, 2.60 &amp;Aring;: 3VVS</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
+                <pdbCode>3VVO</pdbCode>
                 <pdbCode>3VVR</pdbCode>
                 <pdbCode>3VVQ</pdbCode>
-                <pdbCode>3VVO</pdbCode>
-                <pdbCode>3VVP</pdbCode>
                 <pdbCode>3VVS</pdbCode>
+                <pdbCode>3VVP</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -12832,10 +12832,10 @@ wild-type with analog III, 2.90 &amp;Aring;: 4J7Y</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>4JC7</pdbCode>
-                    <pdbCode>4J7T</pdbCode>
                     <pdbCode>4JRZ</pdbCode>
                     <pdbCode>4J7Y</pdbCode>
+                    <pdbCode>4J7T</pdbCode>
+                    <pdbCode>4JC7</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -13197,8 +13197,8 @@ With bound 6-bromo-6-deoxy-D-glucose, 2.60 &amp;Aring;: 4GC0</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4GBZ</pdbCode>
                 <pdbCode>4GC0</pdbCode>
+                <pdbCode>4GBZ</pdbCode>
               </relatedPdbEntries>
               <memberProteins>
                 <memberProtein>
@@ -13742,8 +13742,8 @@ in complex with LDAO, 2.20 &amp;Aring;: 4ZP2</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4ZOW</pdbCode>
                 <pdbCode>4ZP2</pdbCode>
+                <pdbCode>4ZOW</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -13794,8 +13794,8 @@ in complex with GLUT-i2 inhibitor, 2.99 &amp;Aring;: 5EQH</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>5EQG</pdbCode>
                     <pdbCode>5EQH</pdbCode>
+                    <pdbCode>5EQG</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -14067,16 +14067,16 @@ D121G/S426M mutant with EL2 deletion of 162-201 with bound 3,4-dichlorophen ethy
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
+                    <pdbCode>4XPH</pdbCode>
+                    <pdbCode>4XP9</pdbCode>
+                    <pdbCode>4XP6</pdbCode>
+                    <pdbCode>4XPT</pdbCode>
                     <pdbCode>4XPA</pdbCode>
                     <pdbCode>4XPB</pdbCode>
-                    <pdbCode>4XP9</pdbCode>
+                    <pdbCode>4XPF</pdbCode>
+                    <pdbCode>4XP4</pdbCode>
                     <pdbCode>4XP5</pdbCode>
                     <pdbCode>4XPG</pdbCode>
-                    <pdbCode>4XPT</pdbCode>
-                    <pdbCode>4XP6</pdbCode>
-                    <pdbCode>4XPF</pdbCode>
-                    <pdbCode>4XPH</pdbCode>
-                    <pdbCode>4XP4</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -14184,11 +14184,11 @@ ts3 with s-citalopram at central site and Br-citalopram at allosteric site, 3.49
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>5I73</pdbCode>
-                <pdbCode>5I75</pdbCode>
-                <pdbCode>5I6Z</pdbCode>
                 <pdbCode>5I71</pdbCode>
+                <pdbCode>5I73</pdbCode>
                 <pdbCode>5I74</pdbCode>
+                <pdbCode>5I6Z</pdbCode>
+                <pdbCode>5I75</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -14847,11 +14847,11 @@ ts3 with s-citalopram at central site and Br-citalopram at allosteric site, 3.49
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3F3D</pdbCode>
+                    <pdbCode>3F3E</pdbCode>
                     <pdbCode>3F48</pdbCode>
                     <pdbCode>3F4J</pdbCode>
                     <pdbCode>3F4I</pdbCode>
-                    <pdbCode>3F3E</pdbCode>
+                    <pdbCode>3F3D</pdbCode>
                     <pdbCode>3F3C</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
@@ -14956,8 +14956,8 @@ F259V,I359Q mutant, 2.80 &amp;Aring;:3QS6</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3QS5</pdbCode>
                     <pdbCode>3QS6</pdbCode>
+                    <pdbCode>3QS5</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -14988,8 +14988,8 @@ LeuT mutant T355V, S354A, K288A in complex with alanine and sodium, 2.99 &amp;Ar
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3TT3</pdbCode>
                     <pdbCode>3TU0</pdbCode>
+                    <pdbCode>3TT3</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -15022,13 +15022,13 @@ LeuT-&amp;beta;-SeHG (C2 &amp;beta;-SeHG), 2.10 &amp;Aring;: 3USP</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3USM</pdbCode>
-                    <pdbCode>3USI</pdbCode>
                     <pdbCode>3USJ</pdbCode>
                     <pdbCode>3USL</pdbCode>
+                    <pdbCode>3USO</pdbCode>
+                    <pdbCode>3USI</pdbCode>
                     <pdbCode>3USK</pdbCode>
                     <pdbCode>3USP</pdbCode>
-                    <pdbCode>3USO</pdbCode>
+                    <pdbCode>3USM</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -15055,8 +15055,8 @@ T354H mutant in the outward-oriented Na&lt;sup&gt;+&lt;/sup&gt;-free return stat
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>5JAG</pdbCode>
                     <pdbCode>5JAF</pdbCode>
+                    <pdbCode>5JAG</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -15096,16 +15096,16 @@ T354H mutant in the outward-oriented Na&lt;sup&gt;+&lt;/sup&gt;-free return stat
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4MMA</pdbCode>
-                <pdbCode>4MM6</pdbCode>
+                <pdbCode>4MME</pdbCode>
+                <pdbCode>4MMF</pdbCode>
                 <pdbCode>4MMC</pdbCode>
-                <pdbCode>4MMD</pdbCode>
+                <pdbCode>4MMA</pdbCode>
+                <pdbCode>4MMB</pdbCode>
                 <pdbCode>4MM5</pdbCode>
                 <pdbCode>4MM7</pdbCode>
-                <pdbCode>4MMB</pdbCode>
-                <pdbCode>4MME</pdbCode>
+                <pdbCode>4MMD</pdbCode>
                 <pdbCode>4MM9</pdbCode>
-                <pdbCode>4MMF</pdbCode>
+                <pdbCode>4MM6</pdbCode>
                 <pdbCode>4MM8</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
@@ -15527,8 +15527,8 @@ with bound thalium ion, 3.20 &amp;Aring;: 4CZA</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4CZA</pdbCode>
                 <pdbCode>4CZ9</pdbCode>
+                <pdbCode>4CZA</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -15655,8 +15655,8 @@ isoform 3 inhibited by carboxyatractyloside (P2&lt;sub&gt;1&lt;/sub&gt;2&lt;sub&
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4C9Q</pdbCode>
                 <pdbCode>4C9H</pdbCode>
+                <pdbCode>4C9Q</pdbCode>
                 <pdbCode>4C9J</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
@@ -16021,8 +16021,8 @@ Substrate bound S-component, 3.01 &amp;Aring;: 5D0Y</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>2ONR</pdbCode>
                 <pdbCode>2ONS</pdbCode>
+                <pdbCode>2ONR</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -16096,10 +16096,10 @@ Substrate bound S-component, 3.01 &amp;Aring;: 5D0Y</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>3B5Y</pdbCode>
+                <pdbCode>3B5Z</pdbCode>
                 <pdbCode>3B5W</pdbCode>
                 <pdbCode>3B5X</pdbCode>
-                <pdbCode>3B5Z</pdbCode>
+                <pdbCode>3B5Y</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -16125,8 +16125,8 @@ Substrate bound S-component, 3.01 &amp;Aring;: 5D0Y</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>3G60</pdbCode>
                 <pdbCode>3G61</pdbCode>
+                <pdbCode>3G60</pdbCode>
               </relatedPdbEntries>
               <memberProteins>
                 <memberProtein>
@@ -16183,10 +16183,10 @@ in complex with QZ-Phe, 3.80 &amp;Aring;: 4Q9L</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>4Q9L</pdbCode>
-                    <pdbCode>4Q9K</pdbCode>
                     <pdbCode>4Q9J</pdbCode>
                     <pdbCode>4Q9I</pdbCode>
+                    <pdbCode>4Q9K</pdbCode>
+                    <pdbCode>4Q9L</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -16314,8 +16314,8 @@ Complex with wt. MBP and AMP-PNP, 3.1 &amp;Aring;: 3PUY</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3PUY</pdbCode>
                     <pdbCode>3PUZ</pdbCode>
+                    <pdbCode>3PUY</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -16344,9 +16344,9 @@ With bound ADP-AlF&lt;sub&gt;4&lt;/sub&gt;, 2.30 &amp;Aring;:  3PUW</description
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
+                    <pdbCode>3PUW</pdbCode>
                     <pdbCode>3PUX</pdbCode>
                     <pdbCode>3PUV</pdbCode>
-                    <pdbCode>3PUW</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -16581,9 +16581,9 @@ Nucleotide-free rod form, 2.85 &amp;Aring;: 3ZDQ</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4AYW</pdbCode>
-                <pdbCode>3ZDQ</pdbCode>
                 <pdbCode>4AYX</pdbCode>
+                <pdbCode>3ZDQ</pdbCode>
+                <pdbCode>4AYW</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -16612,9 +16612,9 @@ in complex with GS-Hg, 2.50 &amp;Aring;: 4MRV</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4MRS</pdbCode>
-                <pdbCode>4MRV</pdbCode>
                 <pdbCode>4MRR</pdbCode>
+                <pdbCode>4MRV</pdbCode>
+                <pdbCode>4MRS</pdbCode>
                 <pdbCode>4MRP</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
@@ -16696,10 +16696,10 @@ ArtI binding protein in complex with Arg, 1.48 &amp;Aring;: 4YMX</description>
               <secondaryBibliographies />
               <relatedPdbEntries>
                 <pdbCode>4YMX</pdbCode>
-                <pdbCode>4YMT</pdbCode>
                 <pdbCode>4YMW</pdbCode>
-                <pdbCode>4YMV</pdbCode>
                 <pdbCode>4YMU</pdbCode>
+                <pdbCode>4YMT</pdbCode>
+                <pdbCode>4YMV</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -17002,8 +17002,8 @@ cross-linked R77C trimer, 1.90 &amp;Aring;: 4XU6</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4XU5</pdbCode>
                 <pdbCode>4XU6</pdbCode>
+                <pdbCode>4XU5</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -17168,8 +17168,8 @@ Diamond-shaped octameric structure of KtrA with ADP bound, 2.93 &amp;Aring;: 4J9
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4J90</pdbCode>
                 <pdbCode>4J91</pdbCode>
+                <pdbCode>4J90</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -17306,10 +17306,10 @@ Nucleotide-bound, 2.68 &amp;Aring;: 3VR6</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3VR4</pdbCode>
-                    <pdbCode>3VR6</pdbCode>
                     <pdbCode>3VR3</pdbCode>
+                    <pdbCode>3VR4</pdbCode>
                     <pdbCode>3VR5</pdbCode>
+                    <pdbCode>3VR6</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -17564,8 +17564,8 @@ Cryo-EM maps in EM Data Bank: EMD-6284, EMD-6285, &amp;amp; EMD-6286</descriptio
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3J9U</pdbCode>
                     <pdbCode>3J9V</pdbCode>
+                    <pdbCode>3J9U</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -17920,8 +17920,8 @@ pH 6.1, 2.50 &amp;Aring;: 3U2Y&lt;br /&gt;
                   <secondaryBibliographies />
                   <relatedPdbEntries>
                     <pdbCode>3U32</pdbCode>
-                    <pdbCode>3UD0</pdbCode>
                     <pdbCode>3U2Y</pdbCode>
+                    <pdbCode>3UD0</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -18368,9 +18368,9 @@ These ATPases are referred to as SERCA pumps; SERCA: Sarco(Endo)plasmic Reticulu
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
+                    <pdbCode>2C8L</pdbCode>
                     <pdbCode>2C8K</pdbCode>
                     <pdbCode>2C9M</pdbCode>
-                    <pdbCode>2C8L</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -18573,8 +18573,8 @@ without sarcolipin; E2 state with P&lt;sub&gt;i&lt;/sub&gt;, 2.45 &amp;Aring;: 3
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>2EAT</pdbCode>
                     <pdbCode>2EAU</pdbCode>
+                    <pdbCode>2EAT</pdbCode>
                     <pdbCode>2EAS</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
@@ -18650,8 +18650,8 @@ E2-vanadate complex bound to thapsigargin and TNP-ATP, 3.3 &amp;Aring;: 5A3S</de
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>5A3S</pdbCode>
                     <pdbCode>5A3R</pdbCode>
+                    <pdbCode>5A3S</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -18918,24 +18918,24 @@ native 2K&lt;sup&gt;+&lt;/sup&gt; crystal, 2.80 &amp;Aring;: 5AW9</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>5AVX</pdbCode>
-                    <pdbCode>5AVR</pdbCode>
                     <pdbCode>5AVZ</pdbCode>
-                    <pdbCode>5AVU</pdbCode>
-                    <pdbCode>5AW2</pdbCode>
-                    <pdbCode>5AW9</pdbCode>
-                    <pdbCode>5AW7</pdbCode>
-                    <pdbCode>5AVS</pdbCode>
-                    <pdbCode>5AW4</pdbCode>
-                    <pdbCode>5AVV</pdbCode>
-                    <pdbCode>5AW6</pdbCode>
-                    <pdbCode>5AVW</pdbCode>
-                    <pdbCode>5AW5</pdbCode>
                     <pdbCode>5AVY</pdbCode>
+                    <pdbCode>5AVR</pdbCode>
+                    <pdbCode>5AW3</pdbCode>
                     <pdbCode>5AW1</pdbCode>
+                    <pdbCode>5AVS</pdbCode>
+                    <pdbCode>5AW2</pdbCode>
+                    <pdbCode>5AW5</pdbCode>
+                    <pdbCode>5AVU</pdbCode>
+                    <pdbCode>5AVW</pdbCode>
+                    <pdbCode>5AVV</pdbCode>
+                    <pdbCode>5AW4</pdbCode>
                     <pdbCode>5AW8</pdbCode>
                     <pdbCode>5AVT</pdbCode>
-                    <pdbCode>5AW3</pdbCode>
+                    <pdbCode>5AW6</pdbCode>
+                    <pdbCode>5AVX</pdbCode>
+                    <pdbCode>5AW9</pdbCode>
+                    <pdbCode>5AW7</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -18986,8 +18986,8 @@ native 2K&lt;sup&gt;+&lt;/sup&gt; crystal, 2.80 &amp;Aring;: 5AW9</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>1FJK</pdbCode>
                 <pdbCode>1FJP</pdbCode>
+                <pdbCode>1FJK</pdbCode>
               </relatedPdbEntries>
               <memberProteins>
                 <memberProtein>
@@ -19167,8 +19167,8 @@ native 2K&lt;sup&gt;+&lt;/sup&gt; crystal, 2.80 &amp;Aring;: 5AW9</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3ZE3</pdbCode>
                     <pdbCode>3ZE5</pdbCode>
+                    <pdbCode>3ZE3</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -19344,8 +19344,8 @@ native 2K&lt;sup&gt;+&lt;/sup&gt; crystal, 2.80 &amp;Aring;: 5AW9</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>2VPY</pdbCode>
                 <pdbCode>2VPW</pdbCode>
+                <pdbCode>2VPY</pdbCode>
                 <pdbCode>2VPX</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
@@ -19379,8 +19379,8 @@ Listed under TRANSMEMBRANE PROTEINS: ALPHA-HELICAL : Oxidoreductases, MONOTOPIC 
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>3HYV</pdbCode>
                 <pdbCode>3HYX</pdbCode>
+                <pdbCode>3HYV</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -19434,10 +19434,10 @@ Listed under MONOTOPIC MEMBRANE PROTEINS : Dehydrogenases, TRANSMEMBRANE PROTEIN
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>2R45</pdbCode>
-                <pdbCode>2R46</pdbCode>
                 <pdbCode>2R4J</pdbCode>
                 <pdbCode>2R4E</pdbCode>
+                <pdbCode>2R46</pdbCode>
+                <pdbCode>2R45</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -19846,8 +19846,8 @@ Soaked in 1M ascorbate (40 min), 2.21 &amp;Aring;: 4O7G</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4O79</pdbCode>
                 <pdbCode>4O7G</pdbCode>
+                <pdbCode>4O79</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -19878,9 +19878,9 @@ NrqF&lt;sub&gt;129-408&lt;/sub&gt; subunit, 1.55 &amp;Aring;:
               <secondaryBibliographies />
               <relatedPdbEntries>
                 <pdbCode>4U9S</pdbCode>
-                <pdbCode>4U9O</pdbCode>
-                <pdbCode>4U9Q</pdbCode>
                 <pdbCode>4U9U</pdbCode>
+                <pdbCode>4U9Q</pdbCode>
+                <pdbCode>4U9O</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -20035,8 +20035,8 @@ reduced (2 mol/ASU) with bound NADH, 3.10 &amp;Aring;: 3IAM</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3IAM</pdbCode>
                     <pdbCode>3IAS</pdbCode>
+                    <pdbCode>3IAM</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -20495,8 +20495,8 @@ with empty Q-site, 3.20 &amp;Aring;: 2WDV</description>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
                     <pdbCode>1NTZ</pdbCode>
-                    <pdbCode>1NU1</pdbCode>
                     <pdbCode>1NTK</pdbCode>
+                    <pdbCode>1NU1</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -20522,10 +20522,10 @@ with empty Q-site, 3.20 &amp;Aring;: 2WDV</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>1SQP</pdbCode>
-                    <pdbCode>1SQV</pdbCode>
-                    <pdbCode>1SQQ</pdbCode>
                     <pdbCode>1SQB</pdbCode>
+                    <pdbCode>1SQQ</pdbCode>
+                    <pdbCode>1SQV</pdbCode>
+                    <pdbCode>1SQP</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -20551,8 +20551,8 @@ with empty Q-site, 3.20 &amp;Aring;: 2WDV</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>2A06</pdbCode>
                     <pdbCode>1PP9</pdbCode>
+                    <pdbCode>2A06</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -20832,8 +20832,8 @@ with empty Q-site, 3.20 &amp;Aring;: 2WDV</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>2E76</pdbCode>
                     <pdbCode>2E75</pdbCode>
+                    <pdbCode>2E76</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -22463,8 +22463,8 @@ Dimer with bound PK11195, 3.5 &amp;Aring;: 4RYI</description>
               <secondaryBibliographies />
               <relatedPdbEntries>
                 <pdbCode>4RYM</pdbCode>
-                <pdbCode>4RYJ</pdbCode>
                 <pdbCode>4RYN</pdbCode>
+                <pdbCode>4RYJ</pdbCode>
                 <pdbCode>4RYI</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
@@ -22526,9 +22526,9 @@ with bound Cd&lt;sup&gt;+2&lt;/sup&gt;, 3.07 &amp;Aring;: 4TQ6</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4TQ5</pdbCode>
                 <pdbCode>4TQ6</pdbCode>
                 <pdbCode>4TQ4</pdbCode>
+                <pdbCode>4TQ5</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
