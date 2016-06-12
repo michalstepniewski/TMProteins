@@ -15,6 +15,7 @@
                                 <li> {{ TMProtein.name }} 
             </ul>
                 <!-- dodac tu link do viewera -->
+                <!-- powinno to byc tabela tak jak w helix.html tylko interaktywna -->
 		<!-- Upload form. Note enctype attribute! -->
 		<form action="{% url "database" %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
