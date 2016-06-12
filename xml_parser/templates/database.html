@@ -10,7 +10,10 @@
 
 	<body>
 
-
+            <ul>
+                        {% for TMProtein in tmproteins %}
+                                <li> {{ TMProtein.name }} 
+            </ul>
                 <!-- dodac tu link do viewera -->
 		<!-- Upload form. Note enctype attribute! -->
 		<form action="{% url "database" %}" method="post" enctype="multipart/form-data">

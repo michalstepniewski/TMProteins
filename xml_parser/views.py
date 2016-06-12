@@ -28,9 +28,10 @@ def database(request):
 
         if request.POST.get('Update'):
             DatabaseModel.objects.Update()
-           
+    tmproteins = protein.objects.all()   
     return render_to_response(
         'database.html',
+        'tmproteins': tmproteins,
         context_instance=RequestContext(request)
     )
 
