@@ -43,9 +43,10 @@ class structureManager (models.Manager):
                                        ,';']
                     dd = {ord(c):None for c in chars_to_remove}
                     name = structureI.protein.name.translate(dd)
+                    subgroup_name = structureI.protein.subgroup.name.translate(dd)
                     print name
-                    os.system('mkdir -p media/structures/'+name )
-                    f = open( 'media/structures/'+name+'/'+url.split('/')[-1], 'w' )
+                    os.system('mkdir -p media/structures/'+subgroup_name+'/'+name )
+                    f = open( 'media/structures/'+subgroup_name+'/'+name+'/'+url.split('/')[-1], 'w' )
                     f.write( content )
                     f.close()
                     print 'success'
@@ -54,6 +55,9 @@ class structureManager (models.Manager):
                 except urllib2.URLError as e:
                     attempts += 1
                     print type(e)
+
+            url2 = 'http://opm.phar.umich.edu/pdb/'+structureI.pdbCode.lower()+'.pdb'
+            
             attempts = 0                    
             while attempts < 3:
                 try:
@@ -64,9 +68,12 @@ class structureManager (models.Manager):
                                        ,';']
                     dd = {ord(c):None for c in chars_to_remove}
                     name = structureI.protein.name.translate(dd)
+                    subgroup_name = structureI.protein.subgroup.name.translate(dd)
+
                     print name
-                    os.system('mkdir -p media/structures/'+name )
-                    f = open( 'media/structures/'+name+'/'+url2.split('/')[-1], 'w' )
+                    os.system('mkdir -p media/structures/'+subgroup_name+'/'+name )
+                    f = open( 'media/structures/'+subgroup_name+'/'+name+'/'+url2.split('/')[-1], 'w' )
+
                     f.write( content )
                     f.close()
                     print 'success'
@@ -163,7 +170,8 @@ class DatabaseModelManager (models.Manager):
                                       description = description,
                                       Type = 'master')
                 
-                proteinII.structure_set.add(structureII)                
+                proteinII.structure_set.add(structureII) 
+                subgroupII.protein_set.add(proteinII)               
 # to teraz tutaj te nie mastery wziac                
 #                            subgroupI = subgroup.objects.create(name = subgroup_name)
 #            group.subgroup_set.add(subgroupI)
