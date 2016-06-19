@@ -1,5 +1,5 @@
 from __future__ import unicode_literals
-import urllib2
+import urllib2, os
 from django.db import models
 
 # Create your models here.
@@ -17,6 +17,64 @@ def get_attribute_value(node,attribute):
     except IndexError:
         return ''
 #####
+
+
+class structureManager (models.Manager):
+    
+    def Download (self):
+
+        import wget
+        
+        for structureI in self.all():
+        
+
+
+            url = 'http://files.rcsb.org/download/'+structureI.pdbCode+'.pdb'
+            url2 = 'http://opm.phar.umich.edu/pdb/'+structureI.pdbCode.lower()+'.pdb'
+            print url
+            attempts = 0
+
+            while attempts < 3:
+                try:
+                    response = urllib2.urlopen(url, timeout = 5)
+                    
+                    content = response.read()
+                    chars_to_remove = ['.', '!', '?','(',')',' ','<','>','&','/'\
+                                       ,';']
+                    dd = {ord(c):None for c in chars_to_remove}
+                    name = structureI.protein.name.translate(dd)
+                    print name
+                    os.system('mkdir -p media/structures/'+name )
+                    f = open( 'media/structures/'+name+'/'+url.split('/')[-1], 'w' )
+                    f.write( content )
+                    f.close()
+                    print 'success'
+                    
+                    break
+                except urllib2.URLError as e:
+                    attempts += 1
+                    print type(e)
+            attempts = 0                    
+            while attempts < 3:
+                try:
+                    response = urllib2.urlopen(url2, timeout = 5)
+                    
+                    content = response.read()
+                    chars_to_remove = ['.', '!', '?','(',')',' ','<','>','&','/'\
+                                       ,';']
+                    dd = {ord(c):None for c in chars_to_remove}
+                    name = structureI.protein.name.translate(dd)
+                    print name
+                    os.system('mkdir -p media/structures/'+name )
+                    f = open( 'media/structures/'+name+'/'+url2.split('/')[-1], 'w' )
+                    f.write( content )
+                    f.close()
+                    print 'success'
+                    
+                    break
+                except urllib2.URLError as e:
+                    attempts += 1
+                    print type(e)
 
 
 class DatabaseModelManager (models.Manager):
@@ -171,6 +229,7 @@ class structure(models.Model):
       resolution = models.CharField(max_length=200,null=True)
       description = models.CharField(max_length=2000,null=True)
       protein = models.ForeignKey(protein, on_delete=models.CASCADE, null=True)
+      objects  = structureManager ()
 
 #      bibliography
 #      secondaryBibliographies

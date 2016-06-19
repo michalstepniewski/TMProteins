@@ -1032,3 +1032,203 @@ java.lang.RuntimeException: Expected to find 'from' token as the current tempora
 	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.createRequest(MarkOccurrencesJob.java:147)
 	at org.python.pydev.shared_ui.mark_occurrences.BaseMarkOccurrencesJob.run(BaseMarkOccurrencesJob.java:168)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SESSION 2016-06-19 21:48:03.084 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_25
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_GB
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.python.pydev.shared_core 4 4 2016-06-19 21:58:15.529
+!MESSAGE Expected to find 'from' token as the current temporary token (begin col/line can be wrong)!
+!STACK 0
+java.lang.RuntimeException: Expected to find 'from' token as the current temporary token (begin col/line can be wrong)!
+	at org.python.pydev.core.log.Log.log(Log.java:54)
+	at org.python.pydev.parser.grammarcommon.AbstractTreeBuilder.makeImportFrom25Onwards(AbstractTreeBuilder.java:702)
+	at org.python.pydev.parser.grammar27.TreeBuilder27.onCloseNode(TreeBuilder27.java:417)
+	at org.python.pydev.parser.grammarcommon.AbstractTreeBuilder.closeNode(AbstractTreeBuilder.java:614)
+	at org.python.pydev.parser.grammarcommon.JJTPythonGrammarState.closeNodeScope(JJTPythonGrammarState.java:212)
+	at org.python.pydev.parser.grammar27.PythonGrammar27.ImportFrom(PythonGrammar27.java:2771)
+	at org.python.pydev.parser.grammar27.PythonGrammar27.import_stmt(PythonGrammar27.java:2584)
+	at org.python.pydev.parser.grammar27.PythonGrammar27.small_stmt(PythonGrammar27.java:943)
+	at org.python.pydev.parser.grammar27.PythonGrammar27.simple_stmt(PythonGrammar27.java:862)
+	at org.python.pydev.parser.grammar27.PythonGrammar27.stmt(PythonGrammar27.java:837)
+	at org.python.pydev.parser.grammar27.PythonGrammar27.file_input(PythonGrammar27.java:203)
+	at org.python.pydev.parser.grammar27.PythonGrammar27.file_input(PythonGrammar27.java:1)
+	at org.python.pydev.parser.PyParser.reparseDocument(PyParser.java:541)
+	at org.python.pydev.editor.codecompletion.revisited.modules.AbstractModule.createModuleFromDoc(AbstractModule.java:293)
+	at org.python.pydev.editor.codecompletion.revisited.modules.AbstractModule.createModule(AbstractModule.java:272)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:917)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:765)
+	at org.python.pydev.editor.codecompletion.revisited.SystemModulesManager.getModule(SystemModulesManager.java:353)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getModule(AbstractASTManager.java:465)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findModuleFromPath(AbstractASTManager.java:2124)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1991)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1887)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1854)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findDefinition(SourceModule.java:919)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findDefinition(SourceModule.java:664)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findDefinition(SourceModule.java:1)
+	at org.python.pydev.editor.refactoring.PyRefactoringFindDefinition.findActualTokenFromImportFromDefinition(PyRefactoringFindDefinition.java:232)
+	at org.python.pydev.editor.refactoring.PyRefactoringFindDefinition.findActualDefinition(PyRefactoringFindDefinition.java:193)
+	at org.python.pydev.editor.refactoring.PyRefactoringFindDefinition.findActualDefinition(PyRefactoringFindDefinition.java:79)
+	at org.python.pydev.editor.hover.PyTextHover.getDocstringHover(PyTextHover.java:198)
+	at org.python.pydev.editor.hover.PyTextHover.getHoverInfo(PyTextHover.java:142)
+	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:168)
+
+!ENTRY org.python.pydev.shared_core 4 4 2016-06-19 22:05:34.861
+!MESSAGE ERROR reading shell.
+ProcessInfo:
+
+ - Executed: /usr/bin/python -u /home/soutys/Praca/Programowanie/liclipse/plugins/org.python.pydev_4.0.0.201504092214/pysrc/pycompletionserver.py 60710
+
+ - Environment:
+CLUTTER_IM_MODULE=xim
+COLORTERM=gnome-terminal
+COMPIZ_BIN_PATH=/usr/bin/
+COMPIZ_CONFIG_PROFILE=ubuntu
+COMP_WORDBREAKS= 	
+"'><;|&(:
+DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-hS9FsHj29V
+DEFAULTS_PATH=/usr/share/gconf/ubuntu.default.path
+DESKTOP_SESSION=ubuntu
+DISPLAY=:0
+GDMSESSION=ubuntu
+GDM_LANG=pl
+GEM_HOME=/home/soutys/.rvm/gems/ruby-2.3.0
+GEM_PATH=/home/soutys/.rvm/gems/ruby-2.3.0:/home/soutys/.rvm/gems/ruby-2.3.0@global
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+GNOME_KEYRING_CONTROL=/run/user/1000/keyring-bPTlsi
+GNOME_KEYRING_PID=2821
+GPG_AGENT_INFO=/run/user/1000/keyring-bPTlsi/gpg:0:1
+GTK_IM_MODULE=ibus
+GTK_MODULES=overlay-scrollbar:unity-gtk-module
+HOME=/home/soutys
+IM_CONFIG_PHASE=1
+INSTANCE=
+IRBRC=/home/soutys/.rvm/rubies/ruby-2.3.0/.irbrc
+JOB=dbus
+LANG=pl_PL.UTF-8
+LANGUAGE=pl:en_US:en
+LC_ADDRESS=pl_PL.UTF-8
+LC_ALL=en_GB.utf8
+LC_IDENTIFICATION=pl_PL.UTF-8
+LC_MEASUREMENT=pl_PL.UTF-8
+LC_MONETARY=pl_PL.UTF-8
+LC_NAME=pl_PL.UTF-8
+LC_NUMERIC=pl_PL.UTF-8
+LC_PAPER=pl_PL.UTF-8
+LC_TELEPHONE=pl_PL.UTF-8
+LC_TIME=pl_PL.UTF-8
+LESSCLOSE=/usr/bin/lesspipe %s %s
+LESSOPEN=| /usr/bin/lesspipe %s
+LIBOVERLAY_SCROLLBAR=0
+LOGNAME=soutys
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:
+MANDATORY_PATH=/usr/share/gconf/ubuntu.mandatory.path
+MY_RUBY_HOME=/home/soutys/.rvm/rubies/ruby-2.3.0
+NLSPATH=/usr/dt/lib/nls/msg/%L/%N.cat
+PAPERSIZE=a4
+PATH=/home/soutys/.rvm/gems/ruby-2.3.0/bin:/home/soutys/.rvm/gems/ruby-2.3.0@global/bin:/home/soutys/.rvm/rubies/ruby-2.3.0/bin:/usr/local/heroku/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/soutys/.rvm/bin:/home/soutys/.rvm/bin:/home/soutys/.rvm/bin
+PWD=/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/xml_parser/mighty-wave-3436
+PYTHONPATH=/home/soutys/Praca/Programowanie/liclipse/plugins/org.python.pydev_4.0.0.201504092214/pysrc/pydev_sitecustomize:/usr/local/lib/python2.7/dist-packages/agpy-0.1.1-py2.7.egg:/usr/local/lib/python2.7/dist-packages/gensim-0.12.3-py2.7-linux-x86_64.egg:/usr/local/lib/python2.7/dist-packages/smart_open-1.3.0-py2.7.egg:/usr/local/lib/python2.7/dist-packages/bz2file-0.98-py2.7.egg:/usr/local/lib/python2.7/dist-packages/httpretty-0.8.6-py2.7.egg:/usr/local/lib/python2.7/dist-packages/boto-2.38.0-py2.7.egg:/usr/local/lib/python2.7/dist-packages/django_filetransfers-0.0.0-py2.7.egg:/usr/local/lib/python2.7/dist-packages/feedparser-5.2.1-py2.7.egg:/home/soutys/Praca/Programowanie/PythonDeveloper/django/agregator/django-yarr/src/django-yarr:/usr/local/lib/python2.7/dist-packages/django_news-0.2.5-py2.7.egg:/usr/local/lib/python2.7/dist-packages/django_filtered_feed-0.1.0-py2.7.egg:/usr/local/lib/python2.7/dist-packages/django_filter-0.7-py2.7.egg:/usr/lib/python2.7:/usr/lib/python2.7/plat-x86_64-linux-gnu:/usr/lib/python2.7/lib-tk:/usr/lib/python2.7/lib-dynload:/usr/local/lib/python2.7/dist-packages:/usr/local/lib/python2.7/dist-packages/Numeric:/usr/lib/python2.7/dist-packages:/usr/lib/python2.7/dist-packages/PILcompat:/usr/lib/python2.7/dist-packages/gtk-2.0:/usr/lib/pymodules/python2.7:/usr/lib/python2.7/dist-packages/ubuntu-sso-client
+QT4_IM_MODULE=ibus
+QT_IM_MODULE=ibus
+QT_QPA_PLATFORMTHEME=appmenu-qt5
+RUBY_VERSION=ruby-2.3.0
+SELINUX_INIT=YES
+SESSION=ubuntu
+SESSIONTYPE=gnome-session
+SESSION_MANAGER=local/soutys-Lenovo-V570:@/tmp/.ICE-unix/2968,unix/soutys-Lenovo-V570:/tmp/.ICE-unix/2968
+SHELL=/bin/bash
+SHLVL=1
+SSH_AGENT_LAUNCHER=upstart
+SSH_AGENT_PID=2885
+SSH_AUTH_SOCK=/run/user/1000/keyring-bPTlsi/ssh
+SWT_GTK3=0
+TERM=xterm
+TEXTDOMAIN=im-config
+TEXTDOMAINDIR=/usr/share/locale/
+UBUNTU_MENUPROXY=1
+UPSTART_SESSION=unix:abstract=/com/ubuntu/upstart-session/1000/2823
+USER=soutys
+VTE_VERSION=3409
+WINDOWID=69206027
+XAUTHORITY=/home/soutys/.Xauthority
+XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/usr/share/upstart/xdg:/etc/xdg
+XDG_CURRENT_DESKTOP=Unity
+XDG_DATA_DIRS=/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/
+XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/soutys
+XDG_MENU_PREFIX=gnome-
+XDG_RUNTIME_DIR=/run/user/1000
+XDG_SEAT=seat0
+XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
+XDG_SESSION_ID=c2
+XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session0
+XDG_VTNR=7
+XFILESEARCHPATH=/usr/dt/app-defaults/%L/Dt
+XMODIFIERS=@im=ibus
+_=/usr/local/bin/LiClipse
+_system_arch=x86_64
+_system_name=Ubuntu
+_system_type=Linux
+_system_version=14.04
+rvm_bin_path=/home/soutys/.rvm/bin
+rvm_create_flag=1
+rvm_environments_path=/home/soutys/.rvm/environments
+rvm_gems_cache_path=/home/soutys/.rvm/gems_cache
+rvm_gems_path=/home/soutys/.rvm/gems
+rvm_loaded_flag=1
+rvm_log_path=/home/soutys/.rvm/log
+rvm_path=/home/soutys/.rvm
+rvm_prefix=/home/soutys
+rvm_stored_umask=0002
+rvm_user_install_flag=1
+rvm_user_path=/home/soutys/.rvm/user
+rvm_version=1.26.11 (latest)
+rvm_wrappers_path=/home/soutys/.rvm/wrappers
+
+ - Working Dir:
+/home/soutys/Praca/Programowanie/liclipse/plugins/org.python.pydev_4.0.0.201504092214/pysrc
+
+ - OS:
+Linux
+
+ - Std output:
+
+
+ - Err output:
+
+!STACK 0
+java.nio.channels.ClosedByInterruptException
+	at java.nio.channels.spi.AbstractInterruptibleChannel.end(AbstractInterruptibleChannel.java:202)
+	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:477)
+	at java.nio.channels.Channels.writeFullyImpl(Channels.java:78)
+	at java.nio.channels.Channels.writeFully(Channels.java:98)
+	at java.nio.channels.Channels.access$000(Channels.java:61)
+	at java.nio.channels.Channels$1.write(Channels.java:174)
+	at java.io.OutputStream.write(OutputStream.java:75)
+	at org.python.pydev.editor.codecompletion.shell.AbstractShell.write(AbstractShell.java:544)
+	at org.python.pydev.editor.codecompletion.shell.AbstractShell.writeAndGetResults(AbstractShell.java:691)
+	at org.python.pydev.editor.codecompletion.shell.AbstractShell.getImportCompletions(AbstractShell.java:756)
+	at org.python.pydev.editor.codecompletion.revisited.modules.CompiledModule.createInnerFromServer(CompiledModule.java:331)
+	at org.python.pydev.editor.codecompletion.revisited.modules.CompiledModule.getGlobalTokens(CompiledModule.java:531)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.internalGenerateGetCompletionsForModule(AbstractASTManager.java:732)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:557)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:526)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:518)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:509)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.internalGenerateGetCompletionsForModule(AbstractASTManager.java:740)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:557)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:526)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:518)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findGlobalTokDef(SourceModule.java:1020)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findDefinitionsFromModAndTok(SourceModule.java:969)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findDefinition(SourceModule.java:951)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findDefinition(SourceModule.java:664)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findDefinition(SourceModule.java:1)
+	at org.python.pydev.editor.refactoring.PyRefactoringFindDefinition.findActualDefinition(PyRefactoringFindDefinition.java:177)
+	at org.python.pydev.editor.refactoring.PyRefactoringFindDefinition.findActualDefinition(PyRefactoringFindDefinition.java:79)
+	at org.python.pydev.editor.hover.PyTextHover.getDocstringHover(PyTextHover.java:198)
+	at org.python.pydev.editor.hover.PyTextHover.getHoverInfo(PyTextHover.java:142)
+	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:168)

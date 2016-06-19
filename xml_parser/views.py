@@ -28,10 +28,19 @@ def database(request):
 
         if request.POST.get('Update'):
             DatabaseModel.objects.Update()
+        if request.POST.get('Clear'):
+            DatabaseModel.objects.all().delete()
+            protein.objects.all().delete()
+
+        if request.POST.get('Download'):
+            structure.objects.Download()
+#            protein.objects.all().delete()
+
+
     tmproteins = protein.objects.all()   
     return render_to_response(
         'database.html',
-        'tmproteins': tmproteins,
+        {'tmproteins': tmproteins},
         context_instance=RequestContext(request)
     )
 
@@ -43,4 +52,23 @@ def Update (request):
         'database.html',
         context_instance=RequestContext(request)
     )
+
+def Clear (request):
+
+    protein.objects.all().delete()
+
+    return render_to_response(
+        'database.html',
+        context_instance=RequestContext(request)
+    )
+
+def Download (request):
+
+    structure.objects.all().download()
+
+    return render_to_response(
+        'database.html',
+        context_instance=RequestContext(request)
+    )
+
 
