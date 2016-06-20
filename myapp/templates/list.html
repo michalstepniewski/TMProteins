@@ -8,19 +8,25 @@
 
 
 <p> 
-<ul>
-    <li><a href="{% url 'aboutme' %}"> About Me </a></li>
-    <li><a href="{% url 'aboutapp' %}"> About The App </a></li>
-    <li><a href="{% url 'userguide' %}"> User Guide </a></li>
-    <li><a href="{% url 'contact' %}"> Contact </a></li>
-    <li><a href="{% url 'multiple_upload' %}"> MultipleUploadForm </a></li>
+            <table>
+            <tr>
+    <td><a href="{% url 'aboutme' %}"> About Me </a></td>
+    <td><a href="{% url 'aboutapp' %}"> About The App </a></td>
+    <td><a href="{% url 'userguide' %}"> User Guide </a></td>
+    <td><a href="{% url 'contact' %}"> Contact </a></td>
+    <td><a href="{% url 'multiple_upload' %}"> MultipleUploadForm </a></td>
+    <td><a href="{% url 'database' %}"> Database </a></td>
 
-</ul>
+</tr>
+
+</table>
 
  </p>
 
 
-
+<table>
+<tr>
+<td>
 <div class="fieldWrapper">
 
 <form action="/mail/" method="post">
@@ -31,13 +37,17 @@
 </form>
 
 </div>
-
+</td>
+<td>
 <form action="/your-name/" method="post">
     <label for="your_name">Membrane Limit (lower): </label>
     <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
     <input type="submit" value="OK">
 </form>
-
+</td>
+</tr>
+<tr>
+<td>
 <div class="fieldWrapper">
 
 <form action="/your-name/" method="post">
@@ -45,8 +55,8 @@
     <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
     <input type="submit" value="OK">
 </form>
-
-
+</td>
+<td>
 <form action="/your-name/" method="post">
     <label for="your_name">Method (MC): </label>
     <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
@@ -54,7 +64,9 @@
 </form>
 
 </div>
-
+</td>
+</tr>
+</table>
 	<body>
 
 
@@ -133,9 +145,10 @@ glmol01.loadMolecule();
                                 {% endif %}
 
                                 {% if TMProtein.tmhelixpair_set.all %}
-                                    <ul>
+                                    
                                     <p> Pairs of Transmembrane Helices: </p>
                                     <p> Consecutive: </p>
+                                    <ul>
                                     {% for tmhelixpair in TMProtein.tmhelixpair_set.all %}
 
                                         <li><a href="{% url 'pair' tmhelixpair.id %}">TMs: {% for tmhelix in tmhelixpair.tmhelixmodel_set.all %} {{ tmhelix.TMHelix_ID }} {% endfor %} </a></li> 
@@ -145,9 +158,10 @@ glmol01.loadMolecule();
                                 {% endif %}
 
                                 {% if TMProtein.tmhelixtriplet_set.all %}
-                                    <ul>
+                                    
                                     <p> Triplets of Transmembrane Helices: </p>
                                     <p> Consecutive: </p>
+                                    <ul>
                                     {% for tmhelixtriplet in TMProtein.tmhelixtriplet_set.all %}
 
                                         <li><a href="{% url 'triplet' tmhelixtriplet.id %}">TMs: {% for tmhelix in tmhelixtriplet.tmhelixmodel_set.all %} {{ tmhelix.TMHelix_ID }} {% endfor %} </a></li>
@@ -202,16 +216,19 @@ glmol01.loadMolecule();
 <!--Protein Atoms: {{ TMProtein.atom_set.show }}-->
             <p><input type="submit" name="Score" value="Score" /></p>
 <p> Score: {{TMProtein.getScore}} </p>
-</li>
+
 
 
 			{% endfor %}
-                        <li><a href="{% url 'viewer' %}">View</a></li>
-                        <li><a href="{% url 'single_helix_stats' %}">SingleHelixStats (if calculated)</a></li>
-                        <li><a href="{% url 'helix_pair_stats' %}">HelixPairStats (if calculated)</a></li>
-                        <li><a href="{% url 'helix_triplet_stats' %}">HelixTripletStats (if calculated)</a></li>
-                        <li><a href="{% url 'embedding' %}">View2</a></li>
-			</ul>
+			<table>
+			    <tr>
+                        <td><a href="{% url 'viewer' %}">View</a></td>
+                        <td><a href="{% url 'single_helix_stats' %}">SingleHelixStats (if calculated)</a></td>
+                        <td><a href="{% url 'helix_pair_stats' %}">HelixPairStats (if calculated)</a></td>
+                        <td><a href="{% url 'helix_triplet_stats' %}">HelixTripletStats (if calculated)</a></td>
+                        <td><a href="{% url 'embedding' %}">View2</a></td>
+                </tr>
+			</table>
 		{% else %}
 			<p>No TM Protein PDB files loaded</p>
 		{% endif %}
@@ -230,13 +247,27 @@ glmol01.loadMolecule();
 			<p><input type="submit" value="Upload" /></p>  
 			<!-- button for upload -->
 			<p><input type="submit" name="Clear" value="Clear" /></p>
-			<p><input type="submit" name="CalculateSingleHelixStats" value="CalculateSingleHelixStats" /></p>
-			<p><input type="submit" name="CalculateHelixPairStats" value="CalculateHelixPairStats" /></p>
-			<p><input type="submit" name="CalculateHelixTripletStats" value="CalculateHelixTripletStats" /></p>
-			<p><input type="submit" name="ExtractHelixPairs" value="ExtractHelixPairs" /></p>
-			<p><input type="submit" name="ExtractHelixTriplets" value="ExtractHelixTriplets" /></p>
-            <p><input type="submit" name="DownloadResults" value="DownloadResults" /></p>
-			<p><input type="submit" name="CalculateAminoAcidZPreferenceHistogram" value="CalculateAminoAcidZPreferenceHistogram" /></p>
+			<table>
+			<tr>
+			<td><input type="submit" name="CalculateSingleHelixStats" value="CalculateSingleHelixStats" /></td>
+			<td><input type="submit" name="CalculateHelixPairStats" value="CalculateHelixPairStats" /></td>
+			<td><input type="submit" name="CalculateHelixTripletStats" value="CalculateHelixTripletStats" /></td>
+            </tr>
+            <tr>
+			<td><input type="submit" name="ExtractHelixPairs" value="ExtractHelixPairs" /></td>
+            <td><input type="submit" name="ExtractInteractingHelixPairs" value="ExtractInteractingHelixPairs" /></td>
+
+			<td><input type="submit" name="ExtractHelixTriplets" value="ExtractHelixTriplets" /></td>
+            <td><input type="submit" name="ExtractInteractingHelixTriplets" value="ExtractInteractingHelixTriplets" /></td>
+
+			</tr>
+            <tr>
+            <td><input type="submit" name="CalculateAminoAcidZPreferenceHistogram" value="CalculateAminoAcidZPreferenceHistogram" /></td>
+            </tr>
+			<tr>
+            <td><input type="submit" name="DownloadResults" value="DownloadResults" /></td>
+            </tr>
+            </table>
 		</form>
         <!-- prawdopodobnie bede chcial to podzielic na kilka formow -->
 

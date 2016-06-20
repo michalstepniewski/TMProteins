@@ -76,6 +76,8 @@ def contact(request):
 def multiple_upload(request):
     return render(request, 'fileupload/picture_form.html')
 
+def xml_parser(request):
+    return render(request, 'database.html')
 
 def helix_pair_stats(request):
     return render(request, 'helix_pair_stats.html')
@@ -146,10 +148,21 @@ def list(request):
 
            TMProtein.objects.ExtractConsecutiveHelixPairs ()
 
+        elif request.POST.get('ExtractInteractingHelixPairs'):
+           # this happens if You push 'ExtractHelixPairs'
+
+           TMProtein.objects.ExtractInteractingHelixPairs ()
+
+
         elif request.POST.get('ExtractHelixTriplets'):
            # this happens if You push 'ExtractHelixTriplets'
 
            TMProtein.objects.ExtractConsecutiveHelixTriplets ()
+
+        elif request.POST.get('ExtractInteractingHelixTriplets'):
+           # this happens if You push 'ExtractHelixTriplets'
+
+           TMProtein.objects.ExtractInteractingHelixTriplets ()
 
         elif request.POST.get('CalculateAminoAcidZPreferenceHistogram'):
            # this happens if You push 'ExtractHelixTriplets'

@@ -110,6 +110,14 @@ class TMProteinManager(models.Manager): #zmienic to na TMProtein
 
 #####################################################################################################################################################
 
+    def ExtractInteractingHelixPairs (self):
+    
+        [tmprotein. ExtractInteractingHelixPairs() for tmprotein in self.all()]
+        
+        return
+
+#####################################################################################################################################################
+
     def ExtractConsecutiveHelixTriplets (self):
     
         [tmprotein. ExtractConsecutiveHelixTriplets() for tmprotein in self.all()]
@@ -304,6 +312,36 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                 self.tmhelixpair_set.add(tmhelixpair)  
                 
                 print  'Count '+str(tmhelixpair.tmhelixmodel_set.count())        
+                #sprawdzic czy dobrze bedzie
+        return
+
+    def ExtractInteractingHelixPairs (self):
+        
+        NoHelices = self. tmhelixmodel_set.count()
+        
+        if NoHelices >= 2:
+        
+            for N in range(NoHelices - 1):
+# to teraz w petli sprawdzic czy jest kontakt i do przodu               
+                tmhelixpair = TMHelixPair.objects.create()
+#                print N; print N+1;
+#                print self. tmhelixmodel_set.all().values_list('id', flat=True)
+                
+                tmhelixpair.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N+1)))   
+                tmhelixpair.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N+2)))
+                
+# mozna sprawdzic na tm helixpair czy jest contact
+
+                if not tmhelixpair.Contact():
+                    tmhelixpair.delete()
+                
+                else:
+                    
+                    tmhelixpair.getCrossingAngle ()              
+                    tmhelixpair.save()
+                    self.tmhelixpair_set.add(tmhelixpair)  
+                
+                    print  'Count '+str(tmhelixpair.tmhelixmodel_set.count())        
                 #sprawdzic czy dobrze bedzie
         return
 

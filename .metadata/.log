@@ -1396,3 +1396,15 @@ java.nio.channels.ClosedByInterruptException
 	at org.python.pydev.editor.hover.PyTextHover.getDocstringHover(PyTextHover.java:198)
 	at org.python.pydev.editor.hover.PyTextHover.getHoverInfo(PyTextHover.java:142)
 	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:168)
+!SESSION 2016-06-20 22:55:57.751 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_25
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_GB
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.ui 4 4 2016-06-20 22:56:12.650
+!MESSAGE Conflicting handlers for org.python.pydev.editor.actions.execLineInConsole: {ActionHandler(org.python.proxies.__main__$ExecuteLine$14@3597b5c0)} vs {ActionHandler(org.python.proxies.__main__$ExecuteLine$15@477a76fe)}
+
+!ENTRY org.eclipse.ui 4 4 2016-06-20 22:56:12.680
+!MESSAGE Conflicting handlers for org.python.pydev.editor.actions.execLineInConsole: {ActionHandler(org.python.proxies.__main__$ExecuteLine$14@3597b5c0)} vs {ActionHandler(org.python.proxies.__main__$ExecuteLine$15@477a76fe)}
