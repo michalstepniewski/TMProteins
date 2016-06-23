@@ -23,6 +23,26 @@ def probability (Value, Distribution):
     
     return
 
+def contact(obj1,obj2):
+    
+    X = obj1.X - obj2.X
+    
+    if -5.0 < X < 5.0:
+        Y = obj1.Y -obj2.Y
+        if -5.0 < Y < 5.0:
+            if (X**2 + Y**2 + (obj1.Z-obj2.Z)**2) < 25.0:
+                return True
+
+    return False
+            
+
+def distance(obj1, obj2):
+
+    return  ((obj1.X-obj2.X)**2\
+           + (obj1.Y-obj2.Y)**2\
+           + (obj1.Z-obj2.Z)**2)**0.5
+
+
 class TMHelixManager (models.Manager):
 
     """ manager for objects: instances of TMHelix class """
@@ -264,6 +284,7 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                 ResidueModelI.CenterOfMass()
 
                 ResidueModelI.save()
+                tmhelix.residue_set.add(ResidueModelI)
 #                print ResidueModelI.Z
 #                print ResidueModelI.AAThreeLetter
 #                print Residue.objects.all().values_list('AAThreeLetter')
@@ -289,7 +310,7 @@ class TMProtein (models.Model): #zmienic to na TMProtein
             tmhelix.save()                
             self. tmhelixmodel_set.add(tmhelix)
             self.save()
-            print Residue.objects.all().values_list('AAThreeLetter')#;quit()
+#            print Residue.objects.all().values_list('AAThreeLetter')#;quit()
 #        ReadPDBFile (pdb_path, db_path)	#
 
 
@@ -310,8 +331,8 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                 tmhelixpair.getCrossingAngle ()              
                 tmhelixpair.save()
                 self.tmhelixpair_set.add(tmhelixpair)  
-                
-                print  'Count '+str(tmhelixpair.tmhelixmodel_set.count())        
+# mozna to lepiej rozpisac, ale to na potem                
+#                print  'Count '+str(tmhelixpair.tmhelixmodel_set.count())        
                 #sprawdzic czy dobrze bedzie
         return
 
@@ -320,19 +341,21 @@ class TMProtein (models.Model): #zmienic to na TMProtein
         NoHelices = self. tmhelixmodel_set.count()
         
         if NoHelices >= 2:
-        
+ # moze trzeba to na wyzszym poziomie zrobic       
             for N in range(NoHelices - 1):
 # to teraz w petli sprawdzic czy jest kontakt i do przodu               
+             for N2 in range(N+1,NoHelices):
                 tmhelixpair = TMHelixPair.objects.create()
 #                print N; print N+1;
 #                print self. tmhelixmodel_set.all().values_list('id', flat=True)
-                
+# dziala, tylko troche wolno, poza tym mozna by to zrefaktoryzowac 
+# jako querysetu, wiec moze najpierw uzyc atom_set
                 tmhelixpair.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N+1)))   
-                tmhelixpair.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N+2)))
+                tmhelixpair.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N2+1)))
                 
 # mozna sprawdzic na tm helixpair czy jest contact
-
-                if not tmhelixpair.Contact():
+                Contact = tmhelixpair.Contact()
+                if not Contact:
                     tmhelixpair.delete()
                 
                 else:
@@ -433,6 +456,33 @@ class TMHelixPair (models.Model):
     CrossingAngleIC = models.FloatField (null=True)
     TMProtein = models.ForeignKey(TMProtein, on_delete=models.CASCADE, null=True)
 
+#####################################################################################################################################################
+
+    def Contact(self):
+        with transaction.atomic():        
+            TMHelices = self.tmhelixmodel_set.all ()
+        
+            TMHelix1 = TMHelices[0]
+            TMHelix2 = TMHelices[1]
+        
+#            for Residue1 in TMHelix1.residue_set.all():
+            
+#                for Residue2 in TMHelix2.residue_set.all():
+                
+                # wykorzystac object set: 
+#                    if Residue.objects.filter(id__in=(Residue1.pk,Residue2.pk)).Contact():
+#to musi byc jakos zmienione
+# tylko nie wiem jeszcze jak                    
+#                        return True
+
+            for Atom1 in TMHelix1.atom_set.all():
+                for Atom2 in TMHelix2.atom_set.all():
+                    if contact(Atom1,Atom2):
+                        return True
+
+        
+        return False
+# zastanawiam sie czy nie wziac tego z modellera albo biopythona
 #####################################################################################################################################################
 
     def Interacting (self,VdWContactZRange =[-8.0, 8.0]):
@@ -626,14 +676,33 @@ class ResidueManager (models.Manager):
     
     pass
 
+class ResidueQuerySet(models.QuerySet):
+
+    def manager_and_queryset_method(self):
+
+        return
+
+    def Contact(self):
+        
+        with transaction.atomic():
+            print 'Res '+str(self[0].pk)        
+            for Atom1 in self[0].atom_set.all():
+                for Atom2 in self[1].atom_set.all():
+#                print 
+                    if distance(Atom1,Atom2) < 5.0:
+                        return True
+
+        return False
+
 class Residue (models.Model): #research multiple inheritance
     
     """ object representing Amino Acid Residue """
     
-    objects = ResidueManager()
+    objects = ResidueManager().from_queryset(ResidueQuerySet)()
     Z = models.FloatField(null=True)
     AAThreeLetter = models.CharField(max_length=3,null=True)
     Residue_ID = models.CharField(max_length=200)
+    TMHelixModel = models.ForeignKey(TMHelixModel, on_delete=models.CASCADE, null=True)
     
     def CenterOfMass ( self ):
 
@@ -681,6 +750,28 @@ class AtomManager (models.Manager):
         
         return Text
 
+class AtomQuerySet(models.QuerySet):
+
+    def manager_and_queryset_method(self):
+
+        return
+
+    def Contact(self):
+        
+        if self.Distance()<2.5:
+            return True
+
+        return False
+
+    def Distance(self):
+        
+#        print self[0]
+#        print self[1]
+        
+        return    ((self[0].X-self[1].X)**2\
+                 + (self[0].Y-self[1].Y)**2\
+                 + (self[0].Z-self[1].Z)**2)**0.5
+
 class   Atom (models.Model):
 
     """ object representing AtomLine """
@@ -690,13 +781,15 @@ class   Atom (models.Model):
     Residue = models.ForeignKey(Residue, on_delete=models.CASCADE, null=True)
 #ciekawe oile to spowolni
     Text = models.CharField(max_length=200)
-    objects = AtomManager()
+    objects = AtomManager().from_queryset(AtomQuerySet)()
     Atom_ID = models.CharField(max_length=200)
     X = models.FloatField(null=True)
     Y = models.FloatField(null=True)
     Z = models.FloatField(null=True)
     Mass = models.FloatField(null=True)
     AAThreeLetter = models.CharField(max_length=3,null=True)
+
+#there should be vdW somewhere
 
     @classmethod
     def create(cls, ID):
