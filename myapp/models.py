@@ -14,6 +14,7 @@ import math
 from django.db.models import Sum, Avg
 from GeometricalClassesModule import SetOfVectors, Vector, SetOfPoints, Point
 from django.db.models import Avg, Max, Min
+import match
 from match import rmsd
 #print 'importing Picture'
 #from fileupload.models import Picture
