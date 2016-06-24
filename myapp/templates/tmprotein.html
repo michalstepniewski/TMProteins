@@ -1,4 +1,4 @@
-                                <li> {{ TMProtein.tmproteinfile.name }}  
+                                <li> {{ tmprotein.tmproteinfile.name }}  
 
                                 {% load static %}
                                 {% static "" as baseUrl %}
@@ -8,56 +8,15 @@
                                 {% load static %}
                                 {% static "" as baseUrl %}
 
-                                <div id="glmol02" style="width: 300px; height: 300px; background-color: black;"></div> <textarea id="glmol02_src" style="display: none;">
 
-{{ TMProtein.atom_set.show }}
 
-</textarea>
-
-{% load static %}
-{% static "" as baseUrl %}
-
-<script src="{{ baseUrl }}/myapp/static/js/jquery-1.7.min.js"></script>
-<script src="{{ baseUrl }}/myapp/static/js/Three49custom.js"></script>
-<script type="text/javascript" src="{{ baseUrl }}/myapp/static/js/GLmol.js"></script>
-<script type="text/javascript">
-
-// Small molecules can be embedded in the page
-
-var glmol02 = new GLmol('glmol02');
-
-// Proteins can also be embedded in the page but 
-//  you might want to keep it separate.
-
-var glmol01 = new GLmol('glmol01', true);
-glmol01.defineRepresentation = function() {
-   var all = this.getAllAtoms();
-   var hetatm = this.removeSolvents(this.getHetatms(all));
-   this.colorByAtom(all, {});
-   this.colorByChain(all);
-   var asu = new THREE.Object3D();
-   
-   this.drawBondsAsStick(asu, hetatm, this.cylinderRadius, this.cylinderRadius);
-   this.drawBondsAsStick(asu, this.getResiduesById(this.getSidechains(this.getChain(all, ['A'])), [58, 87]), this.cylinderRadius, this.cylinderRadius);
-   this.drawBondsAsStick(asu, this.getResiduesById(this.getSidechains(this.getChain(all, ['B'])), [63, 92]), this.cylinderRadius, this.cylinderRadius);
-   this.drawCartoon(asu, all, this.curveWidth, this.thickness);
-
-   this.drawSymmetryMates2(this.modelGroup, asu, this.protein.biomtMatrices);
-   this.modelGroup.add(asu);
-};
-
-$.get("2DHB.pdb", function(ret) {
-$("#glmol01_src").val(ret);
-glmol01.loadMolecule();
-});
-</script>
 <p>  </p>
 
 
-                                {% if TMProtein.tmhelixmodel_set.all %}
+                                {% if tmprotein.tmhelixmodel_set.all %}
                                     <ul>
                                     <p> Transmembrane Helices: </p>
-                                    {% for tmhelix in TMProtein.tmhelixmodel_set.all %}
+                                    {% for tmhelix in tmprotein.tmhelixmodel_set.all %}
 
                                         <li><a href="{% url 'helix' tmhelix.id %}">TM{{ tmhelix.TMHelix_ID }}</a></li>
 
@@ -67,11 +26,11 @@ glmol01.loadMolecule();
                                     <p>No TMs are available.</p>
                                 {% endif %}
 
-                                {% if TMProtein.tmhelixpair_set.all %}
+                                {% if tmprotein.tmhelixpair_set.all %}
                                     <ul>
                                     <p> Pairs of Transmembrane Helices: </p>
                                     <p> Consecutive: </p>
-                                    {% for tmhelixpair in TMProtein.tmhelixpair_set.all %}
+                                    {% for tmhelixpair in tmprotein.tmhelixpair_set.all %}
 
                                         <li><a href="{% url 'pair' tmhelixpair.id %}">TMs: {% for tmhelix in tmhelixpair.tmhelixmodel_set.all %} {{ tmhelix.TMHelix_ID }} {% endfor %} </a></li> 
 
@@ -79,11 +38,11 @@ glmol01.loadMolecule();
                                     </ul>
                                 {% endif %}
 
-                                {% if TMProtein.tmhelixtriplet_set.all %}
+                                {% if tmprotein.tmhelixtriplet_set.all %}
                                     <ul>
                                     <p> Triplets of Transmembrane Helices: </p>
                                     <p> Consecutive: </p>
-                                    {% for tmhelixtriplet in TMProtein.tmhelixtriplet_set.all %}
+                                    {% for tmhelixtriplet in tmprotein.tmhelixtriplet_set.all %}
 
                                         <li><a href="{% url 'triplet' tmhelixtriplet.id %}">TMs: {% for tmhelix in tmhelixtriplet.tmhelixmodel_set.all %} {{ tmhelix.TMHelix_ID }} {% endfor %} </a></li>
 
@@ -139,4 +98,46 @@ glmol01.loadMolecule();
 <p> Score: {{TMProtein.getScore}} </p>
 </li>
 
+                                <div id="glmol02" style="width: 300px; height: 300px; background-color: black;"></div> <textarea id="glmol02_src" style="display: none;">
 
+{{ tmprotein.atom_set.show }}
+
+</textarea>
+
+{% load static %}
+{% static "" as baseUrl %}
+
+<script src="{{ baseUrl }}/myapp/static/js/jquery-1.7.min.js"></script>
+<script src="{{ baseUrl }}/myapp/static/js/Three49custom.js"></script>
+<script type="text/javascript" src="{{ baseUrl }}/myapp/static/js/GLmol.js"></script>
+<script type="text/javascript">
+
+// Small molecules can be embedded in the page
+
+var glmol02 = new GLmol('glmol02');
+
+// Proteins can also be embedded in the page but 
+//  you might want to keep it separate.
+
+var glmol01 = new GLmol('glmol01', true);
+glmol01.defineRepresentation = function() {
+   var all = this.getAllAtoms();
+   var hetatm = this.removeSolvents(this.getHetatms(all));
+   this.colorByAtom(all, {});
+   this.colorByChain(all);
+   var asu = new THREE.Object3D();
+   
+   this.drawBondsAsStick(asu, hetatm, this.cylinderRadius, this.cylinderRadius);
+   this.drawBondsAsStick(asu, this.getResiduesById(this.getSidechains(this.getChain(all, ['A'])), [58, 87]), this.cylinderRadius, this.cylinderRadius);
+   this.drawBondsAsStick(asu, this.getResiduesById(this.getSidechains(this.getChain(all, ['B'])), [63, 92]), this.cylinderRadius, this.cylinderRadius);
+   this.drawCartoon(asu, all, this.curveWidth, this.thickness);
+
+   this.drawSymmetryMates2(this.modelGroup, asu, this.protein.biomtMatrices);
+   this.modelGroup.add(asu);
+};
+
+$.get("2DHB.pdb", function(ret) {
+$("#glmol01_src").val(ret);
+glmol01.loadMolecule();
+});
+</script>

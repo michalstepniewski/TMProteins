@@ -58,6 +58,11 @@ def triplet(request, tmhelixtriplet_id):
     tmhelixtriplet = get_object_or_404(TMHelixTriplet, pk=tmhelixtriplet_id)
     return render(request, 'triplet.html', {'tmhelixtriplet': tmhelixtriplet})
 
+def tmprotein(request, tmprotein_id):
+    tmprotein = get_object_or_404(TMProtein, pk=tmprotein_id)
+    return render(request, 'tmprotein.html', {'tmprotein': tmprotein})
+
+
 def single_helix_stats(request):
     return render(request, 'single_helix_stats.html')
 

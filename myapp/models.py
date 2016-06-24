@@ -759,7 +759,7 @@ class AtomManager (models.Manager):
         for AtomI in self.all():
             
 #             print AtomI.Text
-             Text = Text+AtomI.Text+'\n'
+             Text = Text+AtomI.Text#+'\n'
         
         return Text
 
