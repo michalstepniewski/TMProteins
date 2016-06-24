@@ -13,6 +13,7 @@ from scipy.stats import relfreq
 import math
 from django.db.models import Sum, Avg
 from GeometricalClassesModule import SetOfVectors, Vector, SetOfPoints, Point
+from django.db.models import Avg, Max, Min
 #print 'importing Picture'
 #from fileupload.models import Picture
 #print Picture
@@ -35,6 +36,21 @@ def contact(obj1,obj2):
 
     return False
             
+def contact_m(objs1,objs2):
+    
+    q1 = objs1.aggregate(Min('X'),Max('X'),Min('Y'),Max('Y'))
+    q2 = objs2.aggregate(Min('X'),Max('X'),Min('Y'),Max('Y'))
+
+    if ((max(q1['X__min'],q2['X__min']) - min(q1['X__max'],q2['X__max']) <= 5.0) and \
+       (max(q1['Y__min'],q2['Y__min']) - min(q1['Y__max'],q2['Y__max']) <= 5.0)):
+
+       for obj1 in objs1:
+           for obj2 in objs2:
+               if contact(obj1,obj2):
+                   return True
+
+    return False
+
 
 def distance(obj1, obj2):
 
@@ -464,6 +480,9 @@ class TMHelixPair (models.Model):
         
             TMHelix1 = TMHelices[0]
             TMHelix2 = TMHelices[1]
+            
+            if contact_m(TMHelix1.atom_set.all(),TMHelix2.atom_set.all()):
+                return True
         
 #            for Residue1 in TMHelix1.residue_set.all():
             
@@ -474,12 +493,6 @@ class TMHelixPair (models.Model):
 #to musi byc jakos zmienione
 # tylko nie wiem jeszcze jak                    
 #                        return True
-
-            for Atom1 in TMHelix1.atom_set.all():
-                for Atom2 in TMHelix2.atom_set.all():
-                    if contact(Atom1,Atom2):
-                        return True
-
         
         return False
 # zastanawiam sie czy nie wziac tego z modellera albo biopythona

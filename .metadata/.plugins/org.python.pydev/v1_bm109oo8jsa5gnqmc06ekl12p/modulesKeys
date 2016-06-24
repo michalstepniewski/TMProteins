@@ -5240,6 +5240,13 @@ matplotlib.ttconv|/usr/lib/pymodules/python2.7/matplotlib/ttconv.so
 matplotlib.type1font|/usr/lib/pymodules/python2.7/matplotlib/type1font.py
 matplotlib.units|/usr/lib/pymodules/python2.7/matplotlib/units.py
 matplotlib.widgets|/usr/lib/pymodules/python2.7/matplotlib/widgets.py
+matrix_field.__init__|/usr/local/lib/python2.7/dist-packages/matrix_field/__init__.py
+matrix_field.fields|/usr/local/lib/python2.7/dist-packages/matrix_field/fields.py
+matrix_field.forms|/usr/local/lib/python2.7/dist-packages/matrix_field/forms.py
+matrix_field.models|/usr/local/lib/python2.7/dist-packages/matrix_field/models.py
+matrix_field.test_settings|/usr/local/lib/python2.7/dist-packages/matrix_field/test_settings.py
+matrix_field.tests|/usr/local/lib/python2.7/dist-packages/matrix_field/tests.py
+matrix_field.validators|/usr/local/lib/python2.7/dist-packages/matrix_field/validators.py
 md5|/usr/lib/python2.7/md5.py
 mhlib|/usr/lib/python2.7/mhlib.py
 mimetools|/usr/lib/python2.7/mimetools.py
