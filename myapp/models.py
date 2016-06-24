@@ -14,10 +14,20 @@ import math
 from django.db.models import Sum, Avg
 from GeometricalClassesModule import SetOfVectors, Vector, SetOfPoints, Point
 from django.db.models import Avg, Max, Min
+from match import rmsd
 #print 'importing Picture'
 #from fileupload.models import Picture
 #print Picture
 #print 'imported Picture'
+
+
+def RMSD (objs1,objs2):
+    
+    
+    
+    return rmsd (np.array(ciag1), np.array(ciag2))
+
+#import match.py
 
 def probability (Value, Distribution):
     
@@ -550,16 +560,26 @@ class TMHelixPair (models.Model):
         
         return
 
+class TMHelixTripletQuerySet(models.QuerySet):
 
+    def Cluster(self):
+
+        return
+
+    def getRMSDMatrix(self):
+#ta matryca pewnie bedzie za dluga na JSONA a i tak musi wejsc do pamieci
+
+        return
 
 class TMHelixTriplet (models.Model):
     
     """ object storing TM Helix Pair """
-    objects = TMHelixTripletManager ()
+    objects = TMHelixTripletManager ().from_queryset(TMHelixTripletQuerySet)()
     Phi = models.FloatField (null=True)
     TMProtein = models.ForeignKey(TMProtein, on_delete=models.CASCADE, null=True)
     Score = models.FloatField (null=True)
     Set = models.CharField(max_length=10,null=True)
+    Type = models.CharField(max_length=20,null=True)
 
 #####################################################################################################################################################
 
@@ -613,6 +633,8 @@ class TMHelixTriplet (models.Model):
         pass
         
         return
+
+
 
 class TMHelixModel (models.Model):
 
