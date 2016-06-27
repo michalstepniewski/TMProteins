@@ -169,6 +169,10 @@ def list(request):
 
            TMProtein.objects.ExtractInteractingHelixTriplets ()
 
+        elif request.POST.get('ClusterHelixTripletsByRMSD'):
+           
+           TMHelixTriplet.objects.all().Cluster()
+
         elif request.POST.get('CalculateAminoAcidZPreferenceHistogram'):
            # this happens if You push 'ExtractHelixTriplets'
 

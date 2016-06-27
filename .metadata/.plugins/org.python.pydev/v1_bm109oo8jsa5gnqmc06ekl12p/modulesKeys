@@ -4070,6 +4070,7 @@ feedjack.migrations.0012_postprocessortag_tag|/usr/local/lib/python2.7/dist-pack
 feedjack.migrations.0013_auto_20150208_0138|/usr/local/lib/python2.7/dist-packages/feedjack/migrations/0013_auto_20150208_0138.py
 feedjack.migrations.0014_add_postproc_base_example|/usr/local/lib/python2.7/dist-packages/feedjack/migrations/0014_add_postproc_base_example.py
 feedjack.migrations.0015_auto_20150209_0236|/usr/local/lib/python2.7/dist-packages/feedjack/migrations/0015_auto_20150209_0236.py
+feedjack.migrations.0016_auto_20160627_1717|/usr/local/lib/python2.7/dist-packages/feedjack/migrations/0016_auto_20160627_1717.py
 feedjack.migrations.__init__|/usr/local/lib/python2.7/dist-packages/feedjack/migrations/__init__.py
 feedjack.models|/usr/local/lib/python2.7/dist-packages/feedjack/models.py
 feedjack.templatetags.__init__|/usr/local/lib/python2.7/dist-packages/feedjack/templatetags/__init__.py

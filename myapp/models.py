@@ -9,6 +9,7 @@ import numpy as np
 from django.db import transaction
 import scipy
 import scipy.stats
+from scipy.cluster.vq import *
 from scipy.stats import relfreq
 import math
 from django.db.models import Sum, Avg
@@ -16,6 +17,7 @@ from GeometricalClassesModule import SetOfVectors, Vector, SetOfPoints, Point
 from django.db.models import Avg, Max, Min
 import match
 from match import rmsd
+from models1 import *
 #print 'importing Picture'
 #from fileupload.models import Picture
 #print Picture
@@ -26,7 +28,7 @@ def RMSD (objs1,objs2):
     
     
     
-    return rmsd (np.array(ciag1), np.array(ciag2))
+    return rmsd (np.array(objs1), np.array(objs2))
 
 #import match.py
 
@@ -563,14 +565,43 @@ class TMHelixPair (models.Model):
 
 class TMHelixTripletQuerySet(models.QuerySet):
 
+    def RMSD(self):
+        
+        return RMSD(self[0].Crds(), self[1].Crds())
+
     def Cluster(self):
+
+        RMSDMatrixI = self.getRMSDMatrix()
+        
+        centroids, idx = kmeans ( RMSDMatrixI, 6 )
+        
+        code,distance = vq(RMSDMatrixI,centroids)
+        
+        print 'centroids'
+        print centroids
+        print 'code'
+        print code
+        print 'distance'
+        print distance
 
         return
 
     def getRMSDMatrix(self):
 #ta matryca pewnie bedzie za dluga na JSONA a i tak musi wejsc do pamieci
 
-        return
+        length = len(self)
+        
+        RMSDMatrixI = np.zeros((length,length))
+        
+        for N1 in range(length):
+            for N2 in range(N1+1,length):
+                RMSDI = self.filter(id__in=(self[N1].pk,self[N2].pk)).RMSD()
+                RMSDMatrixI.itemset((N1,N2),(RMSDI))
+                RMSDMatrixI.itemset((N2,N1),(RMSDI))       
+        print RMSDMatrixI
+#        quit()        
+
+        return RMSDMatrixI
 
 class TMHelixTriplet (models.Model):
     
@@ -583,6 +614,21 @@ class TMHelixTriplet (models.Model):
     Type = models.CharField(max_length=20,null=True)
 
 #####################################################################################################################################################
+
+    def Crds(self):
+
+# brzydko to jest zrobione
+        
+        CrdsI = []
+        
+        for tmhelix in self.tmhelixmodel_set.all():
+            
+            CrdsI.append([tmhelix.MC_EC_X, tmhelix.MC_EC_Y, tmhelix.MC_EC_Z ])
+            CrdsI.append([tmhelix.MC_MM_X, tmhelix.MC_MM_Y, tmhelix.MC_MM_Z ])
+            CrdsI.append([tmhelix.MC_IC_X, tmhelix.MC_IC_Y, tmhelix.MC_IC_Z ])
+        
+        return CrdsI
+
 
     def getScore(self):
 #        self.Score = probability(self.Phi,TmTripletSet)

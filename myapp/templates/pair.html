@@ -22,7 +22,7 @@
 <td>Crossing Angle (Extracellular Leaflet):</td> <td> {{ tmhelixpair.CrossingAngleEC }} </td>
 </tr>
 <tr>
-<td>Crossing Angle (Intracellular Leaflet): {{ tmhelixpair.CrossingAngleIC }} </td>
+<td>Crossing Angle (Intracellular Leaflet):</td> <td> {{ tmhelixpair.CrossingAngleIC }} </td>
 </tr>
 </table>
 
@@ -38,10 +38,10 @@
 
 {{ tmhelix.atom_set.show }}
 
-HETATM 9991  N   MET A   1    {{ tmhelix.MC_EC_X|format83f }}{{ tmhelix.MC_EC_Y|format83f }}{{ tmhelix.MC_EC_Z|format83f }}  1.00 47.11           N  
-HETATM 9992  CA  MET A   1    {{ tmhelix.MC_MM_X|format83f }}{{ tmhelix.MC_MM_Y|format83f }}{{ tmhelix.MC_MM_Z|format83f }}  1.00 47.11           C  
-HETATM 9993  O1  MET A   1    {{ tmhelix.MC_IC_X|format83f }}{{ tmhelix.MC_IC_Y|format83f }}{{ tmhelix.MC_IC_Z|format83f }}  1.00 47.11           O  
-CONECT 9991 9992
+HETATM 991{{ tmhelix.TMHelix_ID }}  N   MET A   1    {{ tmhelix.MC_EC_X|format83f }}{{ tmhelix.MC_EC_Y|format83f }}{{ tmhelix.MC_EC_Z|format83f }}  1.00 47.11           N  
+HETATM 992{{ tmhelix.TMHelix_ID }}  CA  MET A   1    {{ tmhelix.MC_MM_X|format83f }}{{ tmhelix.MC_MM_Y|format83f }}{{ tmhelix.MC_MM_Z|format83f }}  1.00 47.11           C  
+HETATM 993{{ tmhelix.TMHelix_ID }}  O1  MET A   1    {{ tmhelix.MC_IC_X|format83f }}{{ tmhelix.MC_IC_Y|format83f }}{{ tmhelix.MC_IC_Z|format83f }}  1.00 47.11           O  
+
 
 {% endfor %}
 
