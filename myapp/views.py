@@ -2,7 +2,7 @@
 #django second
 #your apps
 #local app
-
+import openpyxl
 from django.contrib import messages
 from django.conf import settings
 #from django.core mail import send_mail
@@ -15,7 +15,10 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
 from myapp.models import TMProtein, TMHelixModel, TMHelixPair, TMHelixTriplet, \
-Residue
+Residue, TMProteinManager, XLSFile
+
+from xml_parser.models import DatabaseModel
+
 from myapp.forms import TMProteinFileForm
 import os
 from PlotToolsModule import HistogramPlot
@@ -192,37 +195,49 @@ def list(request):
 
         if form.is_valid():
             #this happens if you want to upload file
-            if 'checkbox' in request.POST:
-                print 'Checkbox Selected';
-                TMProteinI = TMProtein(tmproteinfile = request.FILES['tmproteinfile'],Set='Reference' )
-            else:
+            
+            if 'UploadXLSFile' in request.POST:
                 
-                TMProteinI = TMProtein(tmproteinfile = request.FILES['tmproteinfile'],Set='Test' )
+                XLSFileI = XLSFile(xlsfile=request.FILES['tmproteinfile'])
+                XLSFileI.save()
+                XLSFileI.Read('media/'+request.FILES['tmproteinfile'].name.split('.')[0]+'/'+request.FILES['tmproteinfile'].name)
+
+#                TMProtein.objects.ReadXLS(XLSFile =  )
+
+            elif 'UploadProteinFile' in request.POST:
+            
+                if 'checkbox' in request.POST:
+                    print 'Checkbox Selected';
+                    TMProteinI = TMProtein(tmproteinfile = request.FILES['tmproteinfile'],Set='Reference' )
+                else:
+                
+                    TMProteinI = TMProtein(tmproteinfile = request.FILES['tmproteinfile'],Set='Test' )
 
 #new instance of TMProtein is created from models I guess
-            TMProteinI.save()
+                TMProteinI.save()
 
 #            os. system ('mv media/*.pdb media/TMProtein.pdb') #no wlasnie tu trzeba zmienic i utworzyc
 # katalog i tam przeniesc ale musze to prawilnie zrobic
 
-            Path = TMProteinI.path
+                Path = TMProteinI.path
             #now we read helices from PDB file
 
-            TMProteinI. ReadPDB ('media/'+request.FILES['tmproteinfile'].name.split('.')[0]+'/'+request.FILES['tmproteinfile'].name),# 'media/TMProtein.db')
+                TMProteinI. ReadPDB ('media/'+request.FILES['tmproteinfile'].name.split('.')[0]+'/'+request.FILES['tmproteinfile'].name),# 'media/TMProtein.db')
 # reads PDB to extract TM Helices
             # Redirect to the document list after POST
-            return HttpResponseRedirect(reverse('myapp.views.list'))
+                return HttpResponseRedirect(reverse('myapp.views.list'))
     else:
 
         form = TMProteinFileForm() # A empty, unbound form
 
     # Load documents for the list page
     tmproteins = TMProtein.objects.all ()
+    databases = DatabaseModel.objects.all ()
 
     # Render list page with the documents and the form
 
     return render_to_response(
         'list.html',
-        {'tmproteins': tmproteins, 'form': form },
+        {'tmproteins': tmproteins, 'form': form, 'databases': databases },
         context_instance=RequestContext(request)
     )

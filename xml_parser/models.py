@@ -220,9 +220,10 @@ class protein(models.Model):
     species = models.CharField(max_length=200,null=True)
     taxonomicDomain = models.CharField(max_length=200,null=True)
     description = models.CharField(max_length=2000,null=True)
-
+    chain = models.CharField(max_length=2000,null=True)
 #    group = models.ForeignKey(group)
     subgroup = models.ForeignKey(subgroup, on_delete=models.CASCADE, null=True)
+    DatabaseModel = models.ForeignKey(DatabaseModel, on_delete=models.CASCADE, null=True)
 
 #pdbCode,name,species,taxonomicDomain,expressedInSpecies,resolution,description,bibliography,
 #                     secondaryBibliographies,relatedPdbEntries,memberProteins)
@@ -238,6 +239,7 @@ class structure(models.Model):
       description = models.CharField(max_length=2000,null=True)
       protein = models.ForeignKey(protein, on_delete=models.CASCADE, null=True)
       objects  = structureManager ()
+      DatabaseModel = models.ForeignKey(DatabaseModel, on_delete=models.CASCADE, null=True)
 
 #      bibliography
 #      secondaryBibliographies

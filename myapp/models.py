@@ -18,6 +18,7 @@ from django.db.models import Avg, Max, Min
 import match
 from match import rmsd
 from models1 import *
+import openpyxl
 #print 'importing Picture'
 #from fileupload.models import Picture
 #print Picture
@@ -71,6 +72,48 @@ def distance(obj1, obj2):
            + (obj1.Y-obj2.Y)**2\
            + (obj1.Z-obj2.Z)**2)**0.5
 
+
+
+def get_upload_path(instance, filename):
+    name, ext = filename.split('.')
+    file_path = '{name}/{name}.{ext}'.format( name=name, ext=ext) 
+    return file_path
+
+
+class XLSFile(models.Model):
+    
+    xlsfile = models.FileField(upload_to=get_upload_path)#'uploads/%Y/%m/%d/%H/%M')
+    path = models.CharField(get_upload_path, max_length=200)
+    TMProtein_ID = models.CharField(max_length=200)
+
+
+    def Read(self, xls_path):
+        
+        wb = openpyxl.load_workbook(xls_path)
+           
+#        first_sheet = book.get_sheet_by_index(0)
+              
+        from xml_parser.models import DatabaseModel,structure
+           
+        sheet = wb.get_sheet_by_name('Sheet1')
+        
+#        Species = 
+        Resolutions = sheet.columns[4]
+        PDBCodes = sheet.columns[5] #F
+        Chains = sheet.columns[6] #G
+        
+        DatabaseModelI = DatabaseModel.objects.create()
+        
+        for row in range(2, sheet.max_row):
+        
+            structureI = structure.objects.create(
+            pdbCode = PDBCodes[row], \
+            resolution = Resolutions[row])
+        
+        
+        DatabaseModel. structure_set.add(proteinI)
+            
+        return
 
 class TMHelixManager (models.Manager):
 
@@ -148,6 +191,15 @@ class TMHelixManager (models.Manager):
 class TMProteinManager(models.Manager): #zmienic to na TMProtein
 
     """ object storing PDB File to be uploaded """
+    
+    
+    def ReadXLS(self, XLSFile):
+        
+        print XLSFile
+        
+        quit()
+        
+                
 
 #####################################################################################################################################################
 
