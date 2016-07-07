@@ -87,6 +87,15 @@ def multiple_upload(request):
 def xml_parser(request):
     return render(request, 'database.html')
 
+def database(request, database_id):
+    print 'databse requested'
+    print database_id
+    database = get_object_or_404(DatabaseModel, pk=database_id)
+    
+    return render(request, 'dataset.html', {'structures': database.structure_set.all()})
+    
+
+
 def helix_pair_stats(request):
     return render(request, 'helix_pair_stats.html')
 

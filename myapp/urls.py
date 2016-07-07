@@ -18,6 +18,7 @@ urlpatterns = patterns('myapp.views',
     url(r'^p(?P<tmhelixpair_id>[0-9]+)/$', views.pair, name='pair'),
     url(r'^h(?P<tmhelix_id>[0-9]+)/$', views.helix, name='helix'),
     url(r'^pr(?P<tmprotein_id>[0-9]+)/$', views.tmprotein, name='tmprotein'),
+    url(r'^d(?P<database_id>[0-9]+)/$', views.database, name='database'),
 
     url(r'^multiple_upload', 'multiple_upload', name = 'multiple_upload'), # include('django-jquery-file-upload.urls')), 
 #    url(r'^$', lambda x: HttpResponseRedirect('/upload/new/')),

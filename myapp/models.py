@@ -104,15 +104,16 @@ class XLSFile(models.Model):
         
         DatabaseModelI = DatabaseModel.objects.create()
         
-        for row in range(2, sheet.max_row):
-        
+        with transaction.atomic():
+         
+         for row in range(2, sheet.max_row):
+            print Resolutions[row].value
+            print PDBCodes[row].value
             structureI = structure.objects.create(
-            pdbCode = PDBCodes[row], \
-            resolution = Resolutions[row])
-        
-        
-        DatabaseModel. structure_set.add(proteinI)
-            
+            pdbCode = PDBCodes[row].value, \
+            resolution = Resolutions[row].value)
+            DatabaseModelI.structure_set.add(structureI)
+#        quit()    
         return
 
 class TMHelixManager (models.Manager):

@@ -80,7 +80,7 @@
         {% for database in databases %}
 
         <tr>
-        <td> <a href="{% url 'database' DatabaseModel.id %}">{{ database.name }}</a> </td>
+        <td> <a href="{% url 'database' database.id %}">{{ database.id }}</a> </td>
         </tr>
                 
         {% endfor %}        

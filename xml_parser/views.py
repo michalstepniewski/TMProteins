@@ -34,9 +34,14 @@ def database(request):
 
         if request.POST.get('Download'):
             structure.objects.Download()
+            
+        if request.POST.get('Process'):
+            DatabaseModel.Process() # to musi byc ten model, albo z argumentem
 #            protein.objects.all().delete()
-
-
+# musze przemyslec to przed zserializowaniem
+# cos na kartce napisac itd
+# moze sie znowu leb zagotuje
+# musze to przekombinowac
     tmproteins = protein.objects.all()   
     return render_to_response(
         'database.html',
