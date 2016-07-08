@@ -92,7 +92,23 @@ def database(request, database_id):
     print database_id
     database = get_object_or_404(DatabaseModel, pk=database_id)
     
-    return render(request, 'dataset.html', {'structures': database.structure_set.all()})
+    if request.method == 'POST':
+
+        if request.POST.get('Update'):
+            DatabaseModel.objects.Update()
+        if request.POST.get('Clear'):
+            DatabaseModel.objects.all().delete()
+            protein.objects.all().delete()
+
+        if request.POST.get('Download'):
+            structure.objects.Download()
+            
+        if request.POST.get('Process'):
+            database.Process() # to musi byc ten model, albo z argumentem
+    
+    
+    return render(request, 'dataset.html', {'structures': database.structure_set.all(),\
+                                            'database_model_i':database})
     
 
 

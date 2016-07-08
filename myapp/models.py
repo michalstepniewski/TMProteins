@@ -111,7 +111,8 @@ class XLSFile(models.Model):
             print PDBCodes[row].value
             structureI = structure.objects.create(
             pdbCode = PDBCodes[row].value, \
-            resolution = Resolutions[row].value)
+            resolution = Resolutions[row].value, \
+            Chain = Chains[row].value)
             DatabaseModelI.structure_set.add(structureI)
 #        quit()    
         return
@@ -248,9 +249,9 @@ def get_upload_path(instance, filename):
 class TMProtein (models.Model): #zmienic to na TMProtein
 
     """ object storing PDB File to be uploaded """
-
+    
     TMProtein_ID = models.CharField(max_length=200)
-    tmproteinfile = models.FileField(upload_to=get_upload_path)#'uploads/%Y/%m/%d/%H/%M')
+    tmproteinfile = models.FileField(upload_to=get_upload_path,null=True)#'uploads/%Y/%m/%d/%H/%M')
     path = models.CharField(get_upload_path, max_length=200)
     Atoms = models.TextField(null=True,default="fejslik")
     objects  = TMProteinManager ()
@@ -747,7 +748,7 @@ class TMHelixModel (models.Model):
     TMHelix_Tilt_IC = models.FloatField (null=True)
     TMHelix_KinkAngle = models.FloatField (null=True)
     TMHelix_Overhang = models.FloatField (null=True)
-    TMHelix_pdb_path = models.CharField(max_length=200)
+    TMHelix_pdb_path = models.CharField(max_length=2000)
     Atoms = models.TextField(null=True,default="fejslik")
 
     TMProtein = models.ForeignKey(TMProtein, on_delete=models.CASCADE, null=True)

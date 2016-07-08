@@ -36,7 +36,7 @@ def database(request):
             structure.objects.Download()
             
         if request.POST.get('Process'):
-            DatabaseModel.Process() # to musi byc ten model, albo z argumentem
+            database_model_i.Process() # to musi byc ten model, albo z argumentem
 #            protein.objects.all().delete()
 # musze przemyslec to przed zserializowaniem
 # cos na kartce napisac itd

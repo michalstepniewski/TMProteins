@@ -15,13 +15,14 @@
                         <tr>
                                 <td> {{ structure.pdbCode }}</td>
                                 <td> {{ structure.resolution }}</td>                                
+                                <td> {{ structure.Chain }}</td> 
                         </tr> 
                                 {% endfor %}
             </table>
                 <!-- dodac tu link do viewera -->
                 <!-- powinno to byc tabela tak jak w helix.html tylko interaktywna -->
 		<!-- Upload form. Note enctype attribute! -->
-		<form action="{% url "database" %}" method="post" enctype="multipart/form-data">
+		<form action="{% url "database" database_model_i.id %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
 			<!-- button for upload -->
 			<table>
