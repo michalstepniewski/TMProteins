@@ -11,11 +11,20 @@
 	<body>
 
             <table>
+                        <tr><td>PDB Code</td><td>Resolution(A)</td><td>Chain</td><td>Processed?</td><td>View</td></tr>
+
                         {% for structure in structures %}
                         <tr>
                                 <td> {{ structure.pdbCode }}</td>
                                 <td> {{ structure.resolution }}</td>                                
                                 <td> {{ structure.Chain }}</td> 
+                                <td> {{ structure.Processed }}</td>
+                                <td> {% for TMProtein in structure.tmprotein_set.all %}
+                                    
+                                <a href="{% url 'tmprotein' TMProtein.id %}">{{ TMProtein.TMProtein_ID }}</a>
+                                    {% endfor %}
+                                </td>
+                                
                         </tr> 
                                 {% endfor %}
             </table>

@@ -19,6 +19,7 @@ import match
 from match import rmsd
 from models1 import *
 import openpyxl
+
 #print 'importing Picture'
 #from fileupload.models import Picture
 #print Picture
@@ -257,6 +258,8 @@ class TMProtein (models.Model): #zmienic to na TMProtein
     objects  = TMProteinManager ()
     Score=models.FloatField(null=True)
     Set = models.CharField(max_length=10,null=True) #'Reference' or 'Test'
+    from xml_parser.models import structure
+    structure = models.ForeignKey(structure, on_delete=models.CASCADE, null=True)
 
     def getPath (self):
 
@@ -314,17 +317,21 @@ class TMProtein (models.Model): #zmienic to na TMProtein
 #        self.atom_set.add(atom)
         with transaction.atomic():
          for TM in getHelicesfromPDBFile (pdb_path):
+           if len(TM.Content)>0: 
+            from SetOfAtomsModule import Parametry   
+            print Parametry. BordersOfThinSlices 
 
 #              TMHelixModel.objects.create ()
 
             AtomsI = ''
-            
-            print TM. ThinSlicesCOMs ( );
-            [MC_EC_X, MC_EC_Y, MC_EC_Z],\
-            [MC_MM_X, MC_MM_Y, MC_MM_Z],\
-            [MC_IC_X, MC_IC_Y, MC_IC_Z]  =  TM. ThinSlicesCOMs ( )
+            try: 
+             print TM. ThinSlicesCOMs ( );
+             [MC_EC_X, MC_EC_Y, MC_EC_Z],\
+             [MC_MM_X, MC_MM_Y, MC_MM_Z],\
+             [MC_IC_X, MC_IC_Y, MC_IC_Z]  =  TM. ThinSlicesCOMs ( )
 #            print tmhelix.MC_EC_X
-
+            except ZeroDivisionError:
+             break
             tmhelix = TMHelixModel.objects.create(TMHelix_ID= TM. ID, TMHelix_Tilt = TM. Tilt(), \
                                       TMHelix_Tilt_EC = TM. Tilt_EC(), \
                                       TMHelix_Tilt_IC = TM. Tilt_IC(), \

@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 import urllib2, os
 from django.db import models
-from myapp.models import  TMProtein
+
 
 # Create your models here.
 
@@ -205,7 +205,8 @@ class DatabaseModel (models.Model):
     def Process(self):
        
         for structureI in self.structure_set.all():
-            if not structureI,Processed: 
+            print structureI.Processed
+            if not structureI.Processed: 
             
                structureI.Process()
     
@@ -255,9 +256,11 @@ class structure(models.Model):
     Type = models.CharField(max_length=20,null=True) #master, relatedPdbEntries, memberProteins
 
     def Process(self):
-    
+        from myapp.models import  TMProtein
         TMProteinI = TMProtein(Set='Reference',TMProtein_ID=self.pdbCode+'_'+self.Chain )
         TMProteinI.save()
+        self.tmprotein_set.add(TMProteinI)
+        
         #pdbCode
 #        'media/IntegralneAlfaHelikalneBialkaBlonowe/ByChain'
 
@@ -267,9 +270,11 @@ class structure(models.Model):
         print glob.glob(os.getcwd()+'/media/IntegralneAlfaHelikalneBialkaBlonowe/ByChain/*/*/'+self.pdbCode+'_'+self.Chain+'.pdb')        
         self.Path = glob.glob(os.getcwd()+'/media/IntegralneAlfaHelikalneBialkaBlonowe/ByChain/*/*/*/'+self.pdbCode+'_'+self.Chain+'.pdb')[0]
 # self.pdbCode+'_'+self.Chain+'.pdb'
-        TMProteinI.ReadPDB(self.Path,null=True)
+        TMProteinI.ReadPDB(self.Path)
         
         self.Processed = True
+        self.save()
+        print self.Processed
         
 class bibliography(models.Model):
 

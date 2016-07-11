@@ -1497,3 +1497,49 @@ java.lang.RuntimeException: Expected to find 'from' token as the current tempora
 	at org.python.pydev.editor.hover.PyTextHover.getDocstringHover(PyTextHover.java:198)
 	at org.python.pydev.editor.hover.PyTextHover.getHoverInfo(PyTextHover.java:142)
 	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:168)
+!SESSION 2016-07-11 20:36:25.714 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_25
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_GB
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.python.pydev.shared_core 4 4 2016-07-11 22:43:43.200
+!MESSAGE Expected to find 'from' token as the current temporary token (begin col/line can be wrong)!
+!STACK 0
+java.lang.RuntimeException: Expected to find 'from' token as the current temporary token (begin col/line can be wrong)!
+	at org.python.pydev.core.log.Log.log(Log.java:54)
+	at org.python.pydev.parser.grammarcommon.AbstractTreeBuilder.makeImportFrom25Onwards(AbstractTreeBuilder.java:702)
+	at org.python.pydev.parser.grammar27.TreeBuilder27.onCloseNode(TreeBuilder27.java:417)
+	at org.python.pydev.parser.grammarcommon.AbstractTreeBuilder.closeNode(AbstractTreeBuilder.java:614)
+	at org.python.pydev.parser.grammarcommon.JJTPythonGrammarState.closeNodeScope(JJTPythonGrammarState.java:212)
+	at org.python.pydev.parser.grammar27.PythonGrammar27.ImportFrom(PythonGrammar27.java:2771)
+	at org.python.pydev.parser.grammar27.PythonGrammar27.import_stmt(PythonGrammar27.java:2584)
+	at org.python.pydev.parser.grammar27.PythonGrammar27.small_stmt(PythonGrammar27.java:943)
+	at org.python.pydev.parser.grammar27.PythonGrammar27.simple_stmt(PythonGrammar27.java:862)
+	at org.python.pydev.parser.grammar27.PythonGrammar27.stmt(PythonGrammar27.java:837)
+	at org.python.pydev.parser.grammar27.PythonGrammar27.file_input(PythonGrammar27.java:203)
+	at org.python.pydev.parser.grammar27.PythonGrammar27.file_input(PythonGrammar27.java:1)
+	at org.python.pydev.parser.PyParser.reparseDocument(PyParser.java:541)
+	at org.python.pydev.editor.codecompletion.revisited.modules.AbstractModule.createModuleFromDoc(AbstractModule.java:293)
+	at org.python.pydev.editor.codecompletion.revisited.modules.AbstractModule.createModule(AbstractModule.java:272)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:917)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:765)
+	at org.python.pydev.editor.codecompletion.revisited.SystemModulesManager.getModule(SystemModulesManager.java:353)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getModule(AbstractASTManager.java:465)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findModuleFromPath(AbstractASTManager.java:2124)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1991)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1887)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1854)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findDefinition(SourceModule.java:919)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findDefinition(SourceModule.java:664)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findDefinition(SourceModule.java:1)
+	at org.python.pydev.editor.refactoring.PyRefactoringFindDefinition.findActualTokenFromImportFromDefinition(PyRefactoringFindDefinition.java:232)
+	at org.python.pydev.editor.refactoring.PyRefactoringFindDefinition.findActualDefinition(PyRefactoringFindDefinition.java:193)
+	at org.python.pydev.editor.refactoring.PyRefactoringFindDefinition.findActualDefinition(PyRefactoringFindDefinition.java:79)
+	at com.python.pydev.refactoring.refactorer.RefactorerFindDefinition.findDefinition(RefactorerFindDefinition.java:61)
+	at com.python.pydev.refactoring.refactorer.Refactorer.findDefinition(Refactorer.java:114)
+	at com.python.pydev.refactoring.wizards.rename.PyReferenceSearcher.prepareSearch(PyReferenceSearcher.java:106)
+	at com.python.pydev.refactoring.markoccurrences.MarkOccurrencesJob.createRequest(MarkOccurrencesJob.java:147)
+	at org.python.pydev.shared_ui.mark_occurrences.BaseMarkOccurrencesJob.run(BaseMarkOccurrencesJob.java:168)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)

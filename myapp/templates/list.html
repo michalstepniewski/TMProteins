@@ -77,6 +77,7 @@
         {% if databases %}
 
         <table>
+        <tr>Datasets:</tr>
         {% for database in databases %}
 
         <tr>
@@ -92,7 +93,7 @@
 		<!-- List of uploaded documents -->
 		{% if tmproteins %}
 		<!-- generalnie powinienem to schowac do jakiegos template -->
-			<ul>
+<!--			<ul>
 			<table>
                         {% for TMProtein in tmproteins %}
                         
@@ -108,7 +109,7 @@
 <!-- musze poeksperymentowac z tym scriptem -->
 
 <!--Protein Atoms: {{ TMProtein.atom_set.show }}-->
-</td>
+<!--</td>
             <td><input type="submit" name="Score" value="Score" /></td>
 <td> Score: {{TMProtein.getScore}} </td>
 </tr>
@@ -117,6 +118,7 @@
 
 			{% endfor %}
 			</table>
+-->			
 			<table>
 			    <tr>
                         <td><a href="{% url 'viewer' %}">View</a></td>

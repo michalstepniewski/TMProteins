@@ -389,16 +389,25 @@ class TMHelix ( ProteinChain ):
       def CalculateNterDescriptor ( self ):
 
           """ returns Nter location (EC or IC) """
+          print 'printing Content'
+          print self.Content
+          print len(self.Content)
 
-          self.FirstRes_Z = self. Content [ 0 ] .Z ( )
 
-          if self.FirstRes_Z >= 0.0:
+          try:
+          
+           self.FirstRes_Z = self. Content [ 0 ] .Z ( )
 
-             self. NterDescriptor = 'EC'
+           if self.FirstRes_Z >= 0.0:
 
-          else:
+              self. NterDescriptor = 'EC'
 
-             self. NterDescriptor = 'IC'
+           else:
+
+              self. NterDescriptor = 'IC'
+              
+          except IndexError:
+              self.NterDescriptor = 'Error'
 
 #####################################################################################################################################################
 
