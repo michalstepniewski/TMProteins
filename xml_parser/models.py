@@ -248,7 +248,8 @@ class structure(models.Model):
     protein = models.ForeignKey(protein, on_delete=models.CASCADE, null=True)
     objects  = structureManager ()
     Path = models.CharField(max_length=2000,null=True)
-    DatabaseModel = models.ForeignKey(DatabaseModel, on_delete=models.CASCADE, null=True)
+    DatabaseModel = models.ManyToManyField(DatabaseModel)
+#    models.ForeignKey(DatabaseModel, on_delete=models.CASCADE, null=True)
     Chain = models.CharField(max_length=4,null=True)
     Processed = models.NullBooleanField(default=False)
 #      bibliography

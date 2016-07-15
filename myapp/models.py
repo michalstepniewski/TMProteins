@@ -88,7 +88,7 @@ class XLSFile(models.Model):
     TMProtein_ID = models.CharField(max_length=200)
 
 
-    def Read(self, xls_path):
+    def Read(self, xls_path, database_id):
         
         wb = openpyxl.load_workbook(xls_path)
            
@@ -103,13 +103,14 @@ class XLSFile(models.Model):
         PDBCodes = sheet.columns[5] #F
         Chains = sheet.columns[6] #G
         
-        DatabaseModelI = DatabaseModel.objects.create()
+        DatabaseModelI = DatabaseModel.objects.get(pk=database_id)
         
         with transaction.atomic():
          
          for row in range(2, sheet.max_row):
             print Resolutions[row].value
             print PDBCodes[row].value
+
             structureI = structure.objects.create(
             pdbCode = PDBCodes[row].value, \
             resolution = Resolutions[row].value, \
@@ -222,20 +223,24 @@ class TMProteinManager(models.Manager): #zmienic to na TMProtein
 
 #####################################################################################################################################################
 
-    def ExtractConsecutiveHelixTriplets (self):
-    
-        [tmprotein. ExtractConsecutiveHelixTriplets() for tmprotein in self.all()]
-        
-        return
-
-#####################################################################################################################################################
-
     def ReadPDB (self, pdb_path, db_path):
         from PDB_FileContentsModule import ReadPDBFile
 
         """ reads PDB file to SQL database """
 
         ReadPDBFile (pdb_path, db_path)	
+
+
+class TMProteinQuerySet(models.QuerySet):
+
+#####################################################################################################################################################
+
+    def ExtractConsecutiveHelixTriplets (self):
+    
+        [tmprotein. ExtractConsecutiveHelixTriplets() for tmprotein in self.all()]
+        
+        return
+
 
 
 def user_directory_path( filename):
@@ -255,12 +260,12 @@ class TMProtein (models.Model): #zmienic to na TMProtein
     tmproteinfile = models.FileField(upload_to=get_upload_path,null=True)#'uploads/%Y/%m/%d/%H/%M')
     path = models.CharField(get_upload_path, max_length=200)
     Atoms = models.TextField(null=True,default="fejslik")
-    objects  = TMProteinManager ()
+    objects  = TMProteinManager ().from_queryset(TMProteinQuerySet)()
     Score=models.FloatField(null=True)
     Set = models.CharField(max_length=10,null=True) #'Reference' or 'Test'
     from xml_parser.models import structure
     structure = models.ForeignKey(structure, on_delete=models.CASCADE, null=True)
-
+    
     def getPath (self):
 
         return get_upload_path
@@ -269,7 +274,7 @@ class TMProtein (models.Model): #zmienic to na TMProtein
         for tmhelixtripleti in self.tmhelixtriplet_set.all():
             tmhelixtripleti.getScore()
         self.Score=self.tmhelixtriplet_set.aggregate(Avg('Score'))['Score__avg']
-        print self.Score; #quit()
+#        print self.Score; #quit()
         self.save()
 #        quit()
         return self.Score
@@ -460,6 +465,8 @@ class TMProtein (models.Model): #zmienic to na TMProtein
 
     def ExtractConsecutiveHelixTriplets (self):
         
+        
+        
         NoHelices = self. tmhelixmodel_set.count()
         
         if NoHelices >= 3:
@@ -472,11 +479,22 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                 tmhelixtriplet.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N+1)))   
                 tmhelixtriplet.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N+2)))              
                 tmhelixtriplet.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N+3)))              
-
+                
+                print str(N+1)
+                print str(N+2)
+                print str(N+3) 
+                
+                print tmhelixtriplet.tmhelixmodel_set.values_list('TMHelix_ID')
+                print 'MC_MM_X'
+                print tmhelixtriplet.tmhelixmodel_set.values_list('MC_MM_X')
+                print self.structure.pdbCode
+                
+                
+                
                 tmhelixtriplet. getPhi ()
                 tmhelixtriplet.save()
                 self.tmhelixtriplet_set.add(tmhelixtriplet)  
-
+                self.save()
 
         return
 
@@ -702,34 +720,46 @@ class TMHelixTriplet (models.Model):
 #            print self. values_list('id')
 #            print np.array(self. values_list(Value, flat=True))
         relfrequency = relfreq(new_list,18,defaultreallimits=(0,180))
-        print relfrequency; 
+#        print relfrequency; 
  #           print relfrequency
  #           print relfrequency[0]
  #           print relfrequency[0][int(math.floor((165.0+relfrequency[1])/relfrequency[2]))]
  #           HistogramPlot(new_list, 'myproject/myapp/static/myapp/static/Stats/HelixTriplet/'+Value )
         self.Score = relfrequency[0][int(math.floor((self.Phi)/relfrequency[2]))]
-        print self.Phi
-        print 
-        print int(math.floor((180.0+self.Phi+relfrequency[1])/relfrequency[2]))
-        print 
+#        print self.Phi
+#        print 
+#        print int(math.floor((180.0+self.Phi+relfrequency[1])/relfrequency[2]))
+#        print 
         self.save()
-        print self.Score
+#        print self.Score
         #quit()
         return self.Score
 
 #####################################################################################################################################################
     
     def getPhi (self):
-        
+
+        ids = self.tmhelixmodel_set.all ().values_list('id')
         helices = self.tmhelixmodel_set.all ()
-            
-        P1 = [helices[0].MC_MM_X,helices[0].MC_MM_Y,helices[0].MC_MM_Z]
-        P2 = [helices[1].MC_MM_X,helices[1].MC_MM_Y,helices[1].MC_MM_Z]
-        P3 = [helices[2].MC_MM_X,helices[2].MC_MM_Y,helices[2].MC_MM_Z]
+        [helix1, helix2, helix3] = self.tmhelixmodel_set.all ()
+#        print helices.values_list('MC_MM_X')    
+#        print helix1.MC_MM_X
+#        print helix3.MC_MM_X
+        
+        
+        
+        P1 = [helix1.MC_MM_X,helix1.MC_MM_Y,helix1.MC_MM_Z]
+        P2 = [helix2.MC_MM_X,helix2.MC_MM_Y,helix2.MC_MM_Z]        
+        P3 = [helix3.MC_MM_X,helix3.MC_MM_Y,helix3.MC_MM_Z]
+
+#        print P1
+#        print P2
+#        print P3
+
         Vec1 = SetOfPoints([P1,P2]).Vector()
         Vec2 = SetOfPoints([P1,P3]).Vector()
         self.Phi = SetOfVectors([Vec1, Vec2 ]) .AngleDEG ()
-        print self.Phi
+#        print self.Phi
 #        quit()
 
 #####################################################################################################################################################

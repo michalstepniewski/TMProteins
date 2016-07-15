@@ -87,8 +87,58 @@ def multiple_upload(request):
 def xml_parser(request):
     return render(request, 'database.html')
 
+
+def delete_database(request, id):
+    database = DatabaseModel.objects.get(pk=id).delete()
+    
+#    return render_to_response(
+#        'list.html',
+#        {'tmproteins': tmproteins, 'form': form, 'databases': databases },
+#        context_instance=RequestContext(request)
+#    )
+    
+    return HttpResponseRedirect(reverse('list'))
+
+def rename_database(request, id):
+#    database = DatabaseModel.objects.get(pk=id).delete()
+    
+#    return render_to_response(
+#        'list.html',
+#        {'tmproteins': tmproteins, 'form': form, 'databases': databases },
+#        context_instance=RequestContext(request)
+#    )
+    
+    return HttpResponseRedirect(reverse('list'))
+
+
+def clone_database(request, id):
+    print 'Cloning'
+    obj = DatabaseModel.objects.get(pk=id)
+    print obj
+    print obj.structure_set.all() 
+    old_obj = DatabaseModel.objects.create()
+#    from copy import deepcopy
+#    old_obj = deepcopy(obj)
+
+    for structure_I in obj.structure_set.all():
+        
+        print structure_I
+
+        old_obj.structure_set.add(structure_I)
+        old_obj.save()
+#    old_obj.id = None
+    old_obj.save()
+    
+#    return render_to_response(
+#        'list.html',
+#        {'tmproteins': tmproteins, 'form': form, 'databases': databases },
+#        context_instance=RequestContext(request)
+#    )
+    
+    return HttpResponseRedirect(reverse('list'))
+
 def database(request, database_id):
-    print 'databse requested'
+    print 'database requested'
     print database_id
     database = get_object_or_404(DatabaseModel, pk=database_id)
     
@@ -96,6 +146,7 @@ def database(request, database_id):
 
         if request.POST.get('Update'):
             DatabaseModel.objects.Update()
+
         if request.POST.get('Clear'):
             DatabaseModel.objects.all().delete()
             protein.objects.all().delete()
@@ -105,10 +156,122 @@ def database(request, database_id):
             
         if request.POST.get('Process'):
             database.Process() # to musi byc ten model, albo z argumentem
+
+        elif request.POST.get('CalculateSingleHelixStats'):
+            # this happens if You push 'CalculateSingleHelixStats' button
+
+           TMHelixModel.objects.single_helix_stats ()
+
+        elif request.POST.get('CalculateHelixPairStats'):
+            # this happens if You push 'CalculateHelixPairStats' button
+
+           TMHelixPair.objects.helix_pair_stats ()
+
+        elif request.POST.get('CalculateHelixTripletStats'):
+            # this happens if You push 'CalculateHelixTripletStats button
+
+           TMHelixTriplet.objects.helix_triplet_stats ()
+
+        elif request.POST.get('ExtractHelixPairs'):
+           # this happens if You push 'ExtractHelixPairs'
+
+           TMProtein.objects.ExtractConsecutiveHelixPairs ()
+
+        elif request.POST.get('ExtractInteractingHelixPairs'):
+           # this happens if You push 'ExtractHelixPairs'
+
+           TMProtein.objects.ExtractInteractingHelixPairs ()
+
+
+        elif request.POST.get('ExtractHelixTriplets'):
+           # this happens if You push 'ExtractHelixTriplets'
+           print 'ExtractHelixTriplets(myapp)'
+           TMProtein.objects.filter(structure__in=database.structure_set.all()).ExtractConsecutiveHelixTriplets ()
+           print TMProtein.objects.filter(structure__in=database.structure_set.all())
+
+#           database_model_i. TMProtein.objects
+
+        elif request.POST.get('ExtractInteractingHelixTriplets'):
+           # this happens if You push 'ExtractHelixTriplets'
+
+           TMProtein.objects.ExtractInteractingHelixTriplets ()
+
+        elif request.POST.get('ClusterHelixTripletsByRMSD'):
+           
+           TMHelixTriplet.objects.all().Cluster()
+
+        elif request.POST.get('CalculateAminoAcidZPreferenceHistogram'):
+           # this happens if You push 'ExtractHelixTriplets'
+
+           AAThreeLetters = ['ARG','HIS','LYS','ASP','GLU','SER','THR','ASN',\
+                             'GLN','CYS','GLY','PRO','ALA','VAL','ILE','LEU',\
+                             'MET','PHE','TYR','TRP']
+           for AAThreeLetterI in AAThreeLetters:
+#               print Residue.objects.all()
+               
+               print Residue.objects.filter(AAThreeLetter=AAThreeLetterI)
+               print Residue.objects.filter(AAThreeLetter=AAThreeLetterI).values_list('Z')
+     #          quit()
+               HistogramPlot(Residue.objects.filter(AAThreeLetter=AAThreeLetterI).values_list('Z'),'AminoAcidZPreference_'+AAThreeLetterI+'.png')
+           # to teraz jak to ugryzc
+
+        elif request.POST.get('Download'):
+            structure.objects.Download()
+            
+        elif request.POST.get('Process'):
+            database.Process() # to musi byc ten model, albo z argumentem
+
+
+        form = TMProteinFileForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            #this happens if you want to upload file
+            
+            if 'UploadXLSFile' in request.POST:
+                
+                XLSFileI = XLSFile(xlsfile=request.FILES['tmproteinfile'])
+                XLSFileI.save()
+                XLSFileI.Read('media/'+request.FILES['tmproteinfile'].name.split('.')[0]+'/'+request.FILES['tmproteinfile'].name, database_id )
+# trzeba bedzie zmienic funkcje Read zeby wczytywala do danego datasetu
+#
+#                TMProtein.objects.ReadXLS(XLSFile =  )
+
+            elif 'UploadProteinFile' in request.POST:
+            
+                if 'checkbox' in request.POST:
+                    print 'Checkbox Selected';
+                    TMProteinI = TMProtein(tmproteinfile = request.FILES['tmproteinfile'],Set='Reference' )
+                else:
+                
+                    TMProteinI = TMProtein(tmproteinfile = request.FILES['tmproteinfile'],Set='Test' )
+
+#new instance of TMProtein is created from models I guess
+                TMProteinI.save()
+
+#            os. system ('mv media/*.pdb media/TMProtein.pdb') #no wlasnie tu trzeba zmienic i utworzyc
+# katalog i tam przeniesc ale musze to prawilnie zrobic
+
+                Path = TMProteinI.path
+            #now we read helices from PDB file
+
+                TMProteinI. ReadPDB ('media/'+request.FILES['tmproteinfile'].name.split('.')[0]+'/'+request.FILES['tmproteinfile'].name),# 'media/TMProtein.db')
+# reads PDB to extract TM Helices
+            # Redirect to the document list after POST
+                return HttpResponseRedirect(reverse('myapp.views.list'))
+    else:
+
+        form = TMProteinFileForm() # A empty, unbound form
     
     
-    return render(request, 'dataset.html', {'structures': database.structure_set.all(),\
-                                            'database_model_i':database})
+#    return render(request, 'dataset.html', {'structures': database.structure_set.all(),\
+#                                            'database_model_i':database})
+
+    return render_to_response(
+        'dataset.html',
+        {'structures': database.structure_set.all(), 'form': form, \
+         'database_model_i':database },
+        context_instance=RequestContext(request)
+    )
     
 
 
@@ -165,6 +328,12 @@ def list(request):
             # this happens if You push 'CalculateSingleHelixStats' button
 
            TMHelixModel.objects.single_helix_stats ()
+
+        elif request.POST.get('NewDataset'):
+            
+            DatabaseModel.objects.create()
+            # this happens if You push 'CalculateSingleHelixStats' button
+
 
         elif request.POST.get('CalculateHelixPairStats'):
             # this happens if You push 'CalculateHelixPairStats' button
