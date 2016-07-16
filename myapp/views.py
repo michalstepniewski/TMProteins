@@ -180,7 +180,7 @@ def database(request, database_id):
         elif request.POST.get('ExtractInteractingHelixPairs'):
            # this happens if You push 'ExtractHelixPairs'
 
-           TMProtein.objects.ExtractInteractingHelixPairs ()
+           TMProtein.objects.filter(structure__in=database.structure_set.all()).ExtractInteractingHelixPairs ()
 
 
         elif request.POST.get('ExtractHelixTriplets'):
@@ -194,11 +194,13 @@ def database(request, database_id):
         elif request.POST.get('ExtractInteractingHelixTriplets'):
            # this happens if You push 'ExtractHelixTriplets'
 
-           TMProtein.objects.ExtractInteractingHelixTriplets ()
+           TMProtein.objects.filter(structure__in=database.structure_set.all()).ExtractInteractingHelixTriplets ()
 
         elif request.POST.get('ClusterHelixTripletsByRMSD'):
+            
            
-           TMHelixTriplet.objects.all().Cluster()
+           
+           TMHelixTriplet.objects.filter(TMProtein__structure__in=database.structure_set.all()).Cluster()
 
         elif request.POST.get('CalculateAminoAcidZPreferenceHistogram'):
            # this happens if You push 'ExtractHelixTriplets'

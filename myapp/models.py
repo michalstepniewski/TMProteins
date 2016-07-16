@@ -213,13 +213,6 @@ class TMProteinManager(models.Manager): #zmienic to na TMProtein
         
         return
 
-#####################################################################################################################################################
-
-    def ExtractInteractingHelixPairs (self):
-    
-        [tmprotein. ExtractInteractingHelixPairs() for tmprotein in self.all()]
-        
-        return
 
 #####################################################################################################################################################
 
@@ -241,6 +234,19 @@ class TMProteinQuerySet(models.QuerySet):
         
         return
 
+    def ExtractInteractingHelixTriplets (self):
+    
+        [tmprotein. ExtractInteractingHelixTriplets() for tmprotein in self.all()]
+        
+        return
+
+#####################################################################################################################################################
+
+    def ExtractInteractingHelixPairs (self):
+    
+        [tmprotein. ExtractInteractingHelixPairs() for tmprotein in self.all()]
+        
+        return
 
 
 def user_directory_path( filename):
@@ -431,7 +437,49 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                 #sprawdzic czy dobrze bedzie
         return
 
+    def ExtractInteractingHelixTriplets (self):
+        
+        print self.TMProtein_ID
+        
+        if not self.tmhelixpair_set.all():
+
+            self. ExtractInteractingHelixPairs ()
+        #bedzie to trzeba zoptymalizowac jakos
+        for tmhelixpairI in self.tmhelixpair_set.all():
+            
+                pks = tmhelixpairI.tmhelixmodel_set.values_list('pk')
+            
+                print pks
+            
+                for tmhelixpairII in self.tmhelixpair_set.all():
+                
+                    pks2 = tmhelixpairII.tmhelixmodel_set.values_list('pk')
+                
+#                print pks2
+                
+                    from itertools import chain
+                    
+#                    print pks, pks2, pks|pks2
+                    
+#                    print pks|pks2
+
+                    if self.tmhelixmodel_set.filter(id__in=(pks|pks2)).count() ==3:
+                        
+#                        print 'found Triplet'
+                    
+                        tmhelixtriplet = TMHelixTriplet.objects.create(Set=self.Set)
+                    
+                        tmhelixtriplet.tmhelixmodel_set = self.tmhelixmodel_set.filter(id__in=(pks|pks2))
+                    
+                        tmhelixtriplet. getPhi ()
+                        tmhelixtriplet.save()
+                        self.tmhelixtriplet_set.add(tmhelixtriplet)  
+                        self.save()
+
+    
     def ExtractInteractingHelixPairs (self):
+        
+        print self.TMProtein_ID
         
         NoHelices = self. tmhelixmodel_set.count()
         
@@ -458,8 +506,9 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                     tmhelixpair.getCrossingAngle ()              
                     tmhelixpair.save()
                     self.tmhelixpair_set.add(tmhelixpair)  
-                
-                    print  'Count '+str(tmhelixpair.tmhelixmodel_set.count())        
+                    self.save()
+                    print self.tmhelixpair_set.all()
+#                    print  'Count '+str(tmhelixpair.tmhelixmodel_set.count())        
                 #sprawdzic czy dobrze bedzie
         return
 
@@ -646,6 +695,7 @@ class TMHelixTripletQuerySet(models.QuerySet):
 
     def RMSD(self):
         
+        
         return RMSD(self[0].Crds(), self[1].Crds())
 
     def Cluster(self):
@@ -674,7 +724,9 @@ class TMHelixTripletQuerySet(models.QuerySet):
         
         for N1 in range(length):
             for N2 in range(N1+1,length):
+                print self[N1].TMProtein.TMProtein_ID, self[N2].TMProtein.TMProtein_ID
                 RMSDI = self.filter(id__in=(self[N1].pk,self[N2].pk)).RMSD()
+                print RMSDI
                 RMSDMatrixI.itemset((N1,N2),(RMSDI))
                 RMSDMatrixI.itemset((N2,N1),(RMSDI))       
         print RMSDMatrixI
