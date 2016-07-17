@@ -24,8 +24,8 @@ class ClusterManager (models.Manager):
 class ClusterQueryset (models.QuerySet):
     pass 
 
-class Cluster (models.Model):
-    pass
+#class Cluster (models.Model):
+#    pass
 
 class ClusterManager (models.Manager):
     pass

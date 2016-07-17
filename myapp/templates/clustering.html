@@ -1,0 +1,12 @@
+
+
+{{clustering.pk}} <br>
+                        {{clustering.idx}} <br>
+                        {{clustering.no_cluster}} <br>
+                        {{clustering.distance}} <br> 
+                        
+    {% for cluster in clustering.cluster_set %}
+    
+        <a href="{% url 'cluster' cluster.id %}">{{ cluster.id }}</a>
+        
+    {% endfor %}

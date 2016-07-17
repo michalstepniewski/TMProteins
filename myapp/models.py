@@ -25,6 +25,96 @@ import openpyxl
 #print Picture
 #print 'imported Picture'
 
+def kMedoids(D, k, tmax=100):
+    # determine dimensions of distance matrix D
+    m, n = D.shape
+    print D
+
+    # randomly initialize an array of k medoid indices
+    M = np.sort(np.random.choice(n, k))
+
+    # create a copy of the array of medoid indices
+    Mnew = np.copy(M)
+
+    # initialize a dictionary to represent clusters
+    C = {}
+
+    for t in xrange(tmax):
+        # determine clusters, i.e. arrays of data indices
+        J = np.argmin(D[:,M], axis=1)
+        for kappa in range(k):
+            C[kappa] = np.where(J==kappa)[0]
+            
+
+        # update cluster medoids
+        for kappa in range(k):
+            J = np.mean(D[np.ix_(C[kappa],C[kappa])],axis=1)
+            print J
+            j = np.argmin(J)
+            Mnew[kappa] = C[kappa][j]
+        np.sort(Mnew)
+
+        # check for convergence
+        if np.array_equal(M, Mnew):
+            break
+
+        M = np.copy(Mnew)
+    else:
+        # final update of cluster memberships
+        J = np.argmin(D[:,M], axis=1)
+        for kappa in range(k):
+            C[kappa] = np.where(J==kappa)[0]
+
+    # return results
+    return M, C
+
+def to_csv(array,path):
+    
+    f = open(path,'w')
+    
+    for row in array:
+        
+        f.write(','.join([str(item) for item in row])+'\n')
+    
+    f.flush()
+    f.close()
+    
+    return
+
+def from_csv(path):
+    
+    array = []
+    
+    f=open(path,'r')
+    
+    for row in f.readlines():
+        
+        array.append([float(item) for item in row.split(',')])
+                       
+    return np.array(array)
+
+def getRMSDMatrix(crdssI):
+#ta matryca pewnie bedzie za dluga na JSONA a i tak musi wejsc do pamieci
+
+    length = len(crdssI)
+    
+    print length
+        
+    RMSDMatrixI = np.zeros((length,length))
+        
+    for N1 in range(length):
+        
+        print N1
+        for N2 in range(N1+1,length):
+            RMSDI = RMSD(crdssI[N1],crdssI[N2])
+            
+            RMSDMatrixI.itemset((N1,N2),(RMSDI))
+            RMSDMatrixI.itemset((N2,N1),(RMSDI))       
+        
+         
+    to_csv(RMSDMatrixI,'media/RMSDMatrix.csv')
+
+    return RMSDMatrixI
 
 def RMSD (objs1,objs2):
     
@@ -46,7 +136,7 @@ def contact(obj1,obj2):
     if -5.0 < X < 5.0:
         Y = obj1.Y -obj2.Y
         if -5.0 < Y < 5.0:
-            if (X**2 + Y**2 + (obj1.Z-obj2.Z)**2) < 25.0:
+            if (X**2 + Y**2 + (obj1.Z-obj2.Z)**2) < (obj1.VdWRadius+obj2.VdWRadius+0.5)**2:
                 return True
 
     return False
@@ -64,6 +154,10 @@ def contact_m(objs1,objs2):
                if contact(obj1,obj2):
                    return True
 
+#trzeba to pozmieniac zeby zwracalo contact amino acids
+# pousuwac w shellu rzeczy z bazy danych
+# 
+
     return False
 
 
@@ -79,6 +173,19 @@ def get_upload_path(instance, filename):
     name, ext = filename.split('.')
     file_path = '{name}/{name}.{ext}'.format( name=name, ext=ext) 
     return file_path
+
+class Clustering (models.Model):
+    
+        idx = models.FloatField(null=True)
+        no_cluster = models.CharField(max_length=10000,null=True)
+        distance = models.CharField(max_length=10000,null=True)
+
+class Cluster (models.Model):
+    
+        pass
+#        idx = models.FloatField(null=True)
+#        no_cluster = models.CharField(max_length=10000,null=True)
+#        distance = models.CharField(max_length=10000,null=True)    
 
 
 class XLSFile(models.Model):
@@ -374,6 +481,7 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                         atom.Y = AtomI.Y
                         atom.Z = AtomI.Z
                         atom.Mass = AtomI.Mass()
+                        atom.VdWRadius = AtomI.VdWRadius()
                         atom.AAThreeLetter = AtomI.AAThreeLetter
                         atom.save()
                         self.atom_set.add(atom)
@@ -439,43 +547,81 @@ class TMProtein (models.Model): #zmienic to na TMProtein
 
     def ExtractInteractingHelixTriplets (self):
         
-        print self.TMProtein_ID
+     triplet_pkss = []
         
+     print self.TMProtein_ID
+        
+        
+     with transaction.atomic():        
         if not self.tmhelixpair_set.all():
 
             self. ExtractInteractingHelixPairs ()
         #bedzie to trzeba zoptymalizowac jakos
-        for tmhelixpairI in self.tmhelixpair_set.all():
+        
+        NoPairs = self.tmhelixpair_set.count()
+        
+        helices = self.tmhelixpair_set.all()
+        pair_pks= self.tmhelixpair_set.values_list('pk')
+        
+        print pair_pks
+        
+        length = len(pair_pks)
+        
+#        print type(pair_pks)
+        
+#        print pair_pks[0]
+#        print pair_pks[1]
+#        print pair_pks[2]        
+#        print pair_pks[3]        
+
+#        quit()
+        
+        for N1 in range(length):
             
-                pks = tmhelixpairI.tmhelixmodel_set.values_list('pk')
+                print pair_pks[N1][0]
             
-                print pks
+                pks = TMHelixPair.objects.get(pk=pair_pks[N1][0]).tmhelixmodel_set.values_list('pk')
             
-                for tmhelixpairII in self.tmhelixpair_set.all():
+#                print pks
+            
+                for N2 in range(N1+1,length):
                 
-                    pks2 = tmhelixpairII.tmhelixmodel_set.values_list('pk')
+                    pks2 = TMHelixPair.objects.get(pk=pair_pks[N2][0]).tmhelixmodel_set.values_list('pk')
                 
-#                print pks2
+#                    print (pks|pks2).distinct()
+
                 
-                    from itertools import chain
+ #                   from itertools import chain
                     
 #                    print pks, pks2, pks|pks2
                     
 #                    print pks|pks2
 
-                    if self.tmhelixmodel_set.filter(id__in=(pks|pks2)).count() ==3:
+                    if (pks|pks2).distinct().count() ==3:
+                        
+                        triplet_pks = (pks|pks2).distinct().order_by('pk')
+                        
+                        lista = [triplet_pk[0] for triplet_pk in triplet_pks]
+                        
+                        if lista not in triplet_pkss:
+                            
+                            print triplet_pkss
+                            print triplet_pks
+
+                            triplet_pkss.append(lista)
+                        
                         
 #                        print 'found Triplet'
                     
-                        tmhelixtriplet = TMHelixTriplet.objects.create(Set=self.Set)
+                            tmhelixtriplet = TMHelixTriplet.objects.create(Set=self.Set)
                     
-                        tmhelixtriplet.tmhelixmodel_set = self.tmhelixmodel_set.filter(id__in=(pks|pks2))
+                            tmhelixtriplet.tmhelixmodel_set = self.tmhelixmodel_set.filter(id__in=triplet_pks).order_by('pk')
                     
-                        tmhelixtriplet. getPhi ()
-                        tmhelixtriplet.save()
-                        self.tmhelixtriplet_set.add(tmhelixtriplet)  
-                        self.save()
-
+                            tmhelixtriplet. getPhi ()
+                            tmhelixtriplet.save()
+                            self.tmhelixtriplet_set.add(tmhelixtriplet)  
+                    self.save()
+                    
     
     def ExtractInteractingHelixPairs (self):
         
@@ -697,39 +843,69 @@ class TMHelixTripletQuerySet(models.QuerySet):
         
         
         return RMSD(self[0].Crds(), self[1].Crds())
-
+    
+    def Crds(self):
+        
+        return [ tripletI.Crds() for tripletI in self ]
+# trzeba bedzie pK z tego zachowac
     def Cluster(self):
 
-        RMSDMatrixI = self.getRMSDMatrix()
+#        if not self.RMSDMatrix:
         
-        centroids, idx = kmeans ( RMSDMatrixI, 6 )
+        if not hasattr(self, 'RMSDMatrix'):
+            
+           import os.path 
+           if os.path.isfile('media/RMSDMatrix.csv'):
+               
+               self.RMSDMatrix= from_csv('media/RMSDMatrix.csv')
+               
+           else:   
+               
+               self.getRMSDMatrix()
         
-        code,distance = vq(RMSDMatrixI,centroids)
+        centroids, idx = kMedoids ( self.RMSDMatrix, 6 )
+        
+        ClusteringI = Clustering.objects.create()
+        
+        print 'idx'
+        
+        print idx
+        
+#        no_cluster,distance = vq(self.RMSDMatrix,centroids)
+
+#        searchval = 3
+#ii = np.where(values == searchval)[0]
+
+ #       ClusteringI.idx = idx
+ #       ClusteringI.no_cluster = ','.join(no_cluster)
+ #       ClusteringI.distance=str(distance)
+ #       ClusteringI.save()
         
         print 'centroids'
         print centroids
-        print 'code'
-        print code
-        print 'distance'
-        print distance
+ #       print 'no_cluster'
+ #       print no_cluster
+ #       print 'distance'
+ #       print distance
 
         return
 
     def getRMSDMatrix(self):
 #ta matryca pewnie bedzie za dluga na JSONA a i tak musi wejsc do pamieci
+        self.RMSDMatrix = getRMSDMatrix (self.Crds())
+        return self.RMSDMatrix
 
-        length = len(self)
+#        length = len(self)        
+#        RMSDMatrixI = np.zeros((length,length))        
         
-        RMSDMatrixI = np.zeros((length,length))
-        
-        for N1 in range(length):
-            for N2 in range(N1+1,length):
-                print self[N1].TMProtein.TMProtein_ID, self[N2].TMProtein.TMProtein_ID
-                RMSDI = self.filter(id__in=(self[N1].pk,self[N2].pk)).RMSD()
-                print RMSDI
-                RMSDMatrixI.itemset((N1,N2),(RMSDI))
-                RMSDMatrixI.itemset((N2,N1),(RMSDI))       
-        print RMSDMatrixI
+#        for N1 in range(length):
+#            for N2 in range(N1+1,length):
+#                print self[N1].TMProtein.TMProtein_ID, self[N2].TMProtein.TMProtein_ID
+#                RMSDI = self.filter(id__in=(self[N1].pk,self[N2].pk)).RMSD()
+#                print RMSDI
+#                RMSDMatrixI.itemset((N1,N2),(RMSDI))
+#                RMSDMatrixI.itemset((N2,N1),(RMSDI))       
+#        print RMSDMatrixI
 #        quit()        
 
         return RMSDMatrixI
@@ -743,6 +919,7 @@ class TMHelixTriplet (models.Model):
     Score = models.FloatField (null=True)
     Set = models.CharField(max_length=10,null=True)
     Type = models.CharField(max_length=20,null=True)
+    Cluster = models.IntegerField(null=True)
 
 #####################################################################################################################################################
 
@@ -1013,6 +1190,7 @@ class   Atom (models.Model):
     Z = models.FloatField(null=True)
     Mass = models.FloatField(null=True)
     AAThreeLetter = models.CharField(max_length=3,null=True)
+    VdWRadius = models.FloatField(null=True)
 
 #there should be vdW somewhere
 

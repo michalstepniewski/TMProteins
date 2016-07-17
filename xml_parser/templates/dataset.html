@@ -108,6 +108,18 @@
 
 			</tr>
             </table>
+            
+            <p>Clusterings:</p>
+            {% for clustering in clusterings %}
+            
+            <p>         {{clustering.pk}} <br>
+                        {{clustering.idx}} <br>
+                        {{clustering.no_cluster}} <br>
+                        {{clustering.distance}} <br> 
+                        <a href="{% url 'clustering' clustering.id %}">{{ clustering.id }}</a>
+            </p>
+            
+            {% endfor %}
 		</form>
         <!-- prawdopodobnie bede chcial to podzielic na kilka formow -->
         <!-- powininienem to zlaczyc w jeden template z database ... -->

@@ -15,7 +15,7 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
 from myapp.models import TMProtein, TMHelixModel, TMHelixPair, TMHelixTriplet, \
-Residue, TMProteinManager, XLSFile
+Residue, TMProteinManager, XLSFile, Clustering
 
 from xml_parser.models import DatabaseModel
 
@@ -270,7 +270,9 @@ def database(request, database_id):
 
     return render_to_response(
         'dataset.html',
-        {'structures': database.structure_set.all(), 'form': form, \
+        {'structures': database.structure_set.all(),\
+         'clusterings':Clustering.objects.all(),\
+          'form': form, \
          'database_model_i':database },
         context_instance=RequestContext(request)
     )

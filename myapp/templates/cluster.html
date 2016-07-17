@@ -6,87 +6,11 @@
 {% static "" as baseUrl %}
 <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
 
-<table>
-<tr>
-
-<td>IDs:</td>
-<td>{% for tmhelix in tmhelixpair.tmhelixmodel_set.all %}
- {{ tmhelix.TMHelix_ID }}
-{% endfor %}
-</td>
-</tr>
-<tr>
-<td>Crossing Angle:</td> <td> {{ tmhelixpair.CrossingAngle }} </td> 
-</tr>
-<tr>
-<td>Crossing Angle (Extracellular Leaflet):</td> <td> {{ tmhelixpair.CrossingAngleEC }} </td>
-</tr>
-<tr>
-<td>Crossing Angle (Intracellular Leaflet):</td> <td> {{ tmhelixpair.CrossingAngleIC }} </td>
-</tr>
-</table>
 
 
-
-<img src="{{ baseUrl }}/myapp/static/{{ tmhelix.TMHelix_pdb_path }}/{{tmhelix.TMHelix_ID}}/helisa.png" alt="My image"/>
-
-<div id="glmol01" style="width: 300px; height: 300px; background-color: black;"></div> <textarea id="glmol01_src" style="display: none;">
-
-<!--This is a comment. Comments are not displayed in the browser-->
-{% for tmhelix in tmhelixpair.tmhelixmodel_set.all %}
-
-
-{{ tmhelix.atom_set.show }}
-
-HETATM 991{{ tmhelix.TMHelix_ID }}  N   MET A   1    {{ tmhelix.MC_EC_X|format83f }}{{ tmhelix.MC_EC_Y|format83f }}{{ tmhelix.MC_EC_Z|format83f }}  1.00 47.11           N  
-HETATM 992{{ tmhelix.TMHelix_ID }}  CA  MET A   1    {{ tmhelix.MC_MM_X|format83f }}{{ tmhelix.MC_MM_Y|format83f }}{{ tmhelix.MC_MM_Z|format83f }}  1.00 47.11           C  
-HETATM 993{{ tmhelix.TMHelix_ID }}  O1  MET A   1    {{ tmhelix.MC_IC_X|format83f }}{{ tmhelix.MC_IC_Y|format83f }}{{ tmhelix.MC_IC_Z|format83f }}  1.00 47.11           O  
-
-
-{% endfor %}
-
-</textarea>
-
-{% load static %}
-{% static "" as baseUrl %}
-
-<script src="{{ baseUrl }}/myapp/static/js/jquery-1.7.min.js"></script>
-<script src="{{ baseUrl }}/myapp/static/js/Three49custom.js"></script>
-<script type="text/javascript" src="{{ baseUrl }}/myapp/static/js/GLmol.js"></script>
-<script type="text/javascript">
-
-// Small molecules can be embedded in the page
-
-var glmol01 = new GLmol('glmol01',false);//  supress autoload set to false gives mol wo cylinders //
-
-// Proteins can also be embedded in the page but 
-//  you might want to keep it separate.
-
-var glmol01 = new GLmol('glmol01', true); // supress autoload set to true gives black background //
-glmol01.defineRepresentation = function() {
-   var all = this.getAllAtoms();
-   var hetatm = this.removeSolvents(this.getHetatms(all));
-   this.colorByAtom(all, {});
-   this.colorByChain(all);
-   var asu = new THREE.Object3D();
-   
-   this.drawBondsAsStick(asu, hetatm, this.cylinderRadius, this.cylinderRadius);
-   this.drawBondsAsStick(asu, this.getResiduesById(this.getSidechains(this.getChain(all, ['A'])), [58, 87]), this.cylinderRadius, this.cylinderRadius);
-   this.drawBondsAsStick(asu, this.getResiduesById(this.getSidechains(this.getChain(all, ['B'])), [63, 92]), this.cylinderRadius, this.cylinderRadius);
-   this.drawCartoon(asu, all, this.curveWidth, this.thickness);
-
-  // LOOK HERE
-   this.drawCylinder(asu, new THREE.Vector3(0.0, 0.0, 0.0), new
-   THREE.Vector3(0.0, 0.0, 10.0), 10.0, white);
-
-   this.drawSymmetryMates2(this.modelGroup, asu, this.protein.biomtMatrices);
-   this.modelGroup.add(asu);
-};
-
-//$.get("2DHB.pdb", function(ret) { //
-//$("#glmol02_src").val(ret); //
-//glmol02.loadMolecule(); //
-//}); //
-</script>
-
+    {% for tmhelixtriplet in cluster.tmhelixtriplet.set %}
+    
+        <a href="{% url 'tmhelixtriplet' tmhelixtriplet.id %}">{{ tmhelixtriplet.id }}</a>
+        
+    {% endfor %}
 
