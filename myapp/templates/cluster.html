@@ -7,10 +7,15 @@
 <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
 
 
+    <p>Cluster </p>
+    {{centroidpk}}
+        <a href="{% url 'triplet' centroidpk %}">{{ centroidpk }}</a>
 
-    {% for tmhelixtriplet in cluster.tmhelixtriplet.set %}
+    <p>Member Count: {{ tmhelixtriplets.count }} </p>
+    <p>Cluster RMSD: {{ cluster.RMSD }} </p>
+    {% for tmhelixtriplet in tmhelixtriplets %}
     
-        <a href="{% url 'tmhelixtriplet' tmhelixtriplet.id %}">{{ tmhelixtriplet.id }}</a>
+        <a href="{% url 'triplet' tmhelixtriplet.id %}">{{ tmhelixtriplet.id }}</a>
         
     {% endfor %}
 

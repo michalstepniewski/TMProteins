@@ -15,7 +15,7 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
 from myapp.models import TMProtein, TMHelixModel, TMHelixPair, TMHelixTriplet, \
-Residue, TMProteinManager, XLSFile, Clustering
+Residue, TMProteinManager, XLSFile, Clustering, Cluster
 
 from xml_parser.models import DatabaseModel
 
@@ -23,6 +23,8 @@ from myapp.forms import TMProteinFileForm
 import os
 from PlotToolsModule import HistogramPlot
 from .forms import UploadFileForm
+from django.contrib.auth.decorators import login_required
+
 
 # Imaginary function to handle an uploaded file.
 from somewhere import handle_uploaded_file
@@ -137,6 +139,29 @@ def clone_database(request, id):
     
     return HttpResponseRedirect(reverse('list'))
 
+def clustering(request, clustering_id):
+    clustering = get_object_or_404(Clustering, pk=clustering_id)
+
+    return render_to_response(
+        'clustering.html',
+        {'clustering':clustering, 'clusters': clustering.cluster_set.all(),\
+        },
+        context_instance=RequestContext(request)
+    )
+
+def cluster(request, cluster_id):
+    cluster = get_object_or_404(Cluster, pk=cluster_id)
+    
+#    print cluster.Centroid.id; quit()#.id; quit()
+
+    return render_to_response(
+        'cluster.html',
+        {'cluster':cluster,'centroidpk':cluster.Centroidpk, 'tmhelixtriplets': cluster.tmhelixtriplet_set.all(),\
+        },
+        context_instance=RequestContext(request)
+    )
+
+#@login_required (redirect_field_name='my_redirect_field', login_url='/accounts/login/')
 def database(request, database_id):
     print 'database requested'
     print database_id
@@ -309,7 +334,8 @@ def Clear (request,post_id):
         {'tmproteins': tmproteins, 'form': form },
         context_instance=RequestContext(request)
     )
-
+    
+#@login_required (redirect_field_name='my_redirect_field',login_url='/accounts/login/')
 def list(request):
 # prawdopodobnie powinienem to jakos rozbic na kilka viewsow
     # Handle file upload
@@ -439,3 +465,37 @@ def list(request):
         {'tmproteins': tmproteins, 'form': form, 'databases': databases },
         context_instance=RequestContext(request)
     )
+
+from django.contrib.auth import authenticate, login
+
+'''
+
+def my_view(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        if user.is_active:
+            login(request, user)
+            # Redirect to a success page.
+        else:
+            # Return a 'disabled account' error message
+            ...
+    else:
+        # Return an 'invalid login' error message.
+        ...
+'''
+        
+from django.contrib.auth import logout
+
+def logout_view(request):
+    logout(request)
+    # Redirect to a success page.
+    
+from django.conf import settings
+from django.shortcuts import redirect
+
+def my_view(request):
+    if not request.user.is_authenticated():
+        return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
+    # ...

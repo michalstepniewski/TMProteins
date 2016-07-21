@@ -5,10 +5,12 @@
 <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
 
 <table>
+ <tr> <td> <a href="{% url 'tmprotein' tmhelixtriplet.TMProtein.id %}">{{ tmhelixtriplet.TMProtein.TMProtein_ID }}</a> </td> </tr>
+
 <tr>
 <td>ID:</td>
 <td>{% for tmhelix in tmhelixtriplet.tmhelixmodel_set.all %}
-{{ tmhelix.TMHelix_ID }}
+ <li><a href="{% url 'helix' tmhelix.id %}">TM{{ tmhelix.TMHelix_ID }}</a></li>
 {% endfor %}</td>
 </tr>
 <tr>

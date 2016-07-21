@@ -10,6 +10,7 @@
 {% static "" as baseUrl %}
 
 <table>
+ <tr> <td> <a href="{% url 'tmprotein' tmhelix.TMProtein.id %}">{{ tmhelix.TMProtein.TMProtein_ID }}</a> </td> </tr>
  <tr> <td> ID: </td> <td>{{ tmhelix.TMHelix_ID }} </td> </tr>
  <tr> <td>Amino Acid Sequence: </td> <td> {{ tmhelix.TMHelix_AASEQ }}</td></tr>
  <tr style="color: red"> <td> Tilt: </td> <td> {{ tmhelix.TMHelix_Tilt }} DEG </td> </tr>

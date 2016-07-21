@@ -19,6 +19,7 @@ import match
 from match import rmsd
 from models1 import *
 import openpyxl
+import itertools
 
 #print 'importing Picture'
 #from fileupload.models import Picture
@@ -66,7 +67,11 @@ def kMedoids(D, k, tmax=100):
             C[kappa] = np.where(J==kappa)[0]
 
     # return results
+#    np.average(D[M])
     return M, C
+
+# no to jakies 
+# tutaj dolaczyc jakies RMSD klastra
 
 def to_csv(array,path):
     
@@ -93,10 +98,49 @@ def from_csv(path):
                        
     return np.array(array)
 
+def centeroidnp(arr):
+    
+    length = arr.shape[0]
+    sum_x = np.sum(arr[:, 0])
+    sum_y = np.sum(arr[:, 1])
+    sum_z = np.sum(arr[:, 2])    
+    return sum_x/length, sum_y/length, sum_z/length
+
+#def getCenter(crds):
+    
+#    X = numpy.average([crd[0] for crd in crds] )
+#    Y = numpy.average([crd[1] for crd in crds] )
+#    Z = numpy.average([crd[2] for crd in crds] )
+    
+#    return [X,Y,Z]
+
+def CenterCrdss(Crdss):
+    
+    Crdss = np.array(Crdss)
+    
+    for N in range(len(Crdss)):
+    
+        Crdss[N]= CenterCrds(Crdss[N])
+        
+    return Crdss
+        
+        
+
+def CenterCrds(Crds):
+    
+    Crds=np.array(Crds)
+    
+    Center = centeroidnp(Crds)
+    
+    return np.subtract(Crds,Center)
+       
+
 def getRMSDMatrix(crdssI):
 #ta matryca pewnie bedzie za dluga na JSONA a i tak musi wejsc do pamieci
-
+# zrobic zeby uwzglednialo perturbacje
     length = len(crdssI)
+    
+    crdssI =  CenterCrdss(crdssI)
     
     print length
         
@@ -106,22 +150,50 @@ def getRMSDMatrix(crdssI):
         
         print N1
         for N2 in range(N1+1,length):
-            RMSDI = RMSD(crdssI[N1],crdssI[N2])
-            
+            RMSDI = RMSD_Perm(crdssI[N1],crdssI[N2])
+# na razie tak zmieniam na szybko, potem 
+# wprzyszlym tygodniu bede parametryzowal            
             RMSDMatrixI.itemset((N1,N2),(RMSDI))
             RMSDMatrixI.itemset((N2,N1),(RMSDI))       
         
          
     to_csv(RMSDMatrixI,'media/RMSDMatrix.csv')
-
+# jakies settingsy ogarnac
+# a najlepiej przemigrowac to
     return RMSDMatrixI
 
 def RMSD (objs1,objs2):
-    
-    
-    
+        
     return rmsd (np.array(objs1), np.array(objs2))
 
+def RMSD_Perm (objs1,objs2):
+    
+    import itertools
+    
+    minRMSD = 1000.0
+    
+    perms = [[0,1,2],\
+             [0,2,1],\
+             [1,0,2],\
+             [1,2,0],\
+             [2,1,0],\
+             [2,0,1]]
+    
+    Nos =   [[0,1,2],\
+             [3,4,5],\
+             [6,7,8]]
+    
+    
+    for perm in perms:
+    
+#        objs1_perm = flatten([[objs1[No] for Nos in Nos[N]] for N in perm])
+        objs2_perm = list(itertools.chain.from_iterable([[objs2[No] for No in Nos[N]] for N in perm]))
+    
+        minRMSD = min(minRMSD, RMSD(objs1,objs2_perm))       
+    
+    return minRMSD
+
+# czy to uwzglednia srodek (koordynatow) masy?
 #import match.py
 
 def probability (Value, Distribution):
@@ -152,13 +224,13 @@ def contact_m(objs1,objs2):
        for obj1 in objs1:
            for obj2 in objs2:
                if contact(obj1,obj2):
-                   return True
+                   return [True,obj1.Text,obj2.Text]
 
 #trzeba to pozmieniac zeby zwracalo contact amino acids
 # pousuwac w shellu rzeczy z bazy danych
 # 
 
-    return False
+    return [False]
 
 
 def distance(obj1, obj2):
@@ -179,13 +251,18 @@ class Clustering (models.Model):
         idx = models.FloatField(null=True)
         no_cluster = models.CharField(max_length=10000,null=True)
         distance = models.CharField(max_length=10000,null=True)
-
+        RMSD = models.FloatField(null=True)
+        
 class Cluster (models.Model):
     
+        Clustering = models.ManyToManyField(Clustering,null=True)
+        Centroidpk = models.IntegerField(null=True)
+        RMSD = models.FloatField(null=True)
         pass
 #        idx = models.FloatField(null=True)
 #        no_cluster = models.CharField(max_length=10000,null=True)
 #        distance = models.CharField(max_length=10000,null=True)    
+
 
 
 class XLSFile(models.Model):
@@ -758,17 +835,19 @@ class TMHelixPair (models.Model):
     CrossingAngleEC = models.FloatField (null=True)
     CrossingAngleIC = models.FloatField (null=True)
     TMProtein = models.ForeignKey(TMProtein, on_delete=models.CASCADE, null=True)
-
+    ContactAtoms = models.CharField(max_length=2000,null=True)
 #####################################################################################################################################################
 
     def Contact(self):
         with transaction.atomic():        
             TMHelices = self.tmhelixmodel_set.all ()
         
-            TMHelix1 = TMHelices[0]
-            TMHelix2 = TMHelices[1]
-            
-            if contact_m(TMHelix1.atom_set.all(),TMHelix2.atom_set.all()):
+            TMHelix1, TMHelix2 = TMHelices
+
+            contact_mI = contact_m(TMHelix1.atom_set.all(),TMHelix2.atom_set.all())
+#musze wszystkie kontakty zwracac bo masakra
+            if contact_mI[0]:
+                self.ContactAtoms= ';'.join([contact_mI[1],contact_mI[2]])
                 return True
         
 #            for Residue1 in TMHelix1.residue_set.all():
@@ -849,11 +928,13 @@ class TMHelixTripletQuerySet(models.QuerySet):
         return [ tripletI.Crds() for tripletI in self ]
 # trzeba bedzie pK z tego zachowac
     def Cluster(self):
-
+## tu powinny byc opcje rozne
+# dobra, zobaczymy czy to dziala
 #        if not self.RMSDMatrix:
         
         if not hasattr(self, 'RMSDMatrix'):
-            
+#        if 1==1:            
+#
            import os.path 
            if os.path.isfile('media/RMSDMatrix.csv'):
                
@@ -863,13 +944,45 @@ class TMHelixTripletQuerySet(models.QuerySet):
                
                self.getRMSDMatrix()
         
-        centroids, idx = kMedoids ( self.RMSDMatrix, 6 )
         
-        ClusteringI = Clustering.objects.create()
+               
+#        k=6
         
-        print 'idx'
+        for k in range(1,30):
+            print k      
+            centroids, code_dict = kMedoids ( self.RMSDMatrix, k )
         
-        print idx
+            ClusteringI = Clustering.objects.create()
+            ClusteringI.no_cluster = str(k)
+#        ClusteringI.idx = idx
+            
+  #          print code_dict
+  #          print centroids; #quit()
+            ClusteringI.RMSD = np.average( list(itertools.chain.from_iterable( [ [self.RMSDMatrix [N][N1]  for N1 in code_dict[N]] for N in range(k)])) )
+            for N in range(k):
+            
+                ClusterI = Cluster.objects.create()
+  #              print code_dict[N]
+#            quit()
+
+                ClusterI.Centroid = self[centroids[N]] 
+            
+                ClusterI.Centroidpk = self[centroids[N]].id
+            
+#            quit()
+#            ClusterI.save()
+                ClusterI.RMSD = np.average( [self.RMSDMatrix [N][N1]  for N1 in code_dict[N]] )
+                for N1 in code_dict[N]:
+            
+                    ClusterI.tmhelixtriplet_set.add(self[N1])
+            
+                ClusterI.save()
+                ClusteringI.cluster_set.add(ClusterI)
+
+            ClusteringI.save()
+#        print 'idx'
+        
+#        print idx
         
 #        no_cluster,distance = vq(self.RMSDMatrix,centroids)
 
@@ -881,13 +994,13 @@ class TMHelixTripletQuerySet(models.QuerySet):
  #       ClusteringI.distance=str(distance)
  #       ClusteringI.save()
         
-        print 'centroids'
-        print centroids
+#        print 'centroids'
+#        print centroids
  #       print 'no_cluster'
  #       print no_cluster
  #       print 'distance'
  #       print distance
-
+        
         return
 
     def getRMSDMatrix(self):
@@ -919,7 +1032,7 @@ class TMHelixTriplet (models.Model):
     Score = models.FloatField (null=True)
     Set = models.CharField(max_length=10,null=True)
     Type = models.CharField(max_length=20,null=True)
-    Cluster = models.IntegerField(null=True)
+    Cluster = models.ManyToManyField(Cluster,null=True)
 
 #####################################################################################################################################################
 
@@ -934,7 +1047,8 @@ class TMHelixTriplet (models.Model):
             CrdsI.append([tmhelix.MC_EC_X, tmhelix.MC_EC_Y, tmhelix.MC_EC_Z ])
             CrdsI.append([tmhelix.MC_MM_X, tmhelix.MC_MM_Y, tmhelix.MC_MM_Z ])
             CrdsI.append([tmhelix.MC_IC_X, tmhelix.MC_IC_Y, tmhelix.MC_IC_Z ])
-        
+# w ktorym miejscu chce permutacje? moze zamiast RMSD        
+#wiec lista jest plaska
         return CrdsI
 
 
@@ -980,17 +1094,26 @@ class TMHelixTriplet (models.Model):
         P1 = [helix1.MC_MM_X,helix1.MC_MM_Y,helix1.MC_MM_Z]
         P2 = [helix2.MC_MM_X,helix2.MC_MM_Y,helix2.MC_MM_Z]        
         P3 = [helix3.MC_MM_X,helix3.MC_MM_Y,helix3.MC_MM_Z]
+        P1 = np.array(P1)
+        P2=np.array(P2)
+        P3=np.array(P3)
+        P1_P2=np.subtract(P2,P1)
+        P1_P3=np.subtract(P3,P1)
+        length_P1_P2 = np.linalg.norm(P1_P2)
+        length_P1_P3 = np.linalg.norm(P1_P3)
 
 #        print P1
 #        print P2
 #        print P3
 
-        Vec1 = SetOfPoints([P1,P2]).Vector()
-        Vec2 = SetOfPoints([P1,P3]).Vector()
-        self.Phi = SetOfVectors([Vec1, Vec2 ]) .AngleDEG ()
+#        Vec1 = SetOfPoints([P1,P2]).Vector()
+#        Vec2 = SetOfPoints([P1,P3]).Vector()        
+#        self.Phi = SetOfVectors([Vec1, Vec2 ]) .AngleDEG ()
 #        print self.Phi
 #        quit()
-
+#        cross = np.cross(P1_P2, P1_P3)
+        self.Phi = math.asin(np.cross(P1_P2, P1_P3)[2]/(length_P1_P2*length_P1_P3))*(180/math.pi)
+# prowizoryczne dla handednessa
 #####################################################################################################################################################
 
     def Interacting (self,VdWContactZRange =[-8.0, 8.0]):
@@ -1001,6 +1124,13 @@ class TMHelixTriplet (models.Model):
         
         return
 
+
+
+
+Cluster.Centroid = models.ForeignKey(TMHelixTriplet,
+    on_delete=models.CASCADE,
+#    primary_key=True,
+    )
 
 
 class TMHelixModel (models.Model):
