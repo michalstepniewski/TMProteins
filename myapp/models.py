@@ -20,16 +20,17 @@ from match import rmsd
 from models1 import *
 import openpyxl
 import itertools
+import matplotlib.pyplot as plt
 
 #print 'importing Picture'
 #from fileupload.models import Picture
 #print Picture
 #print 'imported Picture'
 
-def kMedoids(D, k, tmax=100):
+def kMedoids(D, k, tmax=10000):
     # determine dimensions of distance matrix D
     m, n = D.shape
-    print D
+#    print D
 
     # randomly initialize an array of k medoid indices
     M = np.sort(np.random.choice(n, k))
@@ -50,7 +51,7 @@ def kMedoids(D, k, tmax=100):
         # update cluster medoids
         for kappa in range(k):
             J = np.mean(D[np.ix_(C[kappa],C[kappa])],axis=1)
-            print J
+#            print J
             j = np.argmin(J)
             Mnew[kappa] = C[kappa][j]
         np.sort(Mnew)
@@ -135,7 +136,7 @@ def CenterCrds(Crds):
     return np.subtract(Crds,Center)
        
 
-def getRMSDMatrix(crdssI):
+def getRMSDMatrix(crdssI,Perm=False):
 #ta matryca pewnie bedzie za dluga na JSONA a i tak musi wejsc do pamieci
 # zrobic zeby uwzglednialo perturbacje
     length = len(crdssI)
@@ -150,7 +151,10 @@ def getRMSDMatrix(crdssI):
         
         print N1
         for N2 in range(N1+1,length):
-            RMSDI = RMSD_Perm(crdssI[N1],crdssI[N2])
+            if Perm:
+                RMSDI = RMSD_Perm(crdssI[N1],crdssI[N2])
+            else:
+                RMSDI = RMSD(crdssI[N1],crdssI[N2])
 # na razie tak zmieniam na szybko, potem 
 # wprzyszlym tygodniu bede parametryzowal            
             RMSDMatrixI.itemset((N1,N2),(RMSDI))
@@ -215,6 +219,8 @@ def contact(obj1,obj2):
             
 def contact_m(objs1,objs2):
     
+    ContactAtoms = []
+    
     q1 = objs1.aggregate(Min('X'),Max('X'),Min('Y'),Max('Y'))
     q2 = objs2.aggregate(Min('X'),Max('X'),Min('Y'),Max('Y'))
 
@@ -224,7 +230,10 @@ def contact_m(objs1,objs2):
        for obj1 in objs1:
            for obj2 in objs2:
                if contact(obj1,obj2):
-                   return [True,obj1.Text,obj2.Text]
+                   ContactAtoms.append([str(obj1.Residue.pk),str(obj2.Residue.pk)])
+                   
+    if ContactAtoms == []: return [False]
+    else: return [True, ContactAtoms]
 
 #trzeba to pozmieniac zeby zwracalo contact amino acids
 # pousuwac w shellu rzeczy z bazy danych
@@ -255,6 +264,15 @@ class Clustering (models.Model):
         
 class Cluster (models.Model):
     
+        CrossingAngle1_2 = models.FloatField(null=True)
+        CrossingAngle1_2_Std = models.FloatField(null=True)
+
+        CrossingAngle1_3 = models.FloatField(null=True)
+        CrossingAngle1_3_Std = models.FloatField(null=True)
+
+        CrossingAngle2_3 = models.FloatField(null=True)
+        CrossingAngle2_3_Std = models.FloatField(null=True)
+        
         Clustering = models.ManyToManyField(Clustering,null=True)
         Centroidpk = models.IntegerField(null=True)
         RMSD = models.FloatField(null=True)
@@ -693,10 +711,41 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                             tmhelixtriplet = TMHelixTriplet.objects.create(Set=self.Set)
                     
                             tmhelixtriplet.tmhelixmodel_set = self.tmhelixmodel_set.filter(id__in=triplet_pks).order_by('pk')
+                            
+                            IDs = ';'.join([ item[0] for item in tmhelixtriplet.tmhelixmodel_set.order_by('TMHelix_ID'). values_list('TMHelix_ID')[:2] ])
+                            
+                             
+                            print IDs; print self.TMProtein_ID
+                            try:
+                                tmhelixtriplet. CrossingAngle1_2 = self.tmhelixpair_set.get(TMHelix_IDs=IDs). CrossingAngle               
+                    
+                            except TMHelixPair.DoesNotExist:
+                                
+                                tmhelixtriplet. CrossingAngle1_2 = None
+                            
+                            IDs = ';'.join([ item[0] for item in tmhelixtriplet.tmhelixmodel_set.order_by('TMHelix_ID'). values_list('TMHelix_ID')[1:] ])    
+
+                            try:
+                                tmhelixtriplet. CrossingAngle2_3 = self.tmhelixpair_set.get(TMHelix_IDs=IDs). CrossingAngle               
+                    
+                            except TMHelixPair.DoesNotExist:
+                                
+                                tmhelixtriplet. CrossingAngle2_3 = None
+
+ 
+                            IDs = ';'.join([ item[0] for item in [tmhelixtriplet.tmhelixmodel_set.order_by('TMHelix_ID'). values_list('TMHelix_ID')[n] for n in [0,2]] ])    
+
+                            try:
+                                tmhelixtriplet. CrossingAngle1_3 = self.tmhelixpair_set.get(TMHelix_IDs=IDs). CrossingAngle               
+                    
+                            except TMHelixPair.DoesNotExist:
+                                
+                                tmhelixtriplet. CrossingAngle2_3 = None
+
                     
                             tmhelixtriplet. getPhi ()
-                            tmhelixtriplet.save()
-                            self.tmhelixtriplet_set.add(tmhelixtriplet)  
+                            tmhelixtriplet. save()
+                            self.tmhelixtriplet_set. add(tmhelixtriplet)  
                     self.save()
                     
     
@@ -719,6 +768,7 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                 tmhelixpair.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N+1)))   
                 tmhelixpair.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N2+1)))
                 
+                
 # mozna sprawdzic na tm helixpair czy jest contact
                 Contact = tmhelixpair.Contact()
                 if not Contact:
@@ -727,9 +777,12 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                 else:
                     
                     tmhelixpair.getCrossingAngle ()              
+                    tmhelixpair.TMHelix_IDs= ';'.join([tmhelixmodelI.TMHelix_ID for tmhelixmodelI in tmhelixpair.tmhelixmodel_set.order_by('TMHelix_ID').all()])
+                    
                     tmhelixpair.save()
                     self.tmhelixpair_set.add(tmhelixpair)  
                     self.save()
+                    print tmhelixpair.TMHelix_IDs; 
                     print self.tmhelixpair_set.all()
 #                    print  'Count '+str(tmhelixpair.tmhelixmodel_set.count())        
                 #sprawdzic czy dobrze bedzie
@@ -835,7 +888,9 @@ class TMHelixPair (models.Model):
     CrossingAngleEC = models.FloatField (null=True)
     CrossingAngleIC = models.FloatField (null=True)
     TMProtein = models.ForeignKey(TMProtein, on_delete=models.CASCADE, null=True)
-    ContactAtoms = models.CharField(max_length=2000,null=True)
+    ContactAtoms = models.CharField(max_length=20000,null=True)
+    TMHelix_IDs = models.CharField(null=True, max_length = 40)
+
 #####################################################################################################################################################
 
     def Contact(self):
@@ -847,7 +902,7 @@ class TMHelixPair (models.Model):
             contact_mI = contact_m(TMHelix1.atom_set.all(),TMHelix2.atom_set.all())
 #musze wszystkie kontakty zwracac bo masakra
             if contact_mI[0]:
-                self.ContactAtoms= ';'.join([contact_mI[1],contact_mI[2]])
+                self.ContactAtoms= '\n'.join( [';'.join(pair) for pair in contact_mI[1]] )
                 return True
         
 #            for Residue1 in TMHelix1.residue_set.all():
@@ -932,6 +987,9 @@ class TMHelixTripletQuerySet(models.QuerySet):
 # dobra, zobaczymy czy to dziala
 #        if not self.RMSDMatrix:
         
+        self.pks = self.values_list('pk')
+        self.pks = [ pk[0] for pk in self.pks ]
+        
         if not hasattr(self, 'RMSDMatrix'):
 #        if 1==1:            
 #
@@ -948,7 +1006,12 @@ class TMHelixTripletQuerySet(models.QuerySet):
                
 #        k=6
         
-        for k in range(1,30):
+        
+        
+        for k in range(28,30):
+        
+
+             
             print k      
             centroids, code_dict = kMedoids ( self.RMSDMatrix, k )
         
@@ -972,10 +1035,20 @@ class TMHelixTripletQuerySet(models.QuerySet):
 #            quit()
 #            ClusterI.save()
                 ClusterI.RMSD = np.average( [self.RMSDMatrix [N][N1]  for N1 in code_dict[N]] )
-                for N1 in code_dict[N]:
+#                for N1 in code_dict[N]:
             
-                    ClusterI.tmhelixtriplet_set.add(self[N1])
-            
+                ClusterI.tmhelixtriplet_set=self.filter(pk__in=[self.pks[N1] for N1 in code_dict[N] ])
+                ClusterI.CrossingAngle1_2 = ClusterI.tmhelixtriplet_set.aggregate(Avg('CrossingAngle1_2'))['CrossingAngle1_2__avg']
+                ClusterI.CrossingAngle1_2_Std = np.std( np.array(filter(None,ClusterI.tmhelixtriplet_set.values_list('CrossingAngle1_2',flat=True)) ) )
+
+                ClusterI.CrossingAngle1_3 = ClusterI.tmhelixtriplet_set.aggregate(Avg('CrossingAngle1_3'))['CrossingAngle1_3__avg']
+                ClusterI.CrossingAngle1_3_Std = np.std( np.array(filter(None,ClusterI.tmhelixtriplet_set.values_list('CrossingAngle1_3',flat=True)) ) )
+
+                ClusterI.CrossingAngle2_3 = ClusterI.tmhelixtriplet_set.aggregate(Avg('CrossingAngle2_3'))['CrossingAngle2_3__avg']
+                ClusterI.CrossingAngle2_3_Std = np.std( np.array(filter(None,ClusterI.tmhelixtriplet_set.values_list('CrossingAngle2_3',flat=True)) ) )
+
+
+# moze to trzeba jakos po pk, bo to sie lubi pieprzyc            
                 ClusterI.save()
                 ClusteringI.cluster_set.add(ClusterI)
 
@@ -1000,6 +1073,22 @@ class TMHelixTripletQuerySet(models.QuerySet):
  #       print no_cluster
  #       print 'distance'
  #       print distance
+        
+        Noclusters = Clustering.objects.values_list('no_cluster')
+        RMSDs = Clustering.objects.values_list('RMSD')    
+        plt.clf()
+
+#    print XYArray. transpose ()
+#    print numpy.corrcoef ( numpy. array (XYArray). transpose () )
+#    print OutputFile
+#    quit ()
+# cross 0,608; 
+# tilt 0.474;
+#    print Xs; 
+
+        plt.scatter (Noclusters , RMSDs)    
+        plt.savefig ('NoClustersRMSDs.png' ,dpi=320)
+        plt.clf()
         
         return
 
@@ -1033,6 +1122,9 @@ class TMHelixTriplet (models.Model):
     Set = models.CharField(max_length=10,null=True)
     Type = models.CharField(max_length=20,null=True)
     Cluster = models.ManyToManyField(Cluster,null=True)
+    CrossingAngle1_2 = models.FloatField (null=True)
+    CrossingAngle2_3 = models.FloatField (null=True)
+    CrossingAngle1_3 = models.FloatField (null=True)
 
 #####################################################################################################################################################
 
@@ -1321,6 +1413,7 @@ class   Atom (models.Model):
     Mass = models.FloatField(null=True)
     AAThreeLetter = models.CharField(max_length=3,null=True)
     VdWRadius = models.FloatField(null=True)
+    AtomName = models.CharField(max_length=4,null=True)
 
 #there should be vdW somewhere
 

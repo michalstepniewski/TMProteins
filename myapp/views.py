@@ -24,7 +24,7 @@ import os
 from PlotToolsModule import HistogramPlot
 from .forms import UploadFileForm
 from django.contrib.auth.decorators import login_required
-
+import matplotlib.pyplot as plt
 
 # Imaginary function to handle an uploaded file.
 from somewhere import handle_uploaded_file
@@ -57,6 +57,7 @@ def helix(request, tmhelix_id):
 
 def pair(request, tmhelixpair_id):
     tmhelixpair = get_object_or_404(TMHelixPair, pk=tmhelixpair_id)
+    print tmhelixpair.TMHelix_IDs
     return render(request, 'pair.html', {'tmhelixpair': tmhelixpair})
 
 def triplet(request, tmhelixtriplet_id):
@@ -145,7 +146,7 @@ def clustering(request, clustering_id):
     return render_to_response(
         'clustering.html',
         {'clustering':clustering, 'clusters': clustering.cluster_set.all(),\
-        },
+        'no_triplets':TMHelixTriplet.objects.filter(Cluster__in=clustering.cluster_set.all()).count()},\
         context_instance=RequestContext(request)
     )
 
@@ -292,6 +293,36 @@ def database(request, database_id):
     
 #    return render(request, 'dataset.html', {'structures': database.structure_set.all(),\
 #                                            'database_model_i':database})
+
+    Noclusters = Clustering.objects.values_list('no_cluster')
+    RMSDs = Clustering.objects.values_list('RMSD')    
+    plt.clf()
+    
+    
+#    for TMHelixTripletI in TMHelixTriplet.objects.all():
+        
+#        triplet_pks = TMHelixTripletI.tmhelixmodel_set.order_by('TMHelix_ID').values_list('pk')
+        
+#        for TMHelixPairI in TMHelixPair.objects.all():
+                
+#            pair_pks = TMHelixPairI.tmhelixmodel_set.order_by('TMHelix_ID').values_list('pk')
+                
+#            if triplet_pks[:2]==pair_pks:
+#                TMHelixTripletI.CrossingAngle1_2 = TMHelixPairI. CrossingAngle
+#                print TMHelixPairI. CrossingAngle
+
+#    print XYArray. transpose ()
+#    print numpy.corrcoef ( numpy. array (XYArray). transpose () )
+#    print OutputFile
+#    quit ()
+# cross 0,608; 
+# tilt 0.474;
+#    print Xs; 
+
+    plt.scatter (Noclusters , RMSDs)    
+    plt.savefig ('NoClustersRMSDs.png' ,dpi=320)
+    plt.clf()
+
 
     return render_to_response(
         'dataset.html',

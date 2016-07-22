@@ -75,7 +75,7 @@
             <tr>
             <td><input type="submit" name="CalculateAminoAcidZPreferenceHistogram" value="CalculateAminoAcidZPreferenceHistogram" /></td>
             <td><input type="submit" name="ClusterHelixTripletsByRMSD" value="ClusterHelixTripletsByRMSD" />
-            <p>With Permutation?<input type='checkbox' name="checkbox" value="With Permutation?"></p>
+            <p>With Permutation?<input type='checkbox' name="perm_checkbox" value="perm_checkbox"></p>
             <p>With Flip?<input type='checkbox' name="checkbox" value="With Flip?"></p></td>
             <p>CAs?<input type='checkbox' name="checkbox" value="With Permutation?"></p>
             <p>MCs?<input type='checkbox' name="checkbox" value="With Flip?"></p></td>
@@ -120,7 +120,7 @@
             <p>         {{clustering.pk}} <br>
                         {{clustering.idx}} <br>
                         {{clustering.no_cluster}} <br>
-                        {{clustering.distance}} <br> 
+                        {{clustering.RMSD}} <br> 
                         <a href="{% url 'clustering' clustering.id %}">{{ clustering.id }}</a>
             </p>
             
