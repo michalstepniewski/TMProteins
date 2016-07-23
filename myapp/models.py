@@ -27,6 +27,16 @@ import matplotlib.pyplot as plt
 #print Picture
 #print 'imported Picture'
 
+def ToAla(text):
+    
+    lista = list(text)
+    
+    lista[17:19+1]='ALA'
+    
+    text = ''.join(lista)
+    
+    return text
+
 def kMedoids(D, k, tmax=10000):
     # determine dimensions of distance matrix D
     m, n = D.shape
@@ -570,11 +580,13 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                 for AtomI in ResidueI.Content:
                     #  7 - 11        Integer         Atom serial number
                     
-                        atom = Atom.objects.create(Atom_ID = AtomI.s[6:11],  Text = AtomI.s)
+                        atom = Atom.objects.create(Atom_ID = AtomI.s[6:11],Atom_ID_Int = int(AtomI.s[6:11]),  Text = AtomI.s)
 #moze by to dac do create
                         atom.X = AtomI.X
                         atom.Y = AtomI.Y
                         atom.Z = AtomI.Z
+                        atom.AtomName = AtomI.s[13:16+1]
+
                         atom.Mass = AtomI.Mass()
                         atom.VdWRadius = AtomI.VdWRadius()
                         atom.AAThreeLetter = AtomI.AAThreeLetter
@@ -982,6 +994,11 @@ class TMHelixTripletQuerySet(models.QuerySet):
         
         return [ tripletI.Crds() for tripletI in self ]
 # trzeba bedzie pK z tego zachowac
+
+    def CACluster(self):
+        
+        [TMHelixTripletI.ToPDBFile() for TMHelixTripletI in self]
+    
     def Cluster(self):
 ## tu powinny byc opcje rozne
 # dobra, zobaczymy czy to dziala
@@ -1127,6 +1144,20 @@ class TMHelixTriplet (models.Model):
     CrossingAngle1_3 = models.FloatField (null=True)
 
 #####################################################################################################################################################
+
+    def ToPDBFile (self ):
+        
+        PDBFilePath = 'media/PDBs/Triplets/'+ self.TMProtein.TMProtein_ID+ '_'.join(self.tmhelixmodel_set.order_by('TMHelix_ID').values_list('TMHelix_ID', flat=True))+'.pdb'
+        
+        Buffer = ''.join( list(itertools.chain.from_iterable([[ToAla(AtomI.Text) for AtomI in TMHelixModelI.atom_set.filter(AtomName='CA  ').order_by('Atom_ID_Int')] \
+                           for TMHelixModelI in self.tmhelixmodel_set.all().order_by('TMHelix_ID') ]) ))
+                         
+        f = open (PDBFilePath,'w')
+        f.write(Buffer)
+        f.flush()
+        f.close()
+          
+
 
     def Crds(self):
 
@@ -1407,6 +1438,7 @@ class   Atom (models.Model):
     Text = models.CharField(max_length=200)
     objects = AtomManager().from_queryset(AtomQuerySet)()
     Atom_ID = models.CharField(max_length=200)
+    Atom_ID_Int = models.IntegerField(null=True)
     X = models.FloatField(null=True)
     Y = models.FloatField(null=True)
     Z = models.FloatField(null=True)

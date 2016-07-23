@@ -223,10 +223,12 @@ def database(request, database_id):
            TMProtein.objects.filter(structure__in=database.structure_set.all()).ExtractInteractingHelixTriplets ()
 
         elif request.POST.get('ClusterHelixTripletsByRMSD'):
-            
-           
-           
+                       
            TMHelixTriplet.objects.filter(TMProtein__structure__in=database.structure_set.all()).Cluster()
+
+        elif request.POST.get('CARMSD'):
+           print 'CAClustering'#;quit()           
+           TMHelixTriplet.objects.filter(TMProtein__structure__in=database.structure_set.all()).CACluster()
 
         elif request.POST.get('CalculateAminoAcidZPreferenceHistogram'):
            # this happens if You push 'ExtractHelixTriplets'
@@ -430,6 +432,9 @@ def list(request):
         elif request.POST.get('ClusterHelixTripletsByRMSD'):
            
            TMHelixTriplet.objects.all().Cluster()
+           
+
+
 
         elif request.POST.get('CalculateAminoAcidZPreferenceHistogram'):
            # this happens if You push 'ExtractHelixTriplets'
