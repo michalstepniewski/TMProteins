@@ -21,6 +21,7 @@ from models1 import *
 import openpyxl
 import itertools
 import matplotlib.pyplot as plt
+import os
 
 #print 'importing Picture'
 #from fileupload.models import Picture
@@ -530,14 +531,20 @@ class TMProtein (models.Model): #zmienic to na TMProtein
         return
 
 
-    def ReadPDB (self, pdb_path):#, db_path):
+    def ReadPDB (self, pdb_path, ParametersI):#, db_path):
 
         """ reads PDB file to extract TM Helices """
+        
+        ParametersI.BordersOfThinSlices
+         
 
         from PDB_FileContentsModule import getHelicesfromPDBFile, ReadPDBFile, GetAtomsFromPDBFile
 
         self. Atoms = GetAtomsFromPDBFile (pdb_path)
 #        self.atom_set.add(atom)
+
+        BordersOfThinSlicesI = [[float(item) for item in Range.split(',')] for Range in ParametersI. BordersOfThinSlices.split(';')]
+        
         with transaction.atomic():
          for TM in getHelicesfromPDBFile (pdb_path):
            if len(TM.Content)>0: 
@@ -548,10 +555,23 @@ class TMProtein (models.Model): #zmienic to na TMProtein
 
             AtomsI = ''
             try: 
-             print TM. ThinSlicesCOMs ( );
-             [MC_EC_X, MC_EC_Y, MC_EC_Z],\
-             [MC_MM_X, MC_MM_Y, MC_MM_Z],\
-             [MC_IC_X, MC_IC_Y, MC_IC_Z]  =  TM. ThinSlicesCOMs ( )
+#             print TM. ThinSlicesCOMs ( ParametersI );
+#             [MC_EC_X, MC_EC_Y, MC_EC_Z],\
+#             [MC_MM_X, MC_MM_Y, MC_MM_Z],\
+#             [MC_IC_X, MC_IC_Y, MC_IC_Z]  =  TM. ThinSlicesCOMs ( BordersOfThinSlicesI )
+             
+             Points = TM. ThinSlicesCOMs ( BordersOfThinSlicesI )
+             
+             [MC_EC_X, MC_EC_Y, MC_EC_Z] = Points[0]
+             [MC_IC_X, MC_IC_Y, MC_IC_Z] = Points[-1]
+             [MC_MM_X, MC_MM_Y, MC_MM_Z] = Points[int(float(len(Points))/2.0)]
+             
+#             [MC_EC_X, MC_EC_Y, MC_EC_Z],\
+#             [MC_MM_X, MC_MM_Y, MC_MM_Z],\
+#             [MC_IC_X, MC_IC_Y, MC_IC_Z]  = Points
+
+
+             
 #            print tmhelix.MC_EC_X
             except ZeroDivisionError:
              break
@@ -559,7 +579,7 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                                       TMHelix_Tilt_EC = TM. Tilt_EC(), \
                                       TMHelix_Tilt_IC = TM. Tilt_IC(), \
                                       TMHelix_KinkAngle = TM. KinkAngle(), \
-                                      TMHelix_Overhang = TM. Overhang(),\
+                                      TMHelix_Overhang = TM. Overhang(BordersOfThinSlicesI),\
                                       TMHelix_AASEQ = TM. AASEQ (),\
                                       TMHelix_pdb_path = '/'.join(pdb_path.split('/')[:-1])+'/TMs/',
                                       Atoms = AtomsI,
@@ -573,6 +593,10 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                                       MC_IC_Y = MC_IC_Y,
                                       MC_IC_Z = MC_IC_Z
                                       )
+
+            for PointI in Points:
+                tmhelix.point_set.add( Point.objects.create (X = PointI[0] , Y = PointI[1], Z = PointI[2] ) )
+
             
             for ResidueI in TM.Content:
                 ResidueModelI = Residue.objects.create(Residue_ID=ResidueI.Content[0].s[6:11], AAThreeLetter = ResidueI.Content[0].AAThreeLetter )
@@ -619,10 +643,17 @@ class TMProtein (models.Model): #zmienic to na TMProtein
             tmhelix.ECAxis_X, tmhelix.ECAxis_Y, tmhelix.ECAxis_Z = TM. ExtractSlice([-2.0,12.0]). MainAxis ( )
 
             tmhelix.ICAxis_X, tmhelix.ICAxis_Y, tmhelix.ICAxis_Z = TM. ExtractSlice([-12.0,2.0]). MainAxis ( )
+# czyli to jest jakies PCA, trzeba ten parametr zrobic
+
+
+
+            Points = TM. ThinSlicesCOMs ( BordersOfThinSlicesI )
+             
+            [tmhelix.MC_EC_X, tmhelix.MC_EC_Y, tmhelix.MC_EC_Z] = Points[0]
+            [tmhelix.MC_IC_X, tmhelix.MC_IC_Y, tmhelix.MC_IC_Z] = Points[-1]
+            [tmhelix.MC_MM_X, tmhelix.MC_MM_Y, tmhelix.MC_MM_Z] = Points[int(float(len(Points))/2.0)]
     
-            [tmhelix.MC_EC_X, tmhelix.MC_EC_Y, tmhelix.MC_EC_Z],\
-            [tmhelix.MC_MM_X, tmhelix.MC_MM_Y, tmhelix.MC_MM_Z],\
-            [tmhelix.MC_IC_X, tmhelix.MC_IC_Y, tmhelix.MC_IC_Z]  =  TM. ThinSlicesCOMs ( )  
+            # dlaczego licze to dwa razy, to nie ma sensu
             tmhelix.save()                
             self. tmhelixmodel_set.add(tmhelix)
             self.save()
@@ -1146,7 +1177,9 @@ class TMHelixTriplet (models.Model):
 #####################################################################################################################################################
 
     def ToPDBFile (self ):
-        
+        # powinna byc referencja do dataset pk
+#        os.system('mkdir -p media/PDBs/Triplets/'+self.TMProtein.structure.DatabaseModel.pk)
+        # dalem to many to many, wiec nie dziala, foreign key by dzialal
         PDBFilePath = 'media/PDBs/Triplets/'+ self.TMProtein.TMProtein_ID+ '_'.join(self.tmhelixmodel_set.order_by('TMHelix_ID').values_list('TMHelix_ID', flat=True))+'.pdb'
         
         Buffer = ''.join( list(itertools.chain.from_iterable([[ToAla(AtomI.Text) for AtomI in TMHelixModelI.atom_set.filter(AtomName='CA  ').order_by('Atom_ID_Int')] \
@@ -1167,9 +1200,13 @@ class TMHelixTriplet (models.Model):
         
         for tmhelix in self.tmhelixmodel_set.all():
             
-            CrdsI.append([tmhelix.MC_EC_X, tmhelix.MC_EC_Y, tmhelix.MC_EC_Z ])
-            CrdsI.append([tmhelix.MC_MM_X, tmhelix.MC_MM_Y, tmhelix.MC_MM_Z ])
-            CrdsI.append([tmhelix.MC_IC_X, tmhelix.MC_IC_Y, tmhelix.MC_IC_Z ])
+            for PointI in tmhelix.point_set:
+                
+                CrdsI. append([PointI.X, PointI.Y, PointI.Z])
+            
+#            CrdsI.append([tmhelix.MC_EC_X, tmhelix.MC_EC_Y, tmhelix.MC_EC_Z ])
+#            CrdsI.append([tmhelix.MC_MM_X, tmhelix.MC_MM_Y, tmhelix.MC_MM_Z ])
+#            CrdsI.append([tmhelix.MC_IC_X, tmhelix.MC_IC_Y, tmhelix.MC_IC_Z ])
 # w ktorym miejscu chce permutacje? moze zamiast RMSD        
 #wiec lista jest plaska
         return CrdsI
@@ -1456,4 +1493,14 @@ class   Atom (models.Model):
 
         atom = cls(Atom_ID=ID, attributes={})
         return atom
+
+class Point (models.Model):
+#    from models import TMHelixModel
+    
+    X = models.FloatField(null=True)
+    Y = models.FloatField(null=True)
+    Z = models.FloatField(null=True)
+    TMHelixModel = models.ForeignKey(TMHelixModel, on_delete=models.CASCADE, null=True)
+    
+    pass
 

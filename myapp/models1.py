@@ -16,7 +16,7 @@ from GeometricalClassesModule import SetOfVectors, Vector, SetOfPoints, Point
 from django.db.models import Avg, Max, Min
 import match
 from match import rmsd
-
+from xml_parser.models import *
 
 class ClusterManager (models.Manager):
     pass
@@ -33,5 +33,13 @@ class ClusterManager (models.Manager):
 class PointQueryset (models.QuerySet):
     pass 
 
-class Point (models.Model):
+
+class Parameters (models.Model):
+    BordersOfThinSlices = models.CharField(max_length=1000,null=True)
+    DatabaseModel = models.OneToOneField(
+    DatabaseModel,
+    on_delete=models.CASCADE,
+#    primary_key=True,
+    null=True
+    )
     pass

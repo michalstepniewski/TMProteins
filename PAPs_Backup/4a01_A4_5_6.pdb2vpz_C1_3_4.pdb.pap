@@ -1,0 +1,9 @@
+ _aln.pos             10        20        30        40        50        60
+4a01_A4_5_6A  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA-- 
+2vpz_C1_3_4A  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 
+ _consrvd     **************************************************************
+
+ _aln.pos         70
+4a01_A4_5_6A  -------- 
+2vpz_C1_3_4A  AAAAAAAA 
+ _consrvd

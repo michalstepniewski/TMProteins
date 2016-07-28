@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ASCII"?>
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_n-u_YEwvEea5OfvskrZdzQ" elementId="org.eclipse.e4.legacy.ide.application" contributorURI="platform:/plugin/org.eclipse.ui.workbench" selectedElement="_n-u_YUwvEea5OfvskrZdzQ" bindingContexts="_n-yCykwvEea5OfvskrZdzQ">
-  <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;workbench>&#xA;&lt;mruList>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;com.brainwy.liclipse.editor.common.LiClipseEditor.html&quot; name=&quot;tmprotein.html&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/templates/tmprotein.html&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/templates/tmprotein.html&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;models.py&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/models.py&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/models.py&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;com.brainwy.liclipse.editor.common.LiClipseEditor.html&quot; name=&quot;dataset.html&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/heroku/read_xls/mighty-wave-3436/xml_parser/templates/dataset.html&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/heroku/read_xls/mighty-wave-3436/xml_parser/templates/dataset.html&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;views.py&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/xml_parser/views.py&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/xml_parser/views.py&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;com.brainwy.liclipse.editor.common.LiClipseEditor.html&quot; name=&quot;database.html&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/xml_parser/templates/database.html&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/xml_parser/templates/database.html&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;ProteinChainModule.py&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/ProteinChainModule.py&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/ProteinChainModule.py&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;PDB_FileContentsModule.py&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/PDB_FileContentsModule.py&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/PDB_FileContentsModule.py&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;TMHelixModule.py&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/TMHelixModule.py&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/TMHelixModule.py&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;settings.py&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/settings.py&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/settings.py&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;urls.py&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/xml_parser/urls.py&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/xml_parser/urls.py&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;views.py&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/views.py&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/views.py&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;urls.py&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/urls.py&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/urls.py&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;urls.py&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myproject/urls.py&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myproject/urls.py&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;models.py&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/xml_parser/models.py&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/xml_parser/models.py&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;com.brainwy.liclipse.editor.common.LiClipseEditor.html&quot; name=&quot;list.html&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/templates/list.html&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/templates/list.html&quot;/>&#xA;&lt;/file>&#xA;&lt;/mruList>&#xA;&lt;/workbench>"/>
+  <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;workbench>&#xA;&lt;mruList>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;ProteinChainModule.py&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/ProteinChainModule.py&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/ProteinChainModule.py&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;PDB_FileContentsModule.py&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/PDB_FileContentsModule.py&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/PDB_FileContentsModule.py&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;TMHelixModule.py&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/TMHelixModule.py&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/TMHelixModule.py&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;models.py&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/xml_parser/models.py&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/xml_parser/models.py&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;forms.py&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/forms.py&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/forms.py&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;views.py&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/views.py&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/views.py&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;com.brainwy.liclipse.editor.common.LiClipseEditor.html&quot; name=&quot;dataset.html&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/xml_parser/templates/dataset.html&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/xml_parser/templates/dataset.html&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;com.brainwy.liclipse.editor.common.LiClipseEditor.html&quot; name=&quot;list.html&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/templates/list.html&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/templates/list.html&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;models.py&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/models.py&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/models.py&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;models1.py&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/models1.py&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/models1.py&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;com.brainwy.liclipse.editor.common.LiClipseEditor.html&quot; name=&quot;tmprotein.html&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/templates/tmprotein.html&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/templates/tmprotein.html&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;models.py&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/models.py&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/models.py&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;com.brainwy.liclipse.editor.common.LiClipseEditor.html&quot; name=&quot;dataset.html&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/heroku/read_xls/mighty-wave-3436/xml_parser/templates/dataset.html&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/heroku/read_xls/mighty-wave-3436/xml_parser/templates/dataset.html&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;views.py&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/xml_parser/views.py&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/xml_parser/views.py&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; id=&quot;com.brainwy.liclipse.editor.common.LiClipseEditor.html&quot; name=&quot;database.html&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/xml_parser/templates/database.html&quot;>&#xA;&lt;persistable uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/xml_parser/templates/database.html&quot;/>&#xA;&lt;/file>&#xA;&lt;/mruList>&#xA;&lt;/workbench>"/>
   <tags>activeSchemeId:org.eclipse.ui.defaultAcceleratorConfiguration</tags>
   <tags>ModelMigrationProcessor.001</tags>
-  <children xsi:type="basic:TrimmedWindow" xmi:id="_n-u_YUwvEea5OfvskrZdzQ" elementId="IDEWindow" contributorURI="platform:/plugin/org.eclipse.ui.workbench" selectedElement="_n-u_YkwvEea5OfvskrZdzQ" label="%trimmedwindow.label.eclipseSDK" x="1089" y="30" width="953" height="732">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_n-u_YUwvEea5OfvskrZdzQ" elementId="IDEWindow" contributorURI="platform:/plugin/org.eclipse.ui.workbench" selectedElement="_n-u_YkwvEea5OfvskrZdzQ" label="%trimmedwindow.label.eclipseSDK" x="1089" y="30" width="947" height="731">
     <persistedState key="coolBarVisible" value="true"/>
     <persistedState key="perspectiveBarVisible" value="true"/>
     <persistedState key="workingSets" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;workingSets/>"/>
@@ -47,6 +47,7 @@
           <children xsi:type="basic:PartSashContainer" xmi:id="_n-u_ZUwvEea5OfvskrZdzQ" selectedElement="_n-u_aEwvEea5OfvskrZdzQ" horizontal="true">
             <children xsi:type="basic:PartStack" xmi:id="_n-u_ZkwvEea5OfvskrZdzQ" elementId="topLeft" containerData="1300" selectedElement="_n-u_Z0wvEea5OfvskrZdzQ">
               <tags>newtablook</tags>
+              <tags>noFocus</tags>
               <children xsi:type="advanced:Placeholder" xmi:id="_n-u_Z0wvEea5OfvskrZdzQ" elementId="org.python.pydev.navigator.view" ref="_n-w0lUwvEea5OfvskrZdzQ"/>
             </children>
             <children xsi:type="basic:PartSashContainer" xmi:id="_n-u_aEwvEea5OfvskrZdzQ" containerData="8700" selectedElement="_n-u_aUwvEea5OfvskrZdzQ">
@@ -81,469 +82,73 @@
       <tags>categoryTag:Help</tags>
     </sharedElements>
     <sharedElements xsi:type="advanced:Area" xmi:id="_n-vm5UwvEea5OfvskrZdzQ" elementId="org.eclipse.ui.editorss" selectedElement="_n-vm5kwvEea5OfvskrZdzQ">
-      <children xsi:type="basic:PartStack" xmi:id="_n-vm5kwvEea5OfvskrZdzQ" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_n-vnN0wvEea5OfvskrZdzQ">
+      <children xsi:type="basic:PartStack" xmi:id="_n-vm5kwvEea5OfvskrZdzQ" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_EIgm0FTeEeaEIf49pW5RYQ">
         <tags>newtablook</tags>
         <tags>org.eclipse.e4.primaryDataStack</tags>
         <tags>EditorStack</tags>
         <tags>active</tags>
-        <children xsi:type="basic:Part" xmi:id="_n-vm50wvEea5OfvskrZdzQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="list.html" iconURI="platform:/plugin/com.brainwy.liclipse.editor/icons/html_editor.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;com.brainwy.liclipse.editor.common.LiClipseEditor.html&quot; name=&quot;list.html&quot; partName=&quot;list.html&quot; title=&quot;list.html&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/templates/list.html&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/templates/list.html&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;4485&quot; selectionTopPixel=&quot;1815&quot;/>&#xA;&lt;/editor>"/>
-          <tags>Editor</tags>
-          <tags>com.brainwy.liclipse.editor.common.LiClipseEditor.html</tags>
-          <tags>removeOnHide</tags>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vm6EwvEea5OfvskrZdzQ" elementId="#LiClipseContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#LiClipseContext</tags>
-            <tags>popup:com.brainwy.liclipse.editor.common.LiClipseEditor.html.EditorContext</tags>
-            <tags>popup:#AbstractTextEditorContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vm6UwvEea5OfvskrZdzQ" elementId="#LiClipseRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#LiClipseRulerContext</tags>
-            <tags>popup:com.brainwy.liclipse.editor.common.LiClipseEditor.html.RulerContext</tags>
-            <tags>popup:#AbstractTextEditorRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vm6kwvEea5OfvskrZdzQ" elementId="#OverviewRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#OverviewRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vm60wvEea5OfvskrZdzQ" elementId="#LiClipseContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#LiClipseContext</tags>
-            <tags>popup:com.brainwy.liclipse.editor.common.LiClipseEditor.html.EditorContext</tags>
-            <tags>popup:#AbstractTextEditorContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vm7EwvEea5OfvskrZdzQ" elementId="#LiClipseRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#LiClipseRulerContext</tags>
-            <tags>popup:com.brainwy.liclipse.editor.common.LiClipseEditor.html.RulerContext</tags>
-            <tags>popup:#AbstractTextEditorRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vm7UwvEea5OfvskrZdzQ" elementId="#OverviewRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#OverviewRulerContext</tags>
-          </menus>
-        </children>
-        <children xsi:type="basic:Part" xmi:id="_n-vm7kwvEea5OfvskrZdzQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="TMHelixModule" iconURI="platform:/plugin/org.python.pydev/icons/python_file.gif" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;TMHelixModule.py&quot; partName=&quot;TMHelixModule&quot; title=&quot;TMHelixModule&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/TMHelixModule.py&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/TMHelixModule.py&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;9&quot; selectionOffset=&quot;3973&quot; selectionTopPixel=&quot;1258&quot;/>&#xA;&lt;/editor>"/>
+        <tags>noFocus</tags>
+        <children xsi:type="basic:Part" xmi:id="_Cau2YFTeEeaEIf49pW5RYQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="models1" iconURI="platform:/plugin/org.python.pydev/icons/python_file.gif" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;models1.py&quot; partName=&quot;models1&quot; title=&quot;models1&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/models1.py&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/models1.py&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;1006&quot; selectionTopPixel=&quot;185&quot;/>&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>org.python.pydev.editor.PythonEditor</tags>
           <tags>removeOnHide</tags>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vm70wvEea5OfvskrZdzQ" elementId="#PyEditContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.EditorContext</tags>
-            <tags>popup:#AbstractTextEditorContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vm8EwvEea5OfvskrZdzQ" elementId="#PyEditRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditRulerContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.RulerContext</tags>
-            <tags>popup:#AbstractTextEditorRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vm8UwvEea5OfvskrZdzQ" elementId="#OverviewRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#OverviewRulerContext</tags>
-          </menus>
         </children>
-        <children xsi:type="basic:Part" xmi:id="_n-vm8kwvEea5OfvskrZdzQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="models (xml_parser)" iconURI="platform:/plugin/org.python.pydev/icons/python_file.gif" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;models.py&quot; partName=&quot;models (xml_parser)&quot; title=&quot;models (xml_parser)&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/xml_parser/models.py&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/xml_parser/models.py&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;1&quot; selectionOffset=&quot;11492&quot; selectionTopPixel=&quot;765&quot;/>&#xA;&lt;/editor>"/>
-          <tags>Editor</tags>
-          <tags>org.python.pydev.editor.PythonEditor</tags>
-          <tags>removeOnHide</tags>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vm80wvEea5OfvskrZdzQ" elementId="#PyEditContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.EditorContext</tags>
-            <tags>popup:#AbstractTextEditorContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vm9EwvEea5OfvskrZdzQ" elementId="#PyEditRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditRulerContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.RulerContext</tags>
-            <tags>popup:#AbstractTextEditorRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vm9UwvEea5OfvskrZdzQ" elementId="#OverviewRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#OverviewRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vm9kwvEea5OfvskrZdzQ" elementId="#PyEditContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.EditorContext</tags>
-            <tags>popup:#AbstractTextEditorContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vm90wvEea5OfvskrZdzQ" elementId="#PyEditRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditRulerContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.RulerContext</tags>
-            <tags>popup:#AbstractTextEditorRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vm-EwvEea5OfvskrZdzQ" elementId="#OverviewRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#OverviewRulerContext</tags>
-          </menus>
-        </children>
-        <children xsi:type="basic:Part" xmi:id="_n-vm-UwvEea5OfvskrZdzQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="views (xml_parser)" iconURI="platform:/plugin/org.python.pydev/icons/python_file.gif" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;views.py&quot; partName=&quot;views (xml_parser)&quot; title=&quot;views (xml_parser)&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/xml_parser/views.py&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/xml_parser/views.py&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;5053&quot; selectionTopPixel=&quot;0&quot;/>&#xA;&lt;/editor>"/>
-          <tags>Editor</tags>
-          <tags>org.python.pydev.editor.PythonEditor</tags>
-          <tags>removeOnHide</tags>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vm-kwvEea5OfvskrZdzQ" elementId="#PyEditContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.EditorContext</tags>
-            <tags>popup:#AbstractTextEditorContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vm-0wvEea5OfvskrZdzQ" elementId="#PyEditRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditRulerContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.RulerContext</tags>
-            <tags>popup:#AbstractTextEditorRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vm_EwvEea5OfvskrZdzQ" elementId="#OverviewRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#OverviewRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vm_UwvEea5OfvskrZdzQ" elementId="#PyEditContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.EditorContext</tags>
-            <tags>popup:#AbstractTextEditorContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vm_kwvEea5OfvskrZdzQ" elementId="#PyEditRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditRulerContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.RulerContext</tags>
-            <tags>popup:#AbstractTextEditorRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vm_0wvEea5OfvskrZdzQ" elementId="#OverviewRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#OverviewRulerContext</tags>
-          </menus>
-        </children>
-        <children xsi:type="basic:Part" xmi:id="_n-vnAEwvEea5OfvskrZdzQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="views (myapp)" iconURI="platform:/plugin/org.python.pydev/icons/python_file.gif" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;views.py&quot; partName=&quot;views (myapp)&quot; title=&quot;views (myapp)&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/views.py&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/views.py&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;6609&quot; selectionTopPixel=&quot;3111&quot;/>&#xA;&lt;/editor>"/>
-          <tags>Editor</tags>
-          <tags>org.python.pydev.editor.PythonEditor</tags>
-          <tags>removeOnHide</tags>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnAUwvEea5OfvskrZdzQ" elementId="#PyEditContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.EditorContext</tags>
-            <tags>popup:#AbstractTextEditorContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnAkwvEea5OfvskrZdzQ" elementId="#PyEditRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditRulerContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.RulerContext</tags>
-            <tags>popup:#AbstractTextEditorRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnA0wvEea5OfvskrZdzQ" elementId="#OverviewRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#OverviewRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnBEwvEea5OfvskrZdzQ" elementId="#PyEditContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.EditorContext</tags>
-            <tags>popup:#AbstractTextEditorContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnBUwvEea5OfvskrZdzQ" elementId="#PyEditRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditRulerContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.RulerContext</tags>
-            <tags>popup:#AbstractTextEditorRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnBkwvEea5OfvskrZdzQ" elementId="#OverviewRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#OverviewRulerContext</tags>
-          </menus>
-        </children>
-        <children xsi:type="basic:Part" xmi:id="_n-vnB0wvEea5OfvskrZdzQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="urls (myproject)" iconURI="platform:/plugin/org.python.pydev/icons/python_file.gif" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;urls.py&quot; partName=&quot;urls (myproject)&quot; title=&quot;urls (myproject)&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myproject/urls.py&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myproject/urls.py&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;43&quot; selectionOffset=&quot;317&quot; selectionTopPixel=&quot;0&quot;/>&#xA;&lt;/editor>"/>
-          <tags>Editor</tags>
-          <tags>org.python.pydev.editor.PythonEditor</tags>
-          <tags>removeOnHide</tags>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnCEwvEea5OfvskrZdzQ" elementId="#PyEditContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.EditorContext</tags>
-            <tags>popup:#AbstractTextEditorContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnCUwvEea5OfvskrZdzQ" elementId="#PyEditRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditRulerContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.RulerContext</tags>
-            <tags>popup:#AbstractTextEditorRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnCkwvEea5OfvskrZdzQ" elementId="#OverviewRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#OverviewRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnC0wvEea5OfvskrZdzQ" elementId="#PyEditContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.EditorContext</tags>
-            <tags>popup:#AbstractTextEditorContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnDEwvEea5OfvskrZdzQ" elementId="#PyEditRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditRulerContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.RulerContext</tags>
-            <tags>popup:#AbstractTextEditorRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnDUwvEea5OfvskrZdzQ" elementId="#OverviewRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#OverviewRulerContext</tags>
-          </menus>
-        </children>
-        <children xsi:type="basic:Part" xmi:id="_n-vnDkwvEea5OfvskrZdzQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="urls (myapp)" iconURI="platform:/plugin/org.python.pydev/icons/python_file.gif" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;urls.py&quot; partName=&quot;urls (myapp)&quot; title=&quot;urls (myapp)&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/urls.py&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/urls.py&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;1413&quot; selectionTopPixel=&quot;0&quot;/>&#xA;&lt;/editor>"/>
-          <tags>Editor</tags>
-          <tags>org.python.pydev.editor.PythonEditor</tags>
-          <tags>removeOnHide</tags>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnD0wvEea5OfvskrZdzQ" elementId="#PyEditContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.EditorContext</tags>
-            <tags>popup:#AbstractTextEditorContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnEEwvEea5OfvskrZdzQ" elementId="#PyEditRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditRulerContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.RulerContext</tags>
-            <tags>popup:#AbstractTextEditorRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnEUwvEea5OfvskrZdzQ" elementId="#OverviewRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#OverviewRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnEkwvEea5OfvskrZdzQ" elementId="#PyEditContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.EditorContext</tags>
-            <tags>popup:#AbstractTextEditorContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnE0wvEea5OfvskrZdzQ" elementId="#PyEditRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditRulerContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.RulerContext</tags>
-            <tags>popup:#AbstractTextEditorRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnFEwvEea5OfvskrZdzQ" elementId="#OverviewRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#OverviewRulerContext</tags>
-          </menus>
-        </children>
-        <children xsi:type="basic:Part" xmi:id="_n-vnFUwvEea5OfvskrZdzQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="urls (xml_parser)" iconURI="platform:/plugin/org.python.pydev/icons/python_file.gif" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;urls.py&quot; partName=&quot;urls (xml_parser)&quot; title=&quot;urls (xml_parser)&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/xml_parser/urls.py&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/xml_parser/urls.py&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;241&quot; selectionTopPixel=&quot;0&quot;/>&#xA;&lt;/editor>"/>
-          <tags>Editor</tags>
-          <tags>org.python.pydev.editor.PythonEditor</tags>
-          <tags>removeOnHide</tags>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnFkwvEea5OfvskrZdzQ" elementId="#PyEditContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.EditorContext</tags>
-            <tags>popup:#AbstractTextEditorContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnF0wvEea5OfvskrZdzQ" elementId="#PyEditRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditRulerContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.RulerContext</tags>
-            <tags>popup:#AbstractTextEditorRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnGEwvEea5OfvskrZdzQ" elementId="#OverviewRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#OverviewRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnGUwvEea5OfvskrZdzQ" elementId="#PyEditContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.EditorContext</tags>
-            <tags>popup:#AbstractTextEditorContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnGkwvEea5OfvskrZdzQ" elementId="#PyEditRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditRulerContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.RulerContext</tags>
-            <tags>popup:#AbstractTextEditorRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnG0wvEea5OfvskrZdzQ" elementId="#OverviewRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#OverviewRulerContext</tags>
-          </menus>
-        </children>
-        <children xsi:type="basic:Part" xmi:id="_n-vnHEwvEea5OfvskrZdzQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="dataset.html" iconURI="platform:/plugin/com.brainwy.liclipse.editor/icons/html_editor.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;com.brainwy.liclipse.editor.common.LiClipseEditor.html&quot; name=&quot;dataset.html&quot; partName=&quot;dataset.html&quot; title=&quot;dataset.html&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/xml_parser/templates/dataset.html&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/xml_parser/templates/dataset.html&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;12&quot; selectionOffset=&quot;847&quot; selectionTopPixel=&quot;0&quot;/>&#xA;&lt;/editor>"/>
-          <tags>Editor</tags>
-          <tags>com.brainwy.liclipse.editor.common.LiClipseEditor.html</tags>
-          <tags>removeOnHide</tags>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnHUwvEea5OfvskrZdzQ" elementId="#LiClipseContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#LiClipseContext</tags>
-            <tags>popup:com.brainwy.liclipse.editor.common.LiClipseEditor.html.EditorContext</tags>
-            <tags>popup:#AbstractTextEditorContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnHkwvEea5OfvskrZdzQ" elementId="#LiClipseRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#LiClipseRulerContext</tags>
-            <tags>popup:com.brainwy.liclipse.editor.common.LiClipseEditor.html.RulerContext</tags>
-            <tags>popup:#AbstractTextEditorRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnH0wvEea5OfvskrZdzQ" elementId="#OverviewRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#OverviewRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnIEwvEea5OfvskrZdzQ" elementId="#LiClipseContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#LiClipseContext</tags>
-            <tags>popup:com.brainwy.liclipse.editor.common.LiClipseEditor.html.EditorContext</tags>
-            <tags>popup:#AbstractTextEditorContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnIUwvEea5OfvskrZdzQ" elementId="#LiClipseRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#LiClipseRulerContext</tags>
-            <tags>popup:com.brainwy.liclipse.editor.common.LiClipseEditor.html.RulerContext</tags>
-            <tags>popup:#AbstractTextEditorRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnIkwvEea5OfvskrZdzQ" elementId="#OverviewRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#OverviewRulerContext</tags>
-          </menus>
-        </children>
-        <children xsi:type="basic:Part" xmi:id="_n-vnI0wvEea5OfvskrZdzQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="settings" iconURI="platform:/plugin/org.python.pydev/icons/python_file.gif" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;settings.py&quot; partName=&quot;settings&quot; title=&quot;settings&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/settings.py&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/settings.py&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;2977&quot; selectionTopPixel=&quot;1530&quot;/>&#xA;&lt;/editor>"/>
-          <tags>Editor</tags>
-          <tags>org.python.pydev.editor.PythonEditor</tags>
-          <tags>removeOnHide</tags>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnJEwvEea5OfvskrZdzQ" elementId="#PyEditContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.EditorContext</tags>
-            <tags>popup:#AbstractTextEditorContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnJUwvEea5OfvskrZdzQ" elementId="#PyEditRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditRulerContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.RulerContext</tags>
-            <tags>popup:#AbstractTextEditorRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnJkwvEea5OfvskrZdzQ" elementId="#OverviewRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#OverviewRulerContext</tags>
-          </menus>
-        </children>
-        <children xsi:type="basic:Part" xmi:id="_n-vnJ0wvEea5OfvskrZdzQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="PDB_FileContentsModule" iconURI="platform:/plugin/org.python.pydev/icons/python_file.gif" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;PDB_FileContentsModule.py&quot; partName=&quot;PDB_FileContentsModule&quot; title=&quot;PDB_FileContentsModule&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/PDB_FileContentsModule.py&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/PDB_FileContentsModule.py&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;4759&quot; selectionTopPixel=&quot;0&quot;/>&#xA;&lt;/editor>"/>
-          <tags>Editor</tags>
-          <tags>org.python.pydev.editor.PythonEditor</tags>
-          <tags>removeOnHide</tags>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnKEwvEea5OfvskrZdzQ" elementId="#PyEditContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.EditorContext</tags>
-            <tags>popup:#AbstractTextEditorContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnKUwvEea5OfvskrZdzQ" elementId="#PyEditRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditRulerContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.RulerContext</tags>
-            <tags>popup:#AbstractTextEditorRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnKkwvEea5OfvskrZdzQ" elementId="#OverviewRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#OverviewRulerContext</tags>
-          </menus>
-        </children>
-        <children xsi:type="basic:Part" xmi:id="_n-vnK0wvEea5OfvskrZdzQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="ProteinChainModule" iconURI="platform:/plugin/org.python.pydev/icons/python_file.gif" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;ProteinChainModule.py&quot; partName=&quot;ProteinChainModule&quot; title=&quot;ProteinChainModule&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/ProteinChainModule.py&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/ProteinChainModule.py&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;23&quot; selectionOffset=&quot;4631&quot; selectionTopPixel=&quot;2142&quot;/>&#xA;&lt;/editor>"/>
-          <tags>Editor</tags>
-          <tags>org.python.pydev.editor.PythonEditor</tags>
-          <tags>removeOnHide</tags>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnLEwvEea5OfvskrZdzQ" elementId="#PyEditContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.EditorContext</tags>
-            <tags>popup:#AbstractTextEditorContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnLUwvEea5OfvskrZdzQ" elementId="#PyEditRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditRulerContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.RulerContext</tags>
-            <tags>popup:#AbstractTextEditorRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnLkwvEea5OfvskrZdzQ" elementId="#OverviewRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#OverviewRulerContext</tags>
-          </menus>
-        </children>
-        <children xsi:type="basic:Part" xmi:id="_n-vnL0wvEea5OfvskrZdzQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="tmprotein.html" iconURI="platform:/plugin/com.brainwy.liclipse.editor/icons/html_editor.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;com.brainwy.liclipse.editor.common.LiClipseEditor.html&quot; name=&quot;tmprotein.html&quot; partName=&quot;tmprotein.html&quot; title=&quot;tmprotein.html&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/templates/tmprotein.html&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/templates/tmprotein.html&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;119&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;1253&quot; selectionTopPixel=&quot;132&quot;/>&#xA;&lt;/editor>"/>
-          <tags>Editor</tags>
-          <tags>com.brainwy.liclipse.editor.common.LiClipseEditor.html</tags>
-          <tags>removeOnHide</tags>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnMEwvEea5OfvskrZdzQ" elementId="#LiClipseContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#LiClipseContext</tags>
-            <tags>popup:com.brainwy.liclipse.editor.common.LiClipseEditor.html.EditorContext</tags>
-            <tags>popup:#AbstractTextEditorContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnMUwvEea5OfvskrZdzQ" elementId="#LiClipseRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#LiClipseRulerContext</tags>
-            <tags>popup:com.brainwy.liclipse.editor.common.LiClipseEditor.html.RulerContext</tags>
-            <tags>popup:#AbstractTextEditorRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnMkwvEea5OfvskrZdzQ" elementId="#OverviewRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#OverviewRulerContext</tags>
-          </menus>
-        </children>
-        <children xsi:type="basic:Part" xmi:id="_n-vnM0wvEea5OfvskrZdzQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="database.html" iconURI="platform:/plugin/com.brainwy.liclipse.editor/icons/html_editor.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;com.brainwy.liclipse.editor.common.LiClipseEditor.html&quot; name=&quot;database.html&quot; partName=&quot;database.html&quot; title=&quot;database.html&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/xml_parser/templates/database.html&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/xml_parser/templates/database.html&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;248&quot; selectionTopPixel=&quot;0&quot;/>&#xA;&lt;/editor>"/>
-          <tags>Editor</tags>
-          <tags>com.brainwy.liclipse.editor.common.LiClipseEditor.html</tags>
-          <tags>removeOnHide</tags>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnNEwvEea5OfvskrZdzQ" elementId="#LiClipseContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#LiClipseContext</tags>
-            <tags>popup:com.brainwy.liclipse.editor.common.LiClipseEditor.html.EditorContext</tags>
-            <tags>popup:#AbstractTextEditorContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnNUwvEea5OfvskrZdzQ" elementId="#LiClipseRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#LiClipseRulerContext</tags>
-            <tags>popup:com.brainwy.liclipse.editor.common.LiClipseEditor.html.RulerContext</tags>
-            <tags>popup:#AbstractTextEditorRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnNkwvEea5OfvskrZdzQ" elementId="#OverviewRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#OverviewRulerContext</tags>
-          </menus>
-        </children>
-        <children xsi:type="basic:Part" xmi:id="_n-vnN0wvEea5OfvskrZdzQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="models (myapp)" iconURI="platform:/plugin/org.python.pydev/icons/python_file.gif" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;models.py&quot; partName=&quot;models (myapp)&quot; title=&quot;models (myapp)&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/models.py&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/read_xls/mighty-wave-3436/myapp/models.py&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;27636&quot; selectionTopPixel=&quot;12363&quot;/>&#xA;&lt;/editor>"/>
+        <children xsi:type="basic:Part" xmi:id="_EIgm0FTeEeaEIf49pW5RYQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="models (myapp)" iconURI="platform:/plugin/org.python.pydev/icons/python_file.gif" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;models.py&quot; partName=&quot;models (myapp)&quot; title=&quot;models (myapp)&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/models.py&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/models.py&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;42849&quot; selectionTopPixel=&quot;19822&quot;/>&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>org.python.pydev.editor.PythonEditor</tags>
           <tags>removeOnHide</tags>
           <tags>active</tags>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-vnOEwvEea5OfvskrZdzQ" elementId="#PyEditContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.EditorContext</tags>
-            <tags>popup:#AbstractTextEditorContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-wNg0wvEea5OfvskrZdzQ" elementId="#PyEditRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#PyEditRulerContext</tags>
-            <tags>popup:org.python.pydev.editor.PythonEditor.RulerContext</tags>
-            <tags>popup:#AbstractTextEditorRulerContext</tags>
-          </menus>
-          <menus xsi:type="menu:PopupMenu" xmi:id="_n-w0kUwvEea5OfvskrZdzQ" elementId="#OverviewRulerContext">
-            <tags>menuContribution:popup</tags>
-            <tags>popup:#OverviewRulerContext</tags>
-          </menus>
+          <tags>activeOnClose</tags>
+        </children>
+        <children xsi:type="basic:Part" xmi:id="_2_IgUFTeEeaEIf49pW5RYQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="list.html" iconURI="platform:/plugin/com.brainwy.liclipse.editor/icons/html_editor.png" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;com.brainwy.liclipse.editor.common.LiClipseEditor.html&quot; name=&quot;list.html&quot; partName=&quot;list.html&quot; title=&quot;list.html&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/templates/list.html&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/templates/list.html&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;3606&quot; selectionTopPixel=&quot;1863&quot;/>&#xA;&lt;/editor>"/>
+          <tags>Editor</tags>
+          <tags>com.brainwy.liclipse.editor.common.LiClipseEditor.html</tags>
+          <tags>removeOnHide</tags>
+        </children>
+        <children xsi:type="basic:Part" xmi:id="_H18scFTfEeaEIf49pW5RYQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="dataset.html" iconURI="platform:/plugin/com.brainwy.liclipse.editor/icons/html_editor.png" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;com.brainwy.liclipse.editor.common.LiClipseEditor.html&quot; name=&quot;dataset.html&quot; partName=&quot;dataset.html&quot; title=&quot;dataset.html&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/xml_parser/templates/dataset.html&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/xml_parser/templates/dataset.html&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;5450&quot; selectionTopPixel=&quot;1767&quot;/>&#xA;&lt;/editor>"/>
+          <tags>Editor</tags>
+          <tags>com.brainwy.liclipse.editor.common.LiClipseEditor.html</tags>
+          <tags>removeOnHide</tags>
+        </children>
+        <children xsi:type="basic:Part" xmi:id="_7_xdwFTgEeaEIf49pW5RYQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="views" iconURI="platform:/plugin/org.python.pydev/icons/python_file.gif" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;views.py&quot; partName=&quot;views&quot; title=&quot;views&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/views.py&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/views.py&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;9289&quot; selectionTopPixel=&quot;4131&quot;/>&#xA;&lt;/editor>"/>
+          <tags>Editor</tags>
+          <tags>org.python.pydev.editor.PythonEditor</tags>
+          <tags>removeOnHide</tags>
+        </children>
+        <children xsi:type="basic:Part" xmi:id="_cipywFTkEeaEIf49pW5RYQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="forms" iconURI="platform:/plugin/org.python.pydev/icons/python_file.gif" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;forms.py&quot; partName=&quot;forms&quot; title=&quot;forms&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/forms.py&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/forms.py&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;396&quot; selectionTopPixel=&quot;0&quot;/>&#xA;&lt;/editor>"/>
+          <tags>Editor</tags>
+          <tags>org.python.pydev.editor.PythonEditor</tags>
+          <tags>removeOnHide</tags>
+        </children>
+        <children xsi:type="basic:Part" xmi:id="_nVaDUFTnEeaEIf49pW5RYQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="models (xml_parser)" iconURI="platform:/plugin/org.python.pydev/icons/python_file.gif" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;models.py&quot; partName=&quot;models (xml_parser)&quot; title=&quot;models (xml_parser)&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/xml_parser/models.py&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/xml_parser/models.py&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;9505&quot; selectionTopPixel=&quot;3314&quot;/>&#xA;&lt;/editor>"/>
+          <tags>Editor</tags>
+          <tags>org.python.pydev.editor.PythonEditor</tags>
+          <tags>removeOnHide</tags>
+        </children>
+        <children xsi:type="basic:Part" xmi:id="_UfznkFTtEeaEIf49pW5RYQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="TMHelixModule" iconURI="platform:/plugin/org.python.pydev/icons/python_file.gif" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;TMHelixModule.py&quot; partName=&quot;TMHelixModule&quot; title=&quot;TMHelixModule&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/TMHelixModule.py&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/TMHelixModule.py&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;96&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;20905&quot; selectionTopPixel=&quot;8185&quot;/>&#xA;&lt;/editor>"/>
+          <tags>Editor</tags>
+          <tags>org.python.pydev.editor.PythonEditor</tags>
+          <tags>removeOnHide</tags>
+        </children>
+        <children xsi:type="basic:Part" xmi:id="_dn-F8FTtEeaEIf49pW5RYQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="PDB_FileContentsModule" iconURI="platform:/plugin/org.python.pydev/icons/python_file.gif" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;PDB_FileContentsModule.py&quot; partName=&quot;PDB_FileContentsModule&quot; title=&quot;PDB_FileContentsModule&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/PDB_FileContentsModule.py&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/PDB_FileContentsModule.py&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;4767&quot; selectionTopPixel=&quot;1605&quot;/>&#xA;&lt;/editor>"/>
+          <tags>Editor</tags>
+          <tags>org.python.pydev.editor.PythonEditor</tags>
+          <tags>removeOnHide</tags>
+        </children>
+        <children xsi:type="basic:Part" xmi:id="_lAo8oFTtEeaEIf49pW5RYQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="ProteinChainModule" iconURI="platform:/plugin/org.python.pydev/icons/python_file.gif" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;ProteinChainModule.py&quot; partName=&quot;ProteinChainModule&quot; title=&quot;ProteinChainModule&quot; tooltip=&quot;/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/ProteinChainModule.py&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; uri=&quot;file:/home/soutys/Praca/Programowanie/PythonDeveloper/django/TMProteinsViewer/Branches/Features/forms/mighty-wave-3436/myapp/ProteinChainModule.py&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;0&quot; selectionTopPixel=&quot;2277&quot;/>&#xA;&lt;/editor>"/>
+          <tags>Editor</tags>
+          <tags>org.python.pydev.editor.PythonEditor</tags>
+          <tags>removeOnHide</tags>
         </children>
       </children>
     </sharedElements>
@@ -592,40 +197,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_n-w0vEwvEea5OfvskrZdzQ" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w0vUwvEea5OfvskrZdzQ" elementId="new.group">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w0vkwvEea5OfvskrZdzQ" elementId="newWizardDropDown">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w0v0wvEea5OfvskrZdzQ" elementId="new.ext" visible="false">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w0wEwvEea5OfvskrZdzQ" elementId="save.group" visible="false">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w0wUwvEea5OfvskrZdzQ" elementId="save">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w0wkwvEea5OfvskrZdzQ" elementId="saveAll">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w0w0wvEea5OfvskrZdzQ" elementId="save.ext" visible="false">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_n-w0xEwvEea5OfvskrZdzQ" elementId="print" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_n-0fgUwvEea5OfvskrZdzQ"/>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w0xUwvEea5OfvskrZdzQ" elementId="print.ext" visible="false">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w0xkwvEea5OfvskrZdzQ" elementId="build.group">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w0x0wvEea5OfvskrZdzQ" elementId="build.ext" visible="false">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w0yEwvEea5OfvskrZdzQ" elementId="additions">
-          <tags>Opaque</tags>
-        </children>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_odZKoFTdEeaEIf49pW5RYQ" elementId="print" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" enabled="false" command="_n-0fgUwvEea5OfvskrZdzQ"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_n-w0yUwvEea5OfvskrZdzQ" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -633,39 +205,12 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_n-w02UwvEea5OfvskrZdzQ" elementId="com.python.pydev.navigate.actionSet">
         <tags>Draggable</tags>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w02kwvEea5OfvskrZdzQ" elementId="pyNavigateGroup">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w020wvEea5OfvskrZdzQ" elementId="com.python.pydev.analysis.actions.pyGlobalsBrowserWorkbench">
-          <tags>Opaque</tags>
-        </children>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_n-w03EwvEea5OfvskrZdzQ" elementId="org.eclipse.debug.ui.launchActionSet">
         <tags>Draggable</tags>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w03UwvEea5OfvskrZdzQ" elementId="debug">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w03kwvEea5OfvskrZdzQ" elementId="org.eclipse.debug.internal.ui.actions.DebugDropDownAction">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w030wvEea5OfvskrZdzQ" elementId="org.eclipse.debug.internal.ui.actions.RunDropDownAction">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w04EwvEea5OfvskrZdzQ" elementId="org.eclipse.ui.externaltools.ExternalToolMenuDelegateToolbar">
-          <tags>Opaque</tags>
-        </children>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_n-w04UwvEea5OfvskrZdzQ" elementId="org.eclipse.search.searchActionSet">
         <tags>Draggable</tags>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w04kwvEea5OfvskrZdzQ" elementId="Search">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w040wvEea5OfvskrZdzQ" elementId="org.eclipse.ui.OpenWorkspaceFile2">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w05EwvEea5OfvskrZdzQ" elementId="org.eclipse.search.OpenSearchDialogPage">
-          <tags>Opaque</tags>
-        </children>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_n-w05UwvEea5OfvskrZdzQ" elementId="org.eclipse.ui.edit.text.actionSet.presentation">
         <tags>Draggable</tags>
@@ -676,37 +221,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_n-w06EwvEea5OfvskrZdzQ" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w06UwvEea5OfvskrZdzQ" elementId="history.group">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w06kwvEea5OfvskrZdzQ" elementId="group.application" visible="false">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w060wvEea5OfvskrZdzQ" elementId="backardHistory">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w07EwvEea5OfvskrZdzQ" elementId="forwardHistory">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w07UwvEea5OfvskrZdzQ" elementId="pin.group">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_n-w07kwvEea5OfvskrZdzQ" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_n-0fEEwvEea5OfvskrZdzQ"/>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w070wvEea5OfvskrZdzQ" elementId="org.eclipse.ui.edit.text.gotoNextAnnotation">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w08EwvEea5OfvskrZdzQ" elementId="org.eclipse.ui.edit.text.gotoPreviousAnnotation">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w08UwvEea5OfvskrZdzQ" elementId="org.eclipse.ui.edit.text.gotoLastEditPosition">
-          <tags>Opaque</tags>
-        </children>
-      </children>
-      <children xsi:type="menu:ToolBar" xmi:id="_n-w08kwvEea5OfvskrZdzQ" elementId="org.python.pydev.editor.PythonEditor">
-        <tags>Draggable</tags>
-      </children>
-      <children xsi:type="menu:ToolBar" xmi:id="_n-w080wvEea5OfvskrZdzQ" elementId="com.brainwy.liclipse.editor.common.LiClipseEditor.html">
-        <tags>Draggable</tags>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_odiUkFTdEeaEIf49pW5RYQ" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_n-0fEEwvEea5OfvskrZdzQ"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_n-w09EwvEea5OfvskrZdzQ" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -718,12 +233,6 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_n-w0-EwvEea5OfvskrZdzQ" elementId="org.eclipse.ui.workbench.help">
         <tags>Draggable</tags>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w0-UwvEea5OfvskrZdzQ" elementId="group.help">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_n-w0-kwvEea5OfvskrZdzQ" elementId="group.application" visible="false">
-          <tags>Opaque</tags>
-        </children>
       </children>
       <children xsi:type="menu:ToolControl" xmi:id="_n-w0-0wvEea5OfvskrZdzQ" elementId="PerspectiveSpacer" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.renderers.swt/org.eclipse.e4.ui.workbench.renderers.swt.LayoutModifierToolControl">
         <tags>stretch</tags>
@@ -1244,6 +753,23 @@
     <tags>View</tags>
     <tags>categoryTag:PyDev</tags>
   </descriptors>
+  <trimContributions xmi:id="_2r10UF9tEeO-yojH_y4TJA" elementId="org.eclipse.ui.ide.application.trimcontribution.QuickAccess" contributorURI="platform:/plugin/org.eclipse.ui.ide.application" toBeRendered="false" parentId="org.eclipse.ui.main.toolbar" positionInParent="last">
+    <children xsi:type="menu:ToolControl" xmi:id="_76uUAF9tEeO-yojH_y4TJA" elementId="Spacer Glue" contributorURI="platform:/plugin/org.eclipse.ui.ide.application" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.renderers.swt/org.eclipse.e4.ui.workbench.renderers.swt.LayoutModifierToolControl">
+      <tags>glue</tags>
+      <tags>move_after:PerspectiveSpacer</tags>
+      <tags>SHOW_RESTORE_MENU</tags>
+    </children>
+    <children xsi:type="menu:ToolControl" xmi:id="_8tJPcF9tEeO-yojH_y4TJA" elementId="SearchField" contributorURI="platform:/plugin/org.eclipse.ui.ide.application" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.quickaccess.SearchField">
+      <tags>move_after:Spacer Glue</tags>
+      <tags>HIDEABLE</tags>
+      <tags>SHOW_RESTORE_MENU</tags>
+    </children>
+    <children xsi:type="menu:ToolControl" xmi:id="_9LgmcF9tEeO-yojH_y4TJA" elementId="Search-PS Glue" contributorURI="platform:/plugin/org.eclipse.ui.ide.application" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.renderers.swt/org.eclipse.e4.ui.workbench.renderers.swt.LayoutModifierToolControl">
+      <tags>glue</tags>
+      <tags>move_after:SearchField</tags>
+      <tags>SHOW_RESTORE_MENU</tags>
+    </children>
+  </trimContributions>
   <commands xmi:id="_n-z39UwvEea5OfvskrZdzQ" elementId="AnyEdit.sortNumericallyAscending.command" commandName="Numerically 0-9" category="_n-1Gb0wvEea5OfvskrZdzQ"/>
   <commands xmi:id="_n-z39kwvEea5OfvskrZdzQ" elementId="org.eclipse.ui.edit.text.select.pageUp" commandName="Select Page Up" description="Select to the top of the page" category="_n-1GbUwvEea5OfvskrZdzQ"/>
   <commands xmi:id="_n-z390wvEea5OfvskrZdzQ" elementId="org.eclipse.egit.ui.history.ResetQuickdiffBaseline" commandName="Reset quickdiff baseline" category="_n-1GgkwvEea5OfvskrZdzQ">

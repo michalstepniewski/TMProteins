@@ -17,6 +17,8 @@ from django.core.urlresolvers import reverse
 from myapp.models import TMProtein, TMHelixModel, TMHelixPair, TMHelixTriplet, \
 Residue, TMProteinManager, XLSFile, Clustering, Cluster
 
+from myapp.models1 import Parameters
+
 from xml_parser.models import DatabaseModel
 
 from myapp.forms import TMProteinFileForm
@@ -25,6 +27,7 @@ from PlotToolsModule import HistogramPlot
 from .forms import UploadFileForm
 from django.contrib.auth.decorators import login_required
 import matplotlib.pyplot as plt
+from django.core.mail import send_mail
 
 # Imaginary function to handle an uploaded file.
 from somewhere import handle_uploaded_file
@@ -181,7 +184,14 @@ def database(request, database_id):
             structure.objects.Download()
             
         if request.POST.get('Process'):
-            database.Process() # to musi byc ten model, albo z argumentem
+            
+            if '10MCcheckbox' in request.POST:
+                
+                database.Process()
+
+            else:
+            
+                database.Process() # to musi byc ten model, albo z argumentem
 
         elif request.POST.get('CalculateSingleHelixStats'):
             # this happens if You push 'CalculateSingleHelixStats' button
@@ -256,6 +266,15 @@ def database(request, database_id):
 
         if form.is_valid():
             #this happens if you want to upload file
+            
+            Parameters.objects.all().delete()
+            
+            ParametersI = Parameters. objects. create ()
+            ParametersI.DatabaseModel = database
+            ParametersI. BordersOfThinSlices = form.cleaned_data['BordersOfThinSlices']
+            ParametersI.save()
+            print form.cleaned_data
+#            print subject
             
             if 'UploadXLSFile' in request.POST:
                 
