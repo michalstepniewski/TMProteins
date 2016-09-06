@@ -9,19 +9,360 @@ import numpy as np
 from django.db import transaction
 import scipy
 import scipy.stats
+from scipy.cluster.vq import *
 from scipy.stats import relfreq
 import math
 from django.db.models import Sum, Avg
 from GeometricalClassesModule import SetOfVectors, Vector, SetOfPoints, Point
+from django.db.models import Avg, Max, Min
+import match
+from match import rmsd
+from models1 import *
+import openpyxl
+import itertools
+import matplotlib.pyplot as plt
+import os
+
 #print 'importing Picture'
 #from fileupload.models import Picture
 #print Picture
 #print 'imported Picture'
 
+def ToAla(text):
+    
+    lista = list(text)
+    
+    lista[17:19+1]='ALA'
+    
+    text = ''.join(lista)
+    
+    return text
+
+def kMedoids(D, k, tmax=10000):
+    # determine dimensions of distance matrix D
+    m, n = D.shape
+#    print D
+
+    # randomly initialize an array of k medoid indices
+    M = np.sort(np.random.choice(n, k))
+
+    # create a copy of the array of medoid indices
+    Mnew = np.copy(M)
+
+    # initialize a dictionary to represent clusters
+    C = {}
+
+    for t in xrange(tmax):
+        # determine clusters, i.e. arrays of data indices
+        J = np.argmin(D[:,M], axis=1)
+        for kappa in range(k):
+            C[kappa] = np.where(J==kappa)[0]
+            
+
+        # update cluster medoids
+        for kappa in range(k):
+            J = np.mean(D[np.ix_(C[kappa],C[kappa])],axis=1)
+#            print J
+            j = np.argmin(J)
+            Mnew[kappa] = C[kappa][j]
+        np.sort(Mnew)
+
+        # check for convergence
+        if np.array_equal(M, Mnew):
+            break
+
+        M = np.copy(Mnew)
+    else:
+        # final update of cluster memberships
+        J = np.argmin(D[:,M], axis=1)
+        for kappa in range(k):
+            C[kappa] = np.where(J==kappa)[0]
+
+    # return results
+#    np.average(D[M])
+    return M, C
+
+# no to jakies 
+# tutaj dolaczyc jakies RMSD klastra
+
+def to_csv(array,path):
+    
+    f = open(path,'w')
+    
+    for row in array:
+        
+        f.write(','.join([str(item) for item in row])+'\n')
+    
+    f.flush()
+    f.close()
+    
+    return
+
+def from_csv(path):
+    
+    array = []
+    
+    f=open(path,'r')
+    
+    for row in f.readlines():
+        
+        array.append([float(item) for item in row.split(',')])
+                       
+    return np.array(array)
+
+def from_triangle_csv(path):
+    
+    
+    
+    array = []
+    
+    f=open(path,'r')
+    
+    rows = f.readlines()
+    
+    length = len(rows)
+    
+    RMSDMatrixI = np.zeros((length,length))
+    
+    for row in rows:
+        if row!='\n':
+           print row.strip().strip(',').split(',')
+           array.append([float(item) for item in row.strip().strip(',').split(',')])
+        
+    print array
+    
+    for N1 in range(length):
+        for N2 in range(N1+1,length):
+            
+            RMSDMatrixI.itemset((N1,N2),(array[N1][N2-N1-1]))
+            RMSDMatrixI.itemset((N2,N1),(array[N1][N2-N1-1])) 
+            
+#            RMSDMatrix             
+         
+    return RMSDMatrixI    
+
+
+def centeroidnp(arr):
+    
+    length = arr.shape[0]
+    sum_x = np.sum(arr[:, 0])
+    sum_y = np.sum(arr[:, 1])
+    sum_z = np.sum(arr[:, 2])    
+    return sum_x/length, sum_y/length, sum_z/length
+
+#def getCenter(crds):
+    
+#    X = numpy.average([crd[0] for crd in crds] )
+#    Y = numpy.average([crd[1] for crd in crds] )
+#    Z = numpy.average([crd[2] for crd in crds] )
+    
+#    return [X,Y,Z]
+
+def CenterCrdss(Crdss):
+    
+    Crdss = np.array(Crdss)
+    
+    for N in range(len(Crdss)):
+    
+        Crdss[N]= CenterCrds(Crdss[N])
+        
+    return Crdss
+        
+        
+
+def CenterCrds(Crds):
+    
+    Crds=np.array(Crds)
+    
+    Center = centeroidnp(Crds)
+    
+    return np.subtract(Crds,Center)
+       
+
+def getRMSDMatrix(crdssI,Perm=False):
+#ta matryca pewnie bedzie za dluga na JSONA a i tak musi wejsc do pamieci
+# zrobic zeby uwzglednialo perturbacje
+    length = len(crdssI)
+    
+    crdssI =  CenterCrdss(crdssI)
+    
+    print length
+        
+    RMSDMatrixI = np.zeros((length,length))
+        
+    for N1 in range(length):
+        
+        print N1
+        for N2 in range(N1+1,length):
+            if Perm:
+                RMSDI = RMSD_Perm(crdssI[N1],crdssI[N2])
+            else:
+                RMSDI = RMSD(crdssI[N1],crdssI[N2])
+# na razie tak zmieniam na szybko, potem 
+# wprzyszlym tygodniu bede parametryzowal            
+            RMSDMatrixI.itemset((N1,N2),(RMSDI))
+            RMSDMatrixI.itemset((N2,N1),(RMSDI))       
+        
+         
+    to_csv(RMSDMatrixI,'media/RMSDMatrix.csv')
+# jakies settingsy ogarnac
+# a najlepiej przemigrowac to
+    return RMSDMatrixI
+
+def RMSD (objs1,objs2):
+        
+    return rmsd (np.array(objs1), np.array(objs2))
+
+def RMSD_Perm (objs1,objs2):
+    
+    import itertools
+    
+    minRMSD = 1000.0
+    
+    perms = [[0,1,2],\
+             [0,2,1],\
+             [1,0,2],\
+             [1,2,0],\
+             [2,1,0],\
+             [2,0,1]]
+    
+    Nos =   [[0,1,2],\
+             [3,4,5],\
+             [6,7,8]]
+    
+    
+    for perm in perms:
+    
+#        objs1_perm = flatten([[objs1[No] for Nos in Nos[N]] for N in perm])
+        objs2_perm = list(itertools.chain.from_iterable([[objs2[No] for No in Nos[N]] for N in perm]))
+    
+        minRMSD = min(minRMSD, RMSD(objs1,objs2_perm))       
+    
+    return minRMSD
+
+# czy to uwzglednia srodek (koordynatow) masy?
+#import match.py
+
 def probability (Value, Distribution):
     
     
     return
+
+def contact(obj1,obj2):
+    
+    X = obj1.X - obj2.X
+    
+    if -5.0 < X < 5.0:
+        Y = obj1.Y -obj2.Y
+        if -5.0 < Y < 5.0:
+            if (X**2 + Y**2 + (obj1.Z-obj2.Z)**2) < (obj1.VdWRadius+obj2.VdWRadius+0.5)**2:
+                return True
+
+    return False
+            
+def contact_m(objs1,objs2):
+    
+    ContactAtoms = []
+    
+    q1 = objs1.aggregate(Min('X'),Max('X'),Min('Y'),Max('Y'))
+    q2 = objs2.aggregate(Min('X'),Max('X'),Min('Y'),Max('Y'))
+
+    if ((max(q1['X__min'],q2['X__min']) - min(q1['X__max'],q2['X__max']) <= 5.0) and \
+       (max(q1['Y__min'],q2['Y__min']) - min(q1['Y__max'],q2['Y__max']) <= 5.0)):
+
+       for obj1 in objs1:
+           for obj2 in objs2:
+               if contact(obj1,obj2):
+                   ContactAtoms.append([str(obj1.Residue.pk),str(obj2.Residue.pk)])
+                   
+    if ContactAtoms == []: return [False]
+    else: return [True, ContactAtoms]
+
+#trzeba to pozmieniac zeby zwracalo contact amino acids
+# pousuwac w shellu rzeczy z bazy danych
+# 
+
+    return [False]
+
+
+def distance(obj1, obj2):
+
+    return  ((obj1.X-obj2.X)**2\
+           + (obj1.Y-obj2.Y)**2\
+           + (obj1.Z-obj2.Z)**2)**0.5
+
+
+
+def get_upload_path(instance, filename):
+    name, ext = filename.split('.')
+    file_path = '{name}/{name}.{ext}'.format( name=name, ext=ext) 
+    return file_path
+
+class Clustering (models.Model):
+    
+        idx = models.FloatField(null=True)
+        no_cluster = models.CharField(max_length=10000,null=True)
+        distance = models.CharField(max_length=10000,null=True)
+        RMSD = models.FloatField(null=True)
+        
+class Cluster (models.Model):
+    
+        CrossingAngle1_2 = models.FloatField(null=True)
+        CrossingAngle1_2_Std = models.FloatField(null=True)
+
+        CrossingAngle1_3 = models.FloatField(null=True)
+        CrossingAngle1_3_Std = models.FloatField(null=True)
+
+        CrossingAngle2_3 = models.FloatField(null=True)
+        CrossingAngle2_3_Std = models.FloatField(null=True)
+        
+        Clustering = models.ManyToManyField(Clustering,null=True)
+        Centroidpk = models.IntegerField(null=True)
+        RMSD = models.FloatField(null=True)
+        pass
+#        idx = models.FloatField(null=True)
+#        no_cluster = models.CharField(max_length=10000,null=True)
+#        distance = models.CharField(max_length=10000,null=True)    
+
+
+
+class XLSFile(models.Model):
+    
+    xlsfile = models.FileField(upload_to=get_upload_path)#'uploads/%Y/%m/%d/%H/%M')
+    path = models.CharField(get_upload_path, max_length=200)
+    TMProtein_ID = models.CharField(max_length=200)
+
+
+    def Read(self, xls_path, database_id):
+        
+        wb = openpyxl.load_workbook(xls_path)
+           
+#        first_sheet = book.get_sheet_by_index(0)
+              
+        from xml_parser.models import DatabaseModel,structure
+           
+        sheet = wb.get_sheet_by_name('Sheet1')
+        
+#        Species = 
+        Resolutions = sheet.columns[4]
+        PDBCodes = sheet.columns[5] #F
+        Chains = sheet.columns[6] #G
+        
+        DatabaseModelI = DatabaseModel.objects.get(pk=database_id)
+        
+        with transaction.atomic():
+         
+         for row in range(2, sheet.max_row):
+            print Resolutions[row].value
+            print PDBCodes[row].value
+
+            structureI = structure.objects.create(
+            pdbCode = PDBCodes[row].value, \
+            resolution = Resolutions[row].value, \
+            Chain = Chains[row].value)
+            DatabaseModelI.structure_set.add(structureI)
+#        quit()    
+        return
 
 class TMHelixManager (models.Manager):
 
@@ -99,6 +440,15 @@ class TMHelixManager (models.Manager):
 class TMProteinManager(models.Manager): #zmienic to na TMProtein
 
     """ object storing PDB File to be uploaded """
+    
+    
+    def ReadXLS(self, XLSFile):
+        
+        print XLSFile
+        
+        quit()
+        
+                
 
 #####################################################################################################################################################
 
@@ -108,13 +458,6 @@ class TMProteinManager(models.Manager): #zmienic to na TMProtein
         
         return
 
-#####################################################################################################################################################
-
-    def ExtractConsecutiveHelixTriplets (self):
-    
-        [tmprotein. ExtractConsecutiveHelixTriplets() for tmprotein in self.all()]
-        
-        return
 
 #####################################################################################################################################################
 
@@ -124,6 +467,31 @@ class TMProteinManager(models.Manager): #zmienic to na TMProtein
         """ reads PDB file to SQL database """
 
         ReadPDBFile (pdb_path, db_path)	
+
+
+class TMProteinQuerySet(models.QuerySet):
+
+#####################################################################################################################################################
+
+    def ExtractConsecutiveHelixTriplets (self):
+    
+        [tmprotein. ExtractConsecutiveHelixTriplets() for tmprotein in self.all()]
+        
+        return
+
+    def ExtractInteractingHelixTriplets (self):
+    
+        [tmprotein. ExtractInteractingHelixTriplets() for tmprotein in self.all()]
+        
+        return
+
+#####################################################################################################################################################
+
+    def ExtractInteractingHelixPairs (self):
+    
+        [tmprotein. ExtractInteractingHelixPairs() for tmprotein in self.all()]
+        
+        return
 
 
 def user_directory_path( filename):
@@ -138,15 +506,17 @@ def get_upload_path(instance, filename):
 class TMProtein (models.Model): #zmienic to na TMProtein
 
     """ object storing PDB File to be uploaded """
-
+    
     TMProtein_ID = models.CharField(max_length=200)
-    tmproteinfile = models.FileField(upload_to=get_upload_path)#'uploads/%Y/%m/%d/%H/%M')
+    tmproteinfile = models.FileField(upload_to=get_upload_path,null=True)#'uploads/%Y/%m/%d/%H/%M')
     path = models.CharField(get_upload_path, max_length=200)
     Atoms = models.TextField(null=True,default="fejslik")
-    objects  = TMProteinManager ()
+    objects  = TMProteinManager ().from_queryset(TMProteinQuerySet)()
     Score=models.FloatField(null=True)
     Set = models.CharField(max_length=10,null=True) #'Reference' or 'Test'
-
+    from xml_parser.models import structure
+    structure = models.ForeignKey(structure, on_delete=models.CASCADE, null=True)
+    
     def getPath (self):
 
         return get_upload_path
@@ -155,7 +525,7 @@ class TMProtein (models.Model): #zmienic to na TMProtein
         for tmhelixtripleti in self.tmhelixtriplet_set.all():
             tmhelixtripleti.getScore()
         self.Score=self.tmhelixtriplet_set.aggregate(Avg('Score'))['Score__avg']
-        print self.Score; #quit()
+#        print self.Score; #quit()
         self.save()
 #        quit()
         return self.Score
@@ -193,32 +563,55 @@ class TMProtein (models.Model): #zmienic to na TMProtein
         return
 
 
-    def ReadPDB (self, pdb_path):#, db_path):
+    def ReadPDB (self, pdb_path, ParametersI):#, db_path):
 
         """ reads PDB file to extract TM Helices """
+        
+        ParametersI.BordersOfThinSlices
+         
 
         from PDB_FileContentsModule import getHelicesfromPDBFile, ReadPDBFile, GetAtomsFromPDBFile
 
         self. Atoms = GetAtomsFromPDBFile (pdb_path)
 #        self.atom_set.add(atom)
+
+        BordersOfThinSlicesI = [[float(item) for item in Range.split(',')] for Range in ParametersI. BordersOfThinSlices.split(';')]
+        
         with transaction.atomic():
          for TM in getHelicesfromPDBFile (pdb_path):
+           if len(TM.Content)>0: 
+            from SetOfAtomsModule import Parametry   
+            print Parametry. BordersOfThinSlices 
 
 #              TMHelixModel.objects.create ()
 
             AtomsI = ''
-            
-            print TM. ThinSlicesCOMs ( );
-            [MC_EC_X, MC_EC_Y, MC_EC_Z],\
-            [MC_MM_X, MC_MM_Y, MC_MM_Z],\
-            [MC_IC_X, MC_IC_Y, MC_IC_Z]  =  TM. ThinSlicesCOMs ( )
-#            print tmhelix.MC_EC_X
+            try: 
+#             print TM. ThinSlicesCOMs ( ParametersI );
+#             [MC_EC_X, MC_EC_Y, MC_EC_Z],\
+#             [MC_MM_X, MC_MM_Y, MC_MM_Z],\
+#             [MC_IC_X, MC_IC_Y, MC_IC_Z]  =  TM. ThinSlicesCOMs ( BordersOfThinSlicesI )
+             
+             Points = TM. ThinSlicesCOMs ( BordersOfThinSlicesI )
+             
+             [MC_EC_X, MC_EC_Y, MC_EC_Z] = Points[0]
+             [MC_IC_X, MC_IC_Y, MC_IC_Z] = Points[-1]
+             [MC_MM_X, MC_MM_Y, MC_MM_Z] = Points[int(float(len(Points))/2.0)]
+             
+#             [MC_EC_X, MC_EC_Y, MC_EC_Z],\
+#             [MC_MM_X, MC_MM_Y, MC_MM_Z],\
+#             [MC_IC_X, MC_IC_Y, MC_IC_Z]  = Points
 
+
+             
+#            print tmhelix.MC_EC_X
+            except ZeroDivisionError:
+             break
             tmhelix = TMHelixModel.objects.create(TMHelix_ID= TM. ID, TMHelix_Tilt = TM. Tilt(), \
                                       TMHelix_Tilt_EC = TM. Tilt_EC(), \
                                       TMHelix_Tilt_IC = TM. Tilt_IC(), \
                                       TMHelix_KinkAngle = TM. KinkAngle(), \
-                                      TMHelix_Overhang = TM. Overhang(),\
+                                      TMHelix_Overhang = TM. Overhang(BordersOfThinSlicesI),\
                                       TMHelix_AASEQ = TM. AASEQ (),\
                                       TMHelix_pdb_path = '/'.join(pdb_path.split('/')[:-1])+'/TMs/',
                                       Atoms = AtomsI,
@@ -232,24 +625,43 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                                       MC_IC_Y = MC_IC_Y,
                                       MC_IC_Z = MC_IC_Z
                                       )
+
+            for PointI in Points:
+                tmhelix.point_set.add( Point.objects.create (X = PointI[0] , Y = PointI[1], Z = PointI[2] ) )
+
             
             for ResidueI in TM.Content:
-                Residue.objects.create()
+                ResidueModelI = Residue.objects.create(Residue_ID=ResidueI.Content[0].s[6:11], AAThreeLetter = ResidueI.Content[0].AAThreeLetter )
                 
-                    for AtomI in ResidueI.Content:
+                for AtomI in ResidueI.Content:
                     #  7 - 11        Integer         Atom serial number
                     
-                        atom = Atom.objects.create(Atom_ID = AtomI.s[6:11],  Text = AtomI.s)
+                        atom = Atom.objects.create(Atom_ID = AtomI.s[6:11],Atom_ID_Int = int(AtomI.s[6:11]),  Text = AtomI.s)
 #moze by to dac do create
                         atom.X = AtomI.X
                         atom.Y = AtomI.Y
                         atom.Z = AtomI.Z
+                        atom.AtomName = AtomI.s[13:16+1]
+
+                        atom.Mass = AtomI.Mass()
+                        atom.VdWRadius = AtomI.VdWRadius()
                         atom.AAThreeLetter = AtomI.AAThreeLetter
+                        atom.save()
                         self.atom_set.add(atom)
                         tmhelix.atom_set.add(atom)
-                        Residue.atom_set.add(atom)
-
+                        ResidueModelI.atom_set.add(atom)
                         
+                ResidueModelI.AAThreeLetter = ResidueI.Content[0].AAThreeLetter
+#                
+                ResidueModelI.CenterOfMass()
+
+                ResidueModelI.save()
+                tmhelix.residue_set.add(ResidueModelI)
+#                print ResidueModelI.Z
+#                print ResidueModelI.AAThreeLetter
+#                print Residue.objects.all().values_list('AAThreeLetter')
+
+#                quit()
             
            # print tmhelix.atom_set.show()
                 
@@ -263,13 +675,21 @@ class TMProtein (models.Model): #zmienic to na TMProtein
             tmhelix.ECAxis_X, tmhelix.ECAxis_Y, tmhelix.ECAxis_Z = TM. ExtractSlice([-2.0,12.0]). MainAxis ( )
 
             tmhelix.ICAxis_X, tmhelix.ICAxis_Y, tmhelix.ICAxis_Z = TM. ExtractSlice([-12.0,2.0]). MainAxis ( )
+# czyli to jest jakies PCA, trzeba ten parametr zrobic
+
+
+
+            Points = TM. ThinSlicesCOMs ( BordersOfThinSlicesI )
+             
+            [tmhelix.MC_EC_X, tmhelix.MC_EC_Y, tmhelix.MC_EC_Z] = Points[0]
+            [tmhelix.MC_IC_X, tmhelix.MC_IC_Y, tmhelix.MC_IC_Z] = Points[-1]
+            [tmhelix.MC_MM_X, tmhelix.MC_MM_Y, tmhelix.MC_MM_Z] = Points[int(float(len(Points))/2.0)]
     
-            [tmhelix.MC_EC_X, tmhelix.MC_EC_Y, tmhelix.MC_EC_Z],\
-            [tmhelix.MC_MM_X, tmhelix.MC_MM_Y, tmhelix.MC_MM_Z],\
-            [tmhelix.MC_IC_X, tmhelix.MC_IC_Y, tmhelix.MC_IC_Z]  =  TM. ThinSlicesCOMs ( )  
+            # dlaczego licze to dwa razy, to nie ma sensu
             tmhelix.save()                
             self. tmhelixmodel_set.add(tmhelix)
             self.save()
+#            print Residue.objects.all().values_list('AAThreeLetter')#;quit()
 #        ReadPDBFile (pdb_path, db_path)	#
 
 
@@ -290,12 +710,162 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                 tmhelixpair.getCrossingAngle ()              
                 tmhelixpair.save()
                 self.tmhelixpair_set.add(tmhelixpair)  
+# mozna to lepiej rozpisac, ale to na potem                
+#                print  'Count '+str(tmhelixpair.tmhelixmodel_set.count())        
+                #sprawdzic czy dobrze bedzie
+        return
+
+    def ExtractInteractingHelixTriplets (self):
+        
+     triplet_pkss = []
+        
+     print self.TMProtein_ID
+        
+        
+     with transaction.atomic():        
+        if not self.tmhelixpair_set.all():
+
+            self. ExtractInteractingHelixPairs ()
+        #bedzie to trzeba zoptymalizowac jakos
+        
+        NoPairs = self.tmhelixpair_set.count()
+        
+        helices = self.tmhelixpair_set.all()
+        pair_pks= self.tmhelixpair_set.values_list('pk')
+        
+        print pair_pks
+        
+        length = len(pair_pks)
+        
+#        print type(pair_pks)
+        
+#        print pair_pks[0]
+#        print pair_pks[1]
+#        print pair_pks[2]        
+#        print pair_pks[3]        
+
+#        quit()
+        
+        for N1 in range(length):
+            
+                print pair_pks[N1][0]
+            
+                pks = TMHelixPair.objects.get(pk=pair_pks[N1][0]).tmhelixmodel_set.values_list('pk')
+            
+#                print pks
+            
+                for N2 in range(N1+1,length):
                 
-                print  'Count '+str(tmhelixpair.tmhelixmodel_set.count())        
+                    pks2 = TMHelixPair.objects.get(pk=pair_pks[N2][0]).tmhelixmodel_set.values_list('pk')
+                
+#                    print (pks|pks2).distinct()
+
+                
+ #                   from itertools import chain
+                    
+#                    print pks, pks2, pks|pks2
+                    
+#                    print pks|pks2
+
+                    if (pks|pks2).distinct().count() ==3:
+                        
+                        triplet_pks = (pks|pks2).distinct().order_by('pk')
+                        
+                        lista = [triplet_pk[0] for triplet_pk in triplet_pks]
+                        
+                        if lista not in triplet_pkss:
+                            
+                            print triplet_pkss
+                            print triplet_pks
+
+                            triplet_pkss.append(lista)
+                        
+                        
+#                        print 'found Triplet'
+                    
+                            tmhelixtriplet = TMHelixTriplet.objects.create(Set=self.Set)
+                    
+                            tmhelixtriplet.tmhelixmodel_set = self.tmhelixmodel_set.filter(id__in=triplet_pks).order_by('pk')
+                            
+                            IDs = ';'.join([ item[0] for item in tmhelixtriplet.tmhelixmodel_set.order_by('TMHelix_ID'). values_list('TMHelix_ID')[:2] ])
+                            
+                             
+                            print IDs; print self.TMProtein_ID
+                            try:
+                                tmhelixtriplet. CrossingAngle1_2 = self.tmhelixpair_set.get(TMHelix_IDs=IDs). CrossingAngle               
+                    
+                            except TMHelixPair.DoesNotExist:
+                                
+                                tmhelixtriplet. CrossingAngle1_2 = None
+                            
+                            IDs = ';'.join([ item[0] for item in tmhelixtriplet.tmhelixmodel_set.order_by('TMHelix_ID'). values_list('TMHelix_ID')[1:] ])    
+
+                            try:
+                                tmhelixtriplet. CrossingAngle2_3 = self.tmhelixpair_set.get(TMHelix_IDs=IDs). CrossingAngle               
+                    
+                            except TMHelixPair.DoesNotExist:
+                                
+                                tmhelixtriplet. CrossingAngle2_3 = None
+
+ 
+                            IDs = ';'.join([ item[0] for item in [tmhelixtriplet.tmhelixmodel_set.order_by('TMHelix_ID'). values_list('TMHelix_ID')[n] for n in [0,2]] ])    
+
+                            try:
+                                tmhelixtriplet. CrossingAngle1_3 = self.tmhelixpair_set.get(TMHelix_IDs=IDs). CrossingAngle               
+                    
+                            except TMHelixPair.DoesNotExist:
+                                
+                                tmhelixtriplet. CrossingAngle2_3 = None
+
+                    
+                            tmhelixtriplet. getPhi ()
+                            tmhelixtriplet. save()
+                            self.tmhelixtriplet_set. add(tmhelixtriplet)  
+                    self.save()
+                    
+    
+    def ExtractInteractingHelixPairs (self):
+        
+        print self.TMProtein_ID
+        
+        NoHelices = self. tmhelixmodel_set.count()
+        
+        if NoHelices >= 2:
+ # moze trzeba to na wyzszym poziomie zrobic       
+            for N in range(NoHelices - 1):
+# to teraz w petli sprawdzic czy jest kontakt i do przodu               
+             for N2 in range(N+1,NoHelices):
+                tmhelixpair = TMHelixPair.objects.create()
+#                print N; print N+1;
+#                print self. tmhelixmodel_set.all().values_list('id', flat=True)
+# dziala, tylko troche wolno, poza tym mozna by to zrefaktoryzowac 
+# jako querysetu, wiec moze najpierw uzyc atom_set
+                tmhelixpair.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N+1)))   
+                tmhelixpair.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N2+1)))
+                
+                
+# mozna sprawdzic na tm helixpair czy jest contact
+                Contact = tmhelixpair.Contact()
+                if not Contact:
+                    tmhelixpair.delete()
+                
+                else:
+                    
+                    tmhelixpair.getCrossingAngle ()              
+                    tmhelixpair.TMHelix_IDs= ';'.join([tmhelixmodelI.TMHelix_ID for tmhelixmodelI in tmhelixpair.tmhelixmodel_set.order_by('TMHelix_ID').all()])
+                    
+                    tmhelixpair.save()
+                    self.tmhelixpair_set.add(tmhelixpair)  
+                    self.save()
+                    print tmhelixpair.TMHelix_IDs; 
+                    print self.tmhelixpair_set.all()
+#                    print  'Count '+str(tmhelixpair.tmhelixmodel_set.count())        
                 #sprawdzic czy dobrze bedzie
         return
 
     def ExtractConsecutiveHelixTriplets (self):
+        
+        
         
         NoHelices = self. tmhelixmodel_set.count()
         
@@ -309,11 +879,22 @@ class TMProtein (models.Model): #zmienic to na TMProtein
                 tmhelixtriplet.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N+1)))   
                 tmhelixtriplet.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N+2)))              
                 tmhelixtriplet.tmhelixmodel_set.add(self. tmhelixmodel_set.get(TMHelix_ID=str(N+3)))              
-
+                
+                print str(N+1)
+                print str(N+2)
+                print str(N+3) 
+                
+                print tmhelixtriplet.tmhelixmodel_set.values_list('TMHelix_ID')
+                print 'MC_MM_X'
+                print tmhelixtriplet.tmhelixmodel_set.values_list('MC_MM_X')
+                print self.structure.pdbCode
+                
+                
+                
                 tmhelixtriplet. getPhi ()
                 tmhelixtriplet.save()
                 self.tmhelixtriplet_set.add(tmhelixtriplet)  
-
+                self.save()
 
         return
 
@@ -382,7 +963,35 @@ class TMHelixPair (models.Model):
     CrossingAngleEC = models.FloatField (null=True)
     CrossingAngleIC = models.FloatField (null=True)
     TMProtein = models.ForeignKey(TMProtein, on_delete=models.CASCADE, null=True)
+    ContactAtoms = models.CharField(max_length=20000,null=True)
+    TMHelix_IDs = models.CharField(null=True, max_length = 40)
 
+#####################################################################################################################################################
+
+    def Contact(self):
+        with transaction.atomic():        
+            TMHelices = self.tmhelixmodel_set.all ()
+        
+            TMHelix1, TMHelix2 = TMHelices
+
+            contact_mI = contact_m(TMHelix1.atom_set.all(),TMHelix2.atom_set.all())
+#musze wszystkie kontakty zwracac bo masakra
+            if contact_mI[0]:
+                self.ContactAtoms= '\n'.join( [';'.join(pair) for pair in contact_mI[1]] )
+                return True
+        
+#            for Residue1 in TMHelix1.residue_set.all():
+            
+#                for Residue2 in TMHelix2.residue_set.all():
+                
+                # wykorzystac object set: 
+#                    if Residue.objects.filter(id__in=(Residue1.pk,Residue2.pk)).Contact():
+#to musi byc jakos zmienione
+# tylko nie wiem jeszcze jak                    
+#                        return True
+        
+        return False
+# zastanawiam sie czy nie wziac tego z modellera albo biopythona
 #####################################################################################################################################################
 
     def Interacting (self,VdWContactZRange =[-8.0, 8.0]):
@@ -437,18 +1046,211 @@ class TMHelixPair (models.Model):
         
         return
 
+class TMHelixTripletQuerySet(models.QuerySet):
 
+    def RMSD(self):
+        
+        
+        return RMSD(self[0].Crds(), self[1].Crds())
+    
+    def Crds(self):
+        
+        return [ tripletI.Crds() for tripletI in self ]
+# trzeba bedzie pK z tego zachowac
+
+    def CACluster(self):
+        
+        [TMHelixTripletI.ToPDBFile() for TMHelixTripletI in self]
+    
+    def Cluster(self):
+## tu powinny byc opcje rozne
+# dobra, zobaczymy czy to dziala
+#        if not self.RMSDMatrix:
+        self=self.order_by('PDBFileName')
+        self.pks = self.values_list('pk')
+        self.pks = [ pk[0] for pk in self.pks ]
+        
+        if not hasattr(self, 'RMSDMatrix'):
+#        if 1==1:            
+#
+           import os.path 
+           if os.path.isfile('media/RMSDMatrix.csv'):
+               
+               self.RMSDMatrix= from_triangle_csv('media/RMSDMatrix.csv')
+# to powinno byc czytane z wybranego pliku
+# i powinien byc jakis sposob zorderowania matrycy RMSD
+# zaraz sie musze zajac portowaniem tego na desktopa
+# tylko ze on powinien chodzic w drugim pokoju bo bedzie glosno inaczej
+#ciekawe czy kabla wystarczy
+#zawsze moge queryset .order_by(filename)
+# i filename wygenerowane jakos z z kodu i z nazwy trypletu               
+           else:   
+               
+               self.getRMSDMatrix()
+        
+        
+               
+#        k=6
+        
+        
+        
+        for k in range(19,30):
+        
+
+             
+            print k      
+            centroids, code_dict = kMedoids ( self.RMSDMatrix, k )
+        
+            ClusteringI = Clustering.objects.create()
+            ClusteringI.no_cluster = str(k)
+#        ClusteringI.idx = idx
+            
+  #          print code_dict
+  #          print centroids; #quit()
+            ClusteringI.RMSD = np.average( list(itertools.chain.from_iterable( [ [self.RMSDMatrix [N][N1]  for N1 in code_dict[N]] for N in range(k)])) )
+            for N in range(k):
+            
+                ClusterI = Cluster.objects.create()
+  #              print code_dict[N]
+#            quit()
+
+                ClusterI.Centroid = self[centroids[N]] 
+            
+                ClusterI.Centroidpk = self[centroids[N]].id
+            
+#            quit()
+#            ClusterI.save()
+                ClusterI.RMSD = np.average( [self.RMSDMatrix [N][N1]  for N1 in code_dict[N]] )
+#                for N1 in code_dict[N]:
+            
+                ClusterI.tmhelixtriplet_set=self.filter(pk__in=[self.pks[N1] for N1 in code_dict[N] ])
+                ClusterI.CrossingAngle1_2 = ClusterI.tmhelixtriplet_set.aggregate(Avg('CrossingAngle1_2'))['CrossingAngle1_2__avg']
+                ClusterI.CrossingAngle1_2_Std = np.std( np.array(filter(None,ClusterI.tmhelixtriplet_set.values_list('CrossingAngle1_2',flat=True)) ) )
+
+                ClusterI.CrossingAngle1_3 = ClusterI.tmhelixtriplet_set.aggregate(Avg('CrossingAngle1_3'))['CrossingAngle1_3__avg']
+                ClusterI.CrossingAngle1_3_Std = np.std( np.array(filter(None,ClusterI.tmhelixtriplet_set.values_list('CrossingAngle1_3',flat=True)) ) )
+
+                ClusterI.CrossingAngle2_3 = ClusterI.tmhelixtriplet_set.aggregate(Avg('CrossingAngle2_3'))['CrossingAngle2_3__avg']
+                ClusterI.CrossingAngle2_3_Std = np.std( np.array(filter(None,ClusterI.tmhelixtriplet_set.values_list('CrossingAngle2_3',flat=True)) ) )
+
+
+# moze to trzeba jakos po pk, bo to sie lubi pieprzyc            
+                ClusterI.save()
+                ClusteringI.cluster_set.add(ClusterI)
+
+            ClusteringI.save()
+#        print 'idx'
+        
+#        print idx
+        
+#        no_cluster,distance = vq(self.RMSDMatrix,centroids)
+
+#        searchval = 3
+#ii = np.where(values == searchval)[0]
+
+ #       ClusteringI.idx = idx
+ #       ClusteringI.no_cluster = ','.join(no_cluster)
+ #       ClusteringI.distance=str(distance)
+ #       ClusteringI.save()
+        
+#        print 'centroids'
+#        print centroids
+ #       print 'no_cluster'
+ #       print no_cluster
+ #       print 'distance'
+ #       print distance
+        
+        Noclusters = Clustering.objects.values_list('no_cluster')
+        RMSDs = Clustering.objects.values_list('RMSD')    
+        plt.clf()
+
+#    print XYArray. transpose ()
+#    print numpy.corrcoef ( numpy. array (XYArray). transpose () )
+#    print OutputFile
+#    quit ()
+# cross 0,608; 
+# tilt 0.474;
+#    print Xs; 
+
+        plt.scatter (Noclusters , RMSDs)    
+        plt.savefig ('NoClustersRMSDs.png' ,dpi=320)
+        plt.clf()
+        
+        return
+
+    def getRMSDMatrix(self):
+#ta matryca pewnie bedzie za dluga na JSONA a i tak musi wejsc do pamieci
+        self.RMSDMatrix = getRMSDMatrix (self.Crds())
+        return self.RMSDMatrix
+
+#        length = len(self)        
+#        RMSDMatrixI = np.zeros((length,length))        
+        
+#        for N1 in range(length):
+#            for N2 in range(N1+1,length):
+#                print self[N1].TMProtein.TMProtein_ID, self[N2].TMProtein.TMProtein_ID
+#                RMSDI = self.filter(id__in=(self[N1].pk,self[N2].pk)).RMSD()
+#                print RMSDI
+#                RMSDMatrixI.itemset((N1,N2),(RMSDI))
+#                RMSDMatrixI.itemset((N2,N1),(RMSDI))       
+#        print RMSDMatrixI
+#        quit()        
+
+        return RMSDMatrixI
 
 class TMHelixTriplet (models.Model):
     
     """ object storing TM Helix Pair """
-    objects = TMHelixTripletManager ()
+    objects = TMHelixTripletManager ().from_queryset(TMHelixTripletQuerySet)()
     Phi = models.FloatField (null=True)
     TMProtein = models.ForeignKey(TMProtein, on_delete=models.CASCADE, null=True)
     Score = models.FloatField (null=True)
     Set = models.CharField(max_length=10,null=True)
+    Type = models.CharField(max_length=20,null=True)
+    Cluster = models.ManyToManyField(Cluster,null=True)
+    CrossingAngle1_2 = models.FloatField (null=True)
+    CrossingAngle2_3 = models.FloatField (null=True)
+    CrossingAngle1_3 = models.FloatField (null=True)
+    PDBFileName = models.CharField(max_length=200,null=True)
 
 #####################################################################################################################################################
+
+    def ToPDBFile (self ):
+        # powinna byc referencja do dataset pk
+#        os.system('mkdir -p media/PDBs/Triplets/'+self.TMProtein.structure.DatabaseModel.pk)
+        # dalem to many to many, wiec nie dziala, foreign key by dzialal
+        PDBFilePath = 'media/PDBs/Triplets/'+ self.TMProtein.TMProtein_ID+ '_'.join(self.tmhelixmodel_set.order_by('TMHelix_ID').values_list('TMHelix_ID', flat=True))+'.pdb'
+        self.PDBFileName = self.TMProtein.TMProtein_ID+ '_'.join(self.tmhelixmodel_set.order_by('TMHelix_ID').values_list('TMHelix_ID', flat=True))+'.pdb'
+        
+        Buffer = ''.join( list(itertools.chain.from_iterable([[ToAla(AtomI.Text) for AtomI in TMHelixModelI.atom_set.filter(AtomName='CA  ').order_by('Atom_ID_Int')] \
+                           for TMHelixModelI in self.tmhelixmodel_set.all().order_by('TMHelix_ID') ]) ))
+                         
+        f = open (PDBFilePath,'w')
+        f.write(Buffer)
+        f.flush()
+        f.close()
+          
+
+
+    def Crds(self):
+
+# brzydko to jest zrobione
+        
+        CrdsI = []
+        
+        for tmhelix in self.tmhelixmodel_set.all().order_by('TMHelix_ID'):
+            
+            for PointI in tmhelix.point_set.all().order_by('pk'):
+                
+                CrdsI. append([PointI.X, PointI.Y, PointI.Z])
+            
+#            CrdsI.append([tmhelix.MC_EC_X, tmhelix.MC_EC_Y, tmhelix.MC_EC_Z ])
+#            CrdsI.append([tmhelix.MC_MM_X, tmhelix.MC_MM_Y, tmhelix.MC_MM_Z ])
+#            CrdsI.append([tmhelix.MC_IC_X, tmhelix.MC_IC_Y, tmhelix.MC_IC_Z ])
+# w ktorym miejscu chce permutacje? moze zamiast RMSD        
+#wiec lista jest plaska
+        return CrdsI
+
 
     def getScore(self):
 #        self.Score = probability(self.Phi,TmTripletSet)
@@ -461,36 +1263,57 @@ class TMHelixTriplet (models.Model):
 #            print self. values_list('id')
 #            print np.array(self. values_list(Value, flat=True))
         relfrequency = relfreq(new_list,18,defaultreallimits=(0,180))
-        print relfrequency; 
+#        print relfrequency; 
  #           print relfrequency
  #           print relfrequency[0]
  #           print relfrequency[0][int(math.floor((165.0+relfrequency[1])/relfrequency[2]))]
  #           HistogramPlot(new_list, 'myproject/myapp/static/myapp/static/Stats/HelixTriplet/'+Value )
         self.Score = relfrequency[0][int(math.floor((self.Phi)/relfrequency[2]))]
-        print self.Phi
-        print 
-        print int(math.floor((180.0+self.Phi+relfrequency[1])/relfrequency[2]))
-        print 
+#        print self.Phi
+#        print 
+#        print int(math.floor((180.0+self.Phi+relfrequency[1])/relfrequency[2]))
+#        print 
         self.save()
-        print self.Score
+#        print self.Score
         #quit()
         return self.Score
 
 #####################################################################################################################################################
     
     def getPhi (self):
-        
-        helices = self.tmhelixmodel_set.all ()
-            
-        P1 = [helices[0].MC_MM_X,helices[0].MC_MM_Y,helices[0].MC_MM_Z]
-        P2 = [helices[1].MC_MM_X,helices[1].MC_MM_Y,helices[1].MC_MM_Z]
-        P3 = [helices[2].MC_MM_X,helices[2].MC_MM_Y,helices[2].MC_MM_Z]
-        Vec1 = SetOfPoints([P1,P2]).Vector()
-        Vec2 = SetOfPoints([P1,P3]).Vector()
-        self.Phi = SetOfVectors([Vec1, Vec2 ]) .AngleDEG ()
-        print self.Phi
-#        quit()
 
+        ids = self.tmhelixmodel_set.all ().values_list('id')
+        helices = self.tmhelixmodel_set.all ()
+        [helix1, helix2, helix3] = self.tmhelixmodel_set.all ()
+#        print helices.values_list('MC_MM_X')    
+#        print helix1.MC_MM_X
+#        print helix3.MC_MM_X
+        
+        
+        
+        P1 = [helix1.MC_MM_X,helix1.MC_MM_Y,helix1.MC_MM_Z]
+        P2 = [helix2.MC_MM_X,helix2.MC_MM_Y,helix2.MC_MM_Z]        
+        P3 = [helix3.MC_MM_X,helix3.MC_MM_Y,helix3.MC_MM_Z]
+        P1 = np.array(P1)
+        P2=np.array(P2)
+        P3=np.array(P3)
+        P1_P2=np.subtract(P2,P1)
+        P1_P3=np.subtract(P3,P1)
+        length_P1_P2 = np.linalg.norm(P1_P2)
+        length_P1_P3 = np.linalg.norm(P1_P3)
+
+#        print P1
+#        print P2
+#        print P3
+
+#        Vec1 = SetOfPoints([P1,P2]).Vector()
+#        Vec2 = SetOfPoints([P1,P3]).Vector()        
+#        self.Phi = SetOfVectors([Vec1, Vec2 ]) .AngleDEG ()
+#        print self.Phi
+#        quit()
+#        cross = np.cross(P1_P2, P1_P3)
+        self.Phi = math.asin(np.cross(P1_P2, P1_P3)[2]/(length_P1_P2*length_P1_P3))*(180/math.pi)
+# prowizoryczne dla handednessa
 #####################################################################################################################################################
 
     def Interacting (self,VdWContactZRange =[-8.0, 8.0]):
@@ -500,6 +1323,15 @@ class TMHelixTriplet (models.Model):
         pass
         
         return
+
+
+
+
+Cluster.Centroid = models.ForeignKey(TMHelixTriplet,
+    on_delete=models.CASCADE,
+#    primary_key=True,
+    )
+
 
 class TMHelixModel (models.Model):
 
@@ -512,7 +1344,7 @@ class TMHelixModel (models.Model):
     TMHelix_Tilt_IC = models.FloatField (null=True)
     TMHelix_KinkAngle = models.FloatField (null=True)
     TMHelix_Overhang = models.FloatField (null=True)
-    TMHelix_pdb_path = models.CharField(max_length=200)
+    TMHelix_pdb_path = models.CharField(max_length=2000)
     Atoms = models.TextField(null=True,default="fejslik")
 
     TMProtein = models.ForeignKey(TMProtein, on_delete=models.CASCADE, null=True)
@@ -560,6 +1392,9 @@ class TMHelixModel (models.Model):
         return tmhelix
 
 
+    def show(self):
+        pass
+
 #class UserFolder(models.Model):
 #    name = models.CharField(null=True)
 #    parent = models.ForeignKey("Folder", null=True,)  # self-referential
@@ -570,6 +1405,70 @@ class TMHelixModel (models.Model):
 #    image = models.ImageField(null=True)
 #    # Optional, null folder could just mean it resides in the base user folder
 #    folder = models.ForeignKey(UserFolder, null=True,)
+class ResidueManager (models.Manager):
+    
+    """ object managing Amino Acid Residues """
+    
+    pass
+
+class ResidueQuerySet(models.QuerySet):
+
+    def manager_and_queryset_method(self):
+
+        return
+
+    def Contact(self):
+        
+        with transaction.atomic():
+            print 'Res '+str(self[0].pk)        
+            for Atom1 in self[0].atom_set.all():
+                for Atom2 in self[1].atom_set.all():
+#                print 
+                    if distance(Atom1,Atom2) < 5.0:
+                        return True
+
+        return False
+
+class Residue (models.Model): #research multiple inheritance
+    
+    """ object representing Amino Acid Residue """
+    
+    objects = ResidueManager().from_queryset(ResidueQuerySet)()
+    Z = models.FloatField(null=True)
+    AAThreeLetter = models.CharField(max_length=3,null=True)
+    Residue_ID = models.CharField(max_length=200)
+    TMHelixModel = models.ForeignKey(TMHelixModel, on_delete=models.CASCADE, null=True)
+    
+    def CenterOfMass ( self ):
+
+          """ returns Center Of Mass of class Instnace """
+
+#          if self.Content == []: # check if there are any atoms to compute COM from ...
+#             print self
+#             print 'AtomSetIsEmpty. Unable to calcuate Center Of Mass.'
+
+          X_Sum, Y_Sum, Z_Sum, Mass_Sum  = [ 0.0, 0.0, 0.0, 0.0 ] 
+
+          for Atom in self.atom_set.all():
+          
+              X_Sum += ( Atom .X * Atom .Mass )
+              Y_Sum += ( Atom .Y * Atom .Mass )
+              Z_Sum += ( Atom .Z * Atom .Mass ) 
+
+              Mass_Sum += Atom .Mass 
+
+          CenterOfMass = [ (Coord_Sum / Mass_Sum) for Coord_Sum in [X_Sum, Y_Sum, Z_Sum ] ]
+          self.Z = CenterOfMass[2]
+          self.save()
+          return CenterOfMass
+
+    @classmethod
+    def create(cls, ID):
+
+        """ creates new object: instance of TMHelix class """
+
+        residue = cls(Residue_ID=ID, attributes={})
+        return residue
 
 class AtomManager (models.Manager):
 
@@ -582,9 +1481,31 @@ class AtomManager (models.Manager):
         for AtomI in self.all():
             
 #             print AtomI.Text
-             Text = Text+AtomI.Text+'\n'
+             Text = Text+AtomI.Text#+'\n'
         
         return Text
+
+class AtomQuerySet(models.QuerySet):
+
+    def manager_and_queryset_method(self):
+
+        return
+
+    def Contact(self):
+        
+        if self.Distance()<2.5:
+            return True
+
+        return False
+
+    def Distance(self):
+        
+#        print self[0]
+#        print self[1]
+        
+        return    ((self[0].X-self[1].X)**2\
+                 + (self[0].Y-self[1].Y)**2\
+                 + (self[0].Z-self[1].Z)**2)**0.5
 
 class   Atom (models.Model):
 
@@ -595,12 +1516,18 @@ class   Atom (models.Model):
     Residue = models.ForeignKey(Residue, on_delete=models.CASCADE, null=True)
 #ciekawe oile to spowolni
     Text = models.CharField(max_length=200)
-    objects = AtomManager()
+    objects = AtomManager().from_queryset(AtomQuerySet)()
     Atom_ID = models.CharField(max_length=200)
+    Atom_ID_Int = models.IntegerField(null=True)
     X = models.FloatField(null=True)
     Y = models.FloatField(null=True)
     Z = models.FloatField(null=True)
     Mass = models.FloatField(null=True)
+    AAThreeLetter = models.CharField(max_length=3,null=True)
+    VdWRadius = models.FloatField(null=True)
+    AtomName = models.CharField(max_length=4,null=True)
+
+#there should be vdW somewhere
 
     @classmethod
     def create(cls, ID):
@@ -610,38 +1537,13 @@ class   Atom (models.Model):
         atom = cls(Atom_ID=ID, attributes={})
         return atom
 
-class ResidueManager (models.Manager):
+class Point (models.Model):
+#    from models import TMHelixModel
     
-    """ object managing Amino Acid Residues """
+    X = models.FloatField(null=True)
+    Y = models.FloatField(null=True)
+    Z = models.FloatField(null=True)
+    TMHelixModel = models.ForeignKey(TMHelixModel, on_delete=models.CASCADE, null=True)
     
     pass
-
-class Residue (models.Model): #research multiple inheritance
-    
-    """ object representing Amino Acid Residue """
-    
-    objects = ResidueManager()
-    Z = models.FloatField(null=True)
-    
-    def CenterOfMass ( self ):
-
-          """ returns Center Of Mass of class Instnace """
-
-          if self.Content == []: # check if there are any atoms to compute COM from ...
-             print self
-             print 'AtomSetIsEmpty. Unable to calcuate Center Of Mass.'
-
-          X_Sum, Y_Sum, Z_Sum, Mass_Sum  = [ 0.0, 0.0, 0.0, 0.0 ] 
-
-          for Atom in self.atom_set:
-          
-              X_Sum += ( Atom .X * Atom .Mass )
-              Y_Sum += ( Atom .Y * Atom .Mass )
-              Z_Sum += ( Atom .Z * Atom .Mass ) 
-
-              Mass_Sum += Atom .Mass 
-
-          CenterOfMass = [ (Coord_Sum / Mass_Sum) for Coord_Sum in [X_Sum, Y_Sum, Z_Sum ] ]
-          self.Z = CenterOfMass[2]
-          return CenterOfMass
 

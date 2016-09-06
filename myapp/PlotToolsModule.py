@@ -261,8 +261,8 @@ def ScatterPlot1 ( XYArray, OutputFile ):
     Xs = array ( XYArray [:,0] ) ; 
     Ys = array ( XYArray [:,1] )
 #    print XYArray. transpose ()
-    print numpy.corrcoef ( numpy. array (XYArray). transpose () )
-    print OutputFile
+#    print numpy.corrcoef ( numpy. array (XYArray). transpose () )
+#    print OutputFile
 #    quit ()
 # cross 0,608; 
 # tilt 0.474;
@@ -278,9 +278,10 @@ def ScatterPlot1 ( XYArray, OutputFile ):
 
 def HistogramPlot ( H2Xs, OutputFile,Min = -180, Max = 180, BinNo = 37 ):
     
-    OutputFileDir = '/'.join(OutputFile.split('/')[:-1])
-    print 'mkdir -p '+OutputFileDir;
-    os.system('mkdir -p '+OutputFileDir)
+    if '/' in OutputFile:
+        OutputFileDir = '/'.join(OutputFile.split('/')[:-1])
+        print 'mkdir -p '+OutputFileDir;
+        os.system('mkdir -p '+OutputFileDir)
 
 # nie jestem pewien gdzie histogram, daje biny; musialbym sprawdzic ...
 #"""
@@ -306,6 +307,7 @@ def HistogramPlot ( H2Xs, OutputFile,Min = -180, Max = 180, BinNo = 37 ):
 #    lista = [ 1, 2, 50, 30 ]
     Array = np.array ( H2Xs )
     print Array
+#    quit()
 #    print bins; quit()
     ax.hist( Array, bins)#color='green',alpha=0.8)
     plt.xlim(-180, 180)
