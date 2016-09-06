@@ -1,0 +1,21 @@
+<p>clustering</p>
+
+{{clustering.pk}} <br>
+                        {{clustering.idx}} <br>
+                       No Clusters: {{clustering.no_cluster}} <br>
+                        {{clustering.distance}} <br> 
+                       RMSD:  {{clustering.RMSD}} <br> 
+     <table>
+     
+    <tr><td>Cluster</td><td>No triplets:</td><td>RMSD:</td></tr>
+    {% for cluster in clustering.cluster_set.all %}
+        <tr><td><a href="{% url 'cluster' cluster.id %}">{{ cluster.id }}</a></td>
+            <td>{{cluster.tmhelixtriplet_set.all.count}}</td>
+            <td>{{cluster.RMSD}}</td>    
+            </tr>
+    {% endfor %}
+    <tr>
+    <td>Total:</td><td>{{ no_triplets }}</td><td></td>
+    </tr>
+    </table>
+    

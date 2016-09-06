@@ -261,8 +261,8 @@ def ScatterPlot1 ( XYArray, OutputFile ):
     Xs = array ( XYArray [:,0] ) ; 
     Ys = array ( XYArray [:,1] )
 #    print XYArray. transpose ()
-    print numpy.corrcoef ( numpy. array (XYArray). transpose () )
-    print OutputFile
+#    print numpy.corrcoef ( numpy. array (XYArray). transpose () )
+#    print OutputFile
 #    quit ()
 # cross 0,608; 
 # tilt 0.474;

@@ -2,29 +2,29 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="id__in" key="selection"/>
+		<item value="Cluster" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="true" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="id__in"/>
-			<item value="contact"/>
-			<item value="inter"/>
-			<item value="rmsd"/>
-			<item value="show"/>
-			<item value="with"/>
-			<item value="ul&gt;"/>
-			<item value="endfor"/>
+			<item value="cluster"/>
+			<item value="ToPDBFile"/>
+			<item value="from_triangle_csv"/>
+			<item value="from_csv"/>
+			<item value="from_tr"/>
+			<item value="itemse"/>
+			<item value="np.ze"/>
+			<item value="pairwise_align"/>
 		</list>
 		<list key="replacehistory">
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item value="289" key="DIALOG_WIDTH"/>
+		<item value="309" key="DIALOG_WIDTH"/>
 		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
-		<item value="404" key="DIALOG_HEIGHT"/>
-		<item value="533" key="DIALOG_X_ORIGIN"/>
-		<item value="152" key="DIALOG_Y_ORIGIN"/>
+		<item value="452" key="DIALOG_HEIGHT"/>
+		<item value="847" key="DIALOG_X_ORIGIN"/>
+		<item value="112" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>
