@@ -6,18 +6,22 @@
 
 	</head>
 
-
+<script>alert('hello')</script>
 <p> 
-<ul>
-    <li><a href="{% url 'aboutme' %}"> About Me </a></li>
-    <li><a href="{% url 'aboutapp' %}"> About The App </a></li>
-    <li><a href="{% url 'userguide' %}"> User Guide </a></li>
-    <li><a href="{% url 'contact' %}"> Contact </a></li>
+Witam,
 
-</ul>
+Nazywam sie Michal Stepniewski. Skonczylem biofizyke i chemie na Uniwersytecie Jagiellonskim.
+Moje zainteresowania to nauka i programowanie jednak ostatnio moj kontakt z uniwersytetem jest sporadyczny :)
 
+Szukam mozliwosci ciaglego rozwoju swoich umiejetnosci i zainteresowan poprzez odpowiadanie na aktualne i adekwatne potrzeby malych grup badawczych zajmujacych sie bioinformatyka i modelowaniem molekularnym a w dalszej przyszlosci takze kolaboratywnego rozwijania malych modularnych narzedzie programistycznych open source, szczegolnie w jezyku python i frameworku django poprez system kontroli wersji bitbucket (git).
+
+Pierwszy projekt stronki powstal wlasnie w tym celu.
+
+Wszystkich zainteresowanych prosze przesylanie feedbacku i requestow na maila michalstepniewski@gmail.com
+
+Autorem pomysłu badawczego jest Dr Henri Xhaard z Uniwersytetu w Helsinkach.
+ 
  </p>
-
 
 
 <div class="fieldWrapper">
@@ -56,73 +60,27 @@
 
 	<body>
 
+<script type="text/javascript" src="/media/jquery-1.7.min.js"></script>
 
 		<!-- List of uploaded documents -->
 		{% if tmproteins %}
 			<ul>
                         {% for TMProtein in tmproteins %}
-                                <li> {{ TMProtein.tmproteinfile.name }}  
+                                <h1> {{ TMProtein.tmproteinfile.name }} </h1> 
+
+
 
                                 {% load static %}
                                 {% static "" as baseUrl %}
                                 <img src="{{ baseUrl }}/myapp/static/Protein1.png" alt="My image"/>
-
-
-                                {% load static %}
-                                {% static "" as baseUrl %}
-
-                                <div id="glmol02" style="width: 300px; height: 300px; background-color: black;"></div> <textarea id="glmol02_src" style="display: none;">
-
-{{ tmprotein.atom_set.show }}
-
-</textarea>
-
-{% load static %}
-{% static "" as baseUrl %}
-
-<script src="{{ baseUrl }}/myapp/static/js/jquery-1.7.min.js"></script>
-<script src="{{ baseUrl }}/myapp/static/js/Three49custom.js"></script>
-<script type="text/javascript" src="{{ baseUrl }}/myapp/static/js/GLmol.js"></script>
-<script type="text/javascript">
-
-// Small molecules can be embedded in the page
-
-var glmol02 = new GLmol('glmol02');
-
-// Proteins can also be embedded in the page but 
-//  you might want to keep it separate.
-
-var glmol01 = new GLmol('glmol01', true);
-glmol01.defineRepresentation = function() {
-   var all = this.getAllAtoms();
-   var hetatm = this.removeSolvents(this.getHetatms(all));
-   this.colorByAtom(all, {});
-   this.colorByChain(all);
-   var asu = new THREE.Object3D();
-   
-   this.drawBondsAsStick(asu, hetatm, this.cylinderRadius, this.cylinderRadius);
-   this.drawBondsAsStick(asu, this.getResiduesById(this.getSidechains(this.getChain(all, ['A'])), [58, 87]), this.cylinderRadius, this.cylinderRadius);
-   this.drawBondsAsStick(asu, this.getResiduesById(this.getSidechains(this.getChain(all, ['B'])), [63, 92]), this.cylinderRadius, this.cylinderRadius);
-   this.drawCartoon(asu, all, this.curveWidth, this.thickness);
-
-   this.drawSymmetryMates2(this.modelGroup, asu, this.protein.biomtMatrices);
-   this.modelGroup.add(asu);
-};
-
-$.get("2DHB.pdb", function(ret) {
-$("#glmol01_src").val(ret);
-glmol01.loadMolecule();
-});
-</script>
-<p>  </p>
-
+                                <img src="{{ baseUrl }}/myapp/static/Protein1.png" alt="My image"/>
 
                                 {% if TMProtein.tmhelixmodel_set.all %}
                                     <ul>
                                     <p> Transmembrane Helices: </p>
                                     {% for tmhelix in TMProtein.tmhelixmodel_set.all %}
 
-                                        <li><a href="{% url 'helix' tmhelix.id %}">TM{{ tmhelix.TMHelix_ID }}</a></li>
+                                        <li><a href="{% url 'detail' tmhelix.id %}">TM{{ tmhelix.TMHelix_ID }}</a></li>
 
                                     {% endfor %}
                                     </ul>
@@ -153,54 +111,9 @@ glmol01.loadMolecule();
                                     {% endfor %}
                                     </ul>
                                 {% endif %}
-<p> </p>                                
-                                {% load static %}
-                                {% static "" as baseUrl %}
+                                
+                                
 
-{% load static %}
-{% static "" as baseUrl %}
-
-<script src="{{ baseUrl }}/myapp/static/js/jquery-1.7.min.js"></script>
-<script src="{{ baseUrl }}/myapp/static/js/Three49custom.js"></script>
-<script type="text/javascript" src="{{ baseUrl }}/myapp/static/js/GLmol.js"></script>
-<script type="text/javascript">
-
-// Small molecules can be embedded in the page
-
-var glmol02 = new GLmol('glmol02');
-
-// Proteins can also be embedded in the page but 
-//  you might want to keep it separate.
-
-var glmol01 = new GLmol('glmol01', true);
-glmol01.defineRepresentation = function() {
-   var all = this.getAllAtoms();
-   var hetatm = this.removeSolvents(this.getHetatms(all));
-   this.colorByAtom(all, {});
-   this.colorByChain(all);
-   var asu = new THREE.Object3D();
-   
-   this.drawBondsAsStick(asu, hetatm, this.cylinderRadius, this.cylinderRadius);
-   this.drawBondsAsStick(asu, this.getResiduesById(this.getSidechains(this.getChain(all, ['A'])), [58, 87]), this.cylinderRadius, this.cylinderRadius);
-   this.drawBondsAsStick(asu, this.getResiduesById(this.getSidechains(this.getChain(all, ['B'])), [63, 92]), this.cylinderRadius, this.cylinderRadius);
-   this.drawCartoon(asu, all, this.curveWidth, this.thickness);
-
-   this.drawSymmetryMates2(this.modelGroup, asu, this.protein.biomtMatrices);
-   this.modelGroup.add(asu);
-};
-
-$.get("2DHB.pdb", function(ret) {
-$("#glmol01_src").val(ret);
-glmol01.loadMolecule();
-});
-</script>                                
-
-<!-- musze poeksperymentowac z tym scriptem -->
-
-Protein Atoms(atom_set): {{ tmprotein.atom_set.show }}
-
-Protein Atoms(Atoms): {{ tmprotein.atoms }}
-</li>
 
 
 			{% endfor %}
@@ -223,19 +136,14 @@ Protein Atoms(Atoms): {{ tmprotein.atoms }}
 				{{ form.tmproteinfile.errors }}
 				{{ form.tmproteinfile }}
 			</p>
-			<p><input type="submit" value="Upload" /></p>  
-			<!-- button for upload -->
+			<p><input type="submit" value="Upload" /></p>
 			<p><input type="submit" name="Clear" value="Clear" /></p>
 			<p><input type="submit" name="CalculateSingleHelixStats" value="CalculateSingleHelixStats" /></p>
 			<p><input type="submit" name="CalculateHelixPairStats" value="CalculateHelixPairStats" /></p>
 			<p><input type="submit" name="CalculateHelixTripletStats" value="CalculateHelixTripletStats" /></p>
 			<p><input type="submit" name="ExtractHelixPairs" value="ExtractHelixPairs" /></p>
 			<p><input type="submit" name="ExtractHelixTriplets" value="ExtractHelixTriplets" /></p>
-			<p><input type="submit" name="DownloadResults" value="DownloadResults" /></p>
 		</form>
-
-
-
 		
 	</body>
 
