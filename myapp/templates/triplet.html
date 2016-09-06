@@ -5,14 +5,25 @@
 <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
 
 <table>
+ <tr> <td> <a href="{% url 'tmprotein' tmhelixtriplet.TMProtein.id %}">{{ tmhelixtriplet.TMProtein.TMProtein_ID }}</a> </td> </tr>
+
 <tr>
 <td>ID:</td>
 <td>{% for tmhelix in tmhelixtriplet.tmhelixmodel_set.all %}
-{{ tmhelix.TMHelix_ID }}
+ <li><a href="{% url 'helix' tmhelix.id %}">TM{{ tmhelix.TMHelix_ID }}</a></li>
 {% endfor %}</td>
 </tr>
 <tr>
 <td>Mass Center Angle:</td><td> {{ tmhelixtriplet.Phi }}</td></tr>
+<tr>
+<td> CrossingAngle1_2:</td><td> {{ tmhelixtriplet.CrossingAngle1_2 }} </td></tr> 
+<tr>
+<td> CrossingAngle2_3:</td><td> {{ tmhelixtriplet.CrossingAngle2_3 }} </td></tr> 
+
+<tr>
+<td> CrossingAngle1_3:</td><td> {{ tmhelixtriplet.CrossingAngle1_3 }} </td></tr> 
+
+
 <tr>
 <td> Score:</td><td> {{ tmhelixtriplet.getScore }} </td></tr> 
 </table>
@@ -30,10 +41,9 @@
 
 {{ tmhelix.atom_set.show }}
 
-HETATM 9991  N   MET A   1    {{ tmhelix.MC_EC_X|format83f }}{{ tmhelix.MC_EC_Y|format83f }}{{ tmhelix.MC_EC_Z|format83f }}  1.00 47.11           N  
-HETATM 9992  CA  MET A   1    {{ tmhelix.MC_MM_X|format83f }}{{ tmhelix.MC_MM_Y|format83f }}{{ tmhelix.MC_MM_Z|format83f }}  1.00 47.11           C  
-HETATM 9993  O1  MET A   1    {{ tmhelix.MC_IC_X|format83f }}{{ tmhelix.MC_IC_Y|format83f }}{{ tmhelix.MC_IC_Z|format83f }}  1.00 47.11           O  
-CONECT 9991 9992
+HETATM 991{{ tmhelix.TMHelix_ID }}  N   MET A   1    {{ tmhelix.MC_EC_X|format83f }}{{ tmhelix.MC_EC_Y|format83f }}{{ tmhelix.MC_EC_Z|format83f }}  1.00 47.11           N  
+HETATM 992{{ tmhelix.TMHelix_ID }}  CA  MET A   1    {{ tmhelix.MC_MM_X|format83f }}{{ tmhelix.MC_MM_Y|format83f }}{{ tmhelix.MC_MM_Z|format83f }}  1.00 47.11           C  
+HETATM 993{{ tmhelix.TMHelix_ID }}  O1  MET A   1    {{ tmhelix.MC_IC_X|format83f }}{{ tmhelix.MC_IC_Y|format83f }}{{ tmhelix.MC_IC_Z|format83f }}  1.00 47.11           O  
 
 {% endfor %}
 

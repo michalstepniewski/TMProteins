@@ -74,28 +74,33 @@
 </table>
 	<body>
 
+        {% if databases %}
+
+        <table>
+        <tr>Datasets:</tr>
+        {% for database in databases %}
+
+        <tr>
+        <td> <a href="{% url 'database' database.id %}">{{ database.id }}</a> </td>
+       <td><a href="{% url 'delete_database' database.id %}">Delete</a></td>
+       <td><a href="{% url 'clone_database' database.id %}">Clone</a></td>
+       <td><a href="{% url 'rename_database' database.id %}">Rename</a></td>
+
+        </tr>
+                
+        {% endfor %}        
+        <form action="{% url "list" %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+
+
+        </form>        
+        </table>
+        
+
 
 		<!-- List of uploaded documents -->
-		{% if tmproteins %}
-		<!-- generalnie powinienem to schowac do jakiegos template -->
-			<ul>
-                        {% for TMProtein in tmproteins %}
-                                <li><a href="{% url 'tmprotein' TMProtein.id %}">{{ TMProtein.tmproteinfile.name }}</a></li>
-
-
-
-
-
-
-<!-- musze poeksperymentowac z tym scriptem -->
-
-<!--Protein Atoms: {{ TMProtein.atom_set.show }}-->
-            <p><input type="submit" name="Score" value="Score" /></p>
-<p> Score: {{TMProtein.getScore}} </p>
-
-
-
-			{% endfor %}
+			
 			<table>
 			    <tr>
                         <td><a href="{% url 'viewer' %}">View</a></td>
@@ -106,12 +111,19 @@
                 </tr>
 			</table>
 		{% else %}
-			<p>No TM Protein PDB files loaded</p>
+			<p>No Datasets loaded</p>
 		{% endif %}
+		
                 <!-- dodac tu link do viewera -->
 		<!-- Upload form. Note enctype attribute! -->
 		<form action="{% url "list" %}" method="post" enctype="multipart/form-data">
 			{% csrf_token %}
+        <table>
+            <tr>
+            <td><input type="submit" name="NewDataset" value="NewDataset" /></td>
+            </tr>
+            </table>
+			
 			<p>{{ form.non_field_errors }}</p>
 			<p>{{ form.tmproteinfile.label_tag }} {{ form.tmproteinfile.help_text }}</p>
 			<p>
@@ -120,7 +132,7 @@
 			</p>
 			<p>Experimental?</p>
 			<p><input type='checkbox' name="checkbox" value="checkbox"></p>
-			<p><input type="submit" value="Upload" /></p>  
+			<p><input type="submit" name="UploadProteinFile" value="UploadProteinFile" /><input type="submit" name ="UploadXLSFile"  value="UploadXLSFile" /></p>  
 			<!-- button for upload -->
 			<p><input type="submit" name="Clear" value="Clear" /></p>
 			<table>

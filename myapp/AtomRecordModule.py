@@ -83,6 +83,34 @@ class AtomRecord ( object ):
 
 #####################################################################################################################################################
 
+   def VdWRadius ( self ):
+
+       """ returns atom mass """
+
+       Element = self.s [ (77-1):(79-1) ]
+
+       ElementVdWRadiusLexicon =  { ' C' : 1.7, \
+                               ' H' : 1.2 , \
+                               ' O' : 1.52, \
+                               ' N' : 1.55, \
+                               ' P' : 1.8, \
+                               ' S' : 1.8         }
+
+       try:
+
+            VdWRadius = ElementVdWRadiusLexicon [ Element ]
+
+       except KeyError:
+
+            Element = ' '+self.s [ 13 ]
+            VdWRadius = ElementVdWRadiusLexicon [ Element ]
+
+       return VdWRadius
+
+
+
+#####################################################################################################################################################
+
    def AA ( self ):
 
        """ returns amino acid name as one letter """
