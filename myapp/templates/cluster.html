@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+{% load poll_extras %}
+{% load static %}
+{% static "" as baseUrl %}
+<link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
+
+
+    <p>Cluster </p>
+    {{centroidpk}}
+        <a href="{% url 'triplet' centroidpk %}">{{ centroidpk }}</a>
+
+    
+    <table>
+    
+    <tr><td></td><td>Value:</td><td>Std:</td><tr>
+    
+    <tr><td>Member Count:</td><td> {{ tmhelixtriplets.count }} </td></tr>
+    <tr><td>Cluster RMSD:</td><td> {{ cluster.RMSD }} </td></tr>
+    <tr><td>CrossingAngle1_2</td><td> {{cluster.CrossingAngle1_2 }}</td><td> {{cluster.CrossingAngle1_2_Std }} </td></tr>
+    <tr><td>CrossingAngle1_3</td><td> {{cluster.CrossingAngle1_3 }}</td><td> {{cluster.CrossingAngle1_3_Std }} </td></tr>
+    <tr><td>CrossingAngle2_3</td><td> {{cluster.CrossingAngle2_3 }}</td><td> {{cluster.CrossingAngle2_3_Std }} </td></tr>
+
+
+    </table> 
+    {% for tmhelixtriplet in tmhelixtriplets %}
+    
+        <a href="{% url 'triplet' tmhelixtriplet.id %}">{{ tmhelixtriplet.id }}</a>
+        
+    {% endfor %}
+

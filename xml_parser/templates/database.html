@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Database</title>	
+
+	</head>
+
+
+
+	<body>
+
+            <table>
+                        {% for TMProtein in tmproteins %}
+                        <tr>
+                                <td> {{ TMProtein.name }}</td>
+                                <td> {{ TMProtein.species }}</td>
+                                <td> {{ TMProtein.taxonomicDomain }}</td>
+                                <td> {{ TMProtein.description }}</td>                                
+                                
+                                
+                        </tr> 
+                                {% endfor %}
+            </table>
+                <!-- dodac tu link do viewera -->
+                <!-- powinno to byc tabela tak jak w helix.html tylko interaktywna -->
+		<!-- Upload form. Note enctype attribute! -->
+		<form action="{% url "database" %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+			<!-- button for upload -->
+			<table>
+			<tr>
+			<td><input type="submit" name="Update" value="Update" /></td>
+			<td><input type="submit" name="Download" value="Download PDBs" /></td>
+			<td><input type="submit" name="Clear" value="Clear" /></td>
+            <td><input type="submit" name="Process" value="Process Database" /></td>
+
+			</tr>
+            </table>
+		</form>
+        <!-- prawdopodobnie bede chcial to podzielic na kilka formow -->
+
+
+		
+	</body>
+
+</html> 
+
+

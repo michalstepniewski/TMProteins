@@ -1,4 +1,0 @@
-from django.contrib import admin
-from myproject.myapp.models import TMProtein 
-admin.site.register(TMProtein)
-# Register your models here.

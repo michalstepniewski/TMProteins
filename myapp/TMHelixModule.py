@@ -316,12 +316,13 @@ class TMHelix ( ProteinChain ):
 
 #####################################################################################################################################################
 
-      def ExtractThinSlices ( self ):
+      def ExtractThinSlices ( self, BordersOfThinSlices = Parametry. BordersOfThinSlices ):
 
           """ returns segments extracted based on z coordinate ranges ( thin slices defined in parameter file ) """
-
-          return self. ZSlices ( Parametry. BordersOfThinSlices )
-
+          print BordersOfThinSlices
+          
+          return self. ZSlices ( BordersOfThinSlices )
+# musze to troszke pozmieniac, blargh
 #####################################################################################################################################################
 
       def ExtractWideSlices ( self ):
@@ -332,11 +333,11 @@ class TMHelix ( ProteinChain ):
 
 #####################################################################################################################################################
 
-      def ThinSlicesCOMs ( self ):
+      def ThinSlicesCOMs ( self, BordersOfThinSlices ):
 
           """ returns Mass Centers of Thin Slices """
 
-          return [ ThinSlice. CenterOfMass ( ) for ThinSlice in self. ExtractThinSlices ( ) ]
+          return [ ThinSlice. CenterOfMass ( ) for ThinSlice in self. ExtractThinSlices ( BordersOfThinSlices ) ]
 
 #####################################################################################################################################################
 
@@ -389,16 +390,25 @@ class TMHelix ( ProteinChain ):
       def CalculateNterDescriptor ( self ):
 
           """ returns Nter location (EC or IC) """
+          print 'printing Content'
+          print self.Content
+          print len(self.Content)
 
-          self.FirstRes_Z = self. Content [ 0 ] .Z ( )
 
-          if self.FirstRes_Z >= 0.0:
+          try:
+          
+           self.FirstRes_Z = self. Content [ 0 ] .Z ( )
 
-             self. NterDescriptor = 'EC'
+           if self.FirstRes_Z >= 0.0:
 
-          else:
+              self. NterDescriptor = 'EC'
 
-             self. NterDescriptor = 'IC'
+           else:
+
+              self. NterDescriptor = 'IC'
+              
+          except IndexError:
+              self.NterDescriptor = 'Error'
 
 #####################################################################################################################################################
 
@@ -476,9 +486,9 @@ class TMHelix ( ProteinChain ):
 
 #####################################################################################################################################################
 
-      def Overhang ( self, OverhangRanges = [ [1.0, 10.0], [-10.0, -1.0] ] ):
+      def Overhang ( self, OverhangRanges = [ [1.0, 10.0], [-10.0, -1.0] ], BordersOfThinSlicesI = Parametry. BordersOfThinSlices ):
 
-          COM_EC, COM_MM, COM_IC = self. ThinSlicesCOMs ( ) #[ 0 ]
+          COM_EC, COM_MM, COM_IC = self. ThinSlicesCOMs ( BordersOfThinSlicesI ) #[ 0 ]
 
           """
           returns the overhang
