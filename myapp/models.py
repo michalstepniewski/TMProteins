@@ -110,6 +110,38 @@ def from_csv(path):
                        
     return np.array(array)
 
+def from_triangle_csv(path):
+    
+    
+    
+    array = []
+    
+    f=open(path,'r')
+    
+    rows = f.readlines()
+    
+    length = len(rows)
+    
+    RMSDMatrixI = np.zeros((length,length))
+    
+    for row in rows:
+        if row!='\n':
+           print row.strip().strip(',').split(',')
+           array.append([float(item) for item in row.strip().strip(',').split(',')])
+        
+    print array
+    
+    for N1 in range(length):
+        for N2 in range(N1+1,length):
+            
+            RMSDMatrixI.itemset((N1,N2),(array[N1][N2-N1-1]))
+            RMSDMatrixI.itemset((N2,N1),(array[N1][N2-N1-1])) 
+            
+#            RMSDMatrix             
+         
+    return RMSDMatrixI    
+
+
 def centeroidnp(arr):
     
     length = arr.shape[0]
@@ -1034,7 +1066,7 @@ class TMHelixTripletQuerySet(models.QuerySet):
 ## tu powinny byc opcje rozne
 # dobra, zobaczymy czy to dziala
 #        if not self.RMSDMatrix:
-        
+        self=self.order_by('PDBFileName')
         self.pks = self.values_list('pk')
         self.pks = [ pk[0] for pk in self.pks ]
         
@@ -1044,8 +1076,14 @@ class TMHelixTripletQuerySet(models.QuerySet):
            import os.path 
            if os.path.isfile('media/RMSDMatrix.csv'):
                
-               self.RMSDMatrix= from_csv('media/RMSDMatrix.csv')
-               
+               self.RMSDMatrix= from_triangle_csv('media/RMSDMatrix.csv')
+# to powinno byc czytane z wybranego pliku
+# i powinien byc jakis sposob zorderowania matrycy RMSD
+# zaraz sie musze zajac portowaniem tego na desktopa
+# tylko ze on powinien chodzic w drugim pokoju bo bedzie glosno inaczej
+#ciekawe czy kabla wystarczy
+#zawsze moge queryset .order_by(filename)
+# i filename wygenerowane jakos z z kodu i z nazwy trypletu               
            else:   
                
                self.getRMSDMatrix()
@@ -1056,7 +1094,7 @@ class TMHelixTripletQuerySet(models.QuerySet):
         
         
         
-        for k in range(28,30):
+        for k in range(19,30):
         
 
              
@@ -1173,6 +1211,7 @@ class TMHelixTriplet (models.Model):
     CrossingAngle1_2 = models.FloatField (null=True)
     CrossingAngle2_3 = models.FloatField (null=True)
     CrossingAngle1_3 = models.FloatField (null=True)
+    PDBFileName = models.CharField(max_length=200,null=True)
 
 #####################################################################################################################################################
 
@@ -1181,6 +1220,7 @@ class TMHelixTriplet (models.Model):
 #        os.system('mkdir -p media/PDBs/Triplets/'+self.TMProtein.structure.DatabaseModel.pk)
         # dalem to many to many, wiec nie dziala, foreign key by dzialal
         PDBFilePath = 'media/PDBs/Triplets/'+ self.TMProtein.TMProtein_ID+ '_'.join(self.tmhelixmodel_set.order_by('TMHelix_ID').values_list('TMHelix_ID', flat=True))+'.pdb'
+        self.PDBFileName = self.TMProtein.TMProtein_ID+ '_'.join(self.tmhelixmodel_set.order_by('TMHelix_ID').values_list('TMHelix_ID', flat=True))+'.pdb'
         
         Buffer = ''.join( list(itertools.chain.from_iterable([[ToAla(AtomI.Text) for AtomI in TMHelixModelI.atom_set.filter(AtomName='CA  ').order_by('Atom_ID_Int')] \
                            for TMHelixModelI in self.tmhelixmodel_set.all().order_by('TMHelix_ID') ]) ))
@@ -1198,9 +1238,9 @@ class TMHelixTriplet (models.Model):
         
         CrdsI = []
         
-        for tmhelix in self.tmhelixmodel_set.all():
+        for tmhelix in self.tmhelixmodel_set.all().order_by('TMHelix_ID'):
             
-            for PointI in tmhelix.point_set:
+            for PointI in tmhelix.point_set.all().order_by('pk'):
                 
                 CrdsI. append([PointI.X, PointI.Y, PointI.Z])
             
@@ -1351,6 +1391,9 @@ class TMHelixModel (models.Model):
         tmhelix = cls(TMHelix_ID=ID, attributes={})
         return tmhelix
 
+
+    def show(self):
+        pass
 
 #class UserFolder(models.Model):
 #    name = models.CharField(null=True)

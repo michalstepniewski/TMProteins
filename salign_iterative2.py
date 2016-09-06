@@ -280,6 +280,6 @@ def pairwise_align(file1,file2):
 #    aln.write(file='media/PDBs/Triplets/ALIs/'+file1+file2+'.ali', alignment_format='PIR')
     aln.write(file='media/PDBs/FASTAs/'+file1+file2+'.fasta', alignment_format='FASTA')
 
-dir_pairwise_align('media/PDBs/Triplets/', sys.argv[1])
+dir_pairwise_align(sys.argv[1], sys.argv[2])
 
 # teraz moze moglbym to jakos programistycznie rozbic na dwa procesy

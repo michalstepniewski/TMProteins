@@ -20,6 +20,13 @@
  <tr style="color: black">  <td> Overhang: </td> <td> {{ tmhelix.TMHelix_Overhang }} A</td></tr>
  <!-- change scale on Overhang -->
  </table>
+<!-- {{ tmhelix.atom_set.show }} -->
+<!-- {% for pointI in tmhelix.point_set.all %}
+
+HETATM  {{pointI.pk}}  CA  MET A   1    {{ pointI.X|format83f }}{{ pointI.Y|format83f }}{{ pointI.Z|format83f }}  1.00 47.11           C  
+
+{% endfor %}
+-->
 <!-- <h1> <font color="black"> HelixAtoms: {{ tmhelix.atom_set.show }} A</font> </h1> -->
 <!--<h1> {{ tmhelix.MC_EC_X }} </h1>
 <h1> {{tmhelix.costam}} </h1> -->
@@ -27,18 +34,26 @@
 <h1>HETATM 1407  CA  BLE P   1      14.625  32.240  14.151  1.09 16.76           C</h1>
 <img src="{{ baseUrl }}/myapp/static/{{ tmhelix.TMHelix_pdb_path }}/{{tmhelix.TMHelix_ID}}/helisa.png" alt="My image"/>
 -->
-<div id="glmol01" style="width: 300px; height: 300px; background-color: black;"></div> <textarea id="glmol01_src" style="display: none;">
+
+ <!-- wziac te wszystkie atomy w jedna funkcje -->
+<div id="glmol0" style="width: 300px; height: 300px; background-color: black;"></div> <textarea id="glmol01_src" style="display: none;">
 
 <!--This is a comment. Comments are not displayed in the browser-->
 
-{{ tmhelix.atom_set.show }}
+<!--{{ tmhelix.atom_set.show }}-->
 
-HETATM 9991  N   MET A   1    {{ tmhelix.MC_EC_X|format83f }}{{ tmhelix.MC_EC_Y|format83f }}{{ tmhelix.MC_EC_Z|format83f }}  1.00 47.11           N  
+<!--{% for pointI in tmhelix.point_set.all %}
+
+HETATM {{pointI.pk}}  CB  MET A   1    {{ pointI.X|format83f }}{{ pointI.Y|format83f }}{{ pointI.Z|format83f }}  1.00 47.11           C  
+
+{% endfor %} -->
+
+<!--HETATM 9991  N   MET A   1    {{ tmhelix.MC_EC_X|format83f }}{{ tmhelix.MC_EC_Y|format83f }}{{ tmhelix.MC_EC_Z|format83f }}  1.00 47.11           N  
 HETATM 9992  CA  MET A   1    {{ tmhelix.MC_MM_X|format83f }}{{ tmhelix.MC_MM_Y|format83f }}{{ tmhelix.MC_MM_Z|format83f }}  1.00 47.11           C  
 HETATM 9993  O1  MET A   1    {{ tmhelix.MC_IC_X|format83f }}{{ tmhelix.MC_IC_Y|format83f }}{{ tmhelix.MC_IC_Z|format83f }}  1.00 47.11           O  
 CONECT 9991 9992
 
-
+-->
 
 </textarea>
 
@@ -57,7 +72,7 @@ var glmol01 = new GLmol('glmol01',false);//  supress autoload set to false gives
 // Proteins can also be embedded in the page but 
 //  you might want to keep it separate.
 
-// var glmol01 = new GLmol('glmol01', true); // supress autoload set to true gives black background //
+ var glmol01 = new GLmol('glmol01', true); // supress autoload set to true gives black background //
 
 //var glmol01 = new GLmol('glmol01', false);
 
@@ -89,6 +104,63 @@ glmol01.defineRepresentation = function() {
 
 
 
+<div id="glmol01" style="width: 300px; height: 300px; background-color: black;"></div> <textarea id="glmol01_src" style="display: none;">
 
+<!--This is a comment. Comments are not displayed in the browser-->
+
+
+
+{{ tmhelix.atom_set.show }}
+
+HETATM 991{{ tmhelix.TMHelix_ID }}  N   MET A   1    {{ tmhelix.MC_EC_X|format83f }}{{ tmhelix.MC_EC_Y|format83f }}{{ tmhelix.MC_EC_Z|format83f }}  1.00 47.11           N  
+HETATM 992{{ tmhelix.TMHelix_ID }}  CA  MET A   1    {{ tmhelix.MC_MM_X|format83f }}{{ tmhelix.MC_MM_Y|format83f }}{{ tmhelix.MC_MM_Z|format83f }}  1.00 47.11           C  
+HETATM 993{{ tmhelix.TMHelix_ID }}  O1  MET A   1    {{ tmhelix.MC_IC_X|format83f }}{{ tmhelix.MC_IC_Y|format83f }}{{ tmhelix.MC_IC_Z|format83f }}  1.00 47.11           O  
+
+
+
+
+</textarea>
+
+{% load static %}
+{% static "" as baseUrl %}
+
+<script src="{{ baseUrl }}/myapp/static/js/jquery-1.7.min.js"></script>
+<script src="{{ baseUrl }}/myapp/static/js/Three49custom.js"></script>
+<script type="text/javascript" src="{{ baseUrl }}/myapp/static/js/GLmol.js"></script>
+<script type="text/javascript">
+
+// Small molecules can be embedded in the page
+
+var glmol01 = new GLmol('glmol01',false);//  supress autoload set to false gives mol wo cylinders //
+
+// Proteins can also be embedded in the page but 
+//  you might want to keep it separate.
+
+var glmol01 = new GLmol('glmol01', true); // supress autoload set to true gives black background //
+glmol01.defineRepresentation = function() {
+   var all = this.getAllAtoms();
+   var hetatm = this.removeSolvents(this.getHetatms(all));
+   this.colorByAtom(all, {});
+   this.colorByChain(all);
+   var asu = new THREE.Object3D();
+   
+   this.drawBondsAsStick(asu, hetatm, this.cylinderRadius, this.cylinderRadius);
+   this.drawBondsAsStick(asu, this.getResiduesById(this.getSidechains(this.getChain(all, ['A'])), [58, 87]), this.cylinderRadius, this.cylinderRadius);
+   this.drawBondsAsStick(asu, this.getResiduesById(this.getSidechains(this.getChain(all, ['B'])), [63, 92]), this.cylinderRadius, this.cylinderRadius);
+   this.drawCartoon(asu, all, this.curveWidth, this.thickness);
+
+  // LOOK HERE
+   this.drawCylinder(asu, new THREE.Vector3(0.0, 0.0, 0.0), new
+   THREE.Vector3(0.0, 0.0, 10.0), 10.0, white);
+
+   this.drawSymmetryMates2(this.modelGroup, asu, this.protein.biomtMatrices);
+   this.modelGroup.add(asu);
+};
+
+//$.get("2DHB.pdb", function(ret) { //
+//$("#glmol02_src").val(ret); //
+//glmol02.loadMolecule(); //
+//}); //
+</script>
 
 

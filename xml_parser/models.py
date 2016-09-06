@@ -266,11 +266,13 @@ class structure(models.Model):
 #        'media/IntegralneAlfaHelikalneBialkaBlonowe/ByChain'
 
         import os,glob
-        print os.getcwd()+'/media/IntegralneAlfaHelikalneBialkaBlonowe/ByChain/*/*/'+self.pdbCode+'_'+self.Chain+'.pdb'       
+        print os.getcwd()+'/media/PDBs/IntegralneAlfaHelikalneBialkaBlonowe/ByChain/*/*/'+self.pdbCode+'_'+self.Chain+'.pdb'       
  
-        print glob.glob(os.getcwd()+'/media/IntegralneAlfaHelikalneBialkaBlonowe/ByChain/*/*/'+self.pdbCode+'_'+self.Chain+'.pdb')        
-        self.Path = glob.glob(os.getcwd()+'/media/IntegralneAlfaHelikalneBialkaBlonowe/ByChain/*/*/*/'+self.pdbCode+'_'+self.Chain+'.pdb')[0]
+        print glob.glob(os.getcwd()+'/media/PDBs/IntegralneAlfaHelikalneBialkaBlonowe/ByChain/*/*/'+self.pdbCode+'_'+self.Chain+'.pdb')        
+        self.Path = glob.glob(os.getcwd()+'/media/PDBs/IntegralneAlfaHelikalneBialkaBlonowe/ByChain/*/*/*/'+self.pdbCode+'_'+self.Chain+'.pdb')[0]
 # self.pdbCode+'_'+self.Chain+'.pdb'
+        print self.Path
+
         TMProteinI.ReadPDB(self.Path,ParametersI)
         
         self.Processed = True
