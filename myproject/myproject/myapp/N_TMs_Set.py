@@ -150,17 +150,29 @@ class N_TMs_Set ( list ): # musze zrobic od razu na N secie
 #                 (ID text, AASEQ text, Tilt real, Tilt_EC real, Tilt_IC real, MainAxis_X real, MainAxis_Y real, MainAxis_Z real, KinkAngle real, Overhang real  )''')
 
           for TM in self.Content:
-
-#              TMHelixModel.objects.create ()
-
+              
               tmhelix = TMHelixModel.objects.create(TMHelix_ID= TM. ID, TMHelix_Tilt = TM. Tilt(), \
                                       TMHelix_Tilt_EC = TM. Tilt_EC(), \
                                       TMHelix_Tilt_IC = TM. Tilt_IC(), \
                                       TMHelix_KinkAngle = TM. KinkAngle(), \
                                       TMHelix_Overhang = TM. Overhang(),\
-                                      TMHelix_AASEQ = TM. AASEQ (),\
-                                      )
+                                      TMHelix_AASEQ = TM. AASEQ (),
+                                      Atoms = "fejslik")
+
+#              TMHelixModel.objects.create ()
+#              Atoms = ""
+              for ResidueI in TM.Content:
+                  for Atom in ResidueI.Content:
+                      AtomLineI = AtomLine.objects.create(Content=Atom.s)
+                      
+                      tmhelix. atomline_set.add(AtomLineI)
+#                      Atoms= Atoms+ Atom.s
+#                      print Atom.s
+                      TMProteinI. atomline_set.add(tmhelix)
+                      
+
 	      TMProteinI. tmhelixmodel_set.add(tmhelix)
+#          tmhelix.Atoms = Atoms
           
 #              c.execute("INSERT INTO TMs VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (TM. ID, TM. AASEQ (), float(format(TM. Tilt(), '.3f') ), float(format(TM. Tilt_EC(), '.3f') ),float(format(TM. Tilt_IC(), '.3f') ), float(format(TM. MainAxis()[0], '.3f') ), float(format(TM. MainAxis()[1], '.3f') ), float(format(TM. MainAxis()[2], '.3f') ), float(format(TM. KinkAngle(), '.3f') ), float(format(TM. Overhang(), '.3f') )  ))
 
