@@ -9,22 +9,22 @@
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
 			<item value="cluster"/>
-			<item value="ExtractInteractingHelixPairs"/>
-			<item value="pk"/>
-			<item value="id"/>
-			<item value="id__in"/>
-			<item value="2zx"/>
-			<item value="checkbox"/>
-			<item value="XLS"/>
+			<item value="ToPDBFile"/>
+			<item value="from_triangle_csv"/>
+			<item value="from_csv"/>
+			<item value="from_tr"/>
+			<item value="itemse"/>
+			<item value="np.ze"/>
+			<item value="pairwise_align"/>
 		</list>
 		<list key="replacehistory">
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item value="329" key="DIALOG_WIDTH"/>
+		<item value="309" key="DIALOG_WIDTH"/>
 		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
-		<item value="472" key="DIALOG_HEIGHT"/>
-		<item value="493" key="DIALOG_X_ORIGIN"/>
-		<item value="410" key="DIALOG_Y_ORIGIN"/>
+		<item value="452" key="DIALOG_HEIGHT"/>
+		<item value="847" key="DIALOG_X_ORIGIN"/>
+		<item value="112" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>
