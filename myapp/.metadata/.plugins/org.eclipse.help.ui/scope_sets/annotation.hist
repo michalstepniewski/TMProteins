@@ -1,0 +1,4 @@
+#Thu Jul 21 14:04:03 CEST 2016
+__DEFAULT__=false
+org.eclipse.help.ui.localSearch.master=true
+expression=annotation

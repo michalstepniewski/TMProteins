@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 import urllib2, os
 from django.db import models
 
+
 # Create your models here.
 
 def getnodeName(node):
@@ -201,7 +202,14 @@ class DatabaseModelManager (models.Manager):
 class DatabaseModel (models.Model):
     objects  = DatabaseModelManager ()
     
-    pass
+    def Process(self):
+       
+        for structureI in self.structure_set.all():
+            print structureI.Processed
+            if not structureI.Processed: 
+            
+               structureI.Process(self.parameters)
+    
 
 
 class group(models.Model):
@@ -220,30 +228,57 @@ class protein(models.Model):
     species = models.CharField(max_length=200,null=True)
     taxonomicDomain = models.CharField(max_length=200,null=True)
     description = models.CharField(max_length=2000,null=True)
-
+    chain = models.CharField(max_length=2000,null=True)
 #    group = models.ForeignKey(group)
     subgroup = models.ForeignKey(subgroup, on_delete=models.CASCADE, null=True)
+    DatabaseModel = models.ForeignKey(DatabaseModel, on_delete=models.CASCADE, null=True)
 
 #pdbCode,name,species,taxonomicDomain,expressedInSpecies,resolution,description,bibliography,
 #                     secondaryBibliographies,relatedPdbEntries,memberProteins)
 
 class structure(models.Model):
 
-      pdbCode = models.CharField(max_length=4,null=True)
-      name = models.CharField(max_length=200,null=True)
-      species = models.CharField(max_length=200,null=True)
-      taxonomicDomain = models.CharField(max_length=200,null=True)
-      expressedInSpecies = models.CharField(max_length=200,null=True)
-      resolution = models.CharField(max_length=200,null=True)
-      description = models.CharField(max_length=2000,null=True)
-      protein = models.ForeignKey(protein, on_delete=models.CASCADE, null=True)
-      objects  = structureManager ()
-
+    pdbCode = models.CharField(max_length=4,null=True)
+    name = models.CharField(max_length=200,null=True)
+    species = models.CharField(max_length=200,null=True)
+    taxonomicDomain = models.CharField(max_length=200,null=True)
+    expressedInSpecies = models.CharField(max_length=200,null=True)
+    resolution = models.CharField(max_length=200,null=True)
+    description = models.CharField(max_length=2000,null=True)
+    protein = models.ForeignKey(protein, on_delete=models.CASCADE, null=True)
+    objects  = structureManager ()
+    Path = models.CharField(max_length=2000,null=True)
+    DatabaseModel = models.ManyToManyField(DatabaseModel)
+#    models.ForeignKey(DatabaseModel, on_delete=models.CASCADE, null=True)
+    Chain = models.CharField(max_length=4,null=True)
+    Processed = models.NullBooleanField(default=False)
 #      bibliography
 #      secondaryBibliographies
-      Type = models.CharField(max_length=20,null=True) #master, relatedPdbEntries, memberProteins
+    Type = models.CharField(max_length=20,null=True) #master, relatedPdbEntries, memberProteins
 
+    def Process(self,ParametersI):
+        from myapp.models import  TMProtein
+        TMProteinI = TMProtein(Set='Reference',TMProtein_ID=self.pdbCode+'_'+self.Chain )
+        TMProteinI.save()
+        self.tmprotein_set.add(TMProteinI)
+        
+        #pdbCode
+#        'media/IntegralneAlfaHelikalneBialkaBlonowe/ByChain'
 
+        import os,glob
+        print os.getcwd()+'/media/PDBs/IntegralneAlfaHelikalneBialkaBlonowe/ByChain/*/*/'+self.pdbCode+'_'+self.Chain+'.pdb'       
+ 
+        print glob.glob(os.getcwd()+'/media/PDBs/IntegralneAlfaHelikalneBialkaBlonowe/ByChain/*/*/'+self.pdbCode+'_'+self.Chain+'.pdb')        
+        self.Path = glob.glob(os.getcwd()+'/media/PDBs/IntegralneAlfaHelikalneBialkaBlonowe/ByChain/*/*/*/'+self.pdbCode+'_'+self.Chain+'.pdb')[0]
+# self.pdbCode+'_'+self.Chain+'.pdb'
+        print self.Path
+
+        TMProteinI.ReadPDB(self.Path,ParametersI)
+        
+        self.Processed = True
+        self.save()
+        print self.Processed
+        
 class bibliography(models.Model):
 
     pubMedId = models.CharField(max_length=200,null=True)
