@@ -15,7 +15,9 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
 from myapp.models import TMProtein, TMHelixModel, TMHelixPair, TMHelixTriplet, \
-Residue, TMProteinManager, XLSFile
+Residue, TMProteinManager, XLSFile, Clustering, Cluster
+
+from myapp.models1 import Parameters
 
 from xml_parser.models import DatabaseModel
 
@@ -23,6 +25,9 @@ from myapp.forms import TMProteinFileForm
 import os
 from PlotToolsModule import HistogramPlot
 from .forms import UploadFileForm
+from django.contrib.auth.decorators import login_required
+import matplotlib.pyplot as plt
+from django.core.mail import send_mail
 
 # Imaginary function to handle an uploaded file.
 from somewhere import handle_uploaded_file
@@ -55,6 +60,7 @@ def helix(request, tmhelix_id):
 
 def pair(request, tmhelixpair_id):
     tmhelixpair = get_object_or_404(TMHelixPair, pk=tmhelixpair_id)
+    print tmhelixpair.TMHelix_IDs
     return render(request, 'pair.html', {'tmhelixpair': tmhelixpair})
 
 def triplet(request, tmhelixtriplet_id):
@@ -137,6 +143,29 @@ def clone_database(request, id):
     
     return HttpResponseRedirect(reverse('list'))
 
+def clustering(request, clustering_id):
+    clustering = get_object_or_404(Clustering, pk=clustering_id)
+
+    return render_to_response(
+        'clustering.html',
+        {'clustering':clustering, 'clusters': clustering.cluster_set.all(),\
+        'no_triplets':TMHelixTriplet.objects.filter(Cluster__in=clustering.cluster_set.all()).count()},\
+        context_instance=RequestContext(request)
+    )
+
+def cluster(request, cluster_id):
+    cluster = get_object_or_404(Cluster, pk=cluster_id)
+    
+#    print cluster.Centroid.id; quit()#.id; quit()
+
+    return render_to_response(
+        'cluster.html',
+        {'cluster':cluster,'centroidpk':cluster.Centroidpk, 'tmhelixtriplets': cluster.tmhelixtriplet_set.all(),\
+        },
+        context_instance=RequestContext(request)
+    )
+
+#@login_required (redirect_field_name='my_redirect_field', login_url='/accounts/login/')
 def database(request, database_id):
     print 'database requested'
     print database_id
@@ -155,7 +184,14 @@ def database(request, database_id):
             structure.objects.Download()
             
         if request.POST.get('Process'):
-            database.Process() # to musi byc ten model, albo z argumentem
+            
+            if '10MCcheckbox' in request.POST:
+                
+                database.Process()
+
+            else:
+            
+                database.Process() # to musi byc ten model, albo z argumentem
 
         elif request.POST.get('CalculateSingleHelixStats'):
             # this happens if You push 'CalculateSingleHelixStats' button
@@ -197,10 +233,12 @@ def database(request, database_id):
            TMProtein.objects.filter(structure__in=database.structure_set.all()).ExtractInteractingHelixTriplets ()
 
         elif request.POST.get('ClusterHelixTripletsByRMSD'):
-            
-           
-           
+                       
            TMHelixTriplet.objects.filter(TMProtein__structure__in=database.structure_set.all()).Cluster()
+
+        elif request.POST.get('CARMSD'):
+           print 'CAClustering'#;quit()           
+           TMHelixTriplet.objects.filter(TMProtein__structure__in=database.structure_set.all()).CACluster()
 
         elif request.POST.get('CalculateAminoAcidZPreferenceHistogram'):
            # this happens if You push 'ExtractHelixTriplets'
@@ -228,6 +266,15 @@ def database(request, database_id):
 
         if form.is_valid():
             #this happens if you want to upload file
+            
+            Parameters.objects.all().delete()
+            
+            ParametersI = Parameters. objects. create ()
+            ParametersI.DatabaseModel = database
+            ParametersI. BordersOfThinSlices = form.cleaned_data['BordersOfThinSlices']
+            ParametersI.save()
+            print form.cleaned_data
+#            print subject
             
             if 'UploadXLSFile' in request.POST:
                 
@@ -268,9 +315,41 @@ def database(request, database_id):
 #    return render(request, 'dataset.html', {'structures': database.structure_set.all(),\
 #                                            'database_model_i':database})
 
+    Noclusters = Clustering.objects.values_list('no_cluster')
+    RMSDs = Clustering.objects.values_list('RMSD')    
+    plt.clf()
+    
+    
+#    for TMHelixTripletI in TMHelixTriplet.objects.all():
+        
+#        triplet_pks = TMHelixTripletI.tmhelixmodel_set.order_by('TMHelix_ID').values_list('pk')
+        
+#        for TMHelixPairI in TMHelixPair.objects.all():
+                
+#            pair_pks = TMHelixPairI.tmhelixmodel_set.order_by('TMHelix_ID').values_list('pk')
+                
+#            if triplet_pks[:2]==pair_pks:
+#                TMHelixTripletI.CrossingAngle1_2 = TMHelixPairI. CrossingAngle
+#                print TMHelixPairI. CrossingAngle
+
+#    print XYArray. transpose ()
+#    print numpy.corrcoef ( numpy. array (XYArray). transpose () )
+#    print OutputFile
+#    quit ()
+# cross 0,608; 
+# tilt 0.474;
+#    print Xs; 
+
+    plt.scatter (Noclusters , RMSDs)    
+    plt.savefig ('NoClustersRMSDs.png' ,dpi=320)
+    plt.clf()
+
+
     return render_to_response(
         'dataset.html',
-        {'structures': database.structure_set.all(), 'form': form, \
+        {'structures': database.structure_set.all(),\
+         'clusterings':Clustering.objects.all(),\
+          'form': form, \
          'database_model_i':database },
         context_instance=RequestContext(request)
     )
@@ -307,7 +386,8 @@ def Clear (request,post_id):
         {'tmproteins': tmproteins, 'form': form },
         context_instance=RequestContext(request)
     )
-
+    
+#@login_required (redirect_field_name='my_redirect_field',login_url='/accounts/login/')
 def list(request):
 # prawdopodobnie powinienem to jakos rozbic na kilka viewsow
     # Handle file upload
@@ -371,6 +451,9 @@ def list(request):
         elif request.POST.get('ClusterHelixTripletsByRMSD'):
            
            TMHelixTriplet.objects.all().Cluster()
+           
+
+
 
         elif request.POST.get('CalculateAminoAcidZPreferenceHistogram'):
            # this happens if You push 'ExtractHelixTriplets'
@@ -437,3 +520,37 @@ def list(request):
         {'tmproteins': tmproteins, 'form': form, 'databases': databases },
         context_instance=RequestContext(request)
     )
+
+from django.contrib.auth import authenticate, login
+
+'''
+
+def my_view(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        if user.is_active:
+            login(request, user)
+            # Redirect to a success page.
+        else:
+            # Return a 'disabled account' error message
+            ...
+    else:
+        # Return an 'invalid login' error message.
+        ...
+'''
+        
+from django.contrib.auth import logout
+
+def logout_view(request):
+    logout(request)
+    # Redirect to a success page.
+    
+from django.conf import settings
+from django.shortcuts import redirect
+
+def my_view(request):
+    if not request.user.is_authenticated():
+        return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
+    # ...

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="installedFeatures">
+		<item value="AnyEditTools:2.4.13.201504092214"/>
+		<item value="com.google.eclipse.mechanic:0.4.0"/>
+		<item value="org.eclipse.egit:3.7.0.201502260915-r"/>
+		<item value="org.eclipse.emf.common:2.11.0.v20150123-0347"/>
+		<item value="org.eclipse.emf.ecore:2.11.0.v20150123-0347"/>
+		<item value="org.eclipse.help:2.0.103.v20150204-1700"/>
+		<item value="org.eclipse.jgit.java7:3.7.0.201502260915-r"/>
+		<item value="org.eclipse.jgit:3.7.0.201502260915-r"/>
+		<item value="org.eclipse.platform:4.4.2.v20150204-1700"/>
+		<item value="org.eclipse.rcp:4.4.2.v20150204-1700"/>
+		<item value="org.python.pydev.feature:4.0.0.201504092214"/>
+	</list>
+	<section name="SaveAsDialogSettings">
+		<item value="633" key="DIALOG_WIDTH"/>
+		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+		<item value="616" key="DIALOG_HEIGHT"/>
+		<item value="170" key="DIALOG_X_ORIGIN"/>
+		<item value="-1" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>

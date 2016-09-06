@@ -316,12 +316,13 @@ class TMHelix ( ProteinChain ):
 
 #####################################################################################################################################################
 
-      def ExtractThinSlices ( self ):
+      def ExtractThinSlices ( self, BordersOfThinSlices = Parametry. BordersOfThinSlices ):
 
           """ returns segments extracted based on z coordinate ranges ( thin slices defined in parameter file ) """
-
-          return self. ZSlices ( Parametry. BordersOfThinSlices )
-
+          print BordersOfThinSlices
+          
+          return self. ZSlices ( BordersOfThinSlices )
+# musze to troszke pozmieniac, blargh
 #####################################################################################################################################################
 
       def ExtractWideSlices ( self ):
@@ -332,11 +333,11 @@ class TMHelix ( ProteinChain ):
 
 #####################################################################################################################################################
 
-      def ThinSlicesCOMs ( self ):
+      def ThinSlicesCOMs ( self, BordersOfThinSlices ):
 
           """ returns Mass Centers of Thin Slices """
 
-          return [ ThinSlice. CenterOfMass ( ) for ThinSlice in self. ExtractThinSlices ( ) ]
+          return [ ThinSlice. CenterOfMass ( ) for ThinSlice in self. ExtractThinSlices ( BordersOfThinSlices ) ]
 
 #####################################################################################################################################################
 
@@ -485,9 +486,9 @@ class TMHelix ( ProteinChain ):
 
 #####################################################################################################################################################
 
-      def Overhang ( self, OverhangRanges = [ [1.0, 10.0], [-10.0, -1.0] ] ):
+      def Overhang ( self, OverhangRanges = [ [1.0, 10.0], [-10.0, -1.0] ], BordersOfThinSlicesI = Parametry. BordersOfThinSlices ):
 
-          COM_EC, COM_MM, COM_IC = self. ThinSlicesCOMs ( ) #[ 0 ]
+          COM_EC, COM_MM, COM_IC = self. ThinSlicesCOMs ( BordersOfThinSlicesI ) #[ 0 ]
 
           """
           returns the overhang

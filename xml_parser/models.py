@@ -208,7 +208,7 @@ class DatabaseModel (models.Model):
             print structureI.Processed
             if not structureI.Processed: 
             
-               structureI.Process()
+               structureI.Process(self.parameters)
     
 
 
@@ -256,7 +256,7 @@ class structure(models.Model):
 #      secondaryBibliographies
     Type = models.CharField(max_length=20,null=True) #master, relatedPdbEntries, memberProteins
 
-    def Process(self):
+    def Process(self,ParametersI):
         from myapp.models import  TMProtein
         TMProteinI = TMProtein(Set='Reference',TMProtein_ID=self.pdbCode+'_'+self.Chain )
         TMProteinI.save()
@@ -266,12 +266,14 @@ class structure(models.Model):
 #        'media/IntegralneAlfaHelikalneBialkaBlonowe/ByChain'
 
         import os,glob
-        print os.getcwd()+'/media/IntegralneAlfaHelikalneBialkaBlonowe/ByChain/*/*/'+self.pdbCode+'_'+self.Chain+'.pdb'       
+        print os.getcwd()+'/media/PDBs/IntegralneAlfaHelikalneBialkaBlonowe/ByChain/*/*/'+self.pdbCode+'_'+self.Chain+'.pdb'       
  
-        print glob.glob(os.getcwd()+'/media/IntegralneAlfaHelikalneBialkaBlonowe/ByChain/*/*/'+self.pdbCode+'_'+self.Chain+'.pdb')        
-        self.Path = glob.glob(os.getcwd()+'/media/IntegralneAlfaHelikalneBialkaBlonowe/ByChain/*/*/*/'+self.pdbCode+'_'+self.Chain+'.pdb')[0]
+        print glob.glob(os.getcwd()+'/media/PDBs/IntegralneAlfaHelikalneBialkaBlonowe/ByChain/*/*/'+self.pdbCode+'_'+self.Chain+'.pdb')        
+        self.Path = glob.glob(os.getcwd()+'/media/PDBs/IntegralneAlfaHelikalneBialkaBlonowe/ByChain/*/*/*/'+self.pdbCode+'_'+self.Chain+'.pdb')[0]
 # self.pdbCode+'_'+self.Chain+'.pdb'
-        TMProteinI.ReadPDB(self.Path)
+        print self.Path
+
+        TMProteinI.ReadPDB(self.Path,ParametersI)
         
         self.Processed = True
         self.save()

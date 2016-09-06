@@ -74,7 +74,14 @@
             </tr>
             <tr>
             <td><input type="submit" name="CalculateAminoAcidZPreferenceHistogram" value="CalculateAminoAcidZPreferenceHistogram" /></td>
-            <td><input type="submit" name="ClusterHelixTripletsByRMSD" value="ClusterHelixTripletsByRMSD" /></td>
+            <td><input type="submit" name="ClusterHelixTripletsByRMSD" value="ClusterHelixTripletsByRMSD" />
+            <td><input type="submit" name="CARMSD" value="CARMSD" />
+
+            <p>With Permutation?<input type='checkbox' name="perm_checkbox" value="perm_checkbox"></p>
+            <p>With Flip?<input type='checkbox' name="checkbox" value="With Flip?"></p></td>
+            <p>CAs?<input type='checkbox' name="checkbox" value="With Permutation?"></p>
+            <p>MCs?<input type='checkbox' name="checkbox" value="With Flip?"></p></td>
+                        
             <td><input type="submit" name="ClusterHelixTripletsByRMSD" value="AminoAcidPreferencesForPackings" /></td>
             <td><input type="submit" name="ClusterHelixTripletsByRMSD" value="SolventAccessibility" /></td>
 
@@ -104,10 +111,25 @@
 			<td><input type="submit" name="Update" value="Update" /></td>
 			<td><input type="submit" name="Download" value="Download PDBs" /></td>
 			<td><input type="submit" name="Clear" value="Clear" /></td>
-            <td><input type="submit" name="Process" value="Process" /></td>
-
+            <td><input type="submit" name="Process" value="Process" />
+            <p>3MCs: <input type='checkbox' name="checkbox" value="checkbox"></p>
+            <p>10MCs: <input type='checkbox' name="10MCcheckbox" value="10MCcheckbox"></p>
+            </td>
 			</tr>
+			<tr><th>BordersOfThinSlices(e.g. 0.0,3.0;3.0,6.0):</th><td><input id="BordersOfThinSlices"  type="text" name="BordersOfThinSlices" /></td></tr>
             </table>
+            
+            <p>Clusterings:</p>
+            {% for clustering in clusterings %}
+            
+            <p>         {{clustering.pk}} <br>
+                        {{clustering.idx}} <br>
+                        {{clustering.no_cluster}} <br>
+                        {{clustering.RMSD}} <br> 
+                        <a href="{% url 'clustering' clustering.id %}">{{ clustering.id }}</a>
+            </p>
+            
+            {% endfor %}
 		</form>
         <!-- prawdopodobnie bede chcial to podzielic na kilka formow -->
         <!-- powininienem to zlaczyc w jeden template z database ... -->
