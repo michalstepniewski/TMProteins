@@ -1,11 +1,11 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import  include, url # patterns
 from django.http import HttpResponseRedirect
-
+from django.views.static import serve
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns =[ #patterns('',
     # Examples:
     # url(r'^$', 'upload.views.home', name='home'),
 
@@ -17,9 +17,13 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-)
+]#)
 
 from os.path import join, abspath, dirname
-urlpatterns += patterns('',
-    (r'^media/(.*)$', 'django.views.static.serve', {'document_root': join(abspath(dirname(__file__)), 'media')}),
-)
+
+urlpatterns += url(r'^media/(.*)$', serve, {'document_root': join(abspath(dirname(__file__)), 'media')}),
+#)
+
+#urlpatterns += #patterns('',
+#    (r'^media/(.*)$', 'django.views.static.serve', {'document_root': join(abspath(dirname(__file__)), 'media')}),
+#)

@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-from django.conf.urls import patterns, url, include
+from django.conf.urls import  url, include#, patterns
 from . import views
+from xml_parser.views import *
 
-urlpatterns = patterns('xml_parser.views',
-    url(r'^database/$', 'database', name='database'),
+urlpatterns = [#patterns('xml_parser.views',
+    url(r'^database/$', database, name='database'),
         url(r'^myapp/',include('myapp.urls')),
 
 #    url(r'^t(?P<tmhelixtriplet_id>[0-9]+)/$', views.triplet, name='triplet'),
@@ -12,5 +13,5 @@ urlpatterns = patterns('xml_parser.views',
 #    url(r'^upload/', include('fileupload.urls')),
 #    url(r'^d(?P<database_id>[0-9]+)/$', views.database, name='database'),
 
-    url(r'^list/Update/$', view='Update', name='Update')
-)
+    url(r'^list/Update/$', Update, name='Update')
+]#)

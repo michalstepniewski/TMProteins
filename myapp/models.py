@@ -22,6 +22,7 @@ import openpyxl
 import itertools
 import matplotlib.pyplot as plt
 import os
+import pandas as pd
 
 #print 'importing Picture'
 #from fileupload.models import Picture
@@ -341,25 +342,23 @@ class XLSFile(models.Model):
               
         from xml_parser.models import DatabaseModel,structure
            
-        sheet = wb.get_sheet_by_name('Sheet1')
-        
-#        Species = 
-        Resolutions = sheet.columns[4]
-        PDBCodes = sheet.columns[5] #F
-        Chains = sheet.columns[6] #G
-        
-        DatabaseModelI = DatabaseModel.objects.get(pk=database_id)
+        ws = wb.get_sheet_by_name('Sheet1')
+        df = pd.DataFrame(ws.values)
+        df.columns=[df.loc[1,:]]
+        df = df.loc[2:,:]
+        df.rename(columns={u'Res. (Å):':'resolution', 'PDB Code:':'pdbCode', 'Ch:':'Chain'}, inplace = True)
+        print df.columns        
+        DatabaseModelI = DatabaseModel.objects.create()
         
         with transaction.atomic():
+
          
-         for row in range(2, sheet.max_row):
-            print Resolutions[row].value
-            print PDBCodes[row].value
+         for i, row in df.iterrows():
 
             structureI = structure.objects.create(
-            pdbCode = PDBCodes[row].value, \
-            resolution = Resolutions[row].value, \
-            Chain = Chains[row].value)
+            pdbCode = row.pdbCode, \
+            resolution = row.resolution, \
+            Chain = row.Chain)
             DatabaseModelI.structure_set.add(structureI)
 #        quit()    
         return

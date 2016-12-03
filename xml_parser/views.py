@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from xml_parser.models import *
-from django.shortcuts import render_to_response, get_object_or_404, render, RequestContext
+from django.shortcuts import render_to_response, get_object_or_404, render#, RequestContext
 
 # Create your views here.
 
@@ -120,10 +120,12 @@ def database(request):
 # moze sie znowu leb zagotuje
 # musze to przekombinowac
     tmproteins = protein.objects.all()   
-    return render_to_response(
+    return render(request,
         'database.html',
-        {'tmproteins': tmproteins},
-        context_instance=RequestContext(request)
+        {'tmproteins': tmproteins}
+
+#,
+#        context_instance=RequestContext(request)
     )
 
 def Update (request):

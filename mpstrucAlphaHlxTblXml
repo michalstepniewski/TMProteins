@@ -42,7 +42,7 @@
   <!ELEMENT secondaryBibliographies (bibliography*)>
   <!ELEMENT relatedPdbEntries (pdbCode*)>
 ]>
-<mpstruc createdBy='Stephen White' maintainedBy='Craig Snider' copyright='Copyright © 1998-2016 Stephen H. White. All rights reserved.' url='http://blanco.biomol.uci.edu/mpstruc/listAll/mpstrucAlphaHlxTblXml' lastNewProteinDate='2016-06-27 21:41:31.0' lastDatabaseEditDate='2016-06-27 21:45:34.0' timeStamp='Fri Jul 15 11:13:15 PDT 2016'>
+<mpstruc createdBy='Stephen White' maintainedBy='Craig Snider' copyright='Copyright © 1998-2016 Stephen H. White. All rights reserved.' url='http://blanco.biomol.uci.edu/mpstruc/listAll/mpstrucAlphaHlxTblXml' lastNewProteinDate='2016-12-01 22:13:31.0' lastDatabaseEditDate='2016-12-01 22:16:08.0' timeStamp='Sat Dec 03 08:47:32 PST 2016'>
   <caption>mpstruc database - alpha-helical membrane proteins</caption>
   <groups>
     <group>
@@ -74,6 +74,33 @@
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries />
+              <memberProteins />
+            </protein>
+            <protein>
+              <pdbCode>5KUD</pdbCode>
+              <name>Cry6Aa toxin</name>
+              <species>Bacillus thuringiensis</species>
+              <taxonomicDomain>Bacteria</taxonomicDomain>
+              <expressedInSpecies>Pseudomonas fluorescens</expressedInSpecies>
+              <resolution>2.7</resolution>
+              <description>trypsin-cleaved, 2.0 &amp;Aring;: 5KUC&lt;br /&gt;
+supersedes 5J65.</description>
+              <bibliography>
+                <pubMedId>27576487</pubMedId>
+                <authors>Dementiev A, Board J, Sitaram A, Hey T, Kelker MS, Xu X, Hu Y, Vidal-Quist C, Chikwana V, Griffin S, McCaskill D, Wang NX, Hung SC, Chan MK, Lee MM, Hughes J, Wegener A, Aroian RV, Narva KE, &amp;amp; Berry C</authors>
+                <year>2016</year>
+                <title>The pesticidal Cry6Aa toxin from &lt;em&gt;Bacillus thuringiensis&lt;/em&gt; is structurally similar to HlyE-family alpha pore-forming toxins.</title>
+                <journal>BMC Biol</journal>
+                <volume>14</volume>
+                <issue />
+                <pages>71</pages>
+                <doi>10.1186/s12915-016-0295-9</doi>
+                <notes />
+              </bibliography>
+              <secondaryBibliographies />
+              <relatedPdbEntries>
+                <pdbCode>5KUC</pdbCode>
+              </relatedPdbEntries>
               <memberProteins />
             </protein>
             <protein>
@@ -128,13 +155,13 @@ Lipid (DHPC) bound (III), 1.60 &amp;Aring;: 4TSQ</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>4TSQ</pdbCode>
-                    <pdbCode>4TSN</pdbCode>
-                    <pdbCode>4TSO</pdbCode>
-                    <pdbCode>4TSL</pdbCode>
                     <pdbCode>3VWI</pdbCode>
-                    <pdbCode>3W9P</pdbCode>
+                    <pdbCode>4TSL</pdbCode>
+                    <pdbCode>4TSN</pdbCode>
                     <pdbCode>4TSP</pdbCode>
+                    <pdbCode>4TSO</pdbCode>
+                    <pdbCode>4TSQ</pdbCode>
+                    <pdbCode>3W9P</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -188,7 +215,35 @@ See also EM structures deposited in Electron Microscopy Data Bank under accessio
               <relatedPdbEntries>
                 <pdbCode>4O9X</pdbCode>
               </relatedPdbEntries>
-              <memberProteins />
+              <memberProteins>
+                <memberProtein>
+                  <pdbCode>5KLH</pdbCode>
+                  <masterProteinPdbCode>4O9Y</masterProteinPdbCode>
+                  <name>Tc Toxin, TcA pore (TcdA1) embedded in lipid nanodiscs using flexible fitting</name>
+                  <species>Photorhabdus luminescens</species>
+                  <taxonomicDomain>Bacteria</taxonomicDomain>
+                  <expressedInSpecies>E. coli</expressedInSpecies>
+                  <resolution>3.46</resolution>
+                  <description>cryo-EM structure.  &lt;br /&gt;
+without flexible fitting, 3.46 &amp;Aring;: 5LKI</description>
+                  <bibliography>
+                    <pubMedId>27571177</pubMedId>
+                    <authors>Gatsogiannis C, Merino F, Prumbaum D, Roderer D, Leidreiter F, Meusch D, &amp;amp; Raunser S</authors>
+                    <year>2016</year>
+                    <title>Membrane insertion of a Tc toxin in near-atomic detail.</title>
+                    <journal>Nat Struct Mol Biol</journal>
+                    <volume>23</volume>
+                    <issue />
+                    <pages>884-890</pages>
+                    <doi>10.1038/nsmb.3281</doi>
+                    <notes />
+                  </bibliography>
+                  <secondaryBibliographies />
+                  <relatedPdbEntries>
+                    <pdbCode>5LKI</pdbCode>
+                  </relatedPdbEntries>
+                </memberProtein>
+              </memberProteins>
             </protein>
             <protein>
               <pdbCode>4CDB</pdbCode>
@@ -243,9 +298,9 @@ NMR structure: 2MUZ</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
+                <pdbCode>4P6L</pdbCode>
                 <pdbCode>4P6K</pdbCode>
                 <pdbCode>2MUZ</pdbCode>
-                <pdbCode>4P6L</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -300,9 +355,9 @@ NMR structure: 2MUZ</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>2VQL</pdbCode>
                 <pdbCode>2VQK</pdbCode>
                 <pdbCode>2VQH</pdbCode>
+                <pdbCode>2VQL</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -1359,6 +1414,38 @@ Pentameric red form at pH 5.6, 1.45 &amp;Aring;: 4XTL</description>
               <relatedPdbEntries />
               <memberProteins />
             </protein>
+            <protein>
+              <pdbCode>5G28</pdbCode>
+              <name>NTQ chloride transport rhodopsin, type A crystal</name>
+              <species>Nonlabens marinus S1-08&lt;sup&gt;T&lt;/sup&gt;</species>
+              <taxonomicDomain>Bacteria</taxonomicDomain>
+              <expressedInSpecies>E. coli</expressedInSpecies>
+              <resolution>1.57</resolution>
+              <description>type B crystal, 2.0 &amp;Aring;: 5G54&lt;br /&gt;
+Br ion crystal, 2.17 &amp;Aring;: 5G2A&lt;br /&gt;
+T102N mutant, 1.80 &amp;Aring;: 5G2D&lt;br /&gt;
+T102D mutant, 2.31 &amp;Aring;: 5G2C</description>
+              <bibliography>
+                <pubMedId>27554809</pubMedId>
+                <authors>Kim K, Kwon SK, Jun SH, Cha JS, Kim H, Lee W, Kim JF, &amp;amp; Cho HS</authors>
+                <year>2016</year>
+                <title>Crystal structure and functional characterization of a light-driven chloride pump having an NTQ motif.</title>
+                <journal>Nat Commun</journal>
+                <volume>7</volume>
+                <issue />
+                <pages>12677</pages>
+                <doi>10.1038/ncomms12677</doi>
+                <notes />
+              </bibliography>
+              <secondaryBibliographies />
+              <relatedPdbEntries>
+                <pdbCode>5G2A</pdbCode>
+                <pdbCode>5G2C</pdbCode>
+                <pdbCode>5G54</pdbCode>
+                <pdbCode>5G2D</pdbCode>
+              </relatedPdbEntries>
+              <memberProteins />
+            </protein>
           </proteins>
         </subgroup>
         <subgroup>
@@ -1388,6 +1475,30 @@ Pentameric red form at pH 5.6, 1.45 &amp;Aring;: 4XTL</description>
               <relatedPdbEntries>
                 <pdbCode>5HK2</pdbCode>
               </relatedPdbEntries>
+              <memberProteins />
+            </protein>
+            <protein>
+              <pdbCode>5SY1</pdbCode>
+              <name>STRA6 retinol-uptake receptor in complex with calmodulin (CaM)</name>
+              <species>Danio rerio</species>
+              <taxonomicDomain>Eukaryota</taxonomicDomain>
+              <expressedInSpecies>sf9 cells</expressedInSpecies>
+              <resolution>3.9</resolution>
+              <description>cryo-EM structure</description>
+              <bibliography>
+                <pubMedId>27563101</pubMedId>
+                <authors>Chen Y, Clarke OB, Kim J, Stowe S, Kim YK, Assur Z, Cavalier M, Godoy-Ruiz R, von Alpen DC, Manzini C, Blaner WS, Frank J, Quadro L, Weber DJ, Shapiro L, Hendrickson WA, &amp;amp; Mancia F</authors>
+                <year>2016</year>
+                <title>Structure of the STRA6 receptor for retinol uptake.</title>
+                <journal>Science</journal>
+                <volume>353</volume>
+                <issue />
+                <pages />
+                <doi>10.1126/science.aad8266</doi>
+                <notes />
+              </bibliography>
+              <secondaryBibliographies />
+              <relatedPdbEntries />
               <memberProteins />
             </protein>
           </proteins>
@@ -1983,9 +2094,9 @@ Pentameric red form at pH 5.6, 1.45 &amp;Aring;: 4XTL</description>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
                     <pdbCode>2Y02</pdbCode>
+                    <pdbCode>2Y03</pdbCode>
                     <pdbCode>2Y01</pdbCode>
                     <pdbCode>2Y04</pdbCode>
-                    <pdbCode>2Y03</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -2014,8 +2125,8 @@ With bound lodocyanopindolol (t756), 3.65 &amp;Aring;:2YCZ</description>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
                     <pdbCode>2YCY</pdbCode>
-                    <pdbCode>2YCX</pdbCode>
                     <pdbCode>2YCZ</pdbCode>
+                    <pdbCode>2YCX</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -2192,8 +2303,8 @@ In complex with alprenolol, 3.16 &amp;Aring;: 3NYA</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3NYA</pdbCode>
                     <pdbCode>3NY9</pdbCode>
+                    <pdbCode>3NYA</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -2476,6 +2587,30 @@ Structure reveals stabilizing cholesterol molecules, 23 ordered lipids, and 57 o
                     <pdbCode>4UG2</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
+                <memberProtein>
+                  <pdbCode>5G53</pdbCode>
+                  <masterProteinPdbCode>3EML</masterProteinPdbCode>
+                  <name>A&lt;sub&gt;2A&lt;/sub&gt; adenosine receptor with bound engineered G protein</name>
+                  <species>Homo sapiens</species>
+                  <taxonomicDomain>Eukaryota</taxonomicDomain>
+                  <expressedInSpecies>Trichoplusia ni</expressedInSpecies>
+                  <resolution>3.4</resolution>
+                  <description></description>
+                  <bibliography>
+                    <pubMedId>27462812</pubMedId>
+                    <authors>Carpenter B, Nehm&amp;eacute; R, Warne T, Leslie AG, &amp;amp; Tate CG</authors>
+                    <year>2016</year>
+                    <title>Structure of the adenosine A&lt;sub&gt;2A&lt;/sub&gt; receptor bound to an engineered G protein.</title>
+                    <journal>Nature</journal>
+                    <volume>536</volume>
+                    <issue />
+                    <pages>104-107</pages>
+                    <doi>10.1038/nature18966</doi>
+                    <notes />
+                  </bibliography>
+                  <secondaryBibliographies />
+                  <relatedPdbEntries />
+                </memberProtein>
               </memberProteins>
             </protein>
             <protein>
@@ -2525,9 +2660,9 @@ Structure reveals stabilizing cholesterol molecules, 23 ordered lipids, and 57 o
               <secondaryBibliographies />
               <relatedPdbEntries>
                 <pdbCode>3OE6</pdbCode>
+                <pdbCode>3OE9</pdbCode>
                 <pdbCode>3OE8</pdbCode>
                 <pdbCode>3OE0</pdbCode>
-                <pdbCode>3OE9</pdbCode>
               </relatedPdbEntries>
               <memberProteins>
                 <memberProtein>
@@ -2603,6 +2738,33 @@ Structure reveals stabilizing cholesterol molecules, 23 ordered lipids, and 57 o
               <secondaryBibliographies />
               <relatedPdbEntries>
                 <pdbCode>4XT3</pdbCode>
+              </relatedPdbEntries>
+              <memberProteins />
+            </protein>
+            <protein>
+              <pdbCode>5GLH</pdbCode>
+              <name>endothelin ET&lt;sub&gt;B&lt;/sub&gt; receptor with bound endothelin-1</name>
+              <species>Homo sapiens</species>
+              <taxonomicDomain>Eukaryota</taxonomicDomain>
+              <expressedInSpecies>S. frugiperda</expressedInSpecies>
+              <resolution>2.8</resolution>
+              <description>Engineered protein: T4 lysozyme inserted between TM helices V and VI.  Thermostabilized.&lt;br /&gt;
+without bound endothelin-1, 2.5 &amp;Aring;: 5GLI</description>
+              <bibliography>
+                <pubMedId>27595334</pubMedId>
+                <authors>Shihoya W, Nishizawa T, Okuta A, Tani K, Dohmae N, Fujiyoshi Y, Nureki O, &amp;amp; Doi T</authors>
+                <year>2016</year>
+                <title>Activation mechanism of endothelin ET&lt;sub&gt;B&lt;/sub&gt; receptor by endothelin-1.</title>
+                <journal>Nature</journal>
+                <volume>537</volume>
+                <issue />
+                <pages>363-368</pages>
+                <doi>10.1038/nature19319</doi>
+                <notes />
+              </bibliography>
+              <secondaryBibliographies />
+              <relatedPdbEntries>
+                <pdbCode>5GLI</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -2955,6 +3117,30 @@ Synchrotron structure, 3.28 &amp;Aring;: 4RWA</description>
               </memberProteins>
             </protein>
             <protein>
+              <pdbCode>5TGZ</pdbCode>
+              <name>CB&lt;sub&gt;1&lt;/sub&gt; cannabinoid receptor complexed with stabilizing antagonist AM6538</name>
+              <species>Homo sapiens</species>
+              <taxonomicDomain>Eukaryota</taxonomicDomain>
+              <expressedInSpecies>HEK293F cells</expressedInSpecies>
+              <resolution>2.80</resolution>
+              <description>Engineered protein:  Y98W Flavodoxin fused to third intracellular loop.</description>
+              <bibliography>
+                <pubMedId>27768894</pubMedId>
+                <authors>Hua T, Vemuri K, Pu M, Qu L, Han GW, Wu Y, Zhao S, Shui W, Li S, Korde A, Laprairie RB, Stahl EL, Ho JH, Zvonok N, Zhou H, Kufareva I, Wu B, Zhao Q, Hanson MA, Bohn LM, Makriyannis A, Stevens RC, &amp;amp; Liu ZJ</authors>
+                <year>2016</year>
+                <title>Crystal Structure of the Human Cannabinoid Receptor CB1.</title>
+                <journal>Cell</journal>
+                <volume>167</volume>
+                <issue />
+                <pages>750-762.e14</pages>
+                <doi>10.1016/j.cell.2016.10.004</doi>
+                <notes />
+              </bibliography>
+              <secondaryBibliographies />
+              <relatedPdbEntries />
+              <memberProteins />
+            </protein>
+            <protein>
               <pdbCode>4EA3</pdbCode>
               <name>Nociceptin/orphanin FQ (N/OFQ) receptor with bound peptide</name>
               <species>Homo sapiens</species>
@@ -3056,8 +3242,8 @@ HTHGH4-&amp;Delta;IC3 mutant, 3.57 &amp;Aring;: 4BWB</description>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
                     <pdbCode>4BV0</pdbCode>
-                    <pdbCode>3ZEV</pdbCode>
                     <pdbCode>4BWB</pdbCode>
+                    <pdbCode>3ZEV</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -3137,9 +3323,9 @@ structure in 50% HFIP, 2LOW</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>2LOT</pdbCode>
                 <pdbCode>2LOW</pdbCode>
                 <pdbCode>2LOV</pdbCode>
+                <pdbCode>2LOT</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -3401,13 +3587,13 @@ with bound agonist baclofen, 1.90 &amp;Aring;: 4MS4</description>
               <secondaryBibliographies />
               <relatedPdbEntries>
                 <pdbCode>4MQF</pdbCode>
-                <pdbCode>4MRM</pdbCode>
-                <pdbCode>4MR7</pdbCode>
                 <pdbCode>4MS4</pdbCode>
+                <pdbCode>4MRM</pdbCode>
                 <pdbCode>4MS1</pdbCode>
                 <pdbCode>4MR8</pdbCode>
                 <pdbCode>4MR9</pdbCode>
                 <pdbCode>4MS3</pdbCode>
+                <pdbCode>4MR7</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -3535,8 +3721,8 @@ in complex with ONO-3080573, 2.90 &amp;Aring;: 4Z36</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4Z36</pdbCode>
                 <pdbCode>4Z35</pdbCode>
+                <pdbCode>4Z36</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -3589,6 +3775,62 @@ Engineered protein: apocytochrome b&lt;sub&gt;562&lt;/sub&gt; RIL (BRIL) fused a
                   <relatedPdbEntries />
                 </memberProtein>
               </memberProteins>
+            </protein>
+            <protein>
+              <pdbCode>5L7D</pdbCode>
+              <name>Smoothened (SMO) receptor in complex with cholesterol (apo-SMO&amp;Delta;C)</name>
+              <species>Homo sapiens</species>
+              <taxonomicDomain>Eukaryota</taxonomicDomain>
+              <expressedInSpecies>HEK-293S-GnTI&lt;sup&gt;-&lt;/sup&gt;</expressedInSpecies>
+              <resolution>3.2</resolution>
+              <description>Engineered protein:  N- and C-termini truncated; apocytochrome b&lt;sub&gt;562&lt;/sub&gt; RIL (BRIL) replaces intracellular loop 3.&lt;br /&gt;
+with bound vismodegib (vismo-SMO&amp;Delta;C), 3.3 &amp;Aring;: 5L7I</description>
+              <bibliography>
+                <pubMedId>27437577</pubMedId>
+                <authors>Byrne EF, Sircar R, Miller PS, Hedger G, Luchetti G, Nachtergaele S, Tully MD, Mydock-McGrane L, Covey DF, Rambo RP, Sansom MS, Newstead S, Rohatgi R, &amp;amp; Siebold,C.</authors>
+                <year>2016</year>
+                <title>Structural basis of Smoothened regulation by its extracellular domains.</title>
+                <journal>Nature</journal>
+                <volume>535</volume>
+                <issue />
+                <pages>517-522</pages>
+                <doi />
+                <notes />
+              </bibliography>
+              <secondaryBibliographies />
+              <relatedPdbEntries>
+                <pdbCode>5L7I</pdbCode>
+              </relatedPdbEntries>
+              <memberProteins />
+            </protein>
+          </proteins>
+        </subgroup>
+        <subgroup>
+          <name>Tetraspanins</name>
+          <proteins>
+            <protein>
+              <pdbCode>5TCX</pdbCode>
+              <name>CD81 full-length tetraspanin</name>
+              <species>Homo sapiens</species>
+              <taxonomicDomain>Eukaryota</taxonomicDomain>
+              <expressedInSpecies>S. frugiperda</expressedInSpecies>
+              <resolution>2.95</resolution>
+              <description></description>
+              <bibliography>
+                <pubMedId>27881302</pubMedId>
+                <authors>Zimmerman B, Kelly B, McMillan BJ, Seegar TC, Dror RO, Kruse AC, &amp;amp; Blacklow SC</authors>
+                <year>2016</year>
+                <title>Crystal Structure of a Full-Length Human Tetraspanin Reveals a Cholesterol-Binding Pocket.</title>
+                <journal>Cell</journal>
+                <volume>167</volume>
+                <issue>4</issue>
+                <pages>1041-1051</pages>
+                <doi>10.1016/j.cell.2016.09.056</doi>
+                <notes />
+              </bibliography>
+              <secondaryBibliographies />
+              <relatedPdbEntries />
+              <memberProteins />
             </protein>
           </proteins>
         </subgroup>
@@ -3779,6 +4021,30 @@ AdipoR2 adiponectin 2 receptor in complex with Fv fragment, 2.40 &amp;Aring;: 3W
                   <relatedPdbEntries />
                 </memberProtein>
               </memberProteins>
+            </protein>
+            <protein>
+              <pdbCode>5JYN</pdbCode>
+              <name>HIV-1 Envelope spike (Env) protein</name>
+              <species>Human immunodeficiency virus 1</species>
+              <taxonomicDomain>Viruses</taxonomicDomain>
+              <expressedInSpecies>E. coli</expressedInSpecies>
+              <resolution>NMR structure</resolution>
+              <description>Reconstituted in bicelles.  Well-ordered trimer.</description>
+              <bibliography>
+                <pubMedId>27338706</pubMedId>
+                <authors>Dev J, Park D, Fu Q, Chen J, Ha HJ, Ghantous F, Herrmann T, Chang W, Liu Z, Frey G, Seaman MS, Chen B, &amp;amp; Chou JJ</authors>
+                <year>2016</year>
+                <title>Structural basis for membrane anchoring of HIV-1 envelope spike.</title>
+                <journal>Science</journal>
+                <volume>353</volume>
+                <issue />
+                <pages>172-175</pages>
+                <doi>10.1126/science.aaf7066</doi>
+                <notes />
+              </bibliography>
+              <secondaryBibliographies />
+              <relatedPdbEntries />
+              <memberProteins />
             </protein>
           </proteins>
         </subgroup>
@@ -4162,8 +4428,8 @@ G770E/F777E dimeric mutant: 2MEU</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>2MEU</pdbCode>
                 <pdbCode>2MET</pdbCode>
+                <pdbCode>2MEU</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -4930,9 +5196,9 @@ KcsA, M96V mutant in KCl, 2.52 &amp;Aring;: 2NLJ</description>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
                     <pdbCode>3FB6</pdbCode>
-                    <pdbCode>3F7V</pdbCode>
                     <pdbCode>3F7Y</pdbCode>
                     <pdbCode>3FB5</pdbCode>
+                    <pdbCode>3F7V</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -5061,8 +5327,8 @@ In complex with tetraoctylammonium, 2.40 &amp;Aring;: 2W0F</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>4UUJ</pdbCode>
                     <pdbCode>2W0F</pdbCode>
+                    <pdbCode>4UUJ</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -5091,10 +5357,10 @@ T75G (non-conductive state), 2.5 &amp;Aring;: 5EBM</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>5EC2</pdbCode>
-                    <pdbCode>5EBM</pdbCode>
-                    <pdbCode>5EBW</pdbCode>
                     <pdbCode>5EBL</pdbCode>
+                    <pdbCode>5EC2</pdbCode>
+                    <pdbCode>5EBW</pdbCode>
+                    <pdbCode>5EBM</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -5227,8 +5493,8 @@ in complex with norfluoxetine, 3.60 &amp;Aring;: 4XDK</description>
               <secondaryBibliographies />
               <relatedPdbEntries>
                 <pdbCode>4XDJ</pdbCode>
-                <pdbCode>4XDL</pdbCode>
                 <pdbCode>4XDK</pdbCode>
+                <pdbCode>4XDL</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -5481,6 +5747,30 @@ in complex with norfluoxetine, 3.60 &amp;Aring;: 4XDK</description>
               </memberProteins>
             </protein>
             <protein>
+              <pdbCode>5K7L</pdbCode>
+              <name>Eag1 (KCNH1, K&lt;sub&gt;v&lt;/sub&gt;10.1) voltage-gated K&lt;sup&gt;+&lt;/sup&gt; channel with bound calmodulin (CaM)</name>
+              <species>Rattus norvegicus</species>
+              <taxonomicDomain>Eukaryota</taxonomicDomain>
+              <expressedInSpecies>SF9 cells</expressedInSpecies>
+              <resolution>3.78</resolution>
+              <description>Cryo-EM structure</description>
+              <bibliography>
+                <pubMedId>27516594</pubMedId>
+                <authors>Whicher JR, &amp;amp; MacKinnon R</authors>
+                <year>2016</year>
+                <title>Structure of the voltage-gated K&lt;sup&gt;+&lt;/sup&gt; channel Eag1 reveals an alternative voltage sensing mechanism.</title>
+                <journal>Science</journal>
+                <volume>353</volume>
+                <issue />
+                <pages>664-669</pages>
+                <doi>10.1126/science.aaf8070</doi>
+                <notes />
+              </bibliography>
+              <secondaryBibliographies />
+              <relatedPdbEntries />
+              <memberProteins />
+            </protein>
+            <protein>
               <pdbCode>4H33</pdbCode>
               <name>KvLm voltaged-gated potassium channel: C-terminal pore module</name>
               <species>Listeria monocytogenes</species>
@@ -5566,8 +5856,8 @@ Crystallized under sodium condition, 3.35 &amp;Aring;: 4H37</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3LDD</pdbCode>
                     <pdbCode>3LDE</pdbCode>
+                    <pdbCode>3LDD</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -5671,9 +5961,9 @@ E212Q mutant, 2.99 &amp;Aring;: 4L76</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>4L76</pdbCode>
-                    <pdbCode>4L75</pdbCode>
                     <pdbCode>4L74</pdbCode>
+                    <pdbCode>4L75</pdbCode>
+                    <pdbCode>4L76</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -5775,8 +6065,8 @@ TM domain only, 5A6G</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>5A6G</pdbCode>
                 <pdbCode>5A6F</pdbCode>
+                <pdbCode>5A6G</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -5886,10 +6176,36 @@ R186A mutant in complex with PIP&lt;sub&gt;2&lt;/sub&gt;, 2.61 &amp;Aring;:  3SP
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3SPC</pdbCode>
-                    <pdbCode>3SPG</pdbCode>
-                    <pdbCode>3SPJ</pdbCode>
                     <pdbCode>3SPH</pdbCode>
+                    <pdbCode>3SPJ</pdbCode>
+                    <pdbCode>3SPG</pdbCode>
+                    <pdbCode>3SPC</pdbCode>
+                  </relatedPdbEntries>
+                </memberProtein>
+                <memberProtein>
+                  <pdbCode>5KUK</pdbCode>
+                  <masterProteinPdbCode>3JYC</masterProteinPdbCode>
+                  <name>Kir2.2 Inward-Rectifier Potassium Channel, K62W mutant (apo form)</name>
+                  <species>Gallus gallus</species>
+                  <taxonomicDomain>Eukaryota</taxonomicDomain>
+                  <expressedInSpecies>Komagataella pastoris</expressedInSpecies>
+                  <resolution>2.0</resolution>
+                  <description>in complex with PIP&lt;sub&gt;2&lt;/sub&gt;, 2.8 &amp;Aring;: 5KUM</description>
+                  <bibliography>
+                    <pubMedId>27527100</pubMedId>
+                    <authors>Lee SJ, Ren F, Zangerl-Plessl EM, Heyman S, Stary-Weinzinger A, Yuan P, &amp;amp; Nichols CG</authors>
+                    <year>2016</year>
+                    <title>Structural basis of control of inward rectifier Kir2 channel gating by bulk anionic phospholipids.</title>
+                    <journal>J Gen Physiol</journal>
+                    <volume>148</volume>
+                    <issue />
+                    <pages>227-237</pages>
+                    <doi>10.1085/jgp.201611616</doi>
+                    <notes />
+                  </bibliography>
+                  <secondaryBibliographies />
+                  <relatedPdbEntries>
+                    <pdbCode>5KUM</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -5993,9 +6309,9 @@ R201A mutant + PIP&lt;sub&gt;2&lt;/sub&gt;, 3.45 &amp;Aring;:  3SYQ</description
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
+                <pdbCode>3SYQ</pdbCode>
                 <pdbCode>3SYC</pdbCode>
                 <pdbCode>3SYA</pdbCode>
-                <pdbCode>3SYQ</pdbCode>
                 <pdbCode>3SYP</pdbCode>
               </relatedPdbEntries>
               <memberProteins>
@@ -6073,17 +6389,17 @@ R201A mutant + PIP&lt;sub&gt;2&lt;/sub&gt;, 3.45 &amp;Aring;:  3SYQ</description
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>2WLO</pdbCode>
-                <pdbCode>2WLN</pdbCode>
-                <pdbCode>2X6B</pdbCode>
                 <pdbCode>2WLM</pdbCode>
-                <pdbCode>2WLH</pdbCode>
-                <pdbCode>2WLI</pdbCode>
-                <pdbCode>2X6A</pdbCode>
-                <pdbCode>1XL4</pdbCode>
-                <pdbCode>1XL6</pdbCode>
+                <pdbCode>2X6B</pdbCode>
                 <pdbCode>2WLK</pdbCode>
+                <pdbCode>2WLI</pdbCode>
+                <pdbCode>1XL6</pdbCode>
+                <pdbCode>2WLN</pdbCode>
+                <pdbCode>2X6A</pdbCode>
+                <pdbCode>2WLO</pdbCode>
+                <pdbCode>2WLH</pdbCode>
                 <pdbCode>2X6C</pdbCode>
+                <pdbCode>1XL4</pdbCode>
               </relatedPdbEntries>
               <memberProteins>
                 <memberProtein>
@@ -6208,9 +6524,9 @@ R201A mutant + PIP&lt;sub&gt;2&lt;/sub&gt;, 3.45 &amp;Aring;:  3SYQ</description
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
+                    <pdbCode>2Q6A</pdbCode>
                     <pdbCode>2Q68</pdbCode>
                     <pdbCode>2Q69</pdbCode>
-                    <pdbCode>2Q6A</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -6260,9 +6576,9 @@ R201A mutant + PIP&lt;sub&gt;2&lt;/sub&gt;, 3.45 &amp;Aring;:  3SYQ</description
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
+                    <pdbCode>3K08</pdbCode>
                     <pdbCode>3K06</pdbCode>
                     <pdbCode>3K0G</pdbCode>
-                    <pdbCode>3K08</pdbCode>
                     <pdbCode>3K04</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
@@ -6289,8 +6605,8 @@ R201A mutant + PIP&lt;sub&gt;2&lt;/sub&gt;, 3.45 &amp;Aring;:  3SYQ</description
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3OUS</pdbCode>
                     <pdbCode>3K03</pdbCode>
+                    <pdbCode>3OUS</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -6320,11 +6636,11 @@ NaK2K-D68E, 1.75 &amp;Aring;: 3TCU</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3T4Z</pdbCode>
-                    <pdbCode>3TCU</pdbCode>
+                    <pdbCode>3T2M</pdbCode>
                     <pdbCode>3TET</pdbCode>
                     <pdbCode>3T4D</pdbCode>
-                    <pdbCode>3T2M</pdbCode>
+                    <pdbCode>3T4Z</pdbCode>
+                    <pdbCode>3TCU</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -6377,8 +6693,8 @@ M221C mutant, 2.95 &amp;Aring;: 3RW0</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>3RVZ</pdbCode>
                 <pdbCode>3RW0</pdbCode>
+                <pdbCode>3RVZ</pdbCode>
               </relatedPdbEntries>
               <memberProteins>
                 <memberProtein>
@@ -6510,16 +6826,16 @@ Wild-type with bound Pl7 blocker, 3.02 &amp;Aring;: 4PA7</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>4P9O</pdbCode>
-                    <pdbCode>4P9P</pdbCode>
-                    <pdbCode>4PA9</pdbCode>
                     <pdbCode>4PA4</pdbCode>
-                    <pdbCode>4OXS</pdbCode>
+                    <pdbCode>4PA9</pdbCode>
                     <pdbCode>4PA3</pdbCode>
-                    <pdbCode>4PA6</pdbCode>
                     <pdbCode>4PA7</pdbCode>
-                    <pdbCode>4P2Z</pdbCode>
+                    <pdbCode>4P9P</pdbCode>
+                    <pdbCode>4P9O</pdbCode>
                     <pdbCode>4P30</pdbCode>
+                    <pdbCode>4OXS</pdbCode>
+                    <pdbCode>4PA6</pdbCode>
+                    <pdbCode>4P2Z</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -6574,9 +6890,9 @@ H245G mutant, 5.80 &amp;Aring;: 4LTR</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4LTP</pdbCode>
-                <pdbCode>4LTQ</pdbCode>
                 <pdbCode>4LTR</pdbCode>
+                <pdbCode>4LTQ</pdbCode>
+                <pdbCode>4LTP</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -6656,6 +6972,32 @@ wild-type, 3.58 &amp;Aring;: 4G80</description>
               <relatedPdbEntries />
               <memberProteins />
             </protein>
+            <protein>
+              <pdbCode>5EGI</pdbCode>
+              <name>Trimeric intracellular cation (TRIC) channel, B1 isoform with bound Ca&lt;sup&gt;2+&lt;/sup&gt;</name>
+              <species>Caenorhabditis elegans</species>
+              <taxonomicDomain>Eukaryota</taxonomicDomain>
+              <expressedInSpecies>Komagataella pastoris</expressedInSpecies>
+              <resolution>3.3</resolution>
+              <description>B2 isoform in absence of Ca&lt;sup&gt;2+&lt;/sup&gt;, 2.3 &amp;Aring;: 5EIK</description>
+              <bibliography>
+                <pubMedId>27698420</pubMedId>
+                <authors>Yang H, Hu M, Guo J, Ou X, Cai T, &amp;amp; Liu Z</authors>
+                <year>2016</year>
+                <title>Pore architecture of TRIC channels and insights into their gating mechanism.</title>
+                <journal>Nature</journal>
+                <volume>538</volume>
+                <issue />
+                <pages>537-541</pages>
+                <doi>10.1038/nature19767</doi>
+                <notes />
+              </bibliography>
+              <secondaryBibliographies />
+              <relatedPdbEntries>
+                <pdbCode>5EIK</pdbCode>
+              </relatedPdbEntries>
+              <memberProteins />
+            </protein>
           </proteins>
         </subgroup>
         <subgroup>
@@ -6699,20 +7041,108 @@ Na&lt;sub&gt;V&lt;/sub&gt;Ab wild-type:&lt;br /&gt;
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4MTO</pdbCode>
+                <pdbCode>4MW8</pdbCode>
+                <pdbCode>4MVM</pdbCode>
+                <pdbCode>4MVR</pdbCode>
                 <pdbCode>4MVO</pdbCode>
                 <pdbCode>4MVU</pdbCode>
-                <pdbCode>4MVS</pdbCode>
-                <pdbCode>4MVM</pdbCode>
-                <pdbCode>4MW3</pdbCode>
-                <pdbCode>4MVR</pdbCode>
                 <pdbCode>4MVZ</pdbCode>
-                <pdbCode>4MTG</pdbCode>
+                <pdbCode>4MTO</pdbCode>
                 <pdbCode>4MTF</pdbCode>
-                <pdbCode>4MW8</pdbCode>
+                <pdbCode>4MTG</pdbCode>
                 <pdbCode>4MVQ</pdbCode>
+                <pdbCode>4MVS</pdbCode>
+                <pdbCode>4MW3</pdbCode>
               </relatedPdbEntries>
-              <memberProteins />
+              <memberProteins>
+                <memberProtein>
+                  <pdbCode>5KLB</pdbCode>
+                  <masterProteinPdbCode>4MS2</masterProteinPdbCode>
+                  <name>Voltage-Gated Calcium Channel (Ca&lt;sub&gt;V&lt;/sub&gt;) created by mutation of the Na&lt;sub&gt;V&lt;/sub&gt;Ab channel</name>
+                  <species>Arcobacter butzleri</species>
+                  <taxonomicDomain>Bacteria</taxonomicDomain>
+                  <expressedInSpecies>Trichoplusia ni</expressedInSpecies>
+                  <resolution>2.7</resolution>
+                  <description>[Ca&lt;sup&gt;2+&lt;/sup&gt;] = 5mM&lt;br /&gt;
+W195Y mutant in complex with Br-dihydropyridine derivative UK-59811, 3.3 &amp;Aring;: 5KLG&lt;br /&gt;
+wild-type protein in complex with Br-dihydropyridine derivative UK-59811, 3.3 &amp;Ariing;: 5KLS&lt;br /&gt;
+wild-type in complex with amlodipine, 3.2 &amp;Aring;: 5KMD&lt;br /&gt;
+wild-type in complex with nimodipine, 3.2 &amp;Aring;: 5KMF&lt;br /&gt;
+wild-type in complex with Br-verapamil, 3.2 &amp;Aring;: 5KMH</description>
+                  <bibliography>
+                    <pubMedId>27556947</pubMedId>
+                    <authors>Tang L, El-Din TM, Swanson TM, Pryde DC, Scheuer T, Zheng N, &amp;amp; Catterall WA</authors>
+                    <year>2016</year>
+                    <title>Structural basis for inhibition of a voltage-gated Ca&lt;sup&gt;2+&lt;/sup&gt; channel by Ca&lt;sup&gt;2+&lt;/sup&gt; antagonist drugs.</title>
+                    <journal>Nature</journal>
+                    <volume>537</volume>
+                    <issue />
+                    <pages>117-121</pages>
+                    <doi>10.1038/nature19102</doi>
+                    <notes />
+                  </bibliography>
+                  <secondaryBibliographies />
+                  <relatedPdbEntries>
+                    <pdbCode>5KLS</pdbCode>
+                    <pdbCode>5KMH</pdbCode>
+                    <pdbCode>5KMF</pdbCode>
+                    <pdbCode>5KMD</pdbCode>
+                    <pdbCode>5KLG</pdbCode>
+                  </relatedPdbEntries>
+                </memberProtein>
+              </memberProteins>
+            </protein>
+            <protein>
+              <pdbCode>3JBR</pdbCode>
+              <name>Ca&lt;sub&gt;V&lt;/sub&gt;1.1 voltage-gated calcium channel</name>
+              <species>Oryctolagus cuniculus</species>
+              <taxonomicDomain>Eukaryota</taxonomicDomain>
+              <expressedInSpecies>E. coli</expressedInSpecies>
+              <resolution>4.2</resolution>
+              <description>cryo-EM structure</description>
+              <bibliography>
+                <pubMedId>26680202</pubMedId>
+                <authors>Wu J, Yan Z, Li Z, Yan C, Lu S, Dong M, &amp;amp; Yan N</authors>
+                <year>2015</year>
+                <title>Structure of the voltage-gated calcium channel Cav1.1 complex.</title>
+                <journal>Science</journal>
+                <volume>350</volume>
+                <issue>6267</issue>
+                <pages>1492</pages>
+                <doi>10.1126/science.aad2395</doi>
+                <notes />
+              </bibliography>
+              <secondaryBibliographies />
+              <relatedPdbEntries />
+              <memberProteins>
+                <memberProtein>
+                  <pdbCode>5GJV</pdbCode>
+                  <masterProteinPdbCode>3JBR</masterProteinPdbCode>
+                  <name>Ca&lt;sub&gt;V&lt;/sub&gt;1.1 voltage-gated calcium channel</name>
+                  <species>Oryctolagus cuniculus</species>
+                  <taxonomicDomain>Eukaryota</taxonomicDomain>
+                  <expressedInSpecies>E. coli</expressedInSpecies>
+                  <resolution>3.6</resolution>
+                  <description>cryo-EM structure&lt;br /&gt;
+class II reconstruction map, 3.9 &amp;Aring;: 5GJW</description>
+                  <bibliography>
+                    <pubMedId>27580036</pubMedId>
+                    <authors>Wu J, Yan Z, Li Z, Qian X, Lu S, Dong M, Zhou Q, &amp;amp; Yan N</authors>
+                    <year>2016</year>
+                    <title>Structure of the voltage-gated calcium channel Ca&lt;sub&gt;v&lt;/sub&gt;1.1 at 3.6 &amp;Aring; resolution.</title>
+                    <journal>Nature</journal>
+                    <volume>537</volume>
+                    <issue />
+                    <pages>191-196</pages>
+                    <doi>10.1038/nature19321</doi>
+                    <notes />
+                  </bibliography>
+                  <secondaryBibliographies />
+                  <relatedPdbEntries>
+                    <pdbCode>5GJW</pdbCode>
+                  </relatedPdbEntries>
+                </memberProtein>
+              </memberProteins>
             </protein>
             <protein>
               <pdbCode>4HKR</pdbCode>
@@ -6819,30 +7249,6 @@ Open-form in C222&lt;sub&gt;1&lt;/sub&gt; lattice, 3.60 &amp;Aring;: 4PGW</descr
                   <relatedPdbEntries />
                 </memberProtein>
                 <memberProtein>
-                  <pdbCode>5C33</pdbCode>
-                  <masterProteinPdbCode>3J8H</masterProteinPdbCode>
-                  <name>RyR2 ryanodine receptor SPRY1 domain critical in binding FKBP12</name>
-                  <species>Mus musculus</species>
-                  <taxonomicDomain>Eukaryota</taxonomicDomain>
-                  <expressedInSpecies>E. coli</expressedInSpecies>
-                  <resolution>1.21</resolution>
-                  <description></description>
-                  <bibliography>
-                    <pubMedId>26245150</pubMedId>
-                    <authors>Yuchi Z, Yuen SM, Lau K, Underhill AQ, Cornea RL, Fessenden JD, &amp;amp; Van Petegem F</authors>
-                    <year>2015</year>
-                    <title>Crystal structures of ryanodine receptor SPRY1 and tandem-repeat domains reveal a critical FKBP12 binding determinant.</title>
-                    <journal>Nat Commun</journal>
-                    <volume>6</volume>
-                    <issue />
-                    <pages>7947</pages>
-                    <doi>10.1038/ncomms8947</doi>
-                    <notes />
-                  </bibliography>
-                  <secondaryBibliographies />
-                  <relatedPdbEntries />
-                </memberProtein>
-                <memberProtein>
                   <pdbCode>5C30</pdbCode>
                   <masterProteinPdbCode>3J8H</masterProteinPdbCode>
                   <name>RyR1 ryanodine receptor Repeat12 domain</name>
@@ -6866,7 +7272,58 @@ Open-form in C222&lt;sub&gt;1&lt;/sub&gt; lattice, 3.60 &amp;Aring;: 4PGW</descr
                   <secondaryBibliographies />
                   <relatedPdbEntries />
                 </memberProtein>
+                <memberProtein>
+                  <pdbCode>5C33</pdbCode>
+                  <masterProteinPdbCode>3J8H</masterProteinPdbCode>
+                  <name>RyR2 ryanodine receptor SPRY1 domain critical in binding FKBP12</name>
+                  <species>Mus musculus</species>
+                  <taxonomicDomain>Eukaryota</taxonomicDomain>
+                  <expressedInSpecies>E. coli</expressedInSpecies>
+                  <resolution>1.21</resolution>
+                  <description></description>
+                  <bibliography>
+                    <pubMedId>26245150</pubMedId>
+                    <authors>Yuchi Z, Yuen SM, Lau K, Underhill AQ, Cornea RL, Fessenden JD, &amp;amp; Van Petegem F</authors>
+                    <year>2015</year>
+                    <title>Crystal structures of ryanodine receptor SPRY1 and tandem-repeat domains reveal a critical FKBP12 binding determinant.</title>
+                    <journal>Nat Commun</journal>
+                    <volume>6</volume>
+                    <issue />
+                    <pages>7947</pages>
+                    <doi>10.1038/ncomms8947</doi>
+                    <notes />
+                  </bibliography>
+                  <secondaryBibliographies />
+                  <relatedPdbEntries />
+                </memberProtein>
               </memberProteins>
+            </protein>
+            <protein>
+              <pdbCode>5GO9</pdbCode>
+              <name>RyR2 ryanodine receptor, closed state</name>
+              <species>Sus scrofa</species>
+              <taxonomicDomain>Eukaryota</taxonomicDomain>
+              <expressedInSpecies />
+              <resolution>4.4</resolution>
+              <description>Cryo-EM structure&lt;br /&gt;
+open-state structure, 4.2 &amp;Aring;: 5GOA</description>
+              <bibliography>
+                <pubMedId>27708056</pubMedId>
+                <authors>Peng W, Shen H, Wu J, Guo W, Pan X, Wang R, Chen SR, &amp;amp; Yan N</authors>
+                <year>2016</year>
+                <title>Structural basis for the gating mechanism of the type 2 ryanodine receptor RyR2.</title>
+                <journal>Science</journal>
+                <volume>354</volume>
+                <issue />
+                <pages>301</pages>
+                <doi>10.1126/science.aah5324</doi>
+                <notes>One-page Research Article Summary on p. 301.  For full article, follow the DOI.</notes>
+              </bibliography>
+              <secondaryBibliographies />
+              <relatedPdbEntries>
+                <pdbCode>5GOA</pdbCode>
+              </relatedPdbEntries>
+              <memberProteins />
             </protein>
             <protein>
               <pdbCode>3JAV</pdbCode>
@@ -6886,30 +7343,6 @@ Open-form in C222&lt;sub&gt;1&lt;/sub&gt; lattice, 3.60 &amp;Aring;: 4PGW</descr
                 <issue />
                 <pages>336-341</pages>
                 <doi>10.1038/nature15249</doi>
-                <notes />
-              </bibliography>
-              <secondaryBibliographies />
-              <relatedPdbEntries />
-              <memberProteins />
-            </protein>
-            <protein>
-              <pdbCode>3JBR</pdbCode>
-              <name>Ca&lt;sub&gt;V&lt;/sub&gt;1.1 voltage-gated calcium channel</name>
-              <species>Oryctolagus cuniculus</species>
-              <taxonomicDomain>Eukaryota</taxonomicDomain>
-              <expressedInSpecies />
-              <resolution>4.2</resolution>
-              <description>cryo-EM structure</description>
-              <bibliography>
-                <pubMedId>26680202</pubMedId>
-                <authors>Wu J, Yan Z, Li Z, Yan C, Lu S, Dong M, &amp;amp; Yan N</authors>
-                <year>2015</year>
-                <title>Structure of the voltage-gated calcium channel Cav1.1 complex.</title>
-                <journal>Science</journal>
-                <volume>350</volume>
-                <issue>6267</issue>
-                <pages>1492</pages>
-                <doi>10.1126/science.aad2395</doi>
                 <notes />
               </bibliography>
               <secondaryBibliographies />
@@ -7019,8 +7452,8 @@ in complex with capsazepine, 3.43 &amp;Aring;: 5IS0</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>5IRX</pdbCode>
                     <pdbCode>5IS0</pdbCode>
+                    <pdbCode>5IRX</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -7127,6 +7560,30 @@ with bound Gd&lt;sup&gt;3+&lt;/sup&gt;, 3.8 &amp;Aring;: 5IWT</description>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
+            <protein>
+              <pdbCode>5T4D</pdbCode>
+              <name>PKD2 polycystic kidney disease channel in lipid nanodiscs</name>
+              <species>Homo sapiens</species>
+              <taxonomicDomain>Eukaryota</taxonomicDomain>
+              <expressedInSpecies>HEK293S cells</expressedInSpecies>
+              <resolution>3.0</resolution>
+              <description>cryo-EM structure</description>
+              <bibliography>
+                <pubMedId>27768895</pubMedId>
+                <authors>Shen PS, Yang X, DeCaen PG, Liu X, Bulkley D, Clapham DE, &amp;amp; Cao E</authors>
+                <year>2016</year>
+                <title>The Structure of the Polycystic Kidney Disease Channel PKD2 in Lipid Nanodiscs.</title>
+                <journal>Cell</journal>
+                <volume>167</volume>
+                <issue />
+                <pages>763-773.e11</pages>
+                <doi>10.1016/j.cell.2016.09.048</doi>
+                <notes />
+              </bibliography>
+              <secondaryBibliographies />
+              <relatedPdbEntries />
+              <memberProteins />
+            </protein>
           </proteins>
         </subgroup>
         <subgroup>
@@ -7211,8 +7668,8 @@ GluA2 in complex with partial agonist kainate, 3.52 &amp;Aring;: 4U2Q</descripti
                   <relatedPdbEntries>
                     <pdbCode>4U2Q</pdbCode>
                     <pdbCode>4U1W</pdbCode>
-                    <pdbCode>4U1Y</pdbCode>
                     <pdbCode>4U1X</pdbCode>
+                    <pdbCode>4U1Y</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -7242,8 +7699,8 @@ crystal form 2), 3.70 &amp;Aring;: 4U5F</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>4U5D</pdbCode>
                     <pdbCode>4U5F</pdbCode>
+                    <pdbCode>4U5D</pdbCode>
                     <pdbCode>4U5E</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
@@ -7272,10 +7729,66 @@ cryo-EM map for GluA2/A3 model II, 10.31 &amp;Aring;: 5IDF</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>5IDF</pdbCode>
-                    <pdbCode>5IDE</pdbCode>
                     <pdbCode>5FWY</pdbCode>
+                    <pdbCode>5IDE</pdbCode>
+                    <pdbCode>5IDF</pdbCode>
                   </relatedPdbEntries>
+                </memberProtein>
+                <memberProtein>
+                  <pdbCode>5KBS</pdbCode>
+                  <masterProteinPdbCode>3KG2</masterProteinPdbCode>
+                  <name>GluA2 Glutamate receptor (AMPA-subtype) without bound stargazin (0-xSTZ) regulatory protein</name>
+                  <species>Rattus norvegicus (GluA2) &amp; Mus musculus (STZ)</species>
+                  <taxonomicDomain>Eukaryota</taxonomicDomain>
+                  <expressedInSpecies>HEK293 cells</expressedInSpecies>
+                  <resolution>8.7</resolution>
+                  <description>cryo-EM structures&lt;br /&gt;
+with 1 bound STZ (1xSTZ), 6.4 &amp;Aring;: 5KBT&lt;br /&gt;
+with 2 bound STZ (2xSTZ), 7.8 &amp;Aring;: 5KBU&lt;br /&gt;
+GluA2 with bound ZK200775, 6.8 &amp;Aring;: 5KBV</description>
+                  <bibliography>
+                    <pubMedId>27365450</pubMedId>
+                    <authors>Twomey EC, Yelshanskaya MV, Grassucci RA, Frank J, &amp;amp; Sobolevsky AI</authors>
+                    <year>2016</year>
+                    <title>Elucidation of AMPA receptor-stargazin complexes by cryo-electron microscopy.</title>
+                    <journal>Science</journal>
+                    <volume>353</volume>
+                    <issue />
+                    <pages>83-86</pages>
+                    <doi>10.1126/science.aaf8411</doi>
+                    <notes />
+                  </bibliography>
+                  <secondaryBibliographies />
+                  <relatedPdbEntries>
+                    <pdbCode>5KBT</pdbCode>
+                    <pdbCode>5KBU</pdbCode>
+                    <pdbCode>5KBV</pdbCode>
+                  </relatedPdbEntries>
+                </memberProtein>
+                <memberProtein>
+                  <pdbCode>5KK2</pdbCode>
+                  <masterProteinPdbCode>3KG2</masterProteinPdbCode>
+                  <name>GluA2 Glutamate receptor (AMPA-subtype) saturated with TARP&amp;gamma;2 subunits</name>
+                  <species>Rattus norvegicus</species>
+                  <taxonomicDomain>Eukaryota</taxonomicDomain>
+                  <expressedInSpecies>HEK293 cells</expressedInSpecies>
+                  <resolution>7.3</resolution>
+                  <description>cryo-EM structure&lt;br /&gt;
+TARP&amp;gamma;2 is stargazin</description>
+                  <bibliography>
+                    <pubMedId>27368053</pubMedId>
+                    <authors>Zhao Y, Chen S, Yoshioka C, Baconguis I, &amp;amp; Gouaux E</authors>
+                    <year>2016</year>
+                    <title>Architecture of fully occupied GluA2 AMPA receptor-TARP complex elucidated by cryo-EM.</title>
+                    <journal>Nature</journal>
+                    <volume>536</volume>
+                    <issue />
+                    <pages>108-111</pages>
+                    <doi>10.1038/nature18961</doi>
+                    <notes />
+                  </bibliography>
+                  <secondaryBibliographies />
+                  <relatedPdbEntries />
                 </memberProtein>
               </memberProteins>
             </protein>
@@ -7359,13 +7872,13 @@ DCKA/D-APV-bound conformation, state 1, 9.25 &amp;Aring;: 5IPV</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>5IPV</pdbCode>
                     <pdbCode>5IPS</pdbCode>
+                    <pdbCode>5IPT</pdbCode>
                     <pdbCode>5IPU</pdbCode>
                     <pdbCode>5IPQ</pdbCode>
-                    <pdbCode>5IPT</pdbCode>
-                    <pdbCode>5IOV</pdbCode>
                     <pdbCode>5IPR</pdbCode>
+                    <pdbCode>5IPV</pdbCode>
+                    <pdbCode>5IOV</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -7397,11 +7910,42 @@ with bound Phe, 1.92 &amp;Aring;: 4IO7</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4IO6</pdbCode>
-                <pdbCode>4IO7</pdbCode>
                 <pdbCode>4IO4</pdbCode>
+                <pdbCode>4IO6</pdbCode>
                 <pdbCode>4IO5</pdbCode>
                 <pdbCode>4IO3</pdbCode>
+                <pdbCode>4IO7</pdbCode>
+              </relatedPdbEntries>
+              <memberProteins />
+            </protein>
+            <protein>
+              <pdbCode>5KUF</pdbCode>
+              <name>GluK2&lt;sub&gt;EM&lt;/sub&gt; Glutamate receptor (Kainate-subtype) with bound 2&lt;em&gt;S&lt;/em&gt;,4&lt;em&gt;R&lt;/em&gt;-4-methylglutamate</name>
+              <species>Rattus norvegicus</species>
+              <taxonomicDomain>Eukaryota</taxonomicDomain>
+              <expressedInSpecies>S. frugiperda</expressedInSpecies>
+              <resolution>3.8</resolution>
+              <description>cryo-EM structure&lt;br /&gt;
+GluK2&lt;sub&gt;EM&lt;/sub&gt; with LY66195, 11.6 &amp;Aring;: 5KUH&lt;br /&gt;
+GluK2&lt;sub&gt;EM&lt;/sub&gt; dimer assembly complex with with bound 2&lt;em&gt;S&lt;/em&gt;,4&lt;em&gt;R&lt;/em&gt;-4-methylglutamate, x-ray 1.27 &amp;Aring;: 5CMM&lt;br /&gt;
+GluK2&lt;sub&gt;EM&lt;/sub&gt; dimer assembly complex with LY66195, x-ray 1.8 &amp;Aring;: 5CMK</description>
+              <bibliography>
+                <pubMedId>27580033</pubMedId>
+                <authors>Meyerson JR, Chittori S, Merk A, Rao P, Han TH, Serpe M, Mayer ML, &amp;amp; Subramaniam S</authors>
+                <year>2016</year>
+                <title>Structural basis of kainate subtype glutamate receptor desensitization.</title>
+                <journal>Nature</journal>
+                <volume>537</volume>
+                <issue />
+                <pages>567-571</pages>
+                <doi>10.1038/nature19352</doi>
+                <notes />
+              </bibliography>
+              <secondaryBibliographies />
+              <relatedPdbEntries>
+                <pdbCode>5CMM</pdbCode>
+                <pdbCode>5KUH</pdbCode>
+                <pdbCode>5CMK</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -7835,8 +8379,8 @@ with bound Ca&lt;sup&gt;2+&lt;/sup&gt;, 3.2 &amp;Aring;: 4WIB</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>4U9N</pdbCode>
                     <pdbCode>4WIB</pdbCode>
+                    <pdbCode>4U9N</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -7863,10 +8407,10 @@ with bound Ca&lt;sup&gt;2+&lt;/sup&gt;, 3.2 &amp;Aring;: 4WIB</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>3M73</pdbCode>
+                <pdbCode>3M74</pdbCode>
                 <pdbCode>3M76</pdbCode>
                 <pdbCode>3M75</pdbCode>
-                <pdbCode>3M74</pdbCode>
+                <pdbCode>3M73</pdbCode>
               </relatedPdbEntries>
               <memberProteins>
                 <memberProtein>
@@ -7949,6 +8493,46 @@ with bound Ca&lt;sup&gt;2+&lt;/sup&gt;, 3.2 &amp;Aring;: 4WIB</description>
               </memberProteins>
             </protein>
             <protein>
+              <pdbCode>5SVJ</pdbCode>
+              <name>ATP-gated P2X&lt;sub&gt;3&lt;/sub&gt; ion channel, closed apo state</name>
+              <species>Homo sapiens</species>
+              <taxonomicDomain>Eukaryota</taxonomicDomain>
+              <expressedInSpecies>HEK293S</expressedInSpecies>
+              <resolution>2.98</resolution>
+              <description>ATP-bound, open state, 2.77 &amp;Aring;: 5SVK&lt;br /&gt;
+ATP-bound, closed(desensitized) state, 2.9 &amp;Aring;: 5SVL&lt;br /&gt;
+bound to agonist 2-methylthio-ATP in the desensitized state, 3.09 &amp;Aring;: 5SVM&lt;br /&gt;
+agonist 2-methylthio-ATP bound in desensitized state, 3.3 &amp;Aring;: 5SVP&lt;br /&gt;
+bound to competitive antagonist TNP-ATP, 3.25 &amp;Aring;: 5SVQ&lt;br /&gt;
+bound to competitive antagonist A-317491, 3.13 &amp;Aring;: 5SVR&lt;br /&gt;
+Mn&lt;sup&gt;2+&lt;/sup&gt; divalent cation-binding site, 4.03 &amp;Aring;: 5SVS&lt;br /&gt;
+Cs&lt;sup&gt;+&lt;/sup&gt; at Na&lt;sup&gt;+&lt;/sup&gt; entry site, 3.79 &amp;Aring;: 5SVT</description>
+              <bibliography>
+                <pubMedId>27626375</pubMedId>
+                <authors>Mansoor SE, L&amp;uuml; W, Oosterheert W, Shekhar M, Tajkhorshid E, &amp;amp; Gouaux E</authors>
+                <year>2016</year>
+                <title>X-ray structures define human P2X&lt;sub&gt;3&lt;/sub&gt; receptor gating cycle and antagonist action.</title>
+                <journal>Nature</journal>
+                <volume>538</volume>
+                <issue />
+                <pages>66-71</pages>
+                <doi>10.1038/nature19367</doi>
+                <notes />
+              </bibliography>
+              <secondaryBibliographies />
+              <relatedPdbEntries>
+                <pdbCode>5SVT</pdbCode>
+                <pdbCode>5SVQ</pdbCode>
+                <pdbCode>5SVS</pdbCode>
+                <pdbCode>5SVK</pdbCode>
+                <pdbCode>5SVP</pdbCode>
+                <pdbCode>5SVR</pdbCode>
+                <pdbCode>5SVL</pdbCode>
+                <pdbCode>5SVM</pdbCode>
+              </relatedPdbEntries>
+              <memberProteins />
+            </protein>
+            <protein>
               <pdbCode>4RDQ</pdbCode>
               <name>Bestrophin-1 (BEST1) Ca&lt;sup&gt;2+&lt;/sup&gt;-activated Cl&lt;sup&gt;-&lt;/sup&gt; channel</name>
               <species>Gallus gallus</species>
@@ -7970,7 +8554,32 @@ with bound Ca&lt;sup&gt;2+&lt;/sup&gt;, 3.2 &amp;Aring;: 4WIB</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries />
-              <memberProteins />
+              <memberProteins>
+                <memberProtein>
+                  <pdbCode>5T5N</pdbCode>
+                  <masterProteinPdbCode>4RDQ</masterProteinPdbCode>
+                  <name>Bestrophin-1 (BEST1) Ca&lt;sup&gt;2+&lt;/sup&gt;-activated Cl&lt;sup&gt;-&lt;/sup&gt; channel I76A, F80A, F84A mutant</name>
+                  <species>Gallus gallus</species>
+                  <taxonomicDomain>Eukaryota</taxonomicDomain>
+                  <expressedInSpecies>Pichia pastoris</expressedInSpecies>
+                  <resolution>3.1</resolution>
+                  <description></description>
+                  <bibliography>
+                    <pubMedId>27821745</pubMedId>
+                    <authors>Vaisey G, Miller AN, &amp;amp; Long SB</authors>
+                    <year>2016</year>
+                    <title>Distinct regions that control ion selectivity and calcium-dependent activation in the bestrophin ion channel.</title>
+                    <journal>Proc Natl Acad Sci USA</journal>
+                    <volume>113</volume>
+                    <issue />
+                    <pages>E7399–E7408</pages>
+                    <doi>10.1073/pnas.1614688113</doi>
+                    <notes />
+                  </bibliography>
+                  <secondaryBibliographies />
+                  <relatedPdbEntries />
+                </memberProtein>
+              </memberProteins>
             </protein>
             <protein>
               <pdbCode>4WD7</pdbCode>
@@ -7996,6 +8605,32 @@ with bound Ca&lt;sup&gt;2+&lt;/sup&gt;, 3.2 &amp;Aring;: 4WIB</description>
               <secondaryBibliographies />
               <relatedPdbEntries>
                 <pdbCode>4WD8</pdbCode>
+              </relatedPdbEntries>
+              <memberProteins />
+            </protein>
+            <protein>
+              <pdbCode>5SV0</pdbCode>
+              <name>ExbB/ExbD complex associated with TonB complex, pH 7.0</name>
+              <species>Escherichia coli</species>
+              <taxonomicDomain>Bacteria</taxonomicDomain>
+              <expressedInSpecies />
+              <resolution>2.6</resolution>
+              <description>ExbB/ExbD complex at pH 4.5, 3.5 &amp;Aring;: 5SV1</description>
+              <bibliography>
+                <pubMedId>27654919</pubMedId>
+                <authors>Celia H, Noinaj N, Zakharov SD, Bordignon E, Botos I, Santamaria M, Barnard TJ, Cramer WA, Lloubes R, &amp;amp; Buchanan SK</authors>
+                <year>2016</year>
+                <title>Structural insight into the role of the Ton complex in energy transduction.</title>
+                <journal>Nature</journal>
+                <volume>538</volume>
+                <issue />
+                <pages>60-65</pages>
+                <doi>10.1038/nature19757</doi>
+                <notes />
+              </bibliography>
+              <secondaryBibliographies />
+              <relatedPdbEntries>
+                <pdbCode>5SV1</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -8029,6 +8664,32 @@ in complex with Ec2-S9 monobody, 2.58 &amp;Aring;: 5A43</description>
               <relatedPdbEntries>
                 <pdbCode>5A43</pdbCode>
                 <pdbCode>5A41</pdbCode>
+              </relatedPdbEntries>
+              <memberProteins />
+            </protein>
+            <protein>
+              <pdbCode>5KBN</pdbCode>
+              <name>Fluc F&lt;sup&gt;-&lt;/sup&gt; ion channel homolog in complex Ec2-S9 monobody F801 mutant</name>
+              <species>Escherichia coli</species>
+              <taxonomicDomain>Bacteria</taxonomicDomain>
+              <expressedInSpecies />
+              <resolution>2.48</resolution>
+              <description>F831 mutant, 2.69 &amp;Aring;: 5KOM</description>
+              <bibliography>
+                <pubMedId>27449280</pubMedId>
+                <authors>Last NB, Kolmakova-Partensky L, Shane T, &amp;amp; Miller C</authors>
+                <year>2016</year>
+                <title>Mechanistic signs of double-barreled structure in a fluoride ion channel.</title>
+                <journal>Elife</journal>
+                <volume>5</volume>
+                <issue />
+                <pages>e18767</pages>
+                <doi>10.7554/eLife.18767</doi>
+                <notes />
+              </bibliography>
+              <secondaryBibliographies />
+              <relatedPdbEntries>
+                <pdbCode>5KOM</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -8111,6 +8772,30 @@ in complex with Ec2-S9 monobody, 2.58 &amp;Aring;: 5A43</description>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
+            </protein>
+            <protein>
+              <pdbCode>5KXI</pdbCode>
+              <name>Nicotinic Acetylcholine &amp;alpha;4&amp;beta;2 Receptor</name>
+              <species>Homo sapiens</species>
+              <taxonomicDomain>Eukaryota</taxonomicDomain>
+              <expressedInSpecies>HEK293S</expressedInSpecies>
+              <resolution>3.94</resolution>
+              <description></description>
+              <bibliography>
+                <pubMedId>27698419</pubMedId>
+                <authors>Morales-Perez CL, Noviello CM, &amp;amp; Hibbs RE</authors>
+                <year>2016</year>
+                <title>X-ray structure of the human &amp;alpha;4&amp;beta;2 nicotinic receptor.</title>
+                <journal>Nature</journal>
+                <volume>538</volume>
+                <issue />
+                <pages>411-415</pages>
+                <doi>10.1038/nature19785</doi>
+                <notes />
+              </bibliography>
+              <secondaryBibliographies />
+              <relatedPdbEntries />
+              <memberProteins />
             </protein>
             <protein>
               <pdbCode>2VL0</pdbCode>
@@ -8210,8 +8895,8 @@ apo form, 3.60 &amp;Aring;: 4TWH</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>4TWH</pdbCode>
                     <pdbCode>4TWF</pdbCode>
+                    <pdbCode>4TWH</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -8295,9 +8980,9 @@ A237F mutant + RbCl, 3.15 &amp;Aring;: 4ILB</description>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
                     <pdbCode>4ILB</pdbCode>
-                    <pdbCode>4ILC</pdbCode>
-                    <pdbCode>4ILA</pdbCode>
                     <pdbCode>4IL4</pdbCode>
+                    <pdbCode>4ILA</pdbCode>
+                    <pdbCode>4ILC</pdbCode>
                     <pdbCode>4IL9</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
@@ -8558,8 +9243,8 @@ With iodide, 3.80 &amp;Aring;:3RIA</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>3RIA</pdbCode>
                 <pdbCode>3RIF</pdbCode>
+                <pdbCode>3RIA</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -8609,11 +9294,11 @@ With iodide, 3.80 &amp;Aring;:3RIA</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>2XQ9</pdbCode>
-                <pdbCode>2XQ8</pdbCode>
-                <pdbCode>2XQ3</pdbCode>
                 <pdbCode>2XQ4</pdbCode>
+                <pdbCode>2XQ9</pdbCode>
+                <pdbCode>2XQ3</pdbCode>
                 <pdbCode>2XQ7</pdbCode>
+                <pdbCode>2XQ8</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -8813,6 +9498,30 @@ Non-junctional form, 2.4&amp;nbsp;&amp;Aring;: 2B6P</description>
                     <pages>1398-1403</pages>
                     <doi></doi>
                     <notes></notes>
+                  </bibliography>
+                  <secondaryBibliographies />
+                  <relatedPdbEntries />
+                </memberProtein>
+                <memberProtein>
+                  <pdbCode>4CSK</pdbCode>
+                  <masterProteinPdbCode>1FQY</masterProteinPdbCode>
+                  <name>AQP1 red blood cell aquaporin water channel</name>
+                  <species>Homo sapiens</species>
+                  <taxonomicDomain>Eukaryota</taxonomicDomain>
+                  <expressedInSpecies>S. frugiperda</expressedInSpecies>
+                  <resolution>3.28</resolution>
+                  <description></description>
+                  <bibliography>
+                    <pubMedId>25484221</pubMedId>
+                    <authors>Ruiz Carrillo D, To Yiu Ying J, Darwis D, Soon CH, Cornvik T, Torres J, &amp;amp; Lescar J</authors>
+                    <year>2014</year>
+                    <title>Crystallization and preliminary crystallographic analysis of human aquaporin 1 at a resolution of 3.28 &amp;Aring;.</title>
+                    <journal>Acta Crystallogr F Struct Biol Commun</journal>
+                    <volume>70</volume>
+                    <issue />
+                    <pages>1657-1663</pages>
+                    <doi>10.1107/S2053230X14024558</doi>
+                    <notes />
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries />
@@ -9060,9 +9769,9 @@ Non-junctional form, 2.4&amp;nbsp;&amp;Aring;: 2B6P</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>2O9G</pdbCode>
                     <pdbCode>2O9F</pdbCode>
                     <pdbCode>2O9E</pdbCode>
+                    <pdbCode>2O9G</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -9410,11 +10119,11 @@ F194I mutant, 1.98 &amp;Aring;: 3TDS</description>
               <secondaryBibliographies />
               <relatedPdbEntries>
                 <pdbCode>3TE0</pdbCode>
-                <pdbCode>3TDP</pdbCode>
-                <pdbCode>3TDS</pdbCode>
-                <pdbCode>3TDR</pdbCode>
-                <pdbCode>3TE2</pdbCode>
                 <pdbCode>3TE1</pdbCode>
+                <pdbCode>3TDR</pdbCode>
+                <pdbCode>3TDP</pdbCode>
+                <pdbCode>3TE2</pdbCode>
+                <pdbCode>3TDS</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -9610,8 +10319,8 @@ Bound to Selenourea, 2.50 &amp;Aring;: 4EZD</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>1U77</pdbCode>
                 <pdbCode>1U7C</pdbCode>
+                <pdbCode>1U77</pdbCode>
               </relatedPdbEntries>
               <memberProteins>
                 <memberProtein>
@@ -9663,14 +10372,14 @@ Bound to Selenourea, 2.50 &amp;Aring;: 4EZD</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>2NPK</pdbCode>
-                    <pdbCode>2NPD</pdbCode>
-                    <pdbCode>2NPG</pdbCode>
-                    <pdbCode>2NOP</pdbCode>
-                    <pdbCode>2NPE</pdbCode>
                     <pdbCode>2NPC</pdbCode>
-                    <pdbCode>2NOW</pdbCode>
                     <pdbCode>2NPJ</pdbCode>
+                    <pdbCode>2NOP</pdbCode>
+                    <pdbCode>2NPD</pdbCode>
+                    <pdbCode>2NPE</pdbCode>
+                    <pdbCode>2NPG</pdbCode>
+                    <pdbCode>2NOW</pdbCode>
+                    <pdbCode>2NPK</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -9769,9 +10478,9 @@ Bound to Selenourea, 2.50 &amp;Aring;: 4EZD</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>2B2J</pdbCode>
-                <pdbCode>2B2H</pdbCode>
                 <pdbCode>2B2I</pdbCode>
+                <pdbCode>2B2H</pdbCode>
+                <pdbCode>2B2J</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -9899,10 +10608,10 @@ S453D mutant, 2.07 &amp;Aring;: 5FUF</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>5AF1</pdbCode>
                 <pdbCode>5AID</pdbCode>
-                <pdbCode>5FUF</pdbCode>
                 <pdbCode>5AH3</pdbCode>
+                <pdbCode>5FUF</pdbCode>
+                <pdbCode>5AF1</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -10187,8 +10896,8 @@ P4 periplasmic domain, NMR structure: 2RRN</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>2RRN</pdbCode>
                 <pdbCode>3AQO</pdbCode>
+                <pdbCode>2RRN</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -10851,8 +11560,8 @@ Y205F mutant in complex with Ac-RKVRMA-CHO (from bicelles), 2.4 &amp;Aring;:5F5K
                   <relatedPdbEntries>
                     <pdbCode>5F5G</pdbCode>
                     <pdbCode>5F5D</pdbCode>
-                    <pdbCode>5F5J</pdbCode>
                     <pdbCode>5F5K</pdbCode>
+                    <pdbCode>5F5J</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -11033,8 +11742,8 @@ C222&lt;sub&gt;1&lt;/sub&gt; space group, 3.80 &amp;Aring;: 4HYD</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4HYC</pdbCode>
                 <pdbCode>4HYD</pdbCode>
+                <pdbCode>4HYC</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -11420,8 +12129,8 @@ This is a homo-hexameric AAA+ protease. Each monomer is anchored to the cytoplas
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>2EXY</pdbCode>
                     <pdbCode>2EZ0</pdbCode>
+                    <pdbCode>2EXY</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -11904,8 +12613,8 @@ cytoplasmic rhodanese domain of the full-length inner membrane protein, NMR stru
                 </bibliography>
               </secondaryBibliographies>
               <relatedPdbEntries>
-                <pdbCode>2MOI</pdbCode>
                 <pdbCode>2MOL</pdbCode>
+                <pdbCode>2MOI</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -11986,8 +12695,8 @@ cytoplasmic rhodanese domain of the full-length inner membrane protein, NMR stru
                   <relatedPdbEntries>
                     <pdbCode>1OYE</pdbCode>
                     <pdbCode>1OY8</pdbCode>
-                    <pdbCode>1OY9</pdbCode>
                     <pdbCode>1OYD</pdbCode>
+                    <pdbCode>1OY9</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -12014,10 +12723,10 @@ cytoplasmic rhodanese domain of the full-length inner membrane protein, NMR stru
                   <secondaryBibliographies />
                   <relatedPdbEntries>
                     <pdbCode>1T9W</pdbCode>
-                    <pdbCode>1T9V</pdbCode>
                     <pdbCode>1T9Y</pdbCode>
-                    <pdbCode>1T9U</pdbCode>
                     <pdbCode>1T9X</pdbCode>
+                    <pdbCode>1T9V</pdbCode>
+                    <pdbCode>1T9U</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -12044,8 +12753,8 @@ cytoplasmic rhodanese domain of the full-length inner membrane protein, NMR stru
                   <secondaryBibliographies />
                   <relatedPdbEntries>
                     <pdbCode>2HQG</pdbCode>
-                    <pdbCode>2HQF</pdbCode>
                     <pdbCode>2HQD</pdbCode>
+                    <pdbCode>2HQF</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -12199,8 +12908,8 @@ With bound rifampicin &amp;amp; minocyline, 3.30 &amp;Aring;: 3AOD</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3AOC</pdbCode>
                     <pdbCode>3AOA</pdbCode>
+                    <pdbCode>3AOC</pdbCode>
                     <pdbCode>3AOD</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
@@ -12307,9 +13016,9 @@ R971A mutant, 2.00 &amp;Aring;: 4U96</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>4U95</pdbCode>
-                    <pdbCode>4U96</pdbCode>
                     <pdbCode>4U8Y</pdbCode>
+                    <pdbCode>4U96</pdbCode>
+                    <pdbCode>4U95</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -12512,8 +13221,8 @@ With bound Cu(I), 3.78 &amp;Aring;: 3OW7</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3OW7</pdbCode>
                     <pdbCode>3OPO</pdbCode>
+                    <pdbCode>3OW7</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -12540,8 +13249,8 @@ With bound Cu(I), 3.78 &amp;Aring;: 3OW7</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>3B62</pdbCode>
                 <pdbCode>3B61</pdbCode>
+                <pdbCode>3B62</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -12595,9 +13304,9 @@ Complex with rhodamine 6G, 3.59 &amp;Aring;: 4HUN</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4HUL</pdbCode>
                 <pdbCode>4HUM</pdbCode>
                 <pdbCode>4HUN</pdbCode>
+                <pdbCode>4HUL</pdbCode>
               </relatedPdbEntries>
               <memberProteins>
                 <memberProtein>
@@ -12652,11 +13361,11 @@ in complex with MaD3S, 2.60 &amp;Aring;: 3VVS</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>3VVP</pdbCode>
+                <pdbCode>3VVQ</pdbCode>
                 <pdbCode>3VVR</pdbCode>
                 <pdbCode>3VVS</pdbCode>
-                <pdbCode>3VVQ</pdbCode>
                 <pdbCode>3VVO</pdbCode>
+                <pdbCode>3VVP</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -12977,9 +13686,9 @@ wild-type with analog III, 2.90 &amp;Aring;: 4J7Y</description>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
                     <pdbCode>4JRZ</pdbCode>
+                    <pdbCode>4J7Y</pdbCode>
                     <pdbCode>4J7T</pdbCode>
                     <pdbCode>4JC7</pdbCode>
-                    <pdbCode>4J7Y</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -13266,6 +13975,54 @@ wild-type with analog III, 2.90 &amp;Aring;: 4J7Y</description>
                   <secondaryBibliographies />
                   <relatedPdbEntries />
                 </memberProtein>
+                <memberProtein>
+                  <pdbCode>4ZYR</pdbCode>
+                  <masterProteinPdbCode>1PV7</masterProteinPdbCode>
+                  <name>LacY Lactose Permease Transporter (G46W, G262W mutant) with bound &amp;alpha;-NPG</name>
+                  <species>Escherichia coli</species>
+                  <taxonomicDomain>Bacteria</taxonomicDomain>
+                  <expressedInSpecies />
+                  <resolution>3.31</resolution>
+                  <description></description>
+                  <bibliography>
+                    <pubMedId>26157133</pubMedId>
+                    <authors>Kumar H, Finer-Moore JS, Kaback HR, &amp;amp; Stroud RM</authors>
+                    <year>2015</year>
+                    <title>Structure of LacY with an ?-substituted galactoside: Connecting the binding site to the protonation site.</title>
+                    <journal>Proc Natl. Acad Sc. USA</journal>
+                    <volume>112</volume>
+                    <issue />
+                    <pages>9004-9009</pages>
+                    <doi>10.1073/pnas.1509854112</doi>
+                    <notes />
+                  </bibliography>
+                  <secondaryBibliographies />
+                  <relatedPdbEntries />
+                </memberProtein>
+                <memberProtein>
+                  <pdbCode>5GXB</pdbCode>
+                  <masterProteinPdbCode>1PV7</masterProteinPdbCode>
+                  <name>LacY Lactose Permease Transporter (G46W, G262W mutant) with bound nanobody</name>
+                  <species>Escherichia coli</species>
+                  <taxonomicDomain>Bacteria</taxonomicDomain>
+                  <expressedInSpecies />
+                  <resolution>3.3</resolution>
+                  <description></description>
+                  <bibliography>
+                    <pubMedId>27791182</pubMedId>
+                    <authors>Jiang X, Smirnova I, Kasho V, Wu J, Hirata K, Ke M, Pardon E, Steyaert J, Yan N, &amp;amp; Kaback HR</authors>
+                    <year>2016</year>
+                    <title>Crystal structure of a LacY-nanobody complex in a periplasmic-open conformation.</title>
+                    <journal>Proc Natl Acad Sci USA</journal>
+                    <volume>113</volume>
+                    <issue />
+                    <pages>12420-12425</pages>
+                    <doi>10.1073/pnas.1615414113</doi>
+                    <notes />
+                  </bibliography>
+                  <secondaryBibliographies />
+                  <relatedPdbEntries />
+                </memberProtein>
               </memberProteins>
             </protein>
             <protein>
@@ -13341,8 +14098,8 @@ With bound 6-bromo-6-deoxy-D-glucose, 2.60 &amp;Aring;: 4GC0</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4GC0</pdbCode>
                 <pdbCode>4GBZ</pdbCode>
+                <pdbCode>4GC0</pdbCode>
               </relatedPdbEntries>
               <memberProteins>
                 <memberProtein>
@@ -13623,10 +14380,10 @@ E310Q mutant in complex with dipeptide analog alafosfalin, 2.40 &amp;Aring;: 4IK
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4IKW</pdbCode>
-                <pdbCode>4IKY</pdbCode>
                 <pdbCode>4IKX</pdbCode>
                 <pdbCode>4IKZ</pdbCode>
+                <pdbCode>4IKY</pdbCode>
+                <pdbCode>4IKW</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -13779,8 +14536,8 @@ Nitrate-bound, occluded, 2.40 &amp;Aring;: 4U4W</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>4U4W</pdbCode>
                     <pdbCode>4U4T</pdbCode>
+                    <pdbCode>4U4W</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -13886,8 +14643,8 @@ in complex with LDAO, 2.20 &amp;Aring;: 4ZP2</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4ZOW</pdbCode>
                 <pdbCode>4ZP2</pdbCode>
+                <pdbCode>4ZOW</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -13938,8 +14695,8 @@ in complex with GLUT-i2 inhibitor, 2.99 &amp;Aring;: 5EQH</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>5EQG</pdbCode>
                     <pdbCode>5EQH</pdbCode>
+                    <pdbCode>5EQG</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -13967,8 +14724,8 @@ with exofacial inhibitor maltose in outward-open conformation, 2.6 &amp;Aring;: 
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4ZWC</pdbCode>
                 <pdbCode>4ZWB</pdbCode>
+                <pdbCode>4ZWC</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -13995,8 +14752,8 @@ inward-facing, 3.00 &amp;Aring;: 5AYO</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>5AYO</pdbCode>
                 <pdbCode>5AYM</pdbCode>
+                <pdbCode>5AYO</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -14211,16 +14968,16 @@ D121G/S426M mutant with EL2 deletion of 162-201 with bound 3,4-dichlorophen ethy
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
+                    <pdbCode>4XP5</pdbCode>
                     <pdbCode>4XP9</pdbCode>
-                    <pdbCode>4XPT</pdbCode>
-                    <pdbCode>4XPA</pdbCode>
                     <pdbCode>4XP6</pdbCode>
                     <pdbCode>4XP4</pdbCode>
-                    <pdbCode>4XPB</pdbCode>
-                    <pdbCode>4XPF</pdbCode>
-                    <pdbCode>4XP5</pdbCode>
                     <pdbCode>4XPG</pdbCode>
+                    <pdbCode>4XPF</pdbCode>
+                    <pdbCode>4XPT</pdbCode>
+                    <pdbCode>4XPB</pdbCode>
                     <pdbCode>4XPH</pdbCode>
+                    <pdbCode>4XPA</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -14328,11 +15085,11 @@ ts3 with s-citalopram at central site and Br-citalopram at allosteric site, 3.49
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>5I6Z</pdbCode>
                 <pdbCode>5I74</pdbCode>
+                <pdbCode>5I75</pdbCode>
+                <pdbCode>5I6Z</pdbCode>
                 <pdbCode>5I71</pdbCode>
                 <pdbCode>5I73</pdbCode>
-                <pdbCode>5I75</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -14858,6 +15615,32 @@ ts3 with s-citalopram at central site and Br-citalopram at allosteric site, 3.49
                   <secondaryBibliographies />
                   <relatedPdbEntries />
                 </memberProtein>
+                <memberProtein>
+                  <pdbCode>5J4N</pdbCode>
+                  <masterProteinPdbCode>3LRB</masterProteinPdbCode>
+                  <name>AdiC Arginine:Agmatine Antiporter in complex with agmatine</name>
+                  <species>Escherichia coli</species>
+                  <taxonomicDomain>Bacteria</taxonomicDomain>
+                  <expressedInSpecies />
+                  <resolution>2.59</resolution>
+                  <description>apo protein, 2.21 &amp;Aring;: 5J4I</description>
+                  <bibliography>
+                    <pubMedId>27582465</pubMedId>
+                    <authors>Ilg&amp;uuml; H, Jeckelmann JM, Gapsys V, Ucurum Z, de Groot BL, &amp;amp; Fotiadis D</authors>
+                    <year>2016</year>
+                    <title>Insights into the molecular basis for substrate binding and specificity of the wild-type L-arginine/agmatine antiporter AdiC.</title>
+                    <journal>Proc. Natl. Acad. Sci. U.S.A.</journal>
+                    <volume>113</volume>
+                    <issue>37</issue>
+                    <pages>10358-10363</pages>
+                    <doi>10.1073/pnas.1605442113</doi>
+                    <notes />
+                  </bibliography>
+                  <secondaryBibliographies />
+                  <relatedPdbEntries>
+                    <pdbCode>5J4I</pdbCode>
+                  </relatedPdbEntries>
+                </memberProtein>
               </memberProteins>
             </protein>
             <protein>
@@ -14906,8 +15689,8 @@ ts3 with s-citalopram at central site and Br-citalopram at allosteric site, 3.49
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>3GI9</pdbCode>
                 <pdbCode>3GI8</pdbCode>
+                <pdbCode>3GI9</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -14988,8 +15771,8 @@ ts3 with s-citalopram at central site and Br-citalopram at allosteric site, 3.49
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>2Q6H</pdbCode>
                     <pdbCode>2QB4</pdbCode>
+                    <pdbCode>2Q6H</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -15015,12 +15798,12 @@ ts3 with s-citalopram at central site and Br-citalopram at allosteric site, 3.49
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3F4I</pdbCode>
-                    <pdbCode>3F4J</pdbCode>
-                    <pdbCode>3F48</pdbCode>
-                    <pdbCode>3F3E</pdbCode>
                     <pdbCode>3F3D</pdbCode>
                     <pdbCode>3F3C</pdbCode>
+                    <pdbCode>3F3E</pdbCode>
+                    <pdbCode>3F48</pdbCode>
+                    <pdbCode>3F4I</pdbCode>
+                    <pdbCode>3F4J</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -15190,13 +15973,13 @@ LeuT-&amp;beta;-SeHG (C2 &amp;beta;-SeHG), 2.10 &amp;Aring;: 3USP</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3USP</pdbCode>
-                    <pdbCode>3USI</pdbCode>
-                    <pdbCode>3USK</pdbCode>
-                    <pdbCode>3USO</pdbCode>
-                    <pdbCode>3USJ</pdbCode>
                     <pdbCode>3USL</pdbCode>
                     <pdbCode>3USM</pdbCode>
+                    <pdbCode>3USP</pdbCode>
+                    <pdbCode>3USI</pdbCode>
+                    <pdbCode>3USO</pdbCode>
+                    <pdbCode>3USK</pdbCode>
+                    <pdbCode>3USJ</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -15264,17 +16047,17 @@ T354H mutant in the outward-oriented Na&lt;sup&gt;+&lt;/sup&gt;-free return stat
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4MM5</pdbCode>
-                <pdbCode>4MM8</pdbCode>
-                <pdbCode>4MM7</pdbCode>
-                <pdbCode>4MMA</pdbCode>
-                <pdbCode>4MMB</pdbCode>
-                <pdbCode>4MMC</pdbCode>
-                <pdbCode>4MMD</pdbCode>
-                <pdbCode>4MME</pdbCode>
                 <pdbCode>4MM9</pdbCode>
-                <pdbCode>4MMF</pdbCode>
+                <pdbCode>4MMA</pdbCode>
+                <pdbCode>4MMD</pdbCode>
+                <pdbCode>4MMB</pdbCode>
                 <pdbCode>4MM6</pdbCode>
+                <pdbCode>4MM8</pdbCode>
+                <pdbCode>4MME</pdbCode>
+                <pdbCode>4MMF</pdbCode>
+                <pdbCode>4MMC</pdbCode>
+                <pdbCode>4MM7</pdbCode>
+                <pdbCode>4MM5</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -15432,8 +16215,8 @@ R397A mutant, outward-facing, Na&lt;sup&gt;+&lt;/sup&gt;/Asp-bound, 3.50 &amp;Ar
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>2NWX</pdbCode>
                 <pdbCode>2NWW</pdbCode>
+                <pdbCode>2NWX</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -15459,7 +16242,34 @@ R397A mutant, outward-facing, Na&lt;sup&gt;+&lt;/sup&gt;/Asp-bound, 3.50 &amp;Ar
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries />
-              <memberProteins />
+              <memberProteins>
+                <memberProtein>
+                  <pdbCode>5DWY</pdbCode>
+                  <masterProteinPdbCode>4KY0</masterProteinPdbCode>
+                  <name>Aspartate Transporter, apo form</name>
+                  <species>Thermococcus kodakarensis</species>
+                  <taxonomicDomain>Bacteria</taxonomicDomain>
+                  <expressedInSpecies>E. coli</expressedInSpecies>
+                  <resolution>2.7</resolution>
+                  <description>with bound aspartate and Na&lt;sup&gt;+&lt;/sup&gt;, 2.8 &amp;Aring;: 5E9S</description>
+                  <bibliography>
+                    <pubMedId>27830699</pubMedId>
+                    <authors>Guskov A, Jensen S, Faustino I, Marrink SJ, &amp;amp; Slotboom DJ</authors>
+                    <year>2016</year>
+                    <title>Coupled binding mechanism of three sodium ions and aspartate in the glutamate transporter homologue Glt&lt;sub&gt;Tk&lt;/sub&gt;.</title>
+                    <journal>Nat Commun</journal>
+                    <volume>7</volume>
+                    <issue />
+                    <pages>13420</pages>
+                    <doi>10.1038/ncomms13420</doi>
+                    <notes />
+                  </bibliography>
+                  <secondaryBibliographies />
+                  <relatedPdbEntries>
+                    <pdbCode>5E9S</pdbCode>
+                  </relatedPdbEntries>
+                </memberProtein>
+              </memberProteins>
             </protein>
             <protein>
               <pdbCode>4US3</pdbCode>
@@ -15695,8 +16505,8 @@ with bound thalium ion, 3.20 &amp;Aring;: 4CZA</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4CZ9</pdbCode>
                 <pdbCode>4CZA</pdbCode>
+                <pdbCode>4CZ9</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -15823,9 +16633,9 @@ isoform 3 inhibited by carboxyatractyloside (P2&lt;sub&gt;1&lt;/sub&gt;2&lt;sub&
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
+                <pdbCode>4C9J</pdbCode>
                 <pdbCode>4C9H</pdbCode>
                 <pdbCode>4C9Q</pdbCode>
-                <pdbCode>4C9J</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -16266,8 +17076,8 @@ Substrate bound S-component, 3.01 &amp;Aring;: 5D0Y</description>
               <relatedPdbEntries>
                 <pdbCode>3B5W</pdbCode>
                 <pdbCode>3B5Y</pdbCode>
-                <pdbCode>3B5X</pdbCode>
                 <pdbCode>3B5Z</pdbCode>
+                <pdbCode>3B5X</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -16351,10 +17161,10 @@ in complex with QZ-Phe, 3.80 &amp;Aring;: 4Q9L</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>4Q9I</pdbCode>
-                    <pdbCode>4Q9L</pdbCode>
                     <pdbCode>4Q9K</pdbCode>
+                    <pdbCode>4Q9I</pdbCode>
                     <pdbCode>4Q9J</pdbCode>
+                    <pdbCode>4Q9L</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -16482,8 +17292,8 @@ Complex with wt. MBP and AMP-PNP, 3.1 &amp;Aring;: 3PUY</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3PUY</pdbCode>
                     <pdbCode>3PUZ</pdbCode>
+                    <pdbCode>3PUY</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -16513,8 +17323,8 @@ With bound ADP-AlF&lt;sub&gt;4&lt;/sub&gt;, 2.30 &amp;Aring;:  3PUW</description
                   <secondaryBibliographies />
                   <relatedPdbEntries>
                     <pdbCode>3PUX</pdbCode>
-                    <pdbCode>3PUW</pdbCode>
                     <pdbCode>3PUV</pdbCode>
+                    <pdbCode>3PUW</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -16749,8 +17559,8 @@ Nucleotide-free rod form, 2.85 &amp;Aring;: 3ZDQ</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4AYW</pdbCode>
                 <pdbCode>4AYX</pdbCode>
+                <pdbCode>4AYW</pdbCode>
                 <pdbCode>3ZDQ</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
@@ -16780,10 +17590,10 @@ in complex with GS-Hg, 2.50 &amp;Aring;: 4MRV</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4MRR</pdbCode>
                 <pdbCode>4MRP</pdbCode>
-                <pdbCode>4MRV</pdbCode>
+                <pdbCode>4MRR</pdbCode>
                 <pdbCode>4MRS</pdbCode>
+                <pdbCode>4MRV</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -16864,10 +17674,10 @@ ArtI binding protein in complex with Arg, 1.48 &amp;Aring;: 4YMX</description>
               <secondaryBibliographies />
               <relatedPdbEntries>
                 <pdbCode>4YMV</pdbCode>
-                <pdbCode>4YMX</pdbCode>
-                <pdbCode>4YMT</pdbCode>
                 <pdbCode>4YMU</pdbCode>
                 <pdbCode>4YMW</pdbCode>
+                <pdbCode>4YMT</pdbCode>
+                <pdbCode>4YMX</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -16946,8 +17756,8 @@ outward-occluded conformation, 5.90 &amp;Aring;:  5C73</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>5C76</pdbCode>
                 <pdbCode>5C73</pdbCode>
+                <pdbCode>5C76</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -16973,6 +17783,32 @@ outward-occluded conformation, 5.90 &amp;Aring;:  5C73</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries />
+              <memberProteins />
+            </protein>
+            <protein>
+              <pdbCode>5B57</pdbCode>
+              <name>BhuU/BhuV haem importer, inward facing</name>
+              <species>Burkholderia cenocepacia</species>
+              <taxonomicDomain>Bacteria</taxonomicDomain>
+              <expressedInSpecies>E. coli</expressedInSpecies>
+              <resolution>2.8</resolution>
+              <description>in complex with periplasmic heme binding protein BhuT, 3.21 &amp;Aring;: 5B58</description>
+              <bibliography>
+                <pubMedId>27830695</pubMedId>
+                <authors>Naoe Y, Nakamura N, Doi A, Sawabe M, Nakamura H, Shiro Y, &amp;amp; Sugimoto H</authors>
+                <year>2016</year>
+                <title>Crystal structure of bacterial haem importer complex in the inward-facing conformation.</title>
+                <journal>Nat Commun</journal>
+                <volume>7</volume>
+                <issue />
+                <pages>13411</pages>
+                <doi>10.1038/ncomms13411</doi>
+                <notes />
+              </bibliography>
+              <secondaryBibliographies />
+              <relatedPdbEntries>
+                <pdbCode>5B58</pdbCode>
+              </relatedPdbEntries>
               <memberProteins />
             </protein>
           </proteins>
@@ -17222,6 +18058,35 @@ cross-linked R77C trimer, 1.90 &amp;Aring;: 4XU6</description>
                 <issue />
                 <pages>104-107</pages>
                 <doi>10.1038/nature13797</doi>
+                <notes />
+              </bibliography>
+              <secondaryBibliographies />
+              <relatedPdbEntries />
+              <memberProteins />
+            </protein>
+          </proteins>
+        </subgroup>
+        <subgroup>
+          <name>Sterol-Sensing Domain (SSD) Proteins</name>
+          <proteins>
+            <protein>
+              <pdbCode>5I31</pdbCode>
+              <name>Niemann-Pick C1 protein</name>
+              <species>Homo sapiens</species>
+              <taxonomicDomain>Eukaryota</taxonomicDomain>
+              <expressedInSpecies>293 GnTI&lt;sup&gt;-&lt;/sup&gt; cells</expressedInSpecies>
+              <resolution>3.35</resolution>
+              <description></description>
+              <bibliography>
+                <pubMedId>27307437</pubMedId>
+                <authors>Li X, Wang J, Coutavas E, Shi H, Hao Q, &amp;amp; Blobel G</authors>
+                <year>2016</year>
+                <title>Structure of human Niemann-Pick C1 protein.</title>
+                <journal>Proc Natl Acad Sci USA</journal>
+                <volume>113</volume>
+                <issue />
+                <pages>8212-8217</pages>
+                <doi>10.1073/pnas.1607795113</doi>
                 <notes />
               </bibliography>
               <secondaryBibliographies />
@@ -17498,10 +18363,38 @@ Nucleotide-bound, 2.68 &amp;Aring;: 3VR6</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3VR6</pdbCode>
-                    <pdbCode>3VR4</pdbCode>
                     <pdbCode>3VR5</pdbCode>
+                    <pdbCode>3VR6</pdbCode>
                     <pdbCode>3VR3</pdbCode>
+                    <pdbCode>3VR4</pdbCode>
+                  </relatedPdbEntries>
+                </memberProtein>
+                <memberProtein>
+                  <pdbCode>5KNB</pdbCode>
+                  <masterProteinPdbCode>2BL2</masterProteinPdbCode>
+                  <name>V&lt;sub&gt;1&lt;/sub&gt; rotary motor, 2 ADP-bound state</name>
+                  <species>Enterococcus hirae</species>
+                  <taxonomicDomain>Bacteria</taxonomicDomain>
+                  <expressedInSpecies>E. coli</expressedInSpecies>
+                  <resolution>3.25</resolution>
+                  <description>3 ADP-bound state, 3.02 &amp;Aring;: 5KNC&lt;br /&gt;
+P&lt;sub&gt;i&lt;/sub&gt;-bound state, 2.89 &amp;Aring;: 5KND</description>
+                  <bibliography>
+                    <pubMedId>27807367</pubMedId>
+                    <authors>Suzuki K, Mizutani K, Maruyama S, Shimono K, Imai FL, Muneyuki E, Kakinuma Y, Ishizuka-Katsura Y, Shirouzu M, Yokoyama S, Yamato I, &amp;amp; Murata T</authors>
+                    <year>2016</year>
+                    <title>Crystal structures of the ATP-binding and ADP-release dwells of the V&lt;sub&gt;1&lt;/sub&gt; rotary motor.</title>
+                    <journal>Nat Commun</journal>
+                    <volume>7</volume>
+                    <issue />
+                    <pages>13235</pages>
+                    <doi>10.1038/ncomms13235</doi>
+                    <notes />
+                  </bibliography>
+                  <secondaryBibliographies />
+                  <relatedPdbEntries>
+                    <pdbCode>5KND</pdbCode>
+                    <pdbCode>5KNC</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -17756,9 +18649,59 @@ Cryo-EM maps in EM Data Bank: EMD-6284, EMD-6285, &amp;amp; EMD-6286</descriptio
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3J9V</pdbCode>
                     <pdbCode>3J9U</pdbCode>
+                    <pdbCode>3J9V</pdbCode>
                   </relatedPdbEntries>
+                </memberProtein>
+                <memberProtein>
+                  <pdbCode>5D80</pdbCode>
+                  <masterProteinPdbCode>4DL0</masterProteinPdbCode>
+                  <name>Complete V&lt;sub&gt;1&lt;/sub&gt;-ATPase in auto-inhibited state by cryo-EM</name>
+                  <species>Saccharomyces cerevisiae</species>
+                  <taxonomicDomain>Eukaryota</taxonomicDomain>
+                  <expressedInSpecies />
+                  <resolution>6.2</resolution>
+                  <description>7 &amp;Aring; structure, 5BW9</description>
+                  <bibliography>
+                    <pubMedId>27295975</pubMedId>
+                    <authors>Oot RA, Kane PM, Berry EA, &amp;amp; Wilkens S</authors>
+                    <year>2016</year>
+                    <title>Crystal structure of yeast V&lt;sub&gt;1&lt;/sub&gt;-ATPase in the auto-inhibited state.</title>
+                    <journal>EMBO J</journal>
+                    <volume>35</volume>
+                    <issue />
+                    <pages>1694-1706</pages>
+                    <doi>10.15252/embj.201593447</doi>
+                    <notes />
+                  </bibliography>
+                  <secondaryBibliographies />
+                  <relatedPdbEntries>
+                    <pdbCode>5BW9</pdbCode>
+                  </relatedPdbEntries>
+                </memberProtein>
+                <memberProtein>
+                  <pdbCode>5TJ5</pdbCode>
+                  <masterProteinPdbCode>4DL0</masterProteinPdbCode>
+                  <name>membrane-embedded V&lt;sub&gt;O&lt;/sub&gt; motor of V-ATPase</name>
+                  <species>Saccharomyces cerevisiae</species>
+                  <taxonomicDomain>Eukaryota</taxonomicDomain>
+                  <expressedInSpecies />
+                  <resolution>3.9</resolution>
+                  <description>cryo-EM structure</description>
+                  <bibliography>
+                    <pubMedId>27776355</pubMedId>
+                    <authors>Mazhab-Jafari MT, Rohou A, Schmidt C, Bueler SA, Benlekbir S, Robinson CV, &amp;amp; Rubinstein JL</authors>
+                    <year>2016</year>
+                    <title>Atomic model for the membrane-embedded V&lt;sub&gt;O&lt;/sub&gt; motor of a eukaryotic V-ATPase.</title>
+                    <journal>Nature</journal>
+                    <volume>539</volume>
+                    <issue />
+                    <pages>118-122</pages>
+                    <doi>10.1038/nature19828</doi>
+                    <notes />
+                  </bibliography>
+                  <secondaryBibliographies />
+                  <relatedPdbEntries />
                 </memberProtein>
               </memberProteins>
             </protein>
@@ -18112,8 +19055,8 @@ pH 6.1, 2.50 &amp;Aring;: 3U2Y&lt;br /&gt;
                   <secondaryBibliographies />
                   <relatedPdbEntries>
                     <pdbCode>3UD0</pdbCode>
-                    <pdbCode>3U2Y</pdbCode>
                     <pdbCode>3U32</pdbCode>
+                    <pdbCode>3U2Y</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -18335,6 +19278,85 @@ pH 6.1, 2.50 &amp;Aring;: 3U2Y&lt;br /&gt;
                   <relatedPdbEntries />
                 </memberProtein>
               </memberProteins>
+            </protein>
+            <protein>
+              <pdbCode>5FL7</pdbCode>
+              <name>F&lt;sub&gt;1&lt;/sub&gt;F&lt;sub&gt;o&lt;/sub&gt; synthase (complete structure; dimeric)</name>
+              <species>Yarrowia lipolytica</species>
+              <taxonomicDomain>Eukaryota</taxonomicDomain>
+              <expressedInSpecies />
+              <resolution>3.5</resolution>
+              <description></description>
+              <bibliography>
+                <pubMedId>27373333</pubMedId>
+                <authors>Hahn A, Parey K, Bublitz M, Mills DJ, Zickermann V, Vonck J, K&amp;uuml;hlbrandt W, &amp;amp; Meier T</authors>
+                <year>2016</year>
+                <title>Structure of a Complete ATP Synthase Dimer Reveals the Molecular Basis of Inner Mitochondrial Membrane Morphology.</title>
+                <journal>Mol Cell</journal>
+                <volume>63</volume>
+                <issue>3</issue>
+                <pages>445-456</pages>
+                <doi>10.1016/j.molcel.2016.05.037</doi>
+                <notes />
+              </bibliography>
+              <secondaryBibliographies />
+              <relatedPdbEntries />
+              <memberProteins />
+            </protein>
+            <protein>
+              <pdbCode>5HKK</pdbCode>
+              <name>F&lt;sub&gt;1&lt;/sub&gt;-ATPase, wild-type</name>
+              <species>Caldalkalibacillus thermarum</species>
+              <taxonomicDomain>Bacteria</taxonomicDomain>
+              <expressedInSpecies>E. coli</expressedInSpecies>
+              <resolution>3.0</resolution>
+              <description>epsilon mutant, 2.6 &amp;Aring;: 5IK2</description>
+              <bibliography>
+                <pubMedId>27621435</pubMedId>
+                <authors>Ferguson SA, Cook GM, Montgomery MG, Leslie AG, &amp;amp; Walker JE</authors>
+                <year>2016</year>
+                <title>Regulation of the thermoalkaliphilic F&lt;sub&gt;1&lt;/sub&gt;-ATPase from &lt;em&gt;Caldalkalibacillus thermarum&lt;/em&gt;.</title>
+                <journal>Proc Natl Acad Sci USA</journal>
+                <volume>113</volume>
+                <issue />
+                <pages>10860-10865</pages>
+                <doi>10.1073/pnas.1612035113</doi>
+                <notes />
+              </bibliography>
+              <secondaryBibliographies />
+              <relatedPdbEntries>
+                <pdbCode>5IK2</pdbCode>
+              </relatedPdbEntries>
+              <memberProteins />
+            </protein>
+            <protein>
+              <pdbCode>5LQZ</pdbCode>
+              <name>ATP synthase (F-ATPase), State 1</name>
+              <species>Ogataea angusta</species>
+              <taxonomicDomain>Eukaryota</taxonomicDomain>
+              <expressedInSpecies />
+              <resolution>7.0</resolution>
+              <description>cryo-EM structure&lt;br /&gt;
+State 2, 7.8 &amp;Aring;: 5LQY&lt;br /&gt;
+State 3, 7.9 &amp;Aring;: 5LQX</description>
+              <bibliography>
+                <pubMedId>27791192</pubMedId>
+                <authors>Vinothkumar KR, Montgomery MG, Liu S, &amp;amp; Walker JE</authors>
+                <year>2016</year>
+                <title>Structure of the mitochondrial ATP synthase from &lt;em&gt;Pichia angusta&lt;/em&gt; determined by electron cryo-microscopy.</title>
+                <journal>Proc Natl Acad Sci USA</journal>
+                <volume>113</volume>
+                <issue />
+                <pages>12709-12714</pages>
+                <doi>10.1073/pnas.1615902113</doi>
+                <notes />
+              </bibliography>
+              <secondaryBibliographies />
+              <relatedPdbEntries>
+                <pdbCode>5LQX</pdbCode>
+                <pdbCode>5LQY</pdbCode>
+              </relatedPdbEntries>
+              <memberProteins />
             </protein>
           </proteins>
         </subgroup>
@@ -18560,8 +19582,8 @@ These ATPases are referred to as SERCA pumps; SERCA: Sarco(Endo)plasmic Reticulu
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>2C9M</pdbCode>
                     <pdbCode>2C8K</pdbCode>
+                    <pdbCode>2C9M</pdbCode>
                     <pdbCode>2C8L</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
@@ -18690,8 +19712,8 @@ without sarcolipin; E2 state with P&lt;sub&gt;i&lt;/sub&gt;, 2.45 &amp;Aring;: 3
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3W5B</pdbCode>
                     <pdbCode>3W5D</pdbCode>
+                    <pdbCode>3W5B</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -18765,9 +19787,9 @@ without sarcolipin; E2 state with P&lt;sub&gt;i&lt;/sub&gt;, 2.45 &amp;Aring;: 3
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
+                    <pdbCode>2EAU</pdbCode>
                     <pdbCode>2EAT</pdbCode>
                     <pdbCode>2EAS</pdbCode>
-                    <pdbCode>2EAU</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -18842,8 +19864,8 @@ E2-vanadate complex bound to thapsigargin and TNP-ATP, 3.3 &amp;Aring;: 5A3S</de
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>5A3S</pdbCode>
                     <pdbCode>5A3R</pdbCode>
+                    <pdbCode>5A3S</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -19110,24 +20132,24 @@ native 2K&lt;sup&gt;+&lt;/sup&gt; crystal, 2.80 &amp;Aring;: 5AW9</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>5AVY</pdbCode>
                     <pdbCode>5AW1</pdbCode>
                     <pdbCode>5AW6</pdbCode>
                     <pdbCode>5AW5</pdbCode>
-                    <pdbCode>5AVW</pdbCode>
-                    <pdbCode>5AW2</pdbCode>
-                    <pdbCode>5AVR</pdbCode>
-                    <pdbCode>5AVT</pdbCode>
-                    <pdbCode>5AVU</pdbCode>
-                    <pdbCode>5AW4</pdbCode>
-                    <pdbCode>5AVZ</pdbCode>
-                    <pdbCode>5AW8</pdbCode>
-                    <pdbCode>5AVS</pdbCode>
-                    <pdbCode>5AW3</pdbCode>
                     <pdbCode>5AW9</pdbCode>
-                    <pdbCode>5AVV</pdbCode>
                     <pdbCode>5AVX</pdbCode>
                     <pdbCode>5AW7</pdbCode>
+                    <pdbCode>5AVS</pdbCode>
+                    <pdbCode>5AVT</pdbCode>
+                    <pdbCode>5AVU</pdbCode>
+                    <pdbCode>5AW2</pdbCode>
+                    <pdbCode>5AVR</pdbCode>
+                    <pdbCode>5AVW</pdbCode>
+                    <pdbCode>5AVY</pdbCode>
+                    <pdbCode>5AW3</pdbCode>
+                    <pdbCode>5AVV</pdbCode>
+                    <pdbCode>5AVZ</pdbCode>
+                    <pdbCode>5AW4</pdbCode>
+                    <pdbCode>5AW8</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -19359,8 +20381,8 @@ native 2K&lt;sup&gt;+&lt;/sup&gt; crystal, 2.80 &amp;Aring;: 5AW9</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3ZE5</pdbCode>
                     <pdbCode>3ZE3</pdbCode>
+                    <pdbCode>3ZE5</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -19389,8 +20411,8 @@ native 2K&lt;sup&gt;+&lt;/sup&gt; crystal, 2.80 &amp;Aring;: 5AW9</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>4UYO</pdbCode>
                     <pdbCode>4UXZ</pdbCode>
+                    <pdbCode>4UYO</pdbCode>
                     <pdbCode>4UXW</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
@@ -19536,9 +20558,9 @@ native 2K&lt;sup&gt;+&lt;/sup&gt; crystal, 2.80 &amp;Aring;: 5AW9</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>2VPY</pdbCode>
-                <pdbCode>2VPX</pdbCode>
                 <pdbCode>2VPW</pdbCode>
+                <pdbCode>2VPX</pdbCode>
+                <pdbCode>2VPY</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -19571,8 +20593,8 @@ Listed under TRANSMEMBRANE PROTEINS: ALPHA-HELICAL : Oxidoreductases, MONOTOPIC 
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>3HYV</pdbCode>
                 <pdbCode>3HYX</pdbCode>
+                <pdbCode>3HYV</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -19627,9 +20649,9 @@ Listed under MONOTOPIC MEMBRANE PROTEINS : Dehydrogenases, TRANSMEMBRANE PROTEIN
               <secondaryBibliographies />
               <relatedPdbEntries>
                 <pdbCode>2R4J</pdbCode>
-                <pdbCode>2R46</pdbCode>
                 <pdbCode>2R45</pdbCode>
                 <pdbCode>2R4E</pdbCode>
+                <pdbCode>2R46</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -19704,8 +20726,8 @@ Listed under MONOTOPIC MEMBRANE PROTEINS : Dehydrogenases, TRANSMEMBRANE PROTEIN
                   <secondaryBibliographies />
                   <relatedPdbEntries>
                     <pdbCode>1Y5L</pdbCode>
-                    <pdbCode>1Y5N</pdbCode>
                     <pdbCode>1Y5I</pdbCode>
+                    <pdbCode>1Y5N</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -19930,8 +20952,8 @@ C212A mutant, 4.20 &amp;Aring;: 4NV6</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>4NV2</pdbCode>
                     <pdbCode>4NV6</pdbCode>
+                    <pdbCode>4NV2</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -20069,10 +21091,10 @@ NrqF&lt;sub&gt;129-408&lt;/sub&gt; subunit, 1.55 &amp;Aring;:
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4U9Q</pdbCode>
+                <pdbCode>4U9U</pdbCode>
                 <pdbCode>4U9O</pdbCode>
                 <pdbCode>4U9S</pdbCode>
-                <pdbCode>4U9U</pdbCode>
+                <pdbCode>4U9Q</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -20227,8 +21249,8 @@ reduced (2 mol/ASU) with bound NADH, 3.10 &amp;Aring;: 3IAM</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>3IAM</pdbCode>
                     <pdbCode>3IAS</pdbCode>
+                    <pdbCode>3IAM</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
               </memberProteins>
@@ -20251,6 +21273,59 @@ reduced (2 mol/ASU) with bound NADH, 3.10 &amp;Aring;: 3IAM</description>
                 <issue>7525</issue>
                 <pages>80-84</pages>
                 <doi>10.1038/nature13686</doi>
+                <notes />
+              </bibliography>
+              <secondaryBibliographies />
+              <relatedPdbEntries />
+              <memberProteins>
+                <memberProtein>
+                  <pdbCode>5LDW</pdbCode>
+                  <masterProteinPdbCode>4UQ8</masterProteinPdbCode>
+                  <name>Respiratory Complex I (class 1 conformation), single-particle cryo-EM structure</name>
+                  <species>Bos taurus</species>
+                  <taxonomicDomain>Eukaryota</taxonomicDomain>
+                  <expressedInSpecies />
+                  <resolution>4.27</resolution>
+                  <description>class 2 conformation, 4.35 &amp;Aring;: 5LC5&lt;br /&gt;
+class 3 conformation, 5.6 &amp;Aring;: 5LDX</description>
+                  <bibliography>
+                    <pubMedId>27509854</pubMedId>
+                    <authors>Zhu J, Vinothkumar KR, &amp;amp; Hirst J</authors>
+                    <year>2016</year>
+                    <title>Structure of mammalian respiratory complex I.</title>
+                    <journal>Nature</journal>
+                    <volume>536</volume>
+                    <issue />
+                    <pages>354-358</pages>
+                    <doi>10.1038/nature19095</doi>
+                    <notes />
+                  </bibliography>
+                  <secondaryBibliographies />
+                  <relatedPdbEntries>
+                    <pdbCode>5LDX</pdbCode>
+                    <pdbCode>5LC5</pdbCode>
+                  </relatedPdbEntries>
+                </memberProtein>
+              </memberProteins>
+            </protein>
+            <protein>
+              <pdbCode>5LNK</pdbCode>
+              <name>Respiratory Complex I, single-particle cryo-EM structure</name>
+              <species>Ovis aries</species>
+              <taxonomicDomain>Eukaryota</taxonomicDomain>
+              <expressedInSpecies />
+              <resolution>3.9</resolution>
+              <description></description>
+              <bibliography>
+                <pubMedId>27595392</pubMedId>
+                <authors>Fiedorczuk K, Letts JA, Degliesposti G, Kaszuba K, Skehel M, &amp;amp; Sazanov LA</authors>
+                <year>2016</year>
+                <title>Atomic structure of the entire mammalian mitochondrial complex I.</title>
+                <journal>Nature</journal>
+                <volume>538</volume>
+                <issue />
+                <pages>406-410</pages>
+                <doi>10.1038/nature19794</doi>
                 <notes />
               </bibliography>
               <secondaryBibliographies />
@@ -20477,8 +21552,8 @@ with empty Q-site, 3.20 &amp;Aring;: 2WDV</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>2WDV</pdbCode>
                     <pdbCode>2WDR</pdbCode>
+                    <pdbCode>2WDV</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -20555,8 +21630,8 @@ with empty Q-site, 3.20 &amp;Aring;: 2WDV</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>1YQ4</pdbCode>
                 <pdbCode>1YQ3</pdbCode>
+                <pdbCode>1YQ4</pdbCode>
               </relatedPdbEntries>
               <memberProteins>
                 <memberProtein>
@@ -20686,9 +21761,9 @@ with empty Q-site, 3.20 &amp;Aring;: 2WDV</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>1NTZ</pdbCode>
-                    <pdbCode>1NU1</pdbCode>
                     <pdbCode>1NTK</pdbCode>
+                    <pdbCode>1NU1</pdbCode>
+                    <pdbCode>1NTZ</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -21024,8 +22099,8 @@ with empty Q-site, 3.20 &amp;Aring;: 2WDV</description>
                   </bibliography>
                   <secondaryBibliographies />
                   <relatedPdbEntries>
-                    <pdbCode>2E75</pdbCode>
                     <pdbCode>2E76</pdbCode>
+                    <pdbCode>2E75</pdbCode>
                   </relatedPdbEntries>
                 </memberProtein>
                 <memberProtein>
@@ -21528,6 +22603,64 @@ with empty Q-site, 3.20 &amp;Aring;: 2WDV</description>
               <relatedPdbEntries>
                 <pdbCode>5IR6</pdbCode>
               </relatedPdbEntries>
+              <memberProteins />
+            </protein>
+          </proteins>
+        </subgroup>
+        <subgroup>
+          <name>Electron Transport Chain Super Complexes (Respirasome)</name>
+          <proteins>
+            <protein>
+              <pdbCode>5J4Z</pdbCode>
+              <name>Electron Transport Chain (ETC) Super Complex comprised of ETC complexes I, III, and IV, tight respirasome</name>
+              <species>Ovis aries</species>
+              <taxonomicDomain>Eukaryota</taxonomicDomain>
+              <expressedInSpecies />
+              <resolution>5.8</resolution>
+              <description>cryo-EM structure&lt;br /&gt;
+loose respirasome, 6.7 &amp;Aring;: 5J7Y&lt;br /&gt;
+supercomplex I-III&lt;sub&gt;2&lt;/sub&gt;, 7.8 &amp;Aring;: 5J8K</description>
+              <bibliography>
+                <pubMedId>27654913</pubMedId>
+                <authors>Letts JA, Fiedorczuk K, &amp;amp; Sazanov LA</authors>
+                <year>2016</year>
+                <title>The architecture of respiratory supercomplexes.</title>
+                <journal>Nature</journal>
+                <volume>537</volume>
+                <issue />
+                <pages>644-648</pages>
+                <doi>10.1038/nature19774</doi>
+                <notes />
+              </bibliography>
+              <secondaryBibliographies />
+              <relatedPdbEntries>
+                <pdbCode>5J7Y</pdbCode>
+                <pdbCode>5J8K</pdbCode>
+              </relatedPdbEntries>
+              <memberProteins />
+            </protein>
+            <protein>
+              <pdbCode>5GPN</pdbCode>
+              <name>Electron Transport Chain (ETC) Super Complex comprised of ETC complexes I, III, and IV</name>
+              <species>Sus scrofa</species>
+              <taxonomicDomain>Eukaryota</taxonomicDomain>
+              <expressedInSpecies />
+              <resolution>5.4</resolution>
+              <description>cryo-EM structure</description>
+              <bibliography>
+                <pubMedId>27654917</pubMedId>
+                <authors>Gu J, Wu M, Guo R, Yan K, Lei J, Gao N, &amp;amp; Yang M</authors>
+                <year>2016</year>
+                <title>The architecture of the mammalian respirasome.</title>
+                <journal>Nature</journal>
+                <volume>537</volume>
+                <issue />
+                <pages>639-643</pages>
+                <doi>10.1038/nature19359</doi>
+                <notes />
+              </bibliography>
+              <secondaryBibliographies />
+              <relatedPdbEntries />
               <memberProteins />
             </protein>
           </proteins>
@@ -22678,10 +23811,10 @@ Dimer with bound PK11195, 3.5 &amp;Aring;: 4RYI</description>
               </bibliography>
               <secondaryBibliographies />
               <relatedPdbEntries>
-                <pdbCode>4RYM</pdbCode>
                 <pdbCode>4RYN</pdbCode>
                 <pdbCode>4RYI</pdbCode>
                 <pdbCode>4RYJ</pdbCode>
+                <pdbCode>4RYM</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>
@@ -22743,8 +23876,8 @@ with bound Cd&lt;sup&gt;+2&lt;/sup&gt;, 3.07 &amp;Aring;: 4TQ6</description>
               <secondaryBibliographies />
               <relatedPdbEntries>
                 <pdbCode>4TQ4</pdbCode>
-                <pdbCode>4TQ5</pdbCode>
                 <pdbCode>4TQ6</pdbCode>
+                <pdbCode>4TQ5</pdbCode>
               </relatedPdbEntries>
               <memberProteins />
             </protein>

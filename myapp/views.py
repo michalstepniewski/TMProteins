@@ -9,7 +9,7 @@ from django.conf import settings
 
 from django.core.mail import send_mail
 # -*- coding: utf-8 -*-
-from django.shortcuts import render_to_response, get_object_or_404, render, RequestContext
+from django.shortcuts import render_to_response, get_object_or_404, render#, RequestContext
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -93,53 +93,22 @@ def multiple_upload(request):
 def xml_parser(request):
     return render(request, 'database.html')
 
-
 def delete_database(request, id):
-    database = DatabaseModel.objects.get(pk=id).delete()
-    
-#    return render_to_response(
-#        'list.html',
-#        {'tmproteins': tmproteins, 'form': form, 'databases': databases },
-#        context_instance=RequestContext(request)
-#    )
-    
+    database = DatabaseModel.objects.get(pk=id).delete()    
     return HttpResponseRedirect(reverse('list'))
 
 def rename_database(request, id):
-#    database = DatabaseModel.objects.get(pk=id).delete()
-    
-#    return render_to_response(
-#        'list.html',
-#        {'tmproteins': tmproteins, 'form': form, 'databases': databases },
-#        context_instance=RequestContext(request)
-#    )
-    
+#    database = DatabaseModel.objects.get(pk=id).delete()    
     return HttpResponseRedirect(reverse('list'))
 
 
 def clone_database(request, id):
-    print 'Cloning'
     obj = DatabaseModel.objects.get(pk=id)
-    print obj
-    print obj.structure_set.all() 
     old_obj = DatabaseModel.objects.create()
-#    from copy import deepcopy
-#    old_obj = deepcopy(obj)
 
     for structure_I in obj.structure_set.all():
-        
-        print structure_I
-
         old_obj.structure_set.add(structure_I)
-        old_obj.save()
-#    old_obj.id = None
     old_obj.save()
-    
-#    return render_to_response(
-#        'list.html',
-#        {'tmproteins': tmproteins, 'form': form, 'databases': databases },
-#        context_instance=RequestContext(request)
-#    )
     
     return HttpResponseRedirect(reverse('list'))
 
@@ -150,25 +119,18 @@ def clustering(request, clustering_id):
         'clustering.html',
         {'clustering':clustering, 'clusters': clustering.cluster_set.all(),\
         'no_triplets':TMHelixTriplet.objects.filter(Cluster__in=clustering.cluster_set.all()).count()},\
-        context_instance=RequestContext(request)
-    )
+        context_instance=RequestContext(request))
 
 def cluster(request, cluster_id):
     cluster = get_object_or_404(Cluster, pk=cluster_id)
-    
-#    print cluster.Centroid.id; quit()#.id; quit()
 
     return render_to_response(
         'cluster.html',
         {'cluster':cluster,'centroidpk':cluster.Centroidpk, 'tmhelixtriplets': cluster.tmhelixtriplet_set.all(),\
         },
-        context_instance=RequestContext(request)
-    )
+        context_instance=RequestContext(request))
 
-#@login_required (redirect_field_name='my_redirect_field', login_url='/accounts/login/')
 def database(request, database_id):
-    print 'database requested'
-    print database_id
     database = get_object_or_404(DatabaseModel, pk=database_id)
     
     if request.method == 'POST':
@@ -191,11 +153,9 @@ def database(request, database_id):
 
             else:
             
-                database.Process() # to musi byc ten model, albo z argumentem
-
+                database.Process() 
         elif request.POST.get('CalculateSingleHelixStats'):
             # this happens if You push 'CalculateSingleHelixStats' button
-
            TMHelixModel.objects.single_helix_stats ()
 
         elif request.POST.get('CalculateHelixPairStats'):
@@ -205,31 +165,23 @@ def database(request, database_id):
 
         elif request.POST.get('CalculateHelixTripletStats'):
             # this happens if You push 'CalculateHelixTripletStats button
-
            TMHelixTriplet.objects.helix_triplet_stats ()
 
         elif request.POST.get('ExtractHelixPairs'):
            # this happens if You push 'ExtractHelixPairs'
-
            TMProtein.objects.ExtractConsecutiveHelixPairs ()
 
         elif request.POST.get('ExtractInteractingHelixPairs'):
            # this happens if You push 'ExtractHelixPairs'
-
            TMProtein.objects.filter(structure__in=database.structure_set.all()).ExtractInteractingHelixPairs ()
 
 
         elif request.POST.get('ExtractHelixTriplets'):
            # this happens if You push 'ExtractHelixTriplets'
-           print 'ExtractHelixTriplets(myapp)'
            TMProtein.objects.filter(structure__in=database.structure_set.all()).ExtractConsecutiveHelixTriplets ()
-           print TMProtein.objects.filter(structure__in=database.structure_set.all())
 
-#           database_model_i. TMProtein.objects
 
         elif request.POST.get('ExtractInteractingHelixTriplets'):
-           # this happens if You push 'ExtractHelixTriplets'
-
            TMProtein.objects.filter(structure__in=database.structure_set.all()).ExtractInteractingHelixTriplets ()
 
         elif request.POST.get('ClusterHelixTripletsByRMSD'):
@@ -237,7 +189,6 @@ def database(request, database_id):
            TMHelixTriplet.objects.filter(TMProtein__structure__in=database.structure_set.all()).Cluster()
 
         elif request.POST.get('CARMSD'):
-           print 'CAClustering'#;quit()           
            TMHelixTriplet.objects.filter(TMProtein__structure__in=database.structure_set.all()).CACluster()
 
         elif request.POST.get('CalculateAminoAcidZPreferenceHistogram'):
@@ -319,42 +270,18 @@ def database(request, database_id):
     RMSDs = Clustering.objects.values_list('RMSD')    
     plt.clf()
     
-    
-#    for TMHelixTripletI in TMHelixTriplet.objects.all():
-        
-#        triplet_pks = TMHelixTripletI.tmhelixmodel_set.order_by('TMHelix_ID').values_list('pk')
-        
-#        for TMHelixPairI in TMHelixPair.objects.all():
-                
-#            pair_pks = TMHelixPairI.tmhelixmodel_set.order_by('TMHelix_ID').values_list('pk')
-                
-#            if triplet_pks[:2]==pair_pks:
-#                TMHelixTripletI.CrossingAngle1_2 = TMHelixPairI. CrossingAngle
-#                print TMHelixPairI. CrossingAngle
-
-#    print XYArray. transpose ()
-#    print numpy.corrcoef ( numpy. array (XYArray). transpose () )
-#    print OutputFile
-#    quit ()
-# cross 0,608; 
-# tilt 0.474;
-#    print Xs; 
-
     plt.scatter (Noclusters , RMSDs)    
     plt.savefig ('NoClustersRMSDs.png' ,dpi=320)
     plt.clf()
 
 
-    return render_to_response(
+    return render(request,
         'dataset.html',
         {'structures': database.structure_set.all(),\
          'clusterings':Clustering.objects.all(),\
           'form': form, \
-         'database_model_i':database },
-        context_instance=RequestContext(request)
-    )
-    
-
+         'database_model_i':database },)
+#        context_instance=RequestContext(request))
 
 def helix_pair_stats(request):
     return render(request, 'helix_pair_stats.html')
@@ -379,7 +306,7 @@ def handle_uploaded_file(f):
 
 def Clear (request,post_id):
 
-#    TMProtein.objects.all().delete()
+    TMProtein.objects.all().delete()
 
     return render_to_response(
         'list.html',
@@ -389,6 +316,8 @@ def Clear (request,post_id):
     
 #@login_required (redirect_field_name='my_redirect_field',login_url='/accounts/login/')
 def list(request):
+    print request
+    
 # prawdopodobnie powinienem to jakos rozbic na kilka viewsow
     # Handle file upload
     if request.method == 'POST':
@@ -412,6 +341,7 @@ def list(request):
            TMHelixModel.objects.single_helix_stats ()
 
         elif request.POST.get('NewDataset'):
+            # zrobic to przez linki np, niech formy beda rozbite na podstrony
             
             DatabaseModel.objects.create()
             # this happens if You push 'CalculateSingleHelixStats' button
@@ -471,15 +401,23 @@ def list(request):
            # to teraz jak to ugryzc
 
         form = TMProteinFileForm(request.POST, request.FILES)
+        print form
+        print request.POST
+        print request.FILES
+        print form.is_valid()
+        
 
         if form.is_valid():
             #this happens if you want to upload file
-            
-            if 'UploadXLSFile' in request.POST:
+            print request.POST.get('UploadXLSFile')
+            if   request.POST.get('UploadXLSFile'):
+                print 'Uploading XLS File'
                 
                 XLSFileI = XLSFile(xlsfile=request.FILES['tmproteinfile'])
                 XLSFileI.save()
-                XLSFileI.Read('media/'+request.FILES['tmproteinfile'].name.split('.')[0]+'/'+request.FILES['tmproteinfile'].name)
+                xlspath = 'media/'+request.FILES['tmproteinfile'].name.split('.')[0]+'/'+request.FILES['tmproteinfile'].name
+                print xlspath
+                XLSFileI.Read(xlspath,database_id=1)
 
 #                TMProtein.objects.ReadXLS(XLSFile =  )
 
@@ -515,10 +453,10 @@ def list(request):
 
     # Render list page with the documents and the form
 
-    return render_to_response(
+    return render(request,
         'list.html',
         {'tmproteins': tmproteins, 'form': form, 'databases': databases },
-        context_instance=RequestContext(request)
+#        context_instance=RequestContext(request)
     )
 
 from django.contrib.auth import authenticate, login

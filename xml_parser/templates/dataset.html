@@ -36,58 +36,31 @@
 			<!-- button for upload -->
 			<table>
 			{% if structures %}
+            <tr>			
+            <td><a href="{% url 'CalculateSingleHelixStats' database_model_i.id %}"></a></td>
+            <td><a href="{% url 'CalculateHelixPairStats' database_model_i.id %}"></a></td>
+            <td><a href="{% url 'CalculateHelixTripletStats' database_model_i.id %}"></a></td>
 
-            <tr><input type="submit" name="Clear" value="Clear" /></tr>
-            <tr>
-            <td><input type="submit" name="CalculateSingleHelixStats" value="CalculateSingleHelixStats" /></td>
-            <td><input type="submit" name="CalculateHelixPairStats" value="CalculateHelixPairStats" /></td>
-            <td><input type="submit" name="CalculateHelixTripletStats" value="CalculateHelixTripletStats" /></td>
-            </tr>
+            <td><a href="{% url 'ExtractHelixPairs' database_model_i.id %}"></a></td>
+            <td><a href="{% url 'ExtractInteractingHelixPairs' database_model_i.id %}"></a></td>
 
-            
-            <td></td>
-            <td><input type="submit" name="ExtractHelixPairs" value="ExtractHelixPairs" /></td>
-            <tr>
-                        <td>Consecutive?<input type='checkbox' name="checkbox" value="checkbox"></td>
-                        <td>And Interacting?<input type='checkbox' name="checkbox" value="checkbox"></td>
+            <td><a href="{% url 'ExtractHelixTriplets' database_model_i.id %}"></a></td>
+            <td><a href="{% url 'ExtractInteractingHelixTriplets' database_model_i.id %}"></a></td>
 
-            </tr>
+            <td><a href="{% url 'CalculateAminoAcidZPreferenceHistogram' database_model_i.id %}"></a></td>
+            <td><a href="{% url 'ClusterHelixTripletsByRMSD' database_model_i.id %}"></a></td>
 
-            <tr><td></td></tr>
-            <td><input type="submit" name="ExtractInteractingHelixPairs" value="ExtractInteractingHelixPairs" /></td>
-            <tr>
-            <td></td>
-            <td>
-            <input type="submit" name="ExtractHelixTriplets" value="ExtractHelixTriplets" />
-            </td>
-            <td</td>
-            </tr>
-            <tr>
-                        <td>Consecutive?<input type='checkbox' name="checkbox" value="checkbox"></td>
-                        <td>And Interacting?<input type='checkbox' name="checkbox" value="checkbox"></td>
-                        <td>And Closed?<input type='checkbox' name="checkbox" value="checkbox"></td>
-
-            </tr>
-            <p><input type='checkbox' name="checkbox" value="checkbox"></p></td>
-            <td><input type="submit" name="ExtractInteractingHelixTriplets" value="ExtractInteractingHelixTriplets" /></td>
-
-            </tr>
-            <tr>
-            <td><input type="submit" name="CalculateAminoAcidZPreferenceHistogram" value="CalculateAminoAcidZPreferenceHistogram" /></td>
-            <td><input type="submit" name="ClusterHelixTripletsByRMSD" value="ClusterHelixTripletsByRMSD" />
             <td><input type="submit" name="CARMSD" value="CARMSD" />
 
             <p>With Permutation?<input type='checkbox' name="perm_checkbox" value="perm_checkbox"></p>
             <p>With Flip?<input type='checkbox' name="checkbox" value="With Flip?"></p></td>
             <p>CAs?<input type='checkbox' name="checkbox" value="With Permutation?"></p>
             <p>MCs?<input type='checkbox' name="checkbox" value="With Flip?"></p></td>
-                        
-            <td><input type="submit" name="ClusterHelixTripletsByRMSD" value="AminoAcidPreferencesForPackings" /></td>
-            <td><input type="submit" name="ClusterHelixTripletsByRMSD" value="SolventAccessibility" /></td>
 
-            </tr>
-            <tr>
-            <td><input type="submit" name="DownloadResults" value="DownloadResults" /></td>
+            <td><a href="{% url 'AminoAcidPreferencesForPackings' database_model_i.id %}"></a></td>
+            <td><a href="{% url 'SolventAccessibility' database_model_i.id %}"></a></td>
+            <td><a href="{% url 'DownloadResults' database_model_i.id %}"></a></td>
+
             </tr>
 <!--            </table> -->
 <!--        </form> -->
@@ -108,10 +81,10 @@
             <!-- button for upload -->
 
 			<tr>
-			<td><input type="submit" name="Update" value="Update" /></td>
-			<td><input type="submit" name="Download" value="Download PDBs" /></td>
-			<td><input type="submit" name="Clear" value="Clear" /></td>
-            <td><input type="submit" name="Process" value="Process" />
+            <td><a href="{% url 'Update' database_model_i.id %}"></a></td>
+            <td><a href="{% url 'Download PDBs' database_model_i.id %}"></a></td>
+            <td><a href="{% url 'Clear' database_model_i.id %}"></a></td>
+            <td><a href="{% url 'Process' database_model_i.id %}"></a></td>
             <p>3MCs: <input type='checkbox' name="checkbox" value="checkbox"></p>
             <p>10MCs: <input type='checkbox' name="10MCcheckbox" value="10MCcheckbox"></p>
             </td>
