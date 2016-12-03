@@ -15,7 +15,7 @@ class TMProteinFileForm(forms.Form):
     tmproteinfile = forms.FileField(
         label='Select a PDB file oriented along membrane normal containing one chain only.'
     )
-#    BordersOfThinSlices = forms.CharField()
+    BordersOfThinSlices = forms.CharField()
 
 #    favorite_colors = forms.MultipleChoiceField(required=False, \
 #    widget=forms.CheckboxSelectMultiple, choices=FAVORITE_COLORS_CHOICES)

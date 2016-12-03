@@ -37,14 +37,14 @@
 			<table>
 			{% if structures %}
             <tr>			
-            <td><a href="{% url 'CalculateSingleHelixStats' database_model_i.id %}"></a></td>
+            <td><a href="{% url 'calculatesinglehelixstats' database_model_i.id %}"></a></td>
             <td><a href="{% url 'CalculateHelixPairStats' database_model_i.id %}"></a></td>
             <td><a href="{% url 'CalculateHelixTripletStats' database_model_i.id %}"></a></td>
 
-            <td><a href="{% url 'ExtractHelixPairs' database_model_i.id %}"></a></td>
+            <td><a href="{% url 'ExtractHelixPairs' database_model_i.id %}">Extract Helix Pairs</a></td>
             <td><a href="{% url 'ExtractInteractingHelixPairs' database_model_i.id %}"></a></td>
 
-            <td><a href="{% url 'ExtractHelixTriplets' database_model_i.id %}"></a></td>
+            <td><a href="{% url 'ExtractHelixTriplets' database_model_i.id %}">Extract Helix Triplets</a></td>
             <td><a href="{% url 'ExtractInteractingHelixTriplets' database_model_i.id %}"></a></td>
 
             <td><a href="{% url 'CalculateAminoAcidZPreferenceHistogram' database_model_i.id %}"></a></td>
@@ -84,7 +84,7 @@
             <td><a href="{% url 'Update' database_model_i.id %}"></a></td>
             <td><a href="{% url 'Download PDBs' database_model_i.id %}"></a></td>
             <td><a href="{% url 'Clear' database_model_i.id %}"></a></td>
-            <td><a href="{% url 'Process' database_model_i.id %}"></a></td>
+            <td><a href="{% url 'Process' database_model_i.id %}">Process</a></td>
             <p>3MCs: <input type='checkbox' name="checkbox" value="checkbox"></p>
             <p>10MCs: <input type='checkbox' name="10MCcheckbox" value="10MCcheckbox"></p>
             </td>

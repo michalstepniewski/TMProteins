@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from xml_parser.models import *
 from django.shortcuts import render_to_response, get_object_or_404, render#, RequestContext
+from myapp.models import *
+AAThreeLetters = ['ARG','HIS','LYS','ASP','GLU','SER','THR','ASN',\
+                  'GLN','CYS','GLY','PRO','ALA','VAL','ILE','LEU',\
+                  'MET','PHE','TYR','TRP']
 
 # Create your views here.
 
@@ -19,113 +23,109 @@ from django.shortcuts import render_to_response, get_object_or_404, render#, Req
 #   description = movie.getElementsByTagName('description')[0]
 #   print "Description: %s" % description.childNodes[0].data
 
+def CalculateSingleHelixStats(request, ds_id):
+    TMHelixModel.objects.single_helix_stats ()
+    tmproteins = protein.objects.all()   
+    return render(request,
+        'database.html',
+        {'tmproteins': tmproteins})
+
+def CalculateHelixPairStats(request, ds_id):
+    TMHelixPair.objects.helix_pair_stats ()
+    tmproteins = protein.objects.all()   
+    return render(request,
+        'database.html',
+        {'tmproteins': tmproteins})
+
+def CalculateHelixTripletStats(request, ds_id):
+    TMHelixTriplet.objects.helix_triplet_stats ()
+    tmproteins = protein.objects.all()   
+    return render(request,
+        'database.html',
+        {'tmproteins': tmproteins})
+
+def ExtractHelixPairs(request, id):
+    TMProtein.objects.ExtractConsecutiveHelixPairs ()
+    tmproteins = protein.objects.all()   
+    return render(request,
+        'database.html',
+        {'tmproteins': tmproteins})
+
+def ExtractInteractingHelixPairs(request, ds_id):
+    TMProtein.objects.ExtractInteractingHelixPairs ()
+    tmproteins = protein.objects.all()   
+    return render(request,
+        'database.html',
+        {'tmproteins': tmproteins})
+
+def ExtractHelixTriplets(request, id):
+    database_model_i = DatabaseModel.objects.get(pk=id)
+    TMProtein.objects.filter(structure__in=database_model_i.structure_set.all()).ExtractConsecutiveHelixTriplets ()
+    print TMProtein.objects.filter(structure__in=database_model_i.structure_set.all())
+
+def ExtractInteractingHelixTriplets(request, ds_id):
+    TMProtein.objects.ExtractInteractingHelixTriplets ()
 
 
+def ClusterHelixTripletsByRMSD(request, ds_id):
+    TMHelixTriplet.objects.all().Cluster()
+
+def CalculateAminoAcidZPreferenceHistogram(request, ds_id):
+
+    for AAThreeLetterI in AAThreeLetters:
+        HistogramPlot(Residue.objects.filter(AAThreeLetter=AAThreeLetterI).values_list('Z'),'AminoAcidZPreference_'+AAThreeLetterI+'.png')
+
+def Download(request, ds_id):
+    structure.objects.Download()
+
+def DownloadResults(request, ds_id):
+    return
+
+def DownloadPDBs(request, ds_id):
+    return
+
+def Clear(request, ds_id): 
+    DatabaseModel.objects.all().delete()
+    protein.objects.all().delete()
+    TMProtein.objects.all().delete()
+    TMHelixModel.objects.all().delete()
+    os. system('rm -r myapp/static/myapp/static/media/*') # clear static files in media
+    os. system('rm -r myapp/static/myapp/static/Stats/*') # clear static files in Stats
+    os. system('rm -r media/*;') #clears previously extracted Transmembrane Segments stored in PDB files
+
+def Update(request, ds_id):
+    DatabaseModel.objects.Update()
+
+def Process(request, id):
+    database_model_i = DatabaseModel.objects.get(pk=id)
+    database_model_i.Process() # to musi byc ten model, albo z argumentem
+
+def AminoAcidPreferencesForPackings(request, ds_id):
+    return
+
+def SolventAccessibility(request, ds_id):
+    return
+    
 def database(request):
-# prawdopodobnie powinienem to jakos rozbic na kilka viewsow
-    # Handle file upload
-    print 'database'
+
     if request.method == 'POST':
-        print 'POST'
-        print request.POST.get('ExtractHelixTriplets')
-
-        if request.POST.get('Update'):
-            DatabaseModel.objects.Update()
-        if request.POST.get('Clear'):
-            DatabaseModel.objects.all().delete()
-            protein.objects.all().delete()
-            
-        if request.POST.get('Clear'):
-            #this happens if You push 'Clear' button
-           TMProtein.objects.all().delete()
-           TMHelixModel.objects.all().delete() # set relation one to many (Document -> TMHelix)
-
-           os. system('rm -r myapp/static/myapp/static/media/*') # clear static files in media
-           os. system('rm -r myapp/static/myapp/static/Stats/*') # clear static files in Stats
-           #leaves only js files in media
-           os. system('rm -r media/*;') #clears previously extracted Transmembrane Segments stored in PDB files
-           
-
-#     if request.POST.get("Upload"): #why am I not using this?
-
-        elif request.POST.get('CalculateSingleHelixStats'):
-            # this happens if You push 'CalculateSingleHelixStats' button
-
-           TMHelixModel.objects.single_helix_stats ()
-
-        elif request.POST.get('CalculateHelixPairStats'):
-            # this happens if You push 'CalculateHelixPairStats' button
-
-           TMHelixPair.objects.helix_pair_stats ()
-
-        elif request.POST.get('CalculateHelixTripletStats'):
-            # this happens if You push 'CalculateHelixTripletStats button
-
-           TMHelixTriplet.objects.helix_triplet_stats ()
-
-        elif request.POST.get('ExtractHelixPairs'):
-           # this happens if You push 'ExtractHelixPairs'
-
-           TMProtein.objects.ExtractConsecutiveHelixPairs ()
-
-        elif request.POST.get('ExtractInteractingHelixPairs'):
-           # this happens if You push 'ExtractHelixPairs'
-
-           TMProtein.objects.ExtractInteractingHelixPairs ()
-
-
-        elif request.POST.get('ExtractHelixTriplets'):
-           # this happens if You push 'ExtractHelixTriplets'
-           print 'ExtractHelixTriplets'
-           TMProtein.objects.filter(structure__in=database_model_i.structure_set.all()).ExtractConsecutiveHelixTriplets ()
-           print TMProtein.objects.filter(structure__in=database_model_i.structure_set.all())
-
-#           database_model_i. TMProtein.objects
-
-        elif request.POST.get('ExtractInteractingHelixTriplets'):
-           # this happens if You push 'ExtractHelixTriplets'
-
-           TMProtein.objects.ExtractInteractingHelixTriplets ()
-
-        elif request.POST.get('ClusterHelixTripletsByRMSD'):
-           
-           TMHelixTriplet.objects.all().Cluster()
-
-        elif request.POST.get('CalculateAminoAcidZPreferenceHistogram'):
-           # this happens if You push 'ExtractHelixTriplets'
-
-           AAThreeLetters = ['ARG','HIS','LYS','ASP','GLU','SER','THR','ASN',\
-                             'GLN','CYS','GLY','PRO','ALA','VAL','ILE','LEU',\
-                             'MET','PHE','TYR','TRP']
-           for AAThreeLetterI in AAThreeLetters:
-#               print Residue.objects.all()
-               
-               print Residue.objects.filter(AAThreeLetter=AAThreeLetterI)
-               print Residue.objects.filter(AAThreeLetter=AAThreeLetterI).values_list('Z')
-     #          quit()
-               HistogramPlot(Residue.objects.filter(AAThreeLetter=AAThreeLetterI).values_list('Z'),'AminoAcidZPreference_'+AAThreeLetterI+'.png')
-           # to teraz jak to ugryzc
-
-        elif request.POST.get('Download'):
-            structure.objects.Download()
-            
-        elif request.POST.get('Process'):
-            database_model_i.Process() # to musi byc ten model, albo z argumentem
 
         form = TMProteinFileForm(request.POST, request.FILES)            
+        if form.is_valid():
+            #this happens if you want to upload file
+            
+            Parameters.objects.all().delete()
+            
+            ParametersI = Parameters. objects. create ()
+            ParametersI.DatabaseModel = database
+            ParametersI. BordersOfThinSlices = form.cleaned_data['BordersOfThinSlices']
+            ParametersI.save()
+            print form.cleaned_data
 
-#            protein.objects.all().delete()
-# musze przemyslec to przed zserializowaniem
-# cos na kartce napisac itd
-# moze sie znowu leb zagotuje
-# musze to przekombinowac
     tmproteins = protein.objects.all()   
     return render(request,
         'database.html',
         {'tmproteins': tmproteins}
-
-#,
-#        context_instance=RequestContext(request)
     )
 
 def Update (request):
