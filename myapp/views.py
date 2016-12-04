@@ -115,20 +115,23 @@ def clone_database(request, id):
 def clustering(request, clustering_id):
     clustering = get_object_or_404(Clustering, pk=clustering_id)
 
-    return render_to_response(
+    return render(request,
         'clustering.html',
         {'clustering':clustering, 'clusters': clustering.cluster_set.all(),\
-        'no_triplets':TMHelixTriplet.objects.filter(Cluster__in=clustering.cluster_set.all()).count()},\
-        context_instance=RequestContext(request))
+        'no_triplets':TMHelixTriplet.objects.filter(Cluster__in=clustering.cluster_set.all()).count()},
+)
+#                  \
+#        context_instance=RequestContext(request))
 
 def cluster(request, cluster_id):
     cluster = get_object_or_404(Cluster, pk=cluster_id)
 
-    return render_to_response(
+    return render(request,
         'cluster.html',
         {'cluster':cluster,'centroidpk':cluster.Centroidpk, 'tmhelixtriplets': cluster.tmhelixtriplet_set.all(),\
         },
-        context_instance=RequestContext(request))
+)
+#        context_instance=RequestContext(request))
 
 def database(request, database_id):
     database = get_object_or_404(DatabaseModel, pk=database_id)

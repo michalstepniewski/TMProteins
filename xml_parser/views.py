@@ -67,7 +67,7 @@ def ExtractInteractingHelixTriplets(request, ds_id):
     TMProtein.objects.ExtractInteractingHelixTriplets ()
 
 
-def ClusterHelixTripletsByRMSD(request, ds_id):
+def ClusterHelixTripletsByRMSD(request, id):
     TMHelixTriplet.objects.all().Cluster()
 
 def CalculateAminoAcidZPreferenceHistogram(request, ds_id):
