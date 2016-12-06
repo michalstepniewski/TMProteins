@@ -81,7 +81,7 @@
         {% for database in databases %}
 
         <tr>
-        <td> <a href="{% url 'database' database.id %}">{{ database.id }}</a> </td>
+        <td> <a href="{% url 'database' database.id %}">{{ database.name }}</a> </td>
        <td><a href="{% url 'delete_database' database.id %}">Delete</a></td>
        <td><a href="{% url 'clone_database' database.id %}">Clone</a></td>
        <td><a href="{% url 'rename_database' database.id %}">Rename</a></td>
@@ -121,6 +121,7 @@
         <table>
             <tr>
             <td><input type="submit" name="NewDataset" value="NewDataset" /></td>
+            <td><a href="{% url 'new_database' %}">New</a></td>
             </tr>
             </table>
 			

@@ -27,7 +27,8 @@ urlpatterns = [#patterns('myapp.views',
     
     url(r'^delete-database/(?P<id>\d+)/$', views.delete_database, name='delete_database'),
     url(r'^clone-database/(?P<id>\d+)/$', views.clone_database, name='clone_database'),
-    url(r'^rename-database/(?P<id>\d+)/$', views.rename_database, name='rename_database'),
+    url(r'^rename-database/(?P<id>\d+)/$', views.get_name, name='rename_database'),
+    url(r'^new-database/$', views.new_database, name='new_database'),
 
     url(r'^multiple_upload', multiple_upload, name = 'multiple_upload'), # include('django-jquery-file-upload.urls')), 
 #    url(r'^$', lambda x: HttpResponseRedirect('/upload/new/')),

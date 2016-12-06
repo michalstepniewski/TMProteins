@@ -199,8 +199,9 @@ class DatabaseModelManager (models.Manager):
 #                                                                        )
                 structureII.bibliography_set.add(bibliographyII) 
 
-class DatabaseModel (models.Model):
+class DatabaseModel (models.Model):    
     objects  = DatabaseModelManager ()
+    name = models.CharField(max_length=200,null=True)
     
     def Process(self):
        

@@ -32,6 +32,32 @@ from django.core.mail import send_mail
 # Imaginary function to handle an uploaded file.
 from somewhere import handle_uploaded_file
 
+from .forms import NameForm
+
+def get_name(request,id):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = NameForm(request.POST)
+        # check whether it's valid:
+        print form.is_valid()
+        if form.is_valid():
+            print form.cleaned_data
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            db = DatabaseModel.objects.get(pk=id)
+            db.name =  form.cleaned_data['your_name']
+            db.save()
+            return HttpResponseRedirect('/thanks/')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = NameForm()
+
+    return render(request, 'name.html', {'form': form})
+
+
 def mail(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
@@ -99,6 +125,11 @@ def delete_database(request, id):
 
 def rename_database(request, id):
 #    database = DatabaseModel.objects.get(pk=id).delete()    
+    return HttpResponseRedirect(reverse('list'))
+
+def new_database(request):
+#    database = DatabaseModel.objects.get(pk=id).delete()
+    DatabaseModel.objects.create()    
     return HttpResponseRedirect(reverse('list'))
 
 

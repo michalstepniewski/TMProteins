@@ -1,0 +1,5 @@
+<form action="{% url "rename_database" 5 %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit" />
+</form>

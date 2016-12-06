@@ -32,3 +32,6 @@ class UploadFileForm(forms.Form):
     file = forms.FileField()
     favorite_colors = forms.MultipleChoiceField(required=False, \
     widget=forms.CheckboxSelectMultiple, choices=FAVORITE_COLORS_CHOICES)
+
+class NameForm(forms.Form):
+    your_name = forms.CharField(label='Your name', max_length=100)
