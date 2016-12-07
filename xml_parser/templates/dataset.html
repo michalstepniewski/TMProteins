@@ -81,8 +81,8 @@
             <!-- button for upload -->
 
 			<tr>
-            <td><a href="{% url 'Update' database_model_i.id %}"></a></td>
-            <td><a href="{% url 'Download PDBs' database_model_i.id %}"></a></td>
+            <td><a href="{% url 'Update' database_model_i.id %}">Update</a></td>
+            <td><a href="{% url 'Download PDBs' database_model_i.id %}">Download PDBs</a></td>
             <td><a href="{% url 'Clear' database_model_i.id %}"></a></td>
             <td><a href="{% url 'Process' database_model_i.id %}">Process</a></td>
             <p>3MCs: <input type='checkbox' name="checkbox" value="checkbox"></p>

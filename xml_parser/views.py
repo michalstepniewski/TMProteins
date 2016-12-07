@@ -81,7 +81,10 @@ def Download(request, ds_id):
 def DownloadResults(request, ds_id):
     return
 
-def DownloadPDBs(request, ds_id):
+def DownloadPDBs(request, id):
+    db = DatabaseModel.objects.get(pk=id)
+    db.structure_set.Download()
+        
     return
 
 def Clear(request, ds_id): 
@@ -93,8 +96,11 @@ def Clear(request, ds_id):
     os. system('rm -r myapp/static/myapp/static/Stats/*') # clear static files in Stats
     os. system('rm -r media/*;') #clears previously extracted Transmembrane Segments stored in PDB files
 
-def Update(request, ds_id):
-    DatabaseModel.objects.Update()
+def Update(request, id):
+    db = DatabaseModel.objects.get(pk=id)
+    db.Update()
+    return render(request,
+        'database.html')
 
 def Process(request, id):
     database_model_i = DatabaseModel.objects.get(pk=id)
@@ -128,14 +134,14 @@ def database(request):
         {'tmproteins': tmproteins}
     )
 
-def Update (request):
-
+#def Update (request):
+#
 #    TMProtein.objects.all().delete()
-
-    return render_to_response(
-        'database.html',
-        context_instance=RequestContext(request)
-    )
+#
+#    return render_to_response(
+#        'database.html',
+#        context_instance=RequestContext(request)
+#    )
 
 def Clear (request):
 

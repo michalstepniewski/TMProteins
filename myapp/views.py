@@ -49,13 +49,13 @@ def get_name(request,id):
             db = DatabaseModel.objects.get(pk=id)
             db.name =  form.cleaned_data['your_name']
             db.save()
-            return HttpResponseRedirect('/thanks/')
+            return HttpResponseRedirect(reverse('list'))
 
     # if a GET (or any other method) we'll create a blank form
     else:
         form = NameForm()
 
-    return render(request, 'name.html', {'form': form})
+    return render(request, 'name.html', {'form': form, 'id':id})
 
 
 def mail(request):

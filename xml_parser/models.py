@@ -202,6 +202,134 @@ class DatabaseModelManager (models.Manager):
 class DatabaseModel (models.Model):    
     objects  = DatabaseModelManager ()
     name = models.CharField(max_length=200,null=True)
+
+    def Update(self):
+
+        from xml.dom.minidom import parse
+        import xml.dom.minidom
+        import wget
+        import datetime
+        import os
+
+        url = 'http://blanco.biomol.uci.edu/mpstruc/listAll/mpstrucAlphaHlxTblXml'
+        attempts = 0
+        today = datetime.datetime.today()
+        date = str(today.year)+'-'+str(today.month)+'-'+str(today.day)
+        os.system('mkdir -p '+date)
+        
+        while attempts < 3:
+            try:
+                response = urllib2.urlopen(url, timeout = 5)
+                content = response.read()
+                f = open( date +'/'+ url.split('/')[-1], 'w' )
+                f.write( content )
+                f.close()
+                break
+            except urllib2.URLError as e:
+                attempts += 1
+                print type(e)
+
+
+        
+#        wget.download(url)
+        DOMTree = xml.dom.minidom.parse( date+'/' + url.split('/')[-1])
+        collection = DOMTree.documentElement
+
+        groupss = collection.getElementsByTagName("groups")
+#        movies[0]
+
+        groups = groupss[0].childNodes[1]
+        groupname = groups.childNodes[1].childNodes[0].nodeValue
+
+        groups.childNodes[5].childNodes[5].childNodes[1].childNodes[0].nodeValue
+        groupname = groups.childNodes[[x.nodeName for x in groups.childNodes].index('name')].childNodes[0].nodeValue
+
+        groupI = group.objects.create(name = groupname)
+
+        subgroups = groups.getElementsByTagName("subgroups")
+
+        subgroups = subgroups[0].getElementsByTagName("subgroup")
+        if self.structure_set.exists():
+            pdbCodes = self.structure_set.all().values_list('pdbCode', flat=True).all()
+        else: pdbCodes=[]
+#        if not pdbCodes:
+        print pdbCodes
+#           [pdbCodes]
+        for subgroupI in subgroups:
+
+            subgroup_name = subgroupI.childNodes[[x.nodeName for x in groups.childNodes].index('name')].childNodes[0].nodeValue
+
+            subgroupII = subgroup.objects.create(name = subgroup_name)
+            groupI.subgroup_set.add(subgroupII)
+
+            proteins = subgroupI.getElementsByTagName("protein")
+
+            for proteinI in proteins:
+#                print protein.childNodes
+#                print [x.nodeName for x in protein.childNodes]
+                attributes = ['pdbCode','name','species','taxonomicDomain','expressedInSpecies',\
+                          'resolution', 'description' ]
+#                pdbCode = protein.childNodes[[x.nodeName for x in protein.childNodes].index('pdbCode')].childNodes[0].nodeValue
+#                name = protein.childNodes[[x.nodeName for x in protein.childNodes].index('name')].childNodes[0].nodeValue
+#                species = protein.childNodes[[x.nodeName for x in protein.childNodes].index('species')].childNodes[0].nodeValue
+#                taxonomicDomain= protein.childNodes[[x.nodeName for x in protein.childNodes].index('taxonomicDomain')].childNodes[0].nodeValue
+#                print protein.childNodes[[x.nodeName for x in protein.childNodes].index('expressedInSpecies')].childNodes
+#                expressedInSpecies= protein.childNodes[[x.nodeName for x in protein.childNodes].index('expressedInSpecies')].childNodes[0].nodeValue
+#                resolution= protein.childNodes[[x.nodeName for x in protein.childNodes].index('resolution')].childNodes[0].nodeValue
+#                description= protein.childNodes[[x.nodeName for x in protein.childNodes].index('description')].childNodes[0].nodeValue
+#                expressedInSpecies= protein.childNodes[[x.nodeName for x in protein.childNodes].index('expressedInSpecies')].childNodes[0].nodeValue
+
+#                pdbCode,name,species,taxonomicDomain,expressedInSpecies, resolution, description = [ protein.childNodes[[x.nodeName for x in protein.childNodes].index(attribute)].childNodes[0].nodeValue for attribute in attributes]
+
+                pdbCode,name,species,taxonomicDomain,expressedInSpecies, resolution, description = [ get_attribute_value(proteinI,attribute) for attribute in attributes]
+                
+                if pdbCode not in pdbCodes:
+                 pdbCodes.append(pdbCode)
+                
+                 proteinII = protein.objects.create( name = name,                                      
+                                      species = species,
+                                      taxonomicDomain = taxonomicDomain,
+                                      description = description,
+                                      )
+                
+                 structureII = structure.objects.create( pdbCode = pdbCode,
+                                      name = name,
+                                      species = species,
+                                      taxonomicDomain = taxonomicDomain,
+                                      expressedInSpecies = expressedInSpecies,
+                                      resolution = resolution,
+                                      description = description,
+                                      Type = 'master')
+                 self. structure_set.add(structureII)
+                 self.protein_set.add(proteinII)
+                 proteinII.structure_set.add(structureII) 
+                 subgroupII.protein_set.add(proteinII)               
+# to teraz tutaj te nie mastery wziac                
+#                            subgroupI = subgroup.objects.create(name = subgroup_name)
+#            group.subgroup_set.add(subgroupI)
+                                      
+                 bibliographyI = proteinI.getElementsByTagName("bibliography")[0]
+        
+                 attributes = [ 'pubMedId', 'authors', 'year', 'title', 'journal',\
+                            'volume', 'issue', 'pages', 'doi', 'notes']
+
+            
+                 pubMedId, authors, year, title, journal,\
+                 volume, issue, pages, doi, notes = [ get_attribute_value(bibliographyI,attribute) for attribute in attributes]
+
+                 bibliographyII = bibliography.objects.create(pubMedId=pubMedId,
+                                                            authors=authors,
+                                                            year=year,
+                                                            title=title,
+                                                            journal=journal,
+                                                            volume=volume,
+                                                            issue=issue,
+                                                            pages=pages,
+                                                            doi=doi,
+                                                            notes=notes)
+#                                                                        )
+                 structureII.bibliography_set.add(bibliographyII) 
+            self.save()
     
     def Process(self):
        
