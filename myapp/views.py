@@ -57,6 +57,29 @@ def get_name(request,id):
 
     return render(request, 'name.html', {'form': form, 'id':id})
 
+def get_clustering_parameters(request,id):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = ClusteringParametersForm(request.POST)
+        # check whether it's valid:
+        print form.is_valid()
+        if form.is_valid():
+            print form.cleaned_data
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            op = OperationModel.objects.get(pk=id)
+#            op.name =  form.cleaned_data['your_name']
+            op.save()
+            return HttpResponseRedirect(reverse('list'))
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = NameForm()
+
+    return render(request, 'clustering_parameters.html', {'form': form, 'id':id})
+
 
 def mail(request):
     if request.method == 'POST':

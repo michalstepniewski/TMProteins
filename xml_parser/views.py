@@ -1,10 +1,68 @@
 from django.shortcuts import render
 from xml_parser.models import *
 from django.shortcuts import render_to_response, get_object_or_404, render#, RequestContext
-from myapp.models import *
+from myapp.models1 import Parameters
+from myapp.models import TMProtein
+
+
+from celery import task
+from celery.decorators import periodic_task
+from celery.task.schedules import crontab
+from celery.utils.log import get_task_logger
+#from periodically.decorators import *
+##@periodic_task(run_every=crontab())
+#@every(minutes=1)
+def do_every_midnight():
+    id=8
+    db = DatabaseModel.objects.get(pk=id)
+    db.Update()
+
+
 AAThreeLetters = ['ARG','HIS','LYS','ASP','GLU','SER','THR','ASN',\
                   'GLN','CYS','GLY','PRO','ALA','VAL','ILE','LEU',\
                   'MET','PHE','TYR','TRP']
+
+from django_cron import CronJobBase, Schedule
+
+class MyCronJob(CronJobBase):
+    RUN_AT_TIMES = ['22:30']
+
+    schedule = Schedule(run_at_times=RUN_AT_TIMES)
+
+    code = 'xml_parser.my_cron_job'    # a unique code
+
+    def do(self):
+        id=8
+        db = DatabaseModel.objects.get(pk=id)
+        db.Update()
+        print 'done'    # do your thing here
+
+class MyCronJob2(CronJobBase):
+    RUN_AT_TIMES = ['23:00']
+
+    schedule = Schedule(run_at_times=RUN_AT_TIMES)
+
+    code = 'xml_parser.my_cron_job2'    # a unique code
+
+    def do(self):
+        id=8
+        db = DatabaseModel.objects.get(pk=id)
+        db.structure_set.Download()
+        print 'done'    # do your thing here
+
+class MyCronJob3(CronJobBase):
+    RUN_AT_TIMES = ['23:30']
+
+    schedule = Schedule(run_at_times=RUN_AT_TIMES)
+
+    code = 'xml_parser.my_cron_job3'    # a unique code
+
+    def do(self):
+        id=8
+        db = DatabaseModel.objects.get(pk=id)
+        db.Process()
+        print 'done'    # do your thing here
+
 
 # Create your views here.
 
@@ -68,6 +126,7 @@ def ExtractInteractingHelixTriplets(request, ds_id):
 
 
 def ClusterHelixTripletsByRMSD(request, id):
+    from myapp.models import TMHelixTriplet  
     TMHelixTriplet.objects.all().Cluster()
 
 def CalculateAminoAcidZPreferenceHistogram(request, ds_id):
@@ -75,7 +134,8 @@ def CalculateAminoAcidZPreferenceHistogram(request, ds_id):
     for AAThreeLetterI in AAThreeLetters:
         HistogramPlot(Residue.objects.filter(AAThreeLetter=AAThreeLetterI).values_list('Z'),'AminoAcidZPreference_'+AAThreeLetterI+'.png')
 
-def Download(request, ds_id):
+def Download(request, id):
+    db = DatabaseModel.objects.get(pk=id)
     structure.objects.Download()
 
 def DownloadResults(request, ds_id):

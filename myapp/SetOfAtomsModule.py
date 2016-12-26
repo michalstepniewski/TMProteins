@@ -272,8 +272,9 @@ class Residue ( SetOfAtoms ):
           """ prints contents of Amino Acid Residue """
 
           for AtomRecordInstance in self.Content:
+              pass
 
-              AtomRecordInstance. Print ( )
+#              AtomRecordInstance. Print ( )
 
 #####################################################################################################################################################
 
@@ -320,8 +321,14 @@ class Residue ( SetOfAtoms ):
 
                                C = AtomRecordInstance
                         self. Print ()
-                        return C
+                        try: return C
 
+                        except UnboundLocalError:
+
+                         print 'Incomplete Residue does not contain CA nor N. Will try to go with C'
+
+                         C = self.Content[0]
+                         return C
 #####################################################################################################################################################
 
       def M ( self ):

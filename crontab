@@ -1,0 +1,1 @@
+*/5 * * * * python /home/soutys/TMProteins/branches/features/forms/TMProteins/manage.py runcrons > /home/soutys/cronlog

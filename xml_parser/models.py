@@ -1,7 +1,10 @@
 from __future__ import unicode_literals
 import urllib2, os
 from django.db import models
-
+from celery import task
+from celery.decorators import periodic_task
+from celery.task.schedules import crontab
+from celery.utils.log import get_task_logger
 
 # Create your models here.
 
@@ -19,14 +22,14 @@ def get_attribute_value(node,attribute):
         return ''
 #####
 
+class structureQuerySet(models.QuerySet):
 
-class structureManager (models.Manager):
-    
     def Download (self):
 
         import wget
         
         for structureI in self.all():
+         if not structureI.Processed:
         
 
 
@@ -46,8 +49,8 @@ class structureManager (models.Manager):
                     name = structureI.protein.name.translate(dd)
                     subgroup_name = structureI.protein.subgroup.name.translate(dd)
                     print name
-                    os.system('mkdir -p media/structures/'+subgroup_name+'/'+name )
-                    f = open( 'media/structures/'+subgroup_name+'/'+name+'/'+url.split('/')[-1], 'w' )
+                    os.system('mkdir -p media/DatabaseModels/8/'+subgroup_name+'/'+name )
+                    f = open( 'media/DatabaseModels/8/'+subgroup_name+'/'+name+'/'+url.split('/')[-1], 'w' )
                     f.write( content )
                     f.close()
                     print 'success'
@@ -72,8 +75,8 @@ class structureManager (models.Manager):
                     subgroup_name = structureI.protein.subgroup.name.translate(dd)
 
                     print name
-                    os.system('mkdir -p media/structures/'+subgroup_name+'/'+name )
-                    f = open( 'media/structures/'+subgroup_name+'/'+name+'/'+url2.split('/')[-1], 'w' )
+                    os.system('mkdir -p media/DatabaseModels/8/'+subgroup_name+'/'+name )
+                    f = open( 'media/DatabaseModels/8/'+subgroup_name+'/'+name+'/'+url2.split('/')[-1], 'w' )
 
                     f.write( content )
                     f.close()
@@ -83,7 +86,10 @@ class structureManager (models.Manager):
                 except urllib2.URLError as e:
                     attempts += 1
                     print type(e)
+#through queryset
 
+class structureManager (models.Manager):
+    pass    
 
 class DatabaseModelManager (models.Manager):
 
@@ -202,7 +208,6 @@ class DatabaseModelManager (models.Manager):
 class DatabaseModel (models.Model):    
     objects  = DatabaseModelManager ()
     name = models.CharField(max_length=200,null=True)
-
     def Update(self):
 
         from xml.dom.minidom import parse
@@ -332,7 +337,10 @@ class DatabaseModel (models.Model):
             self.save()
     
     def Process(self):
-       
+        from myapp.models1 import Parameters
+        ParametersI = Parameters. objects. create (BordersOfThinSlices = '-12.0,-6.0;-3.0,3.0;6.0,12.0')
+        self.parameters = ParametersI
+        self.save()
         for structureI in self.structure_set.all():
             print structureI.Processed
             if not structureI.Processed: 
@@ -366,6 +374,7 @@ class protein(models.Model):
 #                     secondaryBibliographies,relatedPdbEntries,memberProteins)
 
 class structure(models.Model):
+    from myapp.models import *
 
     pdbCode = models.CharField(max_length=4,null=True)
     name = models.CharField(max_length=200,null=True)
@@ -375,7 +384,7 @@ class structure(models.Model):
     resolution = models.CharField(max_length=200,null=True)
     description = models.CharField(max_length=2000,null=True)
     protein = models.ForeignKey(protein, on_delete=models.CASCADE, null=True)
-    objects  = structureManager ()
+    objects  = structureManager () .from_queryset(structureQuerySet)()
     Path = models.CharField(max_length=2000,null=True)
     DatabaseModel = models.ManyToManyField(DatabaseModel)
 #    models.ForeignKey(DatabaseModel, on_delete=models.CASCADE, null=True)
@@ -387,25 +396,40 @@ class structure(models.Model):
 
     def Process(self,ParametersI):
         from myapp.models import  TMProtein
-        TMProteinI = TMProtein(Set='Reference',TMProtein_ID=self.pdbCode+'_'+self.Chain )
-        TMProteinI.save()
-        self.tmprotein_set.add(TMProteinI)
+        import os,glob
+        # if self.Chain==None:
+            #self.splitChains
+            # w tym celu musimy otworzyc PDB
+        ParametersI.SplitChains=False
+        ParametersI.OPM=True
+        print glob.glob(os.getcwd()+'/media/DatabaseModels/8/*/*/')         
+        if ParametersI.SplitChains:
+            TMProteinI = TMProtein(Set='Reference',TMProtein_ID=self.pdbCode+'_'+self.Chain ) #cos wymyslec z tym self.Chain, no i DAGa bysmy polozyli
+        else:
+            TMProteinI = TMProtein(Set='Reference',TMProtein_ID=self.pdbCode )
+            if ParametersI.OPM:
+                self.Path=glob.glob(os.getcwd()+'/media/DatabaseModels/8/*/*/'+self.pdbCode.lower()+'.pdb')
+            if len(self.Path)==1:
+                self.Path = self.Path[0]
+                
+                TMProteinI.save()
+                self.tmprotein_set.add(TMProteinI)
         
         #pdbCode
 #        'media/IntegralneAlfaHelikalneBialkaBlonowe/ByChain'
 
-        import os,glob
-        print os.getcwd()+'/media/PDBs/IntegralneAlfaHelikalneBialkaBlonowe/ByChain/*/*/'+self.pdbCode+'_'+self.Chain+'.pdb'       
- 
-        print glob.glob(os.getcwd()+'/media/PDBs/IntegralneAlfaHelikalneBialkaBlonowe/ByChain/*/*/'+self.pdbCode+'_'+self.Chain+'.pdb')        
-        self.Path = glob.glob(os.getcwd()+'/media/PDBs/IntegralneAlfaHelikalneBialkaBlonowe/ByChain/*/*/*/'+self.pdbCode+'_'+self.Chain+'.pdb')[0]
-# self.pdbCode+'_'+self.Chain+'.pdb'
-        print self.Path
 
-        TMProteinI.ReadPDB(self.Path,ParametersI)
+#        print os.getcwd()+'/media/PDBs/IntegralneAlfaHelikalneBialkaBlonowe/ByChain/*/*/'+self.pdbCode+'_'+self.Chain+'.pdb'       
+# 
+#        print glob.glob(os.getcwd()+'/media/PDBs/IntegralneAlfaHelikalneBialkaBlonowe/ByChain/*/*/'+self.pdbCode+'_'+self.Chain+'.pdb')        
+#        self.Path = glob.glob(os.getcwd()+'/media/PDBs/IntegralneAlfaHelikalneBialkaBlonowe/ByChain/*/*/*/'+self.pdbCode+'_'+self.Chain+'.pdb')[0]
+# self.pdbCode+'_'+self.Chain+'.pdb'
+                print self.Path
+
+                TMProteinI.ReadPDB(self.Path,ParametersI)
         
-        self.Processed = True
-        self.save()
+                self.Processed = True
+                self.save()
         print self.Processed
         
 class bibliography(models.Model):

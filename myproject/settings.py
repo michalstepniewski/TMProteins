@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/1.8/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.8/ref/settings/
 """
-
+#import djcelery
+#djcelery.setup_loader()
 from email_info import EMAIL_USE_TLS, EMAIL_HOST, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD #, EMAIL PORT
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 
@@ -53,8 +54,9 @@ INSTALLED_APPS = (
     'myapp',
     'fileupload',
     'xml_parser',
+    "django_cron",
 )
-
+#INSTALLED_APPS += ("djcelery", )
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -65,6 +67,12 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
 )
+
+CRON_CLASSES = [
+    "xml_parser.views.MyCronJob",
+    "xml_parser.views.MyCronJob2",
+    "xml_parser.views.MyCronJob3",
+]
 
 ROOT_URLCONF = 'myproject.urls'
 

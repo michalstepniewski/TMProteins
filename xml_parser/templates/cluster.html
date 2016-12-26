@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Database</title>	
+
+	</head>
+
+
+
+	<body>
+
+            <table>
+                        <tr><td>PDB Code</td><td>Resolution(A)</td><td>Chain</td><td>Processed?</td><td>View</td></tr>
+
+                        {% for structure in structures %}
+                        <tr>
+                                <td> {{ structure.pdbCode }}</td>
+                                <td> {{ structure.resolution }}</td>                                
+                                <td> {{ structure.Chain }}</td> 
+                                <td> {{ structure.Processed }}</td>
+                                <td> {% for TMProtein in structure.tmprotein_set.all %}
+                                    
+                                <a href="{% url 'tmprotein' TMProtein.id %}">{{ TMProtein.TMProtein_ID }}</a>
+                                    {% endfor %}
+                                </td>
+                                
+                        </tr> 
+                                {% endfor %}
+            </table>
+                <!-- dodac tu link do viewera -->
+                <!-- powinno to byc tabela tak jak w helix.html tylko interaktywna -->
+		<!-- Upload form. Note enctype attribute! -->
+		<form action="{% url "database" database_model_i.id %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+			<!-- button for upload -->
+			<table>
+			{% if structures %}
+            <tr>			
+            <td><a href="{% url 'calculatesinglehelixstats' database_model_i.id %}"></a></td>
+            <td><a href="{% url 'CalculateHelixPairStats' database_model_i.id %}"></a></td>
+            <td><a href="{% url 'CalculateHelixTripletStats' database_model_i.id %}"></a></td>
+
+            <td><a href="{% url 'ExtractHelixPairs' database_model_i.id %}">Extract Helix Pairs</a></td>
+            <td><a href="{% url 'ExtractInteractingHelixPairs' database_model_i.id %}"></a></td>
+
+            <td><a href="{% url 'ExtractHelixTriplets' database_model_i.id %}">Extract Helix Triplets</a></td>
+            <td><a href="{% url 'ExtractInteractingHelixTriplets' database_model_i.id %}"></a></td>
+
+            <td><a href="{% url 'CalculateAminoAcidZPreferenceHistogram' database_model_i.id %}"></a></td>
+            <td><a href="{% url 'ClusterHelixTripletsByRMSD' database_model_i.id %}">Cluster Helix Triplets By RMSD</a></td>
+
+            <td><input type="submit" name="CARMSD" value="CARMSD" />
+
+            <p>With Permutation?<input type='checkbox' name="perm_checkbox" value="perm_checkbox"></p>
+            <p>With Flip?<input type='checkbox' name="checkbox" value="With Flip?"></p></td>
+            <p>CAs?<input type='checkbox' name="checkbox" value="With Permutation?"></p>
+            <p>MCs?<input type='checkbox' name="checkbox" value="With Flip?"></p></td>
+
+            <td><a href="{% url 'AminoAcidPreferencesForPackings' database_model_i.id %}"></a></td>
+            <td><a href="{% url 'SolventAccessibility' database_model_i.id %}"></a></td>
+            <td><a href="{% url 'DownloadResults' database_model_i.id %}"></a></td>
+
+            </tr>
+<!--            </table> -->
+<!--        </form> -->
+
+
+
+			{% endif %}
+			
+			<p>{{ form.non_field_errors }}</p>
+            <p>{{ form.tmproteinfile.label_tag }} {{ form.tmproteinfile.help_text }}</p>
+            <p>
+                {{ form.tmproteinfile.errors }}
+                {{ form.tmproteinfile }}
+            </p>
+            <p>Experimental?</p>
+            <p><input type='checkbox' name="checkbox" value="checkbox"></p>
+            <p><input type="submit" name="UploadProteinFile" value="UploadProteinFile" /><input type="submit" name ="UploadXLSFile"  value="UploadXLSFile" /></p>  
+            <!-- button for upload -->
+
+			<tr>
+            <td><a href="{% url 'Update' database_model_i.id %}"></a></td>
+            <td><a href="{% url 'Download PDBs' database_model_i.id %}"></a></td>
+            <td><a href="{% url 'Clear' database_model_i.id %}"></a></td>
+            <td><a href="{% url 'Process' database_model_i.id %}">Process</a></td>
+            <p>3MCs: <input type='checkbox' name="checkbox" value="checkbox"></p>
+            <p>10MCs: <input type='checkbox' name="10MCcheckbox" value="10MCcheckbox"></p>
+            </td>
+			</tr>
+			<tr><th>BordersOfThinSlices(e.g. 0.0,3.0;3.0,6.0):</th><td><input id="BordersOfThinSlices"  type="text" name="BordersOfThinSlices" /></td></tr>
+            </table>
+            
+            <p>Clusterings:</p>
+            {% for clustering in clusterings %}
+            
+            <p>         {{clustering.pk}} <br>
+                        {{clustering.idx}} <br>
+                        {{clustering.no_cluster}} <br>
+                        {{clustering.RMSD}} <br> 
+                        <a href="{% url 'clustering' clustering.id %}">{{ clustering.id }}</a>
+            </p>
+            
+            {% endfor %}
+		</form>
+        <!-- prawdopodobnie bede chcial to podzielic na kilka formow -->
+        <!-- powininienem to zlaczyc w jeden template z database ... -->
+        <!-- wtedy bedzie mniej robienia -->
+        <form action="{% url "list" %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+            <tr>
+            <td>
+            </td>
+            </tr>
+            </table>
+        </form>
+		
+	</body>
+
+</html> 
+
+
