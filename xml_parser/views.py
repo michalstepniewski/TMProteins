@@ -128,7 +128,7 @@ def ExtractHelixPairs(request, id):
         'database.html',
         {'tmproteins': tmproteins})
 
-class MyCronJob3(CronJobBase):
+class MyCronJob4(CronJobBase):
     RUN_AT_TIMES = ['0:00']
 
     schedule = Schedule(run_at_times=RUN_AT_TIMES)
@@ -171,6 +171,32 @@ def ClusterHelixTripletsByRMSD(request, id):
     database_model_i = DatabaseModel.objects.get(pk=id)
 
     TMHelixTriplet.objects.filter(TMProtein__structure__in=database_model_i.structure_set.all()).Cluster()
+
+class MyCronJob5(CronJobBase):
+    RUN_AT_TIMES = ['0:30']
+
+    schedule = Schedule(run_at_times=RUN_AT_TIMES)
+
+    code = 'xml_parser.my_cron_job5'    # a unique code
+
+    def do(self):
+    # zmienic na if not TMProtein.tmhelixpair.set
+        id=8
+        database_model_i = DatabaseModel.objects.get(pk=id)
+    #jakis subset jest potrebny
+        from myapp.models import TMHelixTriplet
+    #    structures=database_model_i.structure_set.all()    
+        database_model_i = DatabaseModel.objects.get(pk=id)
+
+        TMHelixTriplet.objects.filter(TMProtein__structure__in=database_model_i.structure_set.all()).Cluster()
+
+        print 'done'    # do your thing here
+        f=open('/home/soutys/MyCronJob5Log.txt','a')
+        f.write('done')
+        f.flush()
+        f.close()
+        print 'done'    # do your thing here
+
 
 def CalculateAminoAcidZPreferenceHistogram(request, ds_id):
 
