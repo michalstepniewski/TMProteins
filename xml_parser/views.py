@@ -170,7 +170,7 @@ def ClusterHelixTripletsByRMSD(request, id):
 #    structures=database_model_i.structure_set.all()    
     database_model_i = DatabaseModel.objects.get(pk=id)
 
-    TMHelixTriplet.objects.filter(TMProtein__structure__in=database_model_i.structure_set.all()).Cluster()
+    TMHelixTriplet.objects.filter(TMProtein__structure__in=database_model_i.structure_set.all()).Cluster() #musze RMSD CA tu dac
 
 class MyCronJob5(CronJobBase):
     RUN_AT_TIMES = ['0:30']

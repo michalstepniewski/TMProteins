@@ -1178,9 +1178,15 @@ class TMHelixTripletQuerySet(models.QuerySet):
         
         return
 
-    def getRMSDMatrix(self):
+    def getRMSDMatrix(self,coords='MC'):
 #ta matryca pewnie bedzie za dluga na JSONA a i tak musi wejsc do pamieci
-        self.RMSDMatrix = getRMSDMatrix (self.Crds())
+        if coords=='MC':
+            self.RMSDMatrix = getRMSDMatrix (self.Crds())
+            
+        elif coords=='CA':
+            self.RMSDMatrix = getRMSDMatrix (self.CAs())
+        # a moze coords powinno byc inne
+
         return self.RMSDMatrix
 
 #        length = len(self)        
