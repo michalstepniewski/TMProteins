@@ -33,9 +33,15 @@ class MyCronJob(CronJobBase):
 
     def do(self):
         id=8
+        f=open('/home/soutys/MyCronJobLog.txt','a')
+        f.write('done')
+        f.flush()
+        f.close()
+
         db = DatabaseModel.objects.get(pk=id)
         db.Update()
         print 'done'    # do your thing here
+        #sprawdzic czy sie na pewno updateuje
 
 class MyCronJob2(CronJobBase):
     RUN_AT_TIMES = ['23:00']
@@ -49,6 +55,11 @@ class MyCronJob2(CronJobBase):
         db = DatabaseModel.objects.get(pk=id)
         db.structure_set.Download()
         print 'done'    # do your thing here
+        f=open('/home/soutys/MyCronJob2Log.txt','a')
+        f.write('done')
+        f.flush()
+        f.close()
+        print 'done'    # do your thing here
 
 class MyCronJob3(CronJobBase):
     RUN_AT_TIMES = ['23:30']
@@ -61,6 +72,11 @@ class MyCronJob3(CronJobBase):
         id=8
         db = DatabaseModel.objects.get(pk=id)
         db.Process()
+        print 'done'    # do your thing here
+        f=open('/home/soutys/MyCronJob3Log.txt','a')
+        f.write('done')
+        f.flush()
+        f.close()
         print 'done'    # do your thing here
 
 
@@ -103,11 +119,34 @@ def CalculateHelixTripletStats(request, ds_id):
         {'tmproteins': tmproteins})
 
 def ExtractHelixPairs(request, id):
-    TMProtein.objects.ExtractConsecutiveHelixPairs ()
+    # zmienic na if not TMProtein.tmhelixpair.set
+    database_model_i = DatabaseModel.objects.get(pk=id)
+    TMProtein.objects.filter(structure__in=database_model_i.structure_set.all()).ExtractConsecutiveHelixPairs ()
+
     tmproteins = protein.objects.all()   
     return render(request,
         'database.html',
         {'tmproteins': tmproteins})
+
+class MyCronJob3(CronJobBase):
+    RUN_AT_TIMES = ['0:00']
+
+    schedule = Schedule(run_at_times=RUN_AT_TIMES)
+
+    code = 'xml_parser.my_cron_job4'    # a unique code
+
+    def do(self):
+    # zmienic na if not TMProtein.tmhelixpair.set
+        id=8
+        database_model_i = DatabaseModel.objects.get(pk=id)
+        TMProtein.objects.filter(structure__in=database_model_i.structure_set.all()).ExtractConsecutiveHelixPairs ()
+        print 'done'    # do your thing here
+        f=open('/home/soutys/MyCronJob4Log.txt','a')
+        f.write('done')
+        f.flush()
+        f.close()
+        print 'done'    # do your thing here
+
 
 def ExtractInteractingHelixPairs(request, ds_id):
     TMProtein.objects.ExtractInteractingHelixPairs ()
@@ -126,8 +165,12 @@ def ExtractInteractingHelixTriplets(request, ds_id):
 
 
 def ClusterHelixTripletsByRMSD(request, id):
-    from myapp.models import TMHelixTriplet  
-    TMHelixTriplet.objects.all().Cluster()
+    #jakis subset jest potrebny
+    from myapp.models import TMHelixTriplet
+#    structures=database_model_i.structure_set.all()    
+    database_model_i = DatabaseModel.objects.get(pk=id)
+
+    TMHelixTriplet.objects.filter(TMProtein__structure__in=database_model_i.structure_set.all()).Cluster()
 
 def CalculateAminoAcidZPreferenceHistogram(request, ds_id):
 

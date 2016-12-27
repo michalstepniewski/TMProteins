@@ -451,15 +451,6 @@ class TMProteinManager(models.Manager): #zmienic to na TMProtein
 
 #####################################################################################################################################################
 
-    def ExtractConsecutiveHelixPairs (self):
-    
-        [tmprotein. ExtractConsecutiveHelixPairs() for tmprotein in self.all()]
-        
-        return
-
-
-#####################################################################################################################################################
-
     def ReadPDB (self, pdb_path, db_path):
         from PDB_FileContentsModule import ReadPDBFile
 
@@ -469,6 +460,16 @@ class TMProteinManager(models.Manager): #zmienic to na TMProtein
 
 
 class TMProteinQuerySet(models.QuerySet):
+
+#####################################################################################################################################################
+
+    def ExtractConsecutiveHelixPairs (self):
+    
+        [tmprotein. ExtractConsecutiveHelixPairs() for tmprotein in self.all()]
+        
+        return
+
+
 
 #####################################################################################################################################################
 
@@ -693,10 +694,10 @@ class TMProtein (models.Model): #zmienic to na TMProtein
 
 
     def ExtractConsecutiveHelixPairs (self):
-        
+      if not self.tmhelixpair_set.all():
         NoHelices = self. tmhelixmodel_set.count()
-        
-        if NoHelices >= 2:
+        with transaction.atomic(): 
+         if NoHelices >= 2:
         
             for N in range(NoHelices - 1):
                
@@ -712,7 +713,7 @@ class TMProtein (models.Model): #zmienic to na TMProtein
 # mozna to lepiej rozpisac, ale to na potem                
 #                print  'Count '+str(tmhelixpair.tmhelixmodel_set.count())        
                 #sprawdzic czy dobrze bedzie
-        return
+      return
 
     def ExtractInteractingHelixTriplets (self):
         
@@ -864,7 +865,7 @@ class TMProtein (models.Model): #zmienic to na TMProtein
 
     def ExtractConsecutiveHelixTriplets (self):
         
-        
+      if not self.tmhelixtriplet_set.all():        
         
         NoHelices = self. tmhelixmodel_set.count()
         

@@ -72,6 +72,7 @@ CRON_CLASSES = [
     "xml_parser.views.MyCronJob",
     "xml_parser.views.MyCronJob2",
     "xml_parser.views.MyCronJob3",
+    "xml_parser.views.MyCronJob4",
 ]
 
 ROOT_URLCONF = 'myproject.urls'

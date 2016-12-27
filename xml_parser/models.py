@@ -347,7 +347,17 @@ class DatabaseModel (models.Model):
             
                structureI.Process(self.parameters)
     
+class Operation(models.Model):
+    name = models.CharField(max_length=200,null=True)
+    DatabaseModel = models.ForeignKey(DatabaseModel, on_delete=models.CASCADE, null=True)
+    parameters = models.CharField(max_length=2000,null=True) #in json format perhaps
 
+class RMSDMatrix(models.Model):
+    name = models.CharField(max_length=200,null=True)
+    DatabaseModel = models.ForeignKey(DatabaseModel, on_delete=models.CASCADE, null=True)
+    Operation =  models.ForeignKey(Operation, on_delete=models.CASCADE, null=True)
+    path = models.CharField(max_length=2000,null=True) #in json format perhaps
+    #thinking of a way to store contents efficiently
 
 class group(models.Model):
 
